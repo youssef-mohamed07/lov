@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/* Lov brand — ciel clair, chaleur corail */
+:root {
+  --background: #f5f9fc;
+  --foreground: #1a2b3c;
+  --muted: #5f7388;
+  --surface: #ffffff;
+  --surface-muted: #e8f1f7;
+  --border: #d5e3ee;
+  --accent: #2f7ea8;
+  --accent-foreground: #ffffff;
+  --accent-soft: #dceef7;
+  --ring: #2f7ea8;
+  --danger: #c2453a;
+  --voice: #e07a5f;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --gutter: var(--space-5);
+  --gutter-md: var(--space-6);
+  --gutter-lg: var(--space-8);
+
+  --section-space-sm: var(--space-12);
+  --section-space-md: var(--space-16);
+  --section-space-lg: var(--space-24);
+
+  --container-sm: 40rem;
+  --container-md: 48rem;
+  --container-lg: 72rem;
+  --container-xl: 80rem;
+
+  --grid-gap: var(--space-6);
+  --grid-gap-lg: var(--space-8);
+
+  --header-height: 5.25rem;
+  --radius-card: 1.35rem;
+  --shadow-card: 0 20px 48px -34px rgba(26, 43, 60, 0.22);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: var(--gutter-md);
+    --section-space-sm: var(--space-16);
+    --section-space-md: var(--space-20);
+    --section-space-lg: var(--space-24);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: var(--gutter-lg);
+    --section-space-md: var(--space-24);
+    --section-space-lg: var(--space-32);
+    --grid-gap: var(--grid-gap-lg);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-ring: var(--ring);
+  --color-danger: var(--danger);
+  --color-voice: var(--voice);
+  --font-sans: var(--font-body), "Figtree", ui-sans-serif, sans-serif;
+  --font-display: var(--font-heading), Fraunces, Georgia, "Times New Roman", serif;
+
+  --spacing-gutter: var(--gutter);
+  --spacing-section-sm: var(--section-space-sm);
+  --spacing-section-md: var(--section-space-md);
+  --spacing-section-lg: var(--section-space-lg);
+  --spacing-grid: var(--grid-gap);
+
+  --container-width-sm: var(--container-sm);
+  --container-width-md: var(--container-md);
+  --container-width-lg: var(--container-lg);
+  --container-width-xl: var(--container-xl);
+}
+
+html {
+  overflow-x: clip;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01" on, "kern" on;
+  letter-spacing: 0.005em;
+  overflow-x: clip;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--foreground);
+}

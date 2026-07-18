@@ -1,0 +1,17 @@
+export { HomeHero } from "./hero";
+export { HomeShowcase } from "./showcase";
+export { HomeReassurance } from "./reassurance";
+export { HomeStats } from "./stats";
+export { HomeOverview } from "./overview";
+export { HomeSteps } from "./steps";
+export { HomeConditions } from "./conditions";
+export { HomeTroublesPanel } from "./troubles-panel";
+export { HomeServicesGrid } from "./services-grid";
+export { HomeBento } from "./bento";
+export { HomeGallery } from "./gallery";
+export { HomeDialogue } from "./dialogue";
+export { HomePlatform } from "./platform";
+export { HomeExpertise } from "./expertise";
+export { HomePricing } from "./pricing";
+export { HomeFaq } from "./faq";
+export { TestimonialsSection as HomeTestimonials } from "@/components/sections/testimonials";
