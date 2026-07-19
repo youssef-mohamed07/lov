@@ -11,7 +11,7 @@ import { homeStats } from "@/data/stats";
 import { easeOutExpo } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-const AUTO_MS = 3800;
+const AUTO_MS = 4000;
 
 const metrics = [homeStats.featured, ...homeStats.secondary];
 
@@ -23,18 +23,22 @@ export function HomeStats() {
   const current = metrics[active] ?? metrics[0];
 
   useEffect(() => {
-    if (reduceMotion || paused) return;
-    const id = window.setInterval(() => {
+    if (reduceMotion || paused) return undefined;
+    const id = window.setTimeout(() => {
       setActive((value) => (value + 1) % metrics.length);
     }, AUTO_MS);
-    return () => window.clearInterval(id);
-  }, [paused, reduceMotion]);
+    return () => window.clearTimeout(id);
+  }, [active, paused, reduceMotion]);
 
   const ringProgress = useMemo(() => {
     if (current.suffix === "%") return Math.min(current.value, 100);
     if (current.value >= 1000) return 82;
     return 64;
   }, [current]);
+
+  const goTo = (index: number) => {
+    setActive(index);
+  };
 
   return (
     <section className="bg-background py-[var(--section-space-md)]">
@@ -54,12 +58,12 @@ export function HomeStats() {
           </p>
         </Reveal>
 
-        <div
-          className="mx-auto mt-10 max-w-3xl"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <div className="relative mx-auto flex aspect-square w-full max-w-[340px] items-center justify-center sm:max-w-[380px]">
+        <div className="mx-auto mt-10 max-w-3xl">
+          <div
+            className="relative mx-auto flex aspect-square w-full max-w-[340px] items-center justify-center sm:max-w-[380px]"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
             <svg
               viewBox="0 0 200 200"
               className="absolute inset-0 size-full -rotate-90"
@@ -132,6 +136,14 @@ export function HomeStats() {
             role="tablist"
             aria-label="Indicateurs"
             className="mt-8 flex flex-wrap items-center justify-center gap-2"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                setPaused(false);
+              }
+            }}
           >
             {metrics.map((metric, index) => {
               const selected = index === active;
@@ -141,22 +153,27 @@ export function HomeStats() {
                   type="button"
                   role="tab"
                   aria-selected={selected}
-                  onClick={() => setActive(index)}
+                  onClick={() => goTo(index)}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    "relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-colors",
                     selected
-                      ? "text-foreground"
-                      : "text-muted hover:text-foreground",
+                      ? "border border-border bg-surface text-foreground shadow-[var(--shadow-card)]"
+                      : "border border-transparent text-muted hover:text-foreground",
                   )}
                 >
                   {selected && !reduceMotion ? (
                     <motion.span
-                      layoutId="stats-pill"
-                      className="absolute inset-0 rounded-full border border-border bg-background"
-                      transition={{ duration: 0.35, ease: easeOutExpo }}
+                      key={`progress-${metric.label}-${active}`}
+                      aria-hidden
+                      className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-accent"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: paused ? 0 : 1 }}
+                      transition={
+                        paused
+                          ? { duration: 0.2 }
+                          : { duration: AUTO_MS / 1000, ease: "linear" }
+                      }
                     />
-                  ) : selected ? (
-                    <span className="absolute inset-0 rounded-full border border-border bg-background" />
                   ) : null}
                   <span className="relative z-10">
                     {metric.value}
@@ -168,9 +185,7 @@ export function HomeStats() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <CtaButton size="sm">
-              Découvrir Lov
-            </CtaButton>
+            <CtaButton size="sm">Découvrir Lov</CtaButton>
           </div>
         </div>
       </Container>
