@@ -88,7 +88,7 @@ export default function ArticlesPage() {
                       <div className="flex flex-1 flex-col p-5">
                         <div className="flex items-center gap-2 text-xs text-muted">
                           {category ? (
-                            <span className="font-medium tracking-[0.12em] text-accent uppercase">
+                            <span className="font-medium tracking-[0.12em] text-muted uppercase">
                               {category.title}
                             </span>
                           ) : null}

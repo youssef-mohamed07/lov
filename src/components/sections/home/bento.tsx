@@ -9,15 +9,10 @@ const community = ["A", "M", "S", "L", "N", "C"];
 
 export function HomeBento() {
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-50 [background-image:radial-gradient(rgba(26,43,60,0.08)_1px,transparent_1px)] [background-size:18px_18px]"
-      />
-
-      <Container className="relative">
+    <section className="bg-background py-[var(--section-space-lg)]">
+      <Container>
         <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
+          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
             Pourquoi Lov
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
@@ -31,7 +26,7 @@ export function HomeBento() {
         <div className="grid items-stretch gap-4 lg:grid-cols-3">
           <div className="flex flex-col gap-4">
             <Reveal variant="fade-scale" className="overflow-hidden rounded-[1.5rem]">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(14,14,15,0.45)]">
                 <Image
                   src="/images/hero-child.jpg"
                   alt="Enfant concentré pendant une activité de langage"
@@ -43,7 +38,7 @@ export function HomeBento() {
             </Reveal>
 
             <Reveal delay={0.06} variant="fade-scale" className="flex-1">
-              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)]">
+              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)]">
                 <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
                   <BookOpen className="size-5" aria-hidden />
                 </div>
@@ -59,7 +54,7 @@ export function HomeBento() {
           </div>
 
           <Reveal delay={0.08} variant="fade-scale" className="h-full">
-            <article className="flex h-full min-h-[420px] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)] lg:min-h-0">
+            <article className="flex h-full min-h-[420px] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)] lg:min-h-0">
               <div className="relative mx-auto flex aspect-square w-full max-w-[280px] flex-1 items-center justify-center">
                 <div
                   aria-hidden
@@ -113,7 +108,7 @@ export function HomeBento() {
 
           <div className="flex flex-col gap-4">
             <Reveal delay={0.1} variant="fade-scale" className="flex-1">
-              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)]">
+              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)]">
                 <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
                   <PencilLine className="size-5" aria-hidden />
                 </div>
@@ -128,7 +123,7 @@ export function HomeBento() {
             </Reveal>
 
             <Reveal delay={0.14} variant="fade-scale">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(14,14,15,0.45)]">
                 <Image
                   src="/images/hero-therapist.jpg"
                   alt="Professionnel préparant un accompagnement orthophonique"

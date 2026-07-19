@@ -23,18 +23,12 @@ export function SiteCta({
   accent = "plus clair ?",
   description = "Bilan, orientation et accompagnement — pour les familles qui veulent des repères concrets.",
   ctaLabel = "Bilan orthophonique",
-  ctaHref = "/bilan",
+  ctaHref,
 }: SiteCtaProps) {
   const reduceMotion = useReducedMotion();
 
   return (
     <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,var(--accent-soft),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_100%_100%,rgba(224,122,95,0.12),transparent_50%)]" />
-        <div className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(rgba(26,43,60,0.06)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
-      </div>
-
       <Container className="relative">
         <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface shadow-[var(--shadow-card)]">
           <StarCutout
@@ -60,7 +54,11 @@ export function SiteCta({
             <p className="mt-5 max-w-md text-base leading-7 text-muted sm:text-lg sm:leading-8">
               {description}
             </p>
-            <CtaButton href={ctaHref} size="lg" className="mt-8">
+            <CtaButton
+              {...(ctaHref ? { href: ctaHref } : {})}
+              size="lg"
+              className="mt-8"
+            >
               {ctaLabel}
             </CtaButton>
           </div>
@@ -107,13 +105,7 @@ function StarCutout({
         className="relative size-full overflow-hidden bg-accent-soft"
         style={{ clipPath: starClip }}
       >
-        <Image
-          src={src}
-          alt=""
-          fill
-          sizes="240px"
-          className="object-cover"
-        />
+        <Image src={src} alt="" fill sizes="240px" className="object-cover" />
       </div>
     </motion.div>
   );

@@ -100,7 +100,7 @@ export default function ContactPage() {
 
             <Reveal delay={0.08} variant="right">
               <div className="rounded-[1.75rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:p-10">
-                <p className="text-xs font-medium tracking-[0.18em] text-accent uppercase">
+                <p className="text-xs font-medium tracking-[0.18em] text-muted uppercase">
                   Écrire à Lov
                 </p>
                 <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">

@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
-/* Lov brand — ciel clair, chaleur corail */
+/* Lov brand — black, white, orange accent */
 :root {
-  --background: #f5f9fc;
-  --foreground: #1a2b3c;
-  --muted: #5f7388;
+  --background: #fdfdfd;
+  --foreground: #0e0e0f;
+  --muted: #515151;
+  --muted-soft: #a5a4a5;
   --surface: #ffffff;
-  --surface-muted: #e8f1f7;
-  --border: #d5e3ee;
-  --accent: #2f7ea8;
-  --accent-foreground: #ffffff;
-  --accent-soft: #dceef7;
-  --ring: #2f7ea8;
+  --surface-muted: #f8f8f8;
+  --border: #ececec;
+  --accent: #fe5110;
+  --accent-hover: #e9480a;
+  --accent-foreground: #fdfdfd;
+  --accent-soft: #ffe8de;
+  --ring: #fe5110;
   --danger: #c2453a;
-  --voice: #e07a5f;
+  --voice: #fe5110;
+  --success: #00b67a;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -47,7 +50,7 @@
 
   --header-height: 5.25rem;
   --radius-card: 1.35rem;
-  --shadow-card: 0 20px 48px -34px rgba(26, 43, 60, 0.22);
+  --shadow-card: 0 20px 48px -34px rgba(14, 14, 15, 0.18);
 }
 
 @media (min-width: 640px) {
@@ -72,15 +75,18 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-muted-soft: var(--muted-soft);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
   --color-ring: var(--ring);
   --color-danger: var(--danger);
   --color-voice: var(--voice);
+  --color-success: var(--success);
   --font-sans: var(--font-body), "Figtree", ui-sans-serif, sans-serif;
   --font-display: var(--font-heading), Fraunces, Georgia, "Times New Roman", serif;
 
@@ -125,4 +131,31 @@ body {
 ::selection {
   background: var(--accent-soft);
   color: var(--foreground);
+}
+
+@keyframes testimonial-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes testimonial-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+@keyframes testimonial-marquee-reverse {
+  from {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+  to {
+    transform: translateX(0);
+  }
 }

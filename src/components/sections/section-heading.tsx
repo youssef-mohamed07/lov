@@ -36,7 +36,7 @@ export function SectionHeading({
         variant="fade"
       >
         {eyebrow ? (
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
+          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {eyebrow}
           </p>
         ) : null}

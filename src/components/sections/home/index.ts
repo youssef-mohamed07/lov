@@ -8,7 +8,6 @@ export { HomeConditions } from "./conditions";
 export { HomeTroublesPanel } from "./troubles-panel";
 export { HomeServicesGrid } from "./services-grid";
 export { HomeBento } from "./bento";
-export { HomeGallery } from "./gallery";
 export { HomeDialogue } from "./dialogue";
 export { HomePlatform } from "./platform";
 export { HomeExpertise } from "./expertise";

@@ -21,7 +21,7 @@ export function Faq({
   return (
     <div className={cn("flex flex-col gap-[var(--space-10)]", className)}>
       <div className="mx-auto max-w-2xl text-center">
-        <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
+        <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
           Questions
         </p>
         <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -38,7 +38,7 @@ export function Faq({
         {items.map((item) => (
           <details
             key={item.question}
-            className="group rounded-2xl bg-surface px-[var(--space-5)] py-[var(--space-2)] shadow-[0_12px_40px_-32px_rgba(26,43,60,0.45)] open:pb-[var(--space-5)]"
+            className="group rounded-2xl bg-surface px-[var(--space-5)] py-[var(--space-2)] shadow-[0_12px_40px_-32px_rgba(14,14,15,0.45)] open:pb-[var(--space-5)]"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-[var(--space-4)] text-left text-base font-medium text-foreground marker:content-none [&::-webkit-details-marker]:hidden">
               <span>{item.question}</span>

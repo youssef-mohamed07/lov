@@ -2,7 +2,6 @@ import {
   HomeBento,
   HomeDialogue,
   HomeExpertise,
-  HomeGallery,
   HomeHero,
   HomePlatform,
   HomePricing,
@@ -23,7 +22,6 @@ export default function HomePage() {
       <HomeDialogue />
       <HomeTroublesPanel />
       <HomeServicesGrid />
-      <HomeGallery />
       <HomeBento />
       <HomeStats />
       <HomeTestimonials />

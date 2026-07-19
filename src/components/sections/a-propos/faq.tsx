@@ -17,7 +17,7 @@ export function AboutFaq() {
     <section className="bg-background py-[var(--section-space-lg)]">
       <Container size="md">
         <Reveal className="text-center" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {faq.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

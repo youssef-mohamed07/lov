@@ -111,7 +111,7 @@ export function SimulatorFlow() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-[#142636]/90 via-[#142636]/45 to-[#142636]/20"
+          className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/90 via-[#0E0E0F]/45 to-[#0E0E0F]/20"
         />
         <div className="relative flex h-full min-h-svh flex-col justify-between p-10 xl:p-14">
           <BrandMark tone="onDark" />
@@ -156,7 +156,7 @@ export function SimulatorFlow() {
       <div className="relative flex min-h-svh flex-col px-5 pt-6 pb-8 sm:px-8 lg:h-svh lg:overflow-y-auto lg:px-12 lg:pt-10 xl:px-16">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle_at_top_right,var(--accent-soft),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(224,122,95,0.12),transparent_40%)]"
+          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle_at_top_right,var(--accent-soft),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(254,81,16,0.12),transparent_40%)]"
         />
 
         <div className="relative mx-auto flex w-full max-w-lg items-center justify-between gap-3 lg:hidden">
@@ -169,7 +169,7 @@ export function SimulatorFlow() {
         {phase !== "welcome" ? (
           <header className="relative mx-auto mt-5 w-full max-w-lg lg:mt-0">
             <div className="mb-3 flex items-center justify-between gap-3">
-              <p className="text-xs font-medium tracking-[0.18em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.18em] text-muted uppercase">
                 {phase === "result"
                   ? "Résultat"
                   : `Question ${step + 1} / ${simulatorQuestions.length}`}
@@ -209,7 +209,7 @@ export function SimulatorFlow() {
                   <div className="mx-auto mb-6 inline-flex size-14 items-center justify-center rounded-[1.25rem] bg-accent-soft text-accent lg:mx-0">
                     <Sparkles className="size-6" aria-hidden />
                   </div>
-                  <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+                  <p className="text-xs font-medium tracking-[0.2em] text-muted uppercase">
                     Simulateur
                   </p>
                   <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
@@ -288,7 +288,7 @@ export function SimulatorFlow() {
                   >
                     <Sparkles className="size-6" aria-hidden />
                   </motion.div>
-                  <p className="mt-5 text-xs font-medium tracking-[0.18em] text-accent uppercase">
+                  <p className="mt-5 text-xs font-medium tracking-[0.18em] text-muted uppercase">
                     Votre orientation
                   </p>
                   <h1 className="mt-3 font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-[1.15]">

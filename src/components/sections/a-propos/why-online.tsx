@@ -9,7 +9,7 @@ export function AboutWhyOnline() {
     <section className="bg-surface py-[var(--section-space-lg)]">
       <Container>
         <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {whyOnline.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
@@ -27,7 +27,7 @@ export function AboutWhyOnline() {
           {whyOnline.points.map((point, index) => (
             <li key={point.title}>
               <Reveal delay={index * 0.07}>
-                <p className="font-display text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                <p className="font-display text-sm font-semibold tracking-[0.14em] text-muted uppercase">
                   {String(index + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-3 font-display text-xl font-semibold tracking-tight text-foreground">

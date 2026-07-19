@@ -9,156 +9,198 @@ import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { pricingPlans } from "@/data/home";
+import { easeOutExpo } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export function HomePricing() {
-  const [activeId, setActiveId] = useState(
+  const reduceMotion = useReducedMotion();
+  const defaultId =
     pricingPlans.find((plan) => "highlighted" in plan && plan.highlighted)?.id ??
-      pricingPlans[0].id,
-  );
+    pricingPlans[0].id;
+  const [activeId, setActiveId] = useState(defaultId);
+
   const active =
     pricingPlans.find((plan) => plan.id === activeId) ?? pricingPlans[0];
-  const reduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-background py-[var(--section-space-lg)]">
+    <section className="bg-background py-[var(--section-space-md)]">
       <Container>
-        <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
+        <Reveal className="mx-auto mb-10 max-w-2xl text-center" variant="fade">
+          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             Tarifs
           </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            Choisissez le rythme{" "}
-            <span className="font-display font-medium italic text-voice">
-              qui vous convient
-            </span>
+          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Combien ça{" "}
+            <span className="font-medium italic text-voice">coûte ?</span>
           </h2>
-          <p className="mt-[var(--space-4)] text-base leading-7 text-muted sm:text-lg">
-            Séance, bilan ou suivi — sélectionnez une formule pour voir le
-            détail.
+          <p className="mt-3 text-base leading-7 text-muted">
+            Trois formules. Un prix affiché. Aucune surprise.
           </p>
         </Reveal>
 
-        <div className="grid items-stretch gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-          <Reveal variant="fade-scale">
-            <div className="relative min-h-[360px] overflow-hidden rounded-[var(--radius-card)] border border-border bg-surface shadow-[var(--shadow-card)] lg:min-h-full">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active.id}
-                  initial={reduceMotion ? false : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={reduceMotion ? undefined : { opacity: 0 }}
-                  transition={{ duration: 0.35 }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={active.image}
-                    alt={active.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 55vw"
-                    className="object-cover"
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/25 to-transparent"
-                  />
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                <p className="text-xs font-medium tracking-[0.18em] text-accent uppercase">
-                  {"badge" in active && active.badge ? active.badge : "Formule"}
-                </p>
-                <div className="mt-2 flex flex-wrap items-end gap-2">
-                  <p className="font-display text-5xl font-semibold tracking-tight text-foreground">
-                    {active.price}
-                  </p>
-                  <p className="pb-1 text-sm text-muted">{active.period}</p>
-                </div>
-                <p className="mt-2 max-w-md text-sm leading-6 text-foreground/80">
-                  {active.description}
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="flex flex-col gap-3">
-            {pricingPlans.map((plan, index) => {
-              const selected = plan.id === active.id;
-              return (
-                <Reveal key={plan.id} delay={index * 0.06} variant="fade">
+        <Reveal className="mx-auto max-w-4xl" variant="fade">
+          <div className="overflow-hidden rounded-[1.5rem] border border-border bg-surface shadow-[var(--shadow-card)]">
+            {/* Plan switcher */}
+            <div
+              role="tablist"
+              aria-label="Choisir une formule"
+              className="grid grid-cols-3 border-b border-border"
+            >
+              {pricingPlans.map((plan, index) => {
+                const selected = plan.id === activeId;
+                return (
                   <button
+                    key={plan.id}
                     type="button"
+                    role="tab"
+                    aria-selected={selected}
                     onClick={() => setActiveId(plan.id)}
+                    onMouseEnter={() => {
+                      if (!reduceMotion) setActiveId(plan.id);
+                    }}
                     className={cn(
-                      "w-full rounded-[1.35rem] border p-5 text-left transition-all duration-300 sm:p-6",
+                      "relative px-3 pt-8 pb-5 text-center transition-colors sm:px-6 sm:pt-9 sm:pb-6",
+                      index > 0 && "border-l border-border",
                       selected
-                        ? "border-accent bg-accent-soft/60 shadow-[var(--shadow-card)]"
-                        : "border-border bg-surface hover:border-accent/30 hover:bg-background",
+                        ? "bg-foreground text-background"
+                        : "bg-surface text-muted hover:bg-surface-muted hover:text-foreground",
                     )}
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h3 className="text-lg font-semibold tracking-tight text-foreground">
-                            {plan.name}
-                          </h3>
-                          {"badge" in plan && plan.badge ? (
-                            <span className="rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-medium text-accent-foreground">
-                              {plan.badge}
-                            </span>
-                          ) : null}
-                        </div>
-                        <p className="mt-1 text-sm text-muted">
-                          {plan.description}
-                        </p>
-                      </div>
-                      <p className="shrink-0 font-display text-2xl font-semibold tracking-tight text-foreground">
-                        {plan.price}
+                    {"badge" in plan && plan.badge ? (
+                      <span
+                        className={cn(
+                          "absolute top-2.5 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-[10px] font-medium tracking-wide",
+                          selected
+                            ? "bg-accent text-accent-foreground"
+                            : "bg-accent-soft text-accent",
+                        )}
+                      >
+                        Populaire
+                      </span>
+                    ) : null}
+
+                    <span
+                      className={cn(
+                        "block font-display text-2xl font-semibold tracking-tight sm:text-[2rem]",
+                        selected ? "text-background" : "text-foreground",
+                      )}
+                    >
+                      {plan.price}
+                    </span>
+                    <span
+                      className={cn(
+                        "mt-1 block text-xs font-medium sm:text-sm",
+                        selected ? "text-background/65" : "text-muted",
+                      )}
+                    >
+                      {plan.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active plan detail */}
+            <div className="grid lg:grid-cols-[1.05fr_1fr]">
+              <div className="relative min-h-[240px] lg:min-h-[320px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active.id}
+                    initial={
+                      reduceMotion ? false : { opacity: 0, scale: 1.03 }
+                    }
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={reduceMotion ? undefined : { opacity: 0 }}
+                    transition={{ duration: 0.4, ease: easeOutExpo }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={active.image}
+                      alt={active.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-foreground/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-surface/80"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 p-5 lg:hidden">
+                      <p className="font-display text-3xl font-semibold text-background">
+                        {active.price}
+                      </p>
+                      <p className="mt-0.5 text-sm text-background/75">
+                        {active.name} {active.period}
+                      </p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active.id}
+                    initial={
+                      reduceMotion
+                        ? false
+                        : { opacity: 0, y: 14, filter: "blur(4px)" }
+                    }
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={
+                      reduceMotion
+                        ? undefined
+                        : { opacity: 0, y: -10, filter: "blur(4px)" }
+                    }
+                    transition={{ duration: 0.35, ease: easeOutExpo }}
+                  >
+                    <div className="hidden items-baseline gap-3 lg:flex">
+                      <p className="font-display text-4xl font-semibold tracking-tight text-foreground">
+                        {active.price}
+                      </p>
+                      <p className="text-sm text-muted">
+                        {active.name} {active.period}
                       </p>
                     </div>
 
-                    <AnimatePresence initial={false}>
-                      {selected ? (
-                        <motion.div
-                          initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="overflow-hidden"
+                    <h3 className="sr-only">{active.name}</h3>
+
+                    <p className="mt-3 max-w-sm text-sm leading-6 text-muted sm:text-[0.95rem] sm:leading-7 lg:mt-4">
+                      {active.description}
+                    </p>
+
+                    <ul className="mt-6 flex flex-col gap-3">
+                      {active.features.map((feature, index) => (
+                        <motion.li
+                          key={feature}
+                          initial={
+                            reduceMotion ? false : { opacity: 0, x: -8 }
+                          }
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            delay: 0.05 + index * 0.05,
+                            duration: 0.3,
+                            ease: easeOutExpo,
+                          }}
+                          className="flex items-center gap-3 text-sm text-foreground"
                         >
-                          <ul className="mt-4 flex flex-col gap-2 border-t border-border/80 pt-4">
-                            {plan.features.map((feature) => (
-                              <li
-                                key={feature}
-                                className="flex items-center gap-2 text-sm text-foreground"
-                              >
-                                <Check
-                                  className="size-4 shrink-0 text-accent"
-                                  aria-hidden
-                                />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                          <span
-                            className="mt-5 inline-block"
-                            onClick={(event) => event.stopPropagation()}
-                            onKeyDown={(event) => event.stopPropagation()}
-                          >
-                            <CtaButton href={plan.ctaHref} size="sm">
-                              {plan.ctaLabel}
-                            </CtaButton>
+                          <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-accent-soft">
+                            <Check className="size-3.5 text-accent" aria-hidden />
                           </span>
-                        </motion.div>
-                      ) : null}
-                    </AnimatePresence>
-                  </button>
-                </Reveal>
-              );
-            })}
+                          {feature}
+                        </motion.li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-8">
+                      <CtaButton size="md">{active.ctaLabel}</CtaButton>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

@@ -39,7 +39,7 @@ export default function BilanPage() {
               <li key={item.title}>
                 <Reveal delay={index * 0.06} variant="up" className="h-full">
                   <article className="flex h-full flex-col rounded-[1.5rem] border border-border bg-surface px-6 py-7 shadow-[var(--shadow-card)] sm:px-7">
-                    <span className="font-display text-3xl font-semibold tracking-tight text-accent/25">
+                    <span className="font-display text-3xl font-semibold tracking-tight text-foreground/15">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <h2 className="mt-4 font-display text-xl font-semibold tracking-tight text-foreground">
@@ -65,7 +65,7 @@ export default function BilanPage() {
           <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <Reveal>
               <div className="h-full rounded-[1.75rem] border border-border bg-surface p-7 shadow-[var(--shadow-card)] sm:p-9">
-                <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+                <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
                   Inclus
                 </p>
                 <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground">

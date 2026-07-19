@@ -95,7 +95,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
       <section className="bg-surface py-[var(--section-space-md)]">
         <Container>
           <Reveal className="mb-8 max-w-xl" variant="fade">
-            <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
               Galerie
             </p>
             <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">

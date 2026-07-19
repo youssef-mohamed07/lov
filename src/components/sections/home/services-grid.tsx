@@ -1,8 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
@@ -22,7 +20,7 @@ export function HomeServicesGrid() {
     <section className="bg-background py-[var(--section-space-lg)]">
       <Container>
         <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
+          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
             Spécialités
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
@@ -47,10 +45,7 @@ export function HomeServicesGrid() {
                 className="h-full"
               >
                 <li className="h-full">
-                  <Link
-                    href={`/troubles/${trouble.slug}`}
-                    className="group relative flex h-full min-h-[300px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]"
-                  >
+                  <article className="relative flex h-full min-h-[300px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]">
                     <Image
                       src={trouble.image}
                       alt=""
@@ -76,12 +71,8 @@ export function HomeServicesGrid() {
                       <p className="mt-2 line-clamp-2 min-h-[3rem] text-sm leading-6 text-white/85">
                         {trouble.description}
                       </p>
-                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white underline-offset-4 group-hover:underline">
-                        En savoir plus
-                        <ArrowUpRight className="size-4" aria-hidden />
-                      </span>
                     </div>
-                  </Link>
+                  </article>
                 </li>
               </Reveal>
             );

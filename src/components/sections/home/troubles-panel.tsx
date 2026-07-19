@@ -1,23 +1,29 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "framer-motion";
 import {
   BookOpen,
-  Check,
+  Calculator,
   Ear,
   MessageCircle,
   Mic2,
   PencilLine,
-  Calculator,
   AudioLines,
 } from "lucide-react";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { troubles, type Trouble } from "@/data/troubles";
+import { easeOutExpo } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, typeof BookOpen> = {
@@ -39,6 +45,10 @@ const featuredSlugs = [
 ] as const;
 
 export function HomeTroublesPanel() {
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const lockRef = useRef(false);
+
   const items = useMemo(
     () =>
       featuredSlugs
@@ -47,153 +57,212 @@ export function HomeTroublesPanel() {
     [],
   );
 
-  const [activeSlug, setActiveSlug] = useState(items[0]?.slug ?? "dyslexie");
-  const active = items.find((item) => item.slug === activeSlug) ?? items[0];
-  const reduceMotion = useReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = items[activeIndex] ?? items[0];
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    if (reduceMotion || lockRef.current || items.length === 0) return;
+    const next = Math.min(
+      items.length - 1,
+      Math.max(0, Math.floor(value * items.length)),
+    );
+    setActiveIndex((current) => (current === next ? current : next));
+  });
+
+  const selectIndex = (index: number) => {
+    setActiveIndex(index);
+    const section = sectionRef.current;
+    if (!section || reduceMotion) return;
+
+    lockRef.current = true;
+    const rect = section.getBoundingClientRect();
+    const absoluteTop = window.scrollY + rect.top;
+    const scrollable = section.offsetHeight - window.innerHeight;
+    const target =
+      absoluteTop + (scrollable * (index + 0.5)) / items.length;
+
+    window.scrollTo({ top: target, behavior: "smooth" });
+    window.setTimeout(() => {
+      lockRef.current = false;
+    }, 700);
+  };
 
   if (!active) return null;
 
-  const ActiveIcon = iconMap[active.slug] ?? BookOpen;
-
-  return (
-    <section className="bg-background py-[var(--section-space-lg)]">
-      <Container>
-        <Reveal
-          className="mx-auto mb-[var(--space-10)] max-w-2xl text-center"
-          variant="up"
-        >
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
-            Troubles
-          </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            Choisissez un trouble,{" "}
-            <span className="font-display font-medium italic text-voice">
-              explorez le parcours
-            </span>
-          </h2>
-        </Reveal>
-
-        <div className="grid items-start gap-[var(--space-5)] lg:grid-cols-[minmax(240px,0.85fr)_1.45fr] lg:gap-6">
-          <Reveal variant="left">
-            <div className="rounded-[var(--radius-card)] border border-border bg-surface p-3 shadow-[var(--shadow-card)] sm:p-4 lg:sticky lg:top-[calc(var(--header-height)+1rem)]">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-accent-soft px-3 py-1.5 text-xs font-medium text-accent">
-                <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-                Départements
-              </div>
-
-              <ul
-                className="flex flex-col gap-2"
-                role="tablist"
-                aria-label="Troubles"
-              >
-                {items.map((item) => {
-                  const Icon = iconMap[item.slug] ?? BookOpen;
-                  const selected = item.slug === active.slug;
-                  return (
-                    <li key={item.slug}>
-                      <button
-                        type="button"
-                        role="tab"
-                        aria-selected={selected}
-                        onClick={() => setActiveSlug(item.slug)}
-                        className={cn(
-                          "flex w-full items-center gap-3 rounded-2xl px-4 py-3.5 text-left text-sm font-medium transition-colors duration-200",
-                          selected
-                            ? "bg-accent-soft text-accent"
-                            : "text-foreground hover:bg-background",
-                        )}
-                      >
-                        <span
-                          className={cn(
-                            "inline-flex size-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-200",
-                            selected
-                              ? "bg-accent text-accent-foreground"
-                              : "bg-surface-muted text-muted",
-                          )}
-                        >
-                          <Icon className="size-4" aria-hidden />
-                        </span>
-                        {item.title}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+  const content = (
+    <Container className="w-full">
+      <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+        <div>
+          <Reveal variant="fade">
+            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+              Troubles
+            </p>
+            <h2 className="mt-2 max-w-sm font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              Choisissez un trouble,{" "}
+              <span className="font-medium italic text-voice">
+                explorez le parcours
+              </span>
+            </h2>
           </Reveal>
 
-          <Reveal delay={0.08} variant="right">
-            <div className="overflow-hidden rounded-[var(--radius-card)] border border-border bg-surface shadow-[var(--shadow-card)]">
+          <ul
+            role="tablist"
+            aria-label="Troubles"
+            className="mt-8 flex flex-col border-t border-border"
+          >
+            {items.map((item, index) => {
+              const Icon = iconMap[item.slug] ?? BookOpen;
+              const selected = index === activeIndex;
+              return (
+                <li key={item.slug} className="border-b border-border">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={selected}
+                    onClick={() => selectIndex(index)}
+                    className={cn(
+                      "flex w-full items-center gap-3 py-4 text-left transition-colors",
+                      selected
+                        ? "text-foreground"
+                        : "text-muted hover:text-foreground",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "inline-flex size-8 shrink-0 items-center justify-center rounded-full transition-colors",
+                        selected
+                          ? "bg-accent text-accent-foreground"
+                          : "bg-surface-muted text-muted",
+                      )}
+                    >
+                      <Icon className="size-3.5" aria-hidden />
+                    </span>
+                    <span className="text-base font-medium tracking-tight">
+                      {item.title}
+                    </span>
+                    {selected ? (
+                      <motion.span
+                        layoutId={
+                          reduceMotion ? undefined : "trouble-scroll-dot"
+                        }
+                        aria-hidden
+                        className="ml-auto size-1.5 rounded-full bg-accent"
+                        transition={{ duration: 0.3, ease: easeOutExpo }}
+                      />
+                    ) : null}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {!reduceMotion ? (
+            <div className="mt-5 h-1 overflow-hidden rounded-full bg-border">
+              <motion.div
+                className="h-full origin-left rounded-full bg-accent"
+                style={{ scaleX: scrollYProgress }}
+              />
+            </div>
+          ) : null}
+        </div>
+
+        <div className="relative overflow-hidden rounded-[1.5rem]">
+          <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.slug}
+                initial={
+                  reduceMotion ? false : { opacity: 0, y: 24, scale: 1.02 }
+                }
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={
+                  reduceMotion
+                    ? undefined
+                    : { opacity: 0, y: -16, scale: 0.99 }
+                }
+                transition={{ duration: 0.4, ease: easeOutExpo }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={active.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  priority={activeIndex === 0}
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/25 to-transparent"
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active.slug}
-                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
-                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                   role="tabpanel"
+                  initial={
+                    reduceMotion
+                      ? false
+                      : { opacity: 0, y: 14, filter: "blur(4px)" }
+                  }
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={
+                    reduceMotion
+                      ? undefined
+                      : { opacity: 0, y: -10, filter: "blur(4px)" }
+                  }
+                  transition={{ duration: 0.35, ease: easeOutExpo }}
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden sm:aspect-[2/1]">
-                    <Image
-                      src={active.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                      className="object-cover"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"
-                    />
-                    <div className="absolute bottom-4 left-4 inline-flex size-12 items-center justify-center rounded-2xl bg-surface text-accent shadow-[var(--shadow-card)]">
-                      <ActiveIcon className="size-5" aria-hidden />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col p-6 sm:p-8">
-                    <h3 className="max-w-lg font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                      {active.title}
-                    </h3>
-                    <p className="mt-4 max-w-xl text-sm leading-7 text-muted sm:text-base">
-                      {active.overview}
-                    </p>
-
-                    <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                      {active.signs.slice(0, 4).map((sign, index) => (
-                        <motion.li
-                          key={sign}
-                          initial={
-                            reduceMotion ? false : { opacity: 0, y: 10 }
-                          }
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{
-                            duration: 0.3,
-                            delay: 0.06 + index * 0.04,
-                            ease: [0.22, 1, 0.36, 1],
-                          }}
-                          className="flex items-start gap-2.5 rounded-2xl bg-background px-4 py-3 text-sm text-foreground"
-                        >
-                          <Check
-                            className="mt-0.5 size-4 shrink-0 text-accent"
-                            aria-hidden
-                          />
-                          <span>{sign}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-8">
-                      <CtaButton href={`/troubles/${active.slug}`} size="md">
-                        Voir le détail du trouble
-                      </CtaButton>
-                    </div>
+                  <h3 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                    {active.title}
+                  </h3>
+                  <p className="mt-3 max-w-md text-sm leading-6 text-white/80">
+                    {active.overview}
+                  </p>
+                  <ul className="mt-4 flex flex-col gap-1.5">
+                    {active.signs.slice(0, 3).map((sign) => (
+                      <li key={sign} className="text-sm text-white/75">
+                        — {sign}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <CtaButton size="sm">Voir le détail</CtaButton>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
-          </Reveal>
+          </div>
         </div>
-      </Container>
+      </div>
+    </Container>
+  );
+
+  if (reduceMotion) {
+    return (
+      <section ref={sectionRef} className="bg-background py-[var(--section-space-md)]">
+        {content}
+      </section>
+    );
+  }
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative bg-background"
+      style={{ height: `${Math.max(items.length, 1) * 85}vh` }}
+    >
+      <div className="sticky top-0 flex min-h-svh items-center py-[var(--section-space-md)]">
+        {content}
+      </div>
     </section>
   );
 }

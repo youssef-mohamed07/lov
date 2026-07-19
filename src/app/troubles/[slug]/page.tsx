@@ -64,7 +64,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
         <Container>
           <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <Reveal>
-              <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
                 Comprendre
               </p>
               <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -116,7 +116,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
               </div>
             </Reveal>
             <Reveal delay={0.08} variant="right">
-              <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
                 Notre approche
               </p>
               <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -142,7 +142,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
           <Container>
             <Reveal className="flex items-end justify-between gap-4">
               <div>
-                <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+                <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
                   Explorer
                 </p>
                 <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">

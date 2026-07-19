@@ -54,7 +54,7 @@ export default function CareersPage() {
                 />
                 <div
                   aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-[#142636]/55 via-transparent to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/55 via-transparent to-transparent"
                 />
                 <p className="absolute bottom-6 left-6 max-w-[16rem] font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">
                   Une équipe au service du soin, pas du spectacle.
@@ -63,7 +63,7 @@ export default function CareersPage() {
             </Reveal>
 
             <Reveal delay={0.08} variant="right">
-              <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
                 {careers.culture.eyebrow}
               </p>
               <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -79,7 +79,7 @@ export default function CareersPage() {
               <ul className="mt-10 flex flex-col gap-8">
                 {careers.culture.items.map((item, index) => (
                   <li key={item.title} className="flex gap-4">
-                    <span className="font-display text-sm font-semibold tracking-[0.14em] text-accent">
+                    <span className="font-display text-sm font-semibold tracking-[0.14em] text-muted">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div>
@@ -102,7 +102,7 @@ export default function CareersPage() {
       <section className="bg-surface py-[var(--section-space-lg)]">
         <Container>
           <Reveal className="mx-auto max-w-2xl text-center" variant="up">
-            <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
               {careers.process.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -117,7 +117,7 @@ export default function CareersPage() {
             {careers.process.steps.map((step, index) => (
               <li key={step.title}>
                 <Reveal delay={index * 0.06} variant="up">
-                  <span className="font-display text-4xl font-semibold tracking-tight text-accent/25">
+                  <span className="font-display text-4xl font-semibold tracking-tight text-foreground/15">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground">
@@ -137,7 +137,7 @@ export default function CareersPage() {
       <section className="bg-background py-[var(--section-space-lg)]">
         <Container>
           <Reveal className="max-w-2xl" variant="up">
-            <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
               {careers.roles.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -196,7 +196,7 @@ export default function CareersPage() {
       <section className="relative overflow-hidden bg-surface py-[var(--section-space-lg)]">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_20%_20%,var(--accent-soft),transparent_55%),radial-gradient(ellipse_50%_40%_at_90%_80%,rgba(224,122,95,0.14),transparent_50%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_20%_20%,var(--accent-soft),transparent_55%),radial-gradient(ellipse_50%_40%_at_90%_80%,rgba(254,81,16,0.14),transparent_50%)]"
         />
         <Container className="relative">
           <Reveal className="mx-auto flex max-w-2xl flex-col items-center text-center">

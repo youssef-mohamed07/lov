@@ -1,108 +1,176 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 
 import { Counter } from "@/components/common/counter";
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { homeStats } from "@/data/stats";
+import { easeOutExpo } from "@/lib/motion";
+import { cn } from "@/lib/utils";
+
+const AUTO_MS = 3800;
+
+const metrics = [homeStats.featured, ...homeStats.secondary];
 
 export function HomeStats() {
   const reduceMotion = useReducedMotion();
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const current = metrics[active] ?? metrics[0];
+
+  useEffect(() => {
+    if (reduceMotion || paused) return;
+    const id = window.setInterval(() => {
+      setActive((value) => (value + 1) % metrics.length);
+    }, AUTO_MS);
+    return () => window.clearInterval(id);
+  }, [paused, reduceMotion]);
+
+  const ringProgress = useMemo(() => {
+    if (current.suffix === "%") return Math.min(current.value, 100);
+    if (current.value >= 1000) return 82;
+    return 64;
+  }, [current]);
 
   return (
-    <section className="bg-surface py-[var(--section-space-lg)]">
+    <section className="bg-background py-[var(--section-space-md)]">
       <Container>
-        <div className="grid items-end gap-[var(--space-10)] lg:grid-cols-[0.95fr_1.05fr]">
-          <Reveal variant="left">
-            <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
-              {homeStats.eyebrow}
-            </p>
-            <h2 className="mt-[var(--space-3)] max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-              {homeStats.title}{" "}
-              <span className="font-display font-medium italic text-voice">
-                {homeStats.titleAccent}
-              </span>
-            </h2>
-            <p className="mt-[var(--space-4)] max-w-md text-base leading-7 text-muted">
-              {homeStats.description}
-            </p>
-            <CtaButton href="/a-propos" size="sm" className="mt-[var(--space-6)]">
-              Découvrir Lov
-            </CtaButton>
-          </Reveal>
+        <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
+          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+            {homeStats.eyebrow}
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            {homeStats.title}{" "}
+            <span className="font-medium italic text-voice">
+              {homeStats.titleAccent}
+            </span>
+          </h2>
+          <p className="mt-3 text-base leading-7 text-muted">
+            {homeStats.description}
+          </p>
+        </Reveal>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Reveal variant="fade-scale" className="sm:row-span-2">
-              <article className="relative flex h-full min-h-[320px] flex-col justify-between overflow-hidden rounded-[var(--radius-card)] border border-border p-7 sm:p-8">
-                <Image
-                  src="/images/stats-impact.jpg"
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 100vw, 40vw"
-                  className="object-cover"
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-surface via-surface/85 to-surface/55"
-                />
+        <div
+          className="mx-auto mt-10 max-w-3xl"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div className="relative mx-auto flex aspect-square w-full max-w-[340px] items-center justify-center sm:max-w-[380px]">
+            <svg
+              viewBox="0 0 200 200"
+              className="absolute inset-0 size-full -rotate-90"
+              aria-hidden
+            >
+              <circle
+                cx="100"
+                cy="100"
+                r="88"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="text-border"
+              />
+              <motion.circle
+                cx="100"
+                cy="100"
+                r="88"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                className="text-accent"
+                strokeDasharray={2 * Math.PI * 88}
+                initial={false}
+                animate={{
+                  strokeDashoffset:
+                    2 * Math.PI * 88 * (1 - ringProgress / 100),
+                }}
+                transition={{ duration: 0.9, ease: easeOutExpo }}
+              />
+            </svg>
 
-                <div className="relative">
-                  <p className="text-xs font-medium tracking-[0.18em] text-accent uppercase">
-                    Résultat
-                  </p>
-                  <p className="mt-4 font-display text-6xl font-semibold tracking-tight text-foreground sm:text-7xl">
+            <div className="relative z-10 px-8 text-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.label}
+                  initial={
+                    reduceMotion
+                      ? false
+                      : { opacity: 0, scale: 0.92, filter: "blur(6px)" }
+                  }
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={
+                    reduceMotion
+                      ? undefined
+                      : { opacity: 0, scale: 1.04, filter: "blur(6px)" }
+                  }
+                  transition={{ duration: 0.4, ease: easeOutExpo }}
+                >
+                  <p className="font-display text-6xl font-semibold tracking-tight text-foreground sm:text-7xl">
                     <Counter
-                      value={homeStats.featured.value}
-                      suffix={homeStats.featured.suffix}
+                      value={current.value}
+                      suffix={current.suffix}
+                      duration={1.1}
                     />
                   </p>
-                  <h3 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
-                    {homeStats.featured.label}
+                  <h3 className="mt-3 text-base font-semibold tracking-tight text-foreground">
+                    {current.label}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">
-                    {homeStats.featured.detail}
+                  <p className="mx-auto mt-2 max-w-[16rem] text-sm leading-6 text-muted">
+                    {current.detail}
                   </p>
-                </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
 
-                <div
-                  aria-hidden
-                  className="relative mt-8 h-2 overflow-hidden rounded-full bg-surface"
+          <div
+            role="tablist"
+            aria-label="Indicateurs"
+            className="mt-8 flex flex-wrap items-center justify-center gap-2"
+          >
+            {metrics.map((metric, index) => {
+              const selected = index === active;
+              return (
+                <button
+                  key={metric.label}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  onClick={() => setActive(index)}
+                  className={cn(
+                    "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    selected
+                      ? "text-foreground"
+                      : "text-muted hover:text-foreground",
+                  )}
                 >
-                  <motion.div
-                    className="h-full rounded-full bg-accent"
-                    initial={reduceMotion ? false : { width: "0%" }}
-                    whileInView={{ width: "82%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </div>
-              </article>
-            </Reveal>
+                  {selected && !reduceMotion ? (
+                    <motion.span
+                      layoutId="stats-pill"
+                      className="absolute inset-0 rounded-full border border-border bg-background"
+                      transition={{ duration: 0.35, ease: easeOutExpo }}
+                    />
+                  ) : selected ? (
+                    <span className="absolute inset-0 rounded-full border border-border bg-background" />
+                  ) : null}
+                  <span className="relative z-10">
+                    {metric.value}
+                    {metric.suffix} · {metric.label.split(" ")[0]}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
-            {homeStats.secondary.map((stat, index) => (
-              <Reveal
-                key={stat.label}
-                delay={0.08 + index * 0.06}
-                variant="scale"
-              >
-                <article className="flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-border bg-background p-6 shadow-[var(--shadow-card)] transition-[border-color,background-color] duration-200 hover:border-accent/35 hover:bg-accent-soft/15">
-                  <div>
-                    <p className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                      <Counter value={stat.value} suffix={stat.suffix} />
-                    </p>
-                    <h3 className="mt-3 text-base font-semibold tracking-tight text-foreground">
-                      {stat.label}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-muted">
-                      {stat.detail}
-                    </p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mt-8 flex justify-center">
+            <CtaButton size="sm">
+              Découvrir Lov
+            </CtaButton>
           </div>
         </div>
       </Container>

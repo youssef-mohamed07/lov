@@ -11,7 +11,7 @@ export function AboutFounders() {
     <section className="bg-surface py-[var(--section-space-lg)]">
       <Container>
         <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {founders.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">

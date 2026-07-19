@@ -8,27 +8,25 @@ import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 
 const words = [
-  { label: "Écouter", delay: 0, arc: -22 },
-  { label: "Nommer", delay: 1.4, arc: 16 },
-  { label: "Répéter", delay: 2.8, arc: -12 },
-  { label: "Comprendre", delay: 4.2, arc: 20 },
-  { label: "Prononcer", delay: 5.6, arc: -18 },
-  { label: "Progresser", delay: 7, arc: 10 },
+  { label: "Écouter", delay: 0, arc: -28 },
+  { label: "Nommer", delay: 1.6, arc: 10 },
+  { label: "Répéter", delay: 3.2, arc: -18 },
+  { label: "Comprendre", delay: 4.8, arc: 22 },
 ] as const;
 
-/** Origin near the orthophoniste’s mouth (left panel). */
-const MOUTH = { left: "31%", top: "52%" } as const;
+/** Origin at the orthophoniste’s mouth (left panel, full stage %). */
+const MOUTH = { left: "29.5%", top: "56%" } as const;
 
 export function HomeDialogue() {
   const reduceMotion = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
-  const [travelX, setTravelX] = useState(360);
+  const [travelX, setTravelX] = useState(380);
 
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
 
-    const update = () => setTravelX(stage.clientWidth * 0.4);
+    const update = () => setTravelX(stage.clientWidth * 0.42);
     update();
 
     const observer = new ResizeObserver(update);
@@ -37,18 +35,13 @@ export function HomeDialogue() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40 [background-image:radial-gradient(rgba(26,43,60,0.08)_1px,transparent_1px)] [background-size:18px_18px]"
-      />
-
-      <Container className="relative">
-        <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
+    <section className="bg-background py-[var(--section-space-md)]">
+      <Container>
+        <Reveal className="mx-auto mb-8 max-w-2xl text-center" variant="fade">
+          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             La relation thérapeutique
           </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Du clinicien à l’enfant,{" "}
             <span className="font-medium italic text-voice">
               des mots qui circulent
@@ -59,10 +52,10 @@ export function HomeDialogue() {
         <Reveal variant="fade">
           <div
             ref={stageRef}
-            className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-border bg-surface shadow-[var(--shadow-card)]"
+            className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] border border-border bg-surface"
           >
-            <div className="grid min-h-[360px] sm:min-h-[440px] lg:min-h-[500px] lg:grid-cols-2">
-              <div className="relative min-h-[280px] border-b border-border lg:border-r lg:border-b-0">
+            <div className="grid min-h-[340px] sm:min-h-[420px] lg:min-h-[480px] lg:grid-cols-2">
+              <div className="relative min-h-[260px] border-b border-border lg:border-r lg:border-b-0">
                 <Image
                   src="/images/dialogue-therapist.jpg"
                   alt="Orthophoniste"
@@ -73,14 +66,14 @@ export function HomeDialogue() {
                 />
                 <div
                   aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-foreground/25 via-transparent to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent"
                 />
-                <p className="absolute bottom-4 left-4 rounded-full bg-surface/95 px-3.5 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm sm:bottom-5 sm:left-5">
+                <p className="absolute bottom-4 left-4 rounded-full border border-border/50 bg-surface/95 px-3.5 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">
                   Orthophoniste
                 </p>
               </div>
 
-              <div className="relative min-h-[280px]">
+              <div className="relative min-h-[260px]">
                 <Image
                   src="/images/dialogue-child.jpg"
                   alt="Enfant"
@@ -91,9 +84,9 @@ export function HomeDialogue() {
                 />
                 <div
                   aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-foreground/25 via-transparent to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent"
                 />
-                <p className="absolute right-4 bottom-4 rounded-full bg-surface/95 px-3.5 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm sm:right-5 sm:bottom-5">
+                <p className="absolute right-4 bottom-4 rounded-full border border-border/50 bg-surface/95 px-3.5 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">
                   Enfant
                 </p>
               </div>
@@ -103,7 +96,6 @@ export function HomeDialogue() {
               aria-hidden
               className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
             >
-              {/* Voice pulse at the mouth */}
               {!reduceMotion ? (
                 <span
                   className="absolute"
@@ -114,10 +106,10 @@ export function HomeDialogue() {
                   }}
                 >
                   <motion.span
-                    className="block size-2.5 rounded-full bg-accent/50"
-                    animate={{ scale: [1, 2.8, 1], opacity: [0.55, 0, 0.55] }}
+                    className="block size-3 rounded-full bg-accent"
+                    animate={{ scale: [1, 2.2, 1], opacity: [0.7, 0, 0.7] }}
                     transition={{
-                      duration: 2.2,
+                      duration: 1.8,
                       repeat: Infinity,
                       ease: "easeOut",
                     }}
@@ -135,38 +127,50 @@ export function HomeDialogue() {
                     transform: "translate(-50%, -50%)",
                   }}
                 >
-                  <motion.span
-                    className="inline-flex w-max shrink-0 items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[13px] font-medium whitespace-nowrap text-foreground shadow-[0_14px_34px_-18px_rgba(26,43,60,0.55)]"
+                  <motion.div
+                    className="relative w-max"
                     initial={false}
                     animate={
                       reduceMotion
                         ? {
-                            opacity: 0.9,
-                            x: travelX * 0.45,
-                            y: -8,
+                            opacity: 0.95,
+                            x: travelX * 0.5,
+                            y: -10,
+                            scale: 1,
                           }
                         : {
                             opacity: [0, 1, 1, 0],
-                            scale: [0.7, 1.05, 1, 0.86],
-                            x: [0, travelX * 0.42, travelX * 0.78, travelX],
-                            y: [8, word.arc, word.arc * 0.35, -16],
+                            scale: [0.35, 1.06, 1, 0.9],
+                            x: [0, travelX * 0.35, travelX * 0.72, travelX],
+                            y: [6, word.arc, word.arc * 0.4, -20],
+                            rotate: [-6, word.arc > 0 ? 3 : -3, 0, 2],
                           }
                     }
                     transition={
                       reduceMotion
                         ? undefined
                         : {
-                            duration: 3.4,
+                            duration: 3.6,
                             delay: word.delay,
                             repeat: Infinity,
-                            repeatDelay: 5.2,
-                            ease: "easeInOut",
-                            times: [0, 0.16, 0.72, 1],
+                            repeatDelay: 4.2,
+                            ease: [0.22, 1, 0.36, 1],
+                            times: [0, 0.18, 0.7, 1],
                           }
                     }
                   >
-                    {word.label}
-                  </motion.span>
+                    {/* Speech-card body */}
+                    <div className="rounded-2xl border border-border bg-surface px-4 py-2.5 shadow-[0_16px_40px_-20px_rgba(14,14,15,0.55)]">
+                      <div className="flex items-center gap-2">
+                        <span className="size-1.5 rounded-full bg-accent" />
+                        <span className="text-sm font-semibold tracking-tight text-foreground">
+                          {word.label}
+                        </span>
+                      </div>
+                    </div>
+                    {/* Tail pointing back toward the mouth */}
+                    <span className="absolute top-1/2 -left-1.5 size-3 -translate-y-1/2 rotate-45 border-b border-l border-border bg-surface" />
+                  </motion.div>
                 </span>
               ))}
             </div>
@@ -176,7 +180,7 @@ export function HomeDialogue() {
                 {words.map((word) => (
                   <span
                     key={word.label}
-                    className="rounded-full border border-border bg-background px-3.5 py-2 text-xs font-medium text-foreground"
+                    className="rounded-2xl border border-border bg-background px-3.5 py-2 text-xs font-semibold text-foreground"
                   >
                     {word.label}
                   </span>

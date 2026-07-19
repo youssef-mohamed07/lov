@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
+import { Star } from "lucide-react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
@@ -24,7 +24,7 @@ function Stars({ count }: { count: number }) {
       {Array.from({ length: count }).map((_, index) => (
         <Star
           key={index}
-          className="size-3.5 fill-voice text-voice"
+          className="size-3.5 fill-success text-success"
           aria-hidden
         />
       ))}
@@ -32,158 +32,195 @@ function Stars({ count }: { count: number }) {
   );
 }
 
+type Item = (typeof testimonials.items)[number];
+
+function TestimonialCard({
+  item,
+  tilt,
+  accent,
+}: {
+  item: Item;
+  tilt: string;
+  accent?: boolean;
+}) {
+  return (
+    <figure
+      className={cn(
+        "relative flex w-[19rem] shrink-0 flex-col justify-between gap-5 rounded-[1.35rem] border p-6 transition-transform duration-300 ease-out hover:rotate-0 hover:scale-[1.03] sm:w-[21rem]",
+        tilt,
+        accent
+          ? "border-transparent bg-foreground text-background shadow-[0_24px_60px_-30px_rgba(14,14,15,0.55)]"
+          : "border-border bg-surface shadow-[var(--shadow-card)]",
+      )}
+    >
+      <span
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute -top-1 right-4 select-none font-display text-6xl leading-none",
+          accent ? "text-accent" : "text-accent/25",
+        )}
+      >
+        ”
+      </span>
+
+      <div>
+        <Stars count={item.rating} />
+        <blockquote
+          className={cn(
+            "mt-4 font-display text-lg font-medium leading-snug tracking-tight",
+            accent ? "text-background" : "text-foreground",
+          )}
+        >
+          {item.quote}
+        </blockquote>
+      </div>
+
+      <figcaption className="flex items-center gap-3">
+        <span
+          className={cn(
+            "inline-flex size-9 shrink-0 items-center justify-center rounded-full font-display text-[11px] font-semibold",
+            accent
+              ? "bg-background text-foreground"
+              : "bg-foreground text-background",
+          )}
+        >
+          {initials(item.author)}
+        </span>
+        <div className="min-w-0">
+          <p
+            className={cn(
+              "truncate text-sm font-semibold",
+              accent ? "text-background" : "text-foreground",
+            )}
+          >
+            {item.author}
+          </p>
+          <p
+            className={cn(
+              "truncate text-xs",
+              accent ? "text-background/65" : "text-muted",
+            )}
+          >
+            {item.role}
+          </p>
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
+
+const tilts = [
+  "rotate-[-1.5deg]",
+  "rotate-[1.2deg]",
+  "rotate-[-0.8deg]",
+  "rotate-[1.6deg]",
+  "rotate-[-1.2deg]",
+  "rotate-[0.9deg]",
+] as const;
+
+function MarqueeRow({
+  items,
+  reverse,
+  duration,
+  accentIndex,
+}: {
+  items: readonly Item[];
+  reverse?: boolean;
+  duration: number;
+  accentIndex: number;
+}) {
+  return (
+    <div className="group/row overflow-hidden">
+      <div
+        className={cn(
+          "flex w-max gap-4 py-4 group-hover/row:[animation-play-state:paused] motion-reduce:animate-none",
+          reverse
+            ? "animate-[testimonial-marquee-reverse_var(--marquee-duration)_linear_infinite]"
+            : "animate-[testimonial-marquee_var(--marquee-duration)_linear_infinite]",
+        )}
+        style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
+      >
+        {[0, 1].map((copy) => (
+          <div
+            key={copy}
+            aria-hidden={copy === 1}
+            className="flex shrink-0 gap-4"
+          >
+            {items.map((item, index) => (
+              <TestimonialCard
+                key={`${copy}-${item.author}`}
+                item={item}
+                tilt={tilts[index % tilts.length]}
+                accent={index === accentIndex}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function TestimonialsSection() {
   const reduceMotion = useReducedMotion();
-  const featured =
-    testimonials.items.find((item) => "featured" in item && item.featured) ??
-    testimonials.items[0];
-  const others = testimonials.items.filter((item) => item !== featured);
+  const items = testimonials.items;
+  const half = Math.ceil(items.length / 2);
+  const rowA = items.slice(0, half);
+  const rowB = items.slice(half);
 
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40 [background-image:radial-gradient(rgba(26,43,60,0.07)_1px,transparent_1px)] [background-size:18px_18px]"
-      />
-
+    <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
       <Container className="relative">
-        <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+        <Reveal className="mx-auto mb-4 max-w-2xl text-center" variant="fade">
+          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {testimonials.eyebrow}
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {testimonials.title}{" "}
             <span className="font-medium italic text-voice">
               {testimonials.titleAccent}
             </span>
           </h2>
-          <p className="mt-4 text-base leading-7 text-muted">
-            {testimonials.description}
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-4 lg:grid-cols-12">
-          {/* Featured */}
-          <Reveal variant="fade-scale" className="lg:col-span-7">
-            <article className="relative flex h-full flex-col justify-between overflow-hidden rounded-[1.75rem] border border-border bg-surface p-7 shadow-[var(--shadow-card)] sm:p-9">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -top-16 -right-16 size-56 rounded-full bg-accent-soft/70 blur-2xl"
-              />
-              <div className="relative">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="inline-flex size-11 items-center justify-center rounded-2xl bg-accent text-accent-foreground">
-                    <Quote className="size-5" aria-hidden />
-                  </span>
-                  <Stars count={featured.rating} />
-                </div>
-                <blockquote className="mt-7 font-display text-2xl font-medium leading-snug tracking-tight text-foreground sm:text-3xl sm:leading-[1.25]">
-                  “{featured.quote}”
-                </blockquote>
-              </div>
-              <footer className="relative mt-10 flex items-center gap-3 border-t border-border pt-6">
-                <span className="inline-flex size-11 items-center justify-center rounded-full bg-accent-soft font-display text-sm font-semibold text-accent">
-                  {initials(featured.author)}
-                </span>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    {featured.author}
-                  </p>
-                  <p className="text-sm text-muted">{featured.role}</p>
-                </div>
-              </footer>
-            </article>
-          </Reveal>
-
-          {/* Side stack */}
-          <div className="flex flex-col gap-4 lg:col-span-5">
-            {others.slice(0, 2).map((item, index) => (
-              <Reveal
-                key={item.author}
-                delay={0.06 + index * 0.06}
-                variant="fade"
-                className="flex-1"
-              >
-                <TestimonialCard item={item} compact />
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Bottom row */}
-          {others.slice(2).map((item, index) => (
-            <Reveal
-              key={item.author}
-              delay={0.1 + index * 0.05}
-              variant="fade"
-              className="lg:col-span-4"
-            >
-              <TestimonialCard item={item} />
-            </Reveal>
-          ))}
-        </div>
-
-        {/* Floating trust chip */}
-        <Reveal delay={0.15} className="mt-8 flex justify-center" variant="fade">
-          <motion.p
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-muted shadow-sm"
-            animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
-            transition={
-              reduceMotion
-                ? undefined
-                : { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
-            }
-          >
-            <span className="inline-flex gap-0.5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  className="size-3.5 fill-voice text-voice"
-                  aria-hidden
-                />
-              ))}
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-muted shadow-[var(--shadow-card)]">
+            <Stars count={5} />
+            <span>
+              <span className="font-semibold text-foreground">4.9 / 5</span>
+              <span className="mx-1.5 text-border">·</span>
+              avis familles
             </span>
-            4.9 / 5 · avis familles Lov
-          </motion.p>
+          </div>
         </Reveal>
       </Container>
-    </section>
-  );
-}
 
-function TestimonialCard({
-  item,
-  compact = false,
-}: {
-  item: (typeof testimonials.items)[number];
-  compact?: boolean;
-}) {
-  return (
-    <article
-      className={cn(
-        "flex h-full flex-col rounded-[1.5rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)] transition-[border-color,transform] hover:border-accent/35",
-        compact ? "sm:p-6" : "sm:p-7",
+      {reduceMotion ? (
+        <Container className="relative mt-8">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((item, index) => (
+              <TestimonialCard
+                key={item.author}
+                item={item}
+                tilt="rotate-0"
+                accent={index === 0}
+              />
+            ))}
+          </div>
+        </Container>
+      ) : (
+        <Reveal variant="fade" className="relative mt-6">
+          {/* Edge fades so cards melt into the page */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-28"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-28"
+          />
+
+          <MarqueeRow items={rowA} duration={42} accentIndex={1} />
+          <MarqueeRow items={rowB} reverse duration={52} accentIndex={2} />
+        </Reveal>
       )}
-    >
-      <div className="flex items-center justify-between gap-3">
-        <span className="inline-flex size-10 items-center justify-center rounded-full bg-accent-soft font-display text-xs font-semibold text-accent">
-          {initials(item.author)}
-        </span>
-        <Stars count={item.rating} />
-      </div>
-      <blockquote
-        className={cn(
-          "mt-4 flex-1 font-display font-medium tracking-tight text-foreground",
-          compact
-            ? "text-base leading-7 sm:text-lg"
-            : "text-lg leading-8",
-        )}
-      >
-        “{item.quote}”
-      </blockquote>
-      <footer className="mt-5">
-        <p className="text-sm font-semibold text-foreground">{item.author}</p>
-        <p className="mt-0.5 text-sm text-muted">{item.role}</p>
-      </footer>
-    </article>
+    </section>
   );
 }

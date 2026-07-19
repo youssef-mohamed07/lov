@@ -47,14 +47,13 @@ export function HomeHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-svh overflow-hidden bg-surface"
+      className="relative min-h-svh overflow-hidden bg-background"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         {/* Soft clinical wash instead of a hard grid */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-15%,var(--accent-soft),transparent_58%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_100%_85%,rgba(224,122,95,0.16),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_45%_40%_at_0%_75%,rgba(47,126,168,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 opacity-[0.4] [background-image:radial-gradient(rgba(26,43,60,0.06)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_90%_80%,rgba(254,81,16,0.1),transparent_55%)]" />
+        <div className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(rgba(14,14,15,0.06)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
       </div>
 
       <StarCutout
@@ -82,11 +81,11 @@ export function HomeHero() {
         <FadeStagger immediate className="mx-auto flex max-w-3xl flex-col items-center">
           <FadeItem>
             <div className="inline-flex items-center gap-3">
-              <div className="flex items-center gap-1 rounded-md bg-accent px-2 py-1.5">
+              <div className="flex items-center gap-1 rounded-md bg-success px-2 py-1.5">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <Star
                     key={index}
-                    className="size-3.5 fill-accent-foreground text-accent-foreground"
+                    className="size-3.5 fill-white text-white"
                     aria-hidden
                   />
                 ))}
@@ -120,7 +119,7 @@ export function HomeHero() {
           </FadeItem>
 
           <FadeItem className="mt-[var(--space-8)]">
-            <CtaButton href="/bilan" size="lg">
+            <CtaButton size="lg">
               Commencer le bilan
             </CtaButton>
           </FadeItem>
@@ -131,7 +130,7 @@ export function HomeHero() {
         <ul className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
           {trustPoints.map(({ icon: Icon, label }) => (
             <li key={label}>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3.5 py-2 text-sm font-medium text-foreground shadow-[0_10px_28px_-22px_rgba(26,43,60,0.35)] backdrop-blur-sm">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3.5 py-2 text-sm font-medium text-foreground shadow-[0_10px_28px_-22px_rgba(14,14,15,0.35)] backdrop-blur-sm">
                 <span className="inline-flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent">
                   <Icon className="size-3.5" aria-hidden />
                 </span>
@@ -177,7 +176,7 @@ function StarCutout({
       <div
         className={cn(
           "relative size-full overflow-hidden",
-          tone === "warm" ? "bg-surface-muted" : "bg-accent-soft",
+          "bg-surface-muted",
         )}
         style={{
           clipPath:

@@ -47,7 +47,7 @@ export function BilanOverview() {
     <section className="bg-background py-[var(--section-space-lg)]">
       <Container>
         <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium tracking-[0.14em] text-accent uppercase">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium tracking-[0.14em] text-muted uppercase">
             <span className="size-1.5 rounded-full bg-accent" aria-hidden />
             {overview.badge}
           </span>

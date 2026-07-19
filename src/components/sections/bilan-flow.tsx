@@ -206,7 +206,7 @@ export function BilanFlow() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-[#142636]/90 via-[#142636]/45 to-[#142636]/20"
+          className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/90 via-[#0E0E0F]/45 to-[#0E0E0F]/20"
         />
         <div className="relative flex h-full min-h-svh flex-col justify-between p-10 xl:p-14">
           <BrandMark tone="onDark" />
@@ -254,7 +254,7 @@ export function BilanFlow() {
       <div className="relative flex min-h-svh flex-col px-5 pt-6 pb-8 sm:px-8 lg:h-svh lg:overflow-y-auto lg:px-12 lg:pt-10 xl:px-16">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle_at_top_right,var(--accent-soft),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(224,122,95,0.12),transparent_40%)]"
+          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle_at_top_right,var(--accent-soft),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(254,81,16,0.12),transparent_40%)]"
         />
 
         <div className="relative mx-auto flex w-full max-w-lg items-center justify-between gap-3 lg:hidden">
@@ -267,7 +267,7 @@ export function BilanFlow() {
         {phase !== "merci" && phase !== "welcome" ? (
           <header className="relative mx-auto mt-5 w-full max-w-lg lg:mt-0">
             <div className="mb-3 flex items-center justify-between gap-3">
-              <p className="text-xs font-medium tracking-[0.18em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.18em] text-muted uppercase">
                 {bilanFormCopy.eyebrow}
               </p>
               <p className="hidden text-sm tabular-nums text-muted lg:block">
@@ -352,7 +352,7 @@ export function BilanFlow() {
                 type="button"
                 onClick={goNext}
                 disabled={!canContinue || submitting}
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-[0_14px_30px_-16px_rgba(47,126,168,0.7)] disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-[0_14px_30px_-16px_rgba(254,81,16,0.7)] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {phase === "contact"
                   ? submitting
@@ -380,7 +380,7 @@ function WelcomeStep({ onStart }: { onStart: () => void }) {
       <div className="mx-auto mb-6 inline-flex size-14 items-center justify-center rounded-[1.25rem] bg-accent-soft text-accent lg:mx-0">
         <Sparkles className="size-6" aria-hidden />
       </div>
-      <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+      <p className="text-xs font-medium tracking-[0.2em] text-muted uppercase">
         {bilanFormCopy.eyebrow}
       </p>
       <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
@@ -406,7 +406,7 @@ function WelcomeStep({ onStart }: { onStart: () => void }) {
       <button
         type="button"
         onClick={onStart}
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground shadow-[0_14px_30px_-16px_rgba(47,126,168,0.7)]"
+        className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground shadow-[0_14px_30px_-16px_rgba(254,81,16,0.7)]"
       >
         Commencer
         <ArrowRight className="size-4" aria-hidden />
@@ -490,7 +490,7 @@ function QuestionStep({
                 className={cn(
                   "group flex items-center gap-4 rounded-2xl border px-4 py-4 text-left text-[0.95rem] font-medium transition-all sm:px-5",
                   selected
-                    ? "border-accent bg-accent text-accent-foreground shadow-[0_16px_36px_-20px_rgba(47,126,168,0.65)]"
+                    ? "border-accent bg-accent text-accent-foreground shadow-[0_16px_36px_-20px_rgba(254,81,16,0.65)]"
                     : "border-border bg-surface text-foreground hover:border-accent/40 hover:bg-accent-soft/50",
                 )}
               >

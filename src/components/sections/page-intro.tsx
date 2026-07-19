@@ -49,7 +49,7 @@ export function PageIntro({
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-[#142636]/90 via-[#142636]/50 to-[#142636]/25"
+        className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/90 via-[#0E0E0F]/50 to-[#0E0E0F]/25"
       />
 
       <Container className="relative flex min-h-[58vh] flex-col justify-end pt-[calc(var(--header-height)+var(--space-12))] pb-[var(--section-space-md)]">

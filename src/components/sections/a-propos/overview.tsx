@@ -14,7 +14,7 @@ export function AboutOverview() {
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <Reveal variant="left">
-            <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
               {overview.eyebrow}
             </p>
             <h2 className="mt-3 max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">

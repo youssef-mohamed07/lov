@@ -1,29 +1,30 @@
+/** Labels only — home-only preview: nav items don't navigate anywhere. */
 export const navLinks = [
-  { href: "/bilan", label: "Bilan" },
-  { href: "/troubles", label: "Troubles" },
-  { href: "/simulateur", label: "Simulateur" },
-  { href: "/ressources", label: "Ressources" },
+  { label: "Bilan" },
+  { label: "Troubles" },
+  { label: "Simulateur" },
+  { label: "Ressources" },
 ] as const;
 
 export const secondaryNavLinks = [
-  { href: "/a-propos", label: "À propos" },
-  { href: "/carrieres", label: "Carrières" },
+  { label: "À propos" },
+  { label: "Carrières" },
 ] as const;
 
 export const footerLinks = {
   parcours: [
-    { href: "/bilan", label: "Bilan orthophonique" },
-    { href: "/troubles", label: "Troubles" },
-    { href: "/simulateur", label: "Simulateur" },
+    { label: "Bilan orthophonique" },
+    { label: "Troubles" },
+    { label: "Simulateur" },
   ],
   ressources: [
-    { href: "/ressources", label: "Toutes les ressources" },
-    { href: "/ressources/familles", label: "Pour les familles" },
-    { href: "/ressources/orientation", label: "Orientation" },
+    { label: "Toutes les ressources" },
+    { label: "Pour les familles" },
+    { label: "Orientation" },
   ],
   contact: [
-    { href: "/a-propos", label: "À propos" },
-    { href: "/carrieres", label: "Carrières" },
-    { href: "/nous-contacter", label: "Nous contacter" },
+    { label: "À propos" },
+    { label: "Carrières" },
+    { label: "Nous contacter" },
   ],
 } as const;

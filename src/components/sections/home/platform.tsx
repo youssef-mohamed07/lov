@@ -13,7 +13,6 @@ const paths = [
     title: "Simulateur",
     description:
       "Quelques questions pour une première orientation — indicative, rapide, et claire.",
-    href: "/simulateur",
     cta: "Lancer le simulateur",
     icon: Sparkles,
     image: "/images/path-simulator.jpg",
@@ -24,7 +23,6 @@ const paths = [
     title: "Bilan orthophonique",
     description:
       "Une évaluation structurée pour préciser le profil et définir la suite.",
-    href: "/bilan",
     cta: "Découvrir le bilan",
     icon: ClipboardList,
     image: "/images/path-bilan.jpg",
@@ -34,10 +32,10 @@ const paths = [
 
 export function HomePlatform() {
   return (
-    <section className="bg-surface py-[var(--section-space-lg)]">
+    <section className="bg-background py-[var(--section-space-lg)]">
       <Container>
         <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-accent uppercase">
+          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
             Par où commencer
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
@@ -53,7 +51,7 @@ export function HomePlatform() {
             const Icon = path.icon;
             return (
               <Reveal
-                key={path.href}
+                key={path.title}
                 delay={index * 0.1}
                 variant={index === 0 ? "left" : "right"}
               >
@@ -94,7 +92,7 @@ export function HomePlatform() {
                         </li>
                       ))}
                     </ul>
-                    <CtaButton href={path.href} size="md" className="mt-6 w-fit">
+                    <CtaButton size="md" className="mt-6 w-fit">
                       {path.cta}
                     </CtaButton>
                   </div>

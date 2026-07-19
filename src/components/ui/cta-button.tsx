@@ -48,9 +48,9 @@ const sizeStyles = {
 
 const toneStyles = {
   accent:
-    "bg-accent hover:bg-voice hover:shadow-[0_14px_32px_-18px_rgba(224,122,95,0.45)]",
+    "bg-accent hover:bg-accent-hover hover:shadow-[0_14px_32px_-18px_rgba(254,81,16,0.45)]",
   voice:
-    "bg-voice hover:bg-accent hover:shadow-[0_14px_32px_-18px_rgba(47,126,168,0.55)]",
+    "bg-accent hover:bg-accent-hover hover:shadow-[0_14px_32px_-18px_rgba(254,81,16,0.45)]",
 } as const;
 
 function CtaContent({

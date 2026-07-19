@@ -13,7 +13,7 @@ export function BilanProcess() {
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <Reveal variant="left" className="lg:sticky lg:top-28">
-            <span className="inline-flex items-center rounded-full bg-accent-soft px-3.5 py-1.5 text-xs font-semibold tracking-[0.16em] text-accent uppercase">
+            <span className="inline-flex items-center rounded-full border border-border bg-surface-muted px-3.5 py-1.5 text-xs font-semibold tracking-[0.16em] text-muted uppercase">
               {process.badge}
             </span>
             <h2 className="mt-5 max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
