@@ -36,9 +36,74 @@ export function HomeExpertise() {
           </p>
         </Reveal>
 
-        <Reveal variant="fade">
+        {/* Mobile / tablet: stacked cards */}
+        <Reveal variant="fade" className="lg:hidden">
           <div
-            className="flex h-[380px] gap-2 sm:h-[460px] sm:gap-3"
+            role="tablist"
+            aria-label="Savoir-faire"
+            className="mb-4 flex gap-2 overflow-x-auto pb-1"
+          >
+            {expertiseItems.map((item, index) => {
+              const selected = index === active;
+              return (
+                <button
+                  key={item.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  onClick={() => setActive(index)}
+                  className={cn(
+                    "min-h-11 shrink-0 rounded-full px-4 py-2.5 text-sm font-medium transition-colors",
+                    selected
+                      ? "bg-foreground text-background"
+                      : "bg-surface-muted text-muted hover:text-foreground",
+                  )}
+                >
+                  {item.title}
+                </button>
+              );
+            })}
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.article
+              key={expertiseItems[active]?.title}
+              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: easeOutExpo }}
+              className="relative min-h-[320px] overflow-hidden rounded-[1.35rem] sm:min-h-[380px]"
+            >
+              <Image
+                src={images[active] ?? images[0]}
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent"
+              />
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+                <span className="font-display text-xs font-semibold tracking-[0.16em] text-accent">
+                  {String(active + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight text-background">
+                  {expertiseItems[active]?.title}
+                </h3>
+                <p className="mt-2 max-w-sm text-sm leading-6 text-background/75">
+                  {expertiseItems[active]?.description}
+                </p>
+              </div>
+            </motion.article>
+          </AnimatePresence>
+        </Reveal>
+
+        {/* Desktop: hover accordion */}
+        <Reveal variant="fade" className="hidden lg:block">
+          <div
+            className="flex h-[460px] gap-3"
             onMouseLeave={() => {
               if (!reduceMotion) setActive(1);
             }}
@@ -65,7 +130,7 @@ export function HomeExpertise() {
                     src={images[index] ?? images[0]}
                     alt=""
                     fill
-                    sizes="(max-width: 768px) 60vw, 45vw"
+                    sizes="45vw"
                     className={cn(
                       "object-cover transition-transform duration-700 ease-out",
                       selected ? "scale-105" : "scale-100",
@@ -81,16 +146,14 @@ export function HomeExpertise() {
                     )}
                   />
 
-                  <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                  <div className="absolute inset-x-0 bottom-0 p-6">
                     <span className="font-display text-xs font-semibold tracking-[0.16em] text-accent">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <h3
                       className={cn(
                         "mt-2 font-display font-semibold tracking-tight text-background transition-all duration-300",
-                        selected
-                          ? "text-xl sm:text-2xl"
-                          : "truncate text-sm sm:text-base",
+                        selected ? "text-2xl" : "truncate text-base",
                       )}
                     >
                       {item.title}

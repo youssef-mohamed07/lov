@@ -9,17 +9,20 @@ const community = ["A", "M", "S", "L", "N", "C"];
 
 export function HomeBento() {
   return (
-    <section className="bg-background py-[var(--section-space-lg)]">
-      <Container>
+    <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-40 [background-image:radial-gradient(rgba(14,14,15,0.07)_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,black,transparent)]"
+      />
+
+      <Container className="relative">
         <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
           <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
             Pourquoi Lov
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
             Une plateforme pensée{" "}
-            <span className="font-display font-medium italic text-voice">
-              pour les familles
-            </span>
+            <span className="mark-accent">pour les familles</span>
           </h2>
         </Reveal>
 

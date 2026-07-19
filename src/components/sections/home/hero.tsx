@@ -123,6 +123,31 @@ export function HomeHero() {
               Commencer le bilan
             </CtaButton>
           </FadeItem>
+
+          <FadeItem className="mt-10 w-full max-w-md lg:hidden">
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]">
+                <Image
+                  src="/images/hero-child.jpg"
+                  alt=""
+                  fill
+                  sizes="50vw"
+                  className="object-cover object-[50%_20%]"
+                  priority
+                />
+              </div>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]">
+                <Image
+                  src="/images/hero-therapist.jpg"
+                  alt=""
+                  fill
+                  sizes="50vw"
+                  className="object-cover object-[50%_18%]"
+                  priority
+                />
+              </div>
+            </div>
+          </FadeItem>
         </FadeStagger>
       </Container>
 

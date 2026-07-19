@@ -17,22 +17,30 @@ const words = [
 /** Origin at the orthophoniste’s mouth (left panel, full stage %). */
 const MOUTH = { left: "29.5%", top: "56%" } as const;
 
+const CYCLE = 3.6;
+const REPEAT_DELAY = 4.2;
+
 export function HomeDialogue() {
   const reduceMotion = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
-  const [travelX, setTravelX] = useState(380);
+  const [travelX, setTravelX] = useState(0);
 
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
 
-    const update = () => setTravelX(stage.clientWidth * 0.42);
-    update();
+    const update = () => {
+      const next = Math.round(stage.clientWidth * 0.42);
+      setTravelX((current) => (current === next ? current : next));
+    };
 
+    update();
     const observer = new ResizeObserver(update);
     observer.observe(stage);
     return () => observer.disconnect();
   }, []);
+
+  const ready = travelX > 0;
 
   return (
     <section className="bg-background py-[var(--section-space-md)]">
@@ -96,7 +104,7 @@ export function HomeDialogue() {
               aria-hidden
               className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
             >
-              {!reduceMotion ? (
+              {ready && !reduceMotion ? (
                 <span
                   className="absolute"
                   style={{
@@ -117,73 +125,102 @@ export function HomeDialogue() {
                 </span>
               ) : null}
 
-              {words.map((word) => (
-                <span
-                  key={word.label}
-                  className="absolute"
-                  style={{
-                    left: MOUTH.left,
-                    top: MOUTH.top,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <motion.div
-                    className="relative w-max"
-                    initial={false}
+              {ready
+                ? words.map((word) => (
+                    <span
+                      key={`${word.label}-${travelX}`}
+                      className="absolute"
+                      style={{
+                        left: MOUTH.left,
+                        top: MOUTH.top,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <motion.div
+                        className="relative w-max"
+                        initial={{
+                          opacity: 0,
+                          scale: 0.35,
+                          x: 0,
+                          y: 6,
+                          rotate: -6,
+                        }}
+                        animate={
+                          reduceMotion
+                            ? {
+                                opacity: 0.95,
+                                x: travelX * 0.5,
+                                y: -10,
+                                scale: 1,
+                                rotate: 0,
+                              }
+                            : {
+                                opacity: [0, 1, 1, 0],
+                                scale: [0.35, 1.06, 1, 0.9],
+                                x: [0, travelX * 0.35, travelX * 0.72, travelX],
+                                y: [6, word.arc, word.arc * 0.4, -20],
+                                rotate: [-6, word.arc > 0 ? 3 : -3, 0, 2],
+                              }
+                        }
+                        transition={
+                          reduceMotion
+                            ? { duration: 0.4 }
+                            : {
+                                duration: CYCLE,
+                                delay: word.delay,
+                                repeat: Infinity,
+                                repeatDelay: REPEAT_DELAY,
+                                ease: [0.22, 1, 0.36, 1],
+                                times: [0, 0.18, 0.7, 1],
+                              }
+                        }
+                      >
+                        <div className="rounded-2xl border border-border bg-surface px-4 py-2.5 shadow-[0_16px_40px_-20px_rgba(14,14,15,0.55)]">
+                          <div className="flex items-center gap-2">
+                            <span className="size-1.5 rounded-full bg-accent" />
+                            <span className="text-sm font-semibold tracking-tight text-foreground">
+                              {word.label}
+                            </span>
+                          </div>
+                        </div>
+                        <span className="absolute top-1/2 -left-1.5 size-3 -translate-y-1/2 rotate-45 border-b border-l border-border bg-surface" />
+                      </motion.div>
+                    </span>
+                  ))
+                : null}
+            </div>
+
+            <div className="border-t border-border bg-surface px-4 py-4 lg:hidden">
+              <div className="flex flex-wrap justify-center gap-2">
+                {words.map((word, index) => (
+                  <motion.span
+                    key={word.label}
+                    className="rounded-2xl border border-border bg-background px-3.5 py-2 text-xs font-semibold text-foreground"
+                    initial={reduceMotion ? false : { opacity: 0.35, y: 6 }}
                     animate={
                       reduceMotion
-                        ? {
-                            opacity: 0.95,
-                            x: travelX * 0.5,
-                            y: -10,
-                            scale: 1,
-                          }
+                        ? undefined
                         : {
-                            opacity: [0, 1, 1, 0],
-                            scale: [0.35, 1.06, 1, 0.9],
-                            x: [0, travelX * 0.35, travelX * 0.72, travelX],
-                            y: [6, word.arc, word.arc * 0.4, -20],
-                            rotate: [-6, word.arc > 0 ? 3 : -3, 0, 2],
+                            opacity: [0.35, 1, 1, 0.35],
+                            y: [6, 0, 0, 6],
+                            scale: [0.96, 1.04, 1, 0.96],
                           }
                     }
                     transition={
                       reduceMotion
                         ? undefined
                         : {
-                            duration: 3.6,
-                            delay: word.delay,
+                            duration: 2.4,
+                            delay: index * 0.55,
                             repeat: Infinity,
-                            repeatDelay: 4.2,
-                            ease: [0.22, 1, 0.36, 1],
-                            times: [0, 0.18, 0.7, 1],
+                            repeatDelay: 1.8,
+                            ease: "easeInOut",
+                            times: [0, 0.2, 0.7, 1],
                           }
                     }
                   >
-                    {/* Speech-card body */}
-                    <div className="rounded-2xl border border-border bg-surface px-4 py-2.5 shadow-[0_16px_40px_-20px_rgba(14,14,15,0.55)]">
-                      <div className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-accent" />
-                        <span className="text-sm font-semibold tracking-tight text-foreground">
-                          {word.label}
-                        </span>
-                      </div>
-                    </div>
-                    {/* Tail pointing back toward the mouth */}
-                    <span className="absolute top-1/2 -left-1.5 size-3 -translate-y-1/2 rotate-45 border-b border-l border-border bg-surface" />
-                  </motion.div>
-                </span>
-              ))}
-            </div>
-
-            <div className="border-t border-border bg-surface px-4 py-4 lg:hidden">
-              <div className="flex flex-wrap justify-center gap-2">
-                {words.map((word) => (
-                  <span
-                    key={word.label}
-                    className="rounded-2xl border border-border bg-background px-3.5 py-2 text-xs font-semibold text-foreground"
-                  >
                     {word.label}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </div>

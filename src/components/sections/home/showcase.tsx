@@ -65,7 +65,7 @@ export function HomeShowcase() {
             </motion.div>
 
             <motion.div
-              className="absolute top-[42%] right-3 flex max-w-[11.5rem] items-center gap-2.5 rounded-full border border-border/60 bg-surface/95 px-3 py-2 shadow-[var(--shadow-card)] backdrop-blur-sm sm:right-5 sm:max-w-none sm:px-3.5 sm:py-2.5"
+              className="absolute top-[42%] right-3 hidden max-w-[11.5rem] items-center gap-2.5 rounded-full border border-border/60 bg-surface/95 px-3 py-2 shadow-[var(--shadow-card)] backdrop-blur-sm sm:right-5 sm:flex sm:max-w-none sm:px-3.5 sm:py-2.5"
               initial={reduceMotion ? false : { opacity: 0, x: 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -102,8 +102,9 @@ export function HomeShowcase() {
               </p>
               <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 <span className="block">Un parcours clair,</span>
-                <span className="mt-1 block font-medium italic text-voice">
-                  des possibilités concrètes
+                <span className="mt-1 block">
+                  des possibilités{" "}
+                  <span className="squiggle-accent">concrètes</span>
                 </span>
               </h2>
             </FadeItem>

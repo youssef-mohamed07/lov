@@ -23,8 +23,13 @@ export function HomePricing() {
     pricingPlans.find((plan) => plan.id === activeId) ?? pricingPlans[0];
 
   return (
-    <section className="bg-background py-[var(--section-space-md)]">
-      <Container>
+    <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_115%,var(--accent-soft),transparent_60%)] opacity-70"
+      />
+
+      <Container className="relative">
         <Reveal className="mx-auto mb-10 max-w-2xl text-center" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             Tarifs
@@ -44,9 +49,9 @@ export function HomePricing() {
             <div
               role="tablist"
               aria-label="Choisir une formule"
-              className="grid grid-cols-3 border-b border-border"
+              className="flex gap-px overflow-x-auto border-b border-border bg-border sm:grid sm:grid-cols-3 sm:overflow-visible"
             >
-              {pricingPlans.map((plan, index) => {
+              {pricingPlans.map((plan) => {
                 const selected = plan.id === activeId;
                 return (
                   <button
@@ -56,11 +61,15 @@ export function HomePricing() {
                     aria-selected={selected}
                     onClick={() => setActiveId(plan.id)}
                     onMouseEnter={() => {
-                      if (!reduceMotion) setActiveId(plan.id);
+                      if (
+                        !reduceMotion &&
+                        window.matchMedia("(hover: hover)").matches
+                      ) {
+                        setActiveId(plan.id);
+                      }
                     }}
                     className={cn(
-                      "relative px-3 pt-8 pb-5 text-center transition-colors sm:px-6 sm:pt-9 sm:pb-6",
-                      index > 0 && "border-l border-border",
+                      "relative min-h-[5.5rem] min-w-[7.5rem] flex-1 px-3 pt-7 pb-4 text-center transition-colors sm:min-w-0 sm:px-6 sm:pt-9 sm:pb-6",
                       selected
                         ? "bg-foreground text-background"
                         : "bg-surface text-muted hover:bg-surface-muted hover:text-foreground",
@@ -69,7 +78,7 @@ export function HomePricing() {
                     {"badge" in plan && plan.badge ? (
                       <span
                         className={cn(
-                          "absolute top-2.5 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-[10px] font-medium tracking-wide",
+                          "absolute top-2 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-[10px] font-medium tracking-wide whitespace-nowrap",
                           selected
                             ? "bg-accent text-accent-foreground"
                             : "bg-accent-soft text-accent",
@@ -81,7 +90,7 @@ export function HomePricing() {
 
                     <span
                       className={cn(
-                        "block font-display text-2xl font-semibold tracking-tight sm:text-[2rem]",
+                        "block font-display text-xl font-semibold tracking-tight sm:text-[2rem]",
                         selected ? "text-background" : "text-foreground",
                       )}
                     >

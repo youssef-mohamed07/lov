@@ -34,16 +34,17 @@ export function HomePlatform() {
   return (
     <section className="bg-background py-[var(--section-space-lg)]">
       <Container>
-        <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
-            Par où commencer
-          </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+        <Reveal
+          className="mb-[var(--space-10)] flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+          variant="fade"
+        >
+          <h2 className="max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
             Deux portes d’entrée,{" "}
-            <span className="font-medium italic text-voice">
-              un même objectif
-            </span>
+            <span className="squiggle-accent">un même objectif</span>
           </h2>
+          <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
+            Commencez léger avec le simulateur, ou directement avec un bilan.
+          </p>
         </Reveal>
 
         <div className="grid gap-4 lg:grid-cols-2">

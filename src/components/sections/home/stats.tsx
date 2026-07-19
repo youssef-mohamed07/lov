@@ -41,8 +41,13 @@ export function HomeStats() {
   };
 
   return (
-    <section className="bg-background py-[var(--section-space-md)]">
-      <Container>
+    <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_0%_50%,var(--accent-soft),transparent_60%)] opacity-50"
+      />
+
+      <Container className="relative">
         <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {homeStats.eyebrow}
@@ -114,7 +119,7 @@ export function HomeStats() {
                   }
                   transition={{ duration: 0.4, ease: easeOutExpo }}
                 >
-                  <p className="font-display text-6xl font-semibold tracking-tight text-foreground sm:text-7xl">
+                  <p className="font-display text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
                     <Counter
                       value={current.value}
                       suffix={current.suffix}
@@ -155,7 +160,7 @@ export function HomeStats() {
                   aria-selected={selected}
                   onClick={() => goTo(index)}
                   className={cn(
-                    "relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    "relative min-h-11 overflow-hidden rounded-full px-4 py-2.5 text-sm font-medium transition-colors",
                     selected
                       ? "border border-border bg-surface text-foreground shadow-[var(--shadow-card)]"
                       : "border border-transparent text-muted hover:text-foreground",

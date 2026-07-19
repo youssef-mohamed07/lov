@@ -38,15 +38,20 @@ function TestimonialCard({
   item,
   tilt,
   accent,
+  fluid,
 }: {
   item: Item;
   tilt: string;
   accent?: boolean;
+  fluid?: boolean;
 }) {
   return (
     <figure
       className={cn(
-        "relative flex w-[19rem] shrink-0 flex-col justify-between gap-5 rounded-[1.35rem] border p-6 transition-transform duration-300 ease-out hover:rotate-0 hover:scale-[1.03] sm:w-[21rem]",
+        "relative flex flex-col justify-between gap-5 rounded-[1.35rem] border p-5 transition-transform duration-300 ease-out sm:p-6",
+        fluid
+          ? "w-full"
+          : "w-[min(19rem,calc(100vw-3rem))] shrink-0 hover:rotate-0 hover:scale-[1.03] sm:w-[21rem]",
         tilt,
         accent
           ? "border-transparent bg-foreground text-background shadow-[0_24px_60px_-30px_rgba(14,14,15,0.55)]"
@@ -170,6 +175,11 @@ export function TestimonialsSection() {
 
   return (
     <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_85%_0%,var(--accent-soft),transparent_60%)] opacity-60"
+      />
+
       <Container className="relative">
         <Reveal className="mx-auto mb-4 max-w-2xl text-center" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
@@ -201,6 +211,7 @@ export function TestimonialsSection() {
                 item={item}
                 tilt="rotate-0"
                 accent={index === 0}
+                fluid
               />
             ))}
           </div>

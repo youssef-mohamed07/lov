@@ -65,16 +65,19 @@ export function Navbar() {
   }, [open]);
 
   useEffect(() => {
-    if (!moreOpen) return;
+    if (!moreOpen && !open) return;
 
     function onPointerDown(event: MouseEvent) {
-      if (!moreRef.current?.contains(event.target as Node)) {
+      if (moreOpen && !moreRef.current?.contains(event.target as Node)) {
         setMoreOpen(false);
       }
     }
 
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setMoreOpen(false);
+      if (event.key === "Escape") {
+        setMoreOpen(false);
+        setOpen(false);
+      }
     }
 
     document.addEventListener("mousedown", onPointerDown);
@@ -83,7 +86,7 @@ export function Navbar() {
       document.removeEventListener("mousedown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [moreOpen]);
+  }, [moreOpen, open]);
 
   return (
     <header
@@ -194,10 +197,19 @@ export function Navbar() {
         </div>
       </Container>
 
+      {open ? (
+        <button
+          type="button"
+          aria-label="Fermer le menu"
+          className="pointer-events-auto fixed inset-0 bg-foreground/25 backdrop-blur-[2px] lg:hidden"
+          onClick={() => setOpen(false)}
+        />
+      ) : null}
+
       <div
         id="mobile-nav"
         className={cn(
-          "pointer-events-auto px-[var(--gutter)] pt-3 lg:hidden",
+          "pointer-events-auto relative px-[var(--gutter)] pt-3 lg:hidden",
           open ? "block" : "hidden",
         )}
       >
@@ -207,7 +219,7 @@ export function Navbar() {
               key={link.label}
               type="button"
               onClick={() => setOpen(false)}
-              className="block w-full rounded-xl px-3 py-3 text-left text-sm font-medium text-foreground hover:bg-background"
+              className="block min-h-11 w-full rounded-xl px-3 py-3 text-left text-sm font-medium text-foreground hover:bg-background"
             >
               {link.label}
             </button>

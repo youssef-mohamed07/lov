@@ -19,16 +19,24 @@ export function HomeServicesGrid() {
   return (
     <section className="bg-background py-[var(--section-space-lg)]">
       <Container>
-        <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
-            Spécialités
+        <Reveal
+          className="mb-[var(--space-10)] flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+          variant="fade"
+        >
+          <div>
+            <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
+              Spécialités
+            </p>
+            <h2 className="max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+              Des accompagnements{" "}
+              <span className="font-medium italic text-voice">
+                adaptés à chaque besoin
+              </span>
+            </h2>
+          </div>
+          <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
+            Six motifs fréquents — chacun avec un parcours pensé pour lui.
           </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            Des accompagnements{" "}
-            <span className="font-medium italic text-voice">
-              adaptés à chaque besoin
-            </span>
-          </h2>
         </Reveal>
 
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -50,7 +58,7 @@ export function HomeServicesGrid() {
                       src={trouble.image}
                       alt=""
                       fill
-                      sizes="(max-width: 1280px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
                       className="object-cover"
                     />
                     <div

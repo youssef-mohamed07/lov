@@ -17,7 +17,7 @@ import {
   AudioLines,
 } from "lucide-react";
 import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
@@ -48,6 +48,15 @@ export function HomeTroublesPanel() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const lockRef = useRef(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const items = useMemo(
     () =>
@@ -59,6 +68,7 @@ export function HomeTroublesPanel() {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const active = items[activeIndex] ?? items[0];
+  const scrubEnabled = isDesktop && !reduceMotion;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -66,7 +76,7 @@ export function HomeTroublesPanel() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
-    if (reduceMotion || lockRef.current || items.length === 0) return;
+    if (!scrubEnabled || lockRef.current || items.length === 0) return;
     const next = Math.min(
       items.length - 1,
       Math.max(0, Math.floor(value * items.length)),
@@ -77,7 +87,7 @@ export function HomeTroublesPanel() {
   const selectIndex = (index: number) => {
     setActiveIndex(index);
     const section = sectionRef.current;
-    if (!section || reduceMotion) return;
+    if (!section || !scrubEnabled) return;
 
     lockRef.current = true;
     const rect = section.getBoundingClientRect();
@@ -246,7 +256,7 @@ export function HomeTroublesPanel() {
     </Container>
   );
 
-  if (reduceMotion) {
+  if (!scrubEnabled) {
     return (
       <section ref={sectionRef} className="bg-background py-[var(--section-space-md)]">
         {content}
