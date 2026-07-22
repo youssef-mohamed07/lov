@@ -59,8 +59,8 @@ export default async function ArticleCategoryPage({ params }: CategoryPageProps)
         }
       />
 
-      <section className="bg-background py-[var(--section-space-lg)]">
-        <Container>
+      <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
+        <Container className="relative">
           {items.length === 0 ? (
             <p className="text-muted">
               Aucun article dans cette catégorie pour le moment.
@@ -72,7 +72,7 @@ export default async function ArticleCategoryPage({ params }: CategoryPageProps)
                   <Reveal delay={index * 0.04}>
                     <Link
                       href={getArticleHref(article)}
-                      className="block py-8 transition-colors hover:text-accent"
+                      className="block min-h-11 py-8 transition-colors hover:text-accent"
                     >
                       <span className="text-sm text-muted">{article.date}</span>
                       <h2 className="mt-2 font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">

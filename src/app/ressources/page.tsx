@@ -24,7 +24,12 @@ export default function ArticlesPage() {
     <main>
       <PageIntro
         eyebrow="Ressources"
-        title={articlesPage.title}
+        title={
+          <>
+            Nos dernières{" "}
+            <span className="squiggle-accent">ressources</span>
+          </>
+        }
         description={articlesPage.description}
         image="/images/ortho-reading.jpg"
         breadcrumbs={[
@@ -32,19 +37,19 @@ export default function ArticlesPage() {
           { label: "Ressources" },
         ]}
         actions={
-          <div className="w-full max-w-lg">
+          <div className="w-full max-w-lg min-w-0">
             <ArticlesSubscribe />
           </div>
         }
       />
 
-      <section className="bg-background py-[var(--section-space-md)] pb-[var(--section-space-lg)]">
-        <Container>
+      <section className="relative overflow-hidden bg-background py-[var(--section-space-md)] pb-[var(--section-space-lg)]">
+        <Container className="relative">
           <Reveal>
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap gap-2">
               <Link
                 href="/ressources"
-                className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground"
+                className="inline-flex min-h-11 items-center rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground"
               >
                 Tous
               </Link>
@@ -52,7 +57,7 @@ export default function ArticlesPage() {
                 <Link
                   key={category.slug}
                   href={getCategoryHref(category.slug)}
-                  className="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent/40 hover:bg-accent-soft"
+                  className="inline-flex min-h-11 items-center rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent/40 hover:bg-accent-soft"
                 >
                   {category.title}
                 </Link>
@@ -85,8 +90,8 @@ export default function ArticlesPage() {
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       </div>
-                      <div className="flex flex-1 flex-col p-5">
-                        <div className="flex items-center gap-2 text-xs text-muted">
+                      <div className="flex min-w-0 flex-1 flex-col p-5">
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
                           {category ? (
                             <span className="font-medium tracking-[0.12em] text-muted uppercase">
                               {category.title}

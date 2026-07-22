@@ -35,7 +35,7 @@ export function PageIntro({
   return (
     <section
       className={cn(
-        "relative min-h-[58vh] overflow-hidden bg-surface",
+        "relative min-h-[52vh] overflow-hidden bg-background sm:min-h-[58vh]",
         className,
       )}
     >
@@ -49,18 +49,29 @@ export function PageIntro({
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/90 via-[#0E0E0F]/50 to-[#0E0E0F]/25"
+        className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/92 via-[#0E0E0F]/55 to-[#0E0E0F]/30"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_20%_90%,rgba(254,81,16,0.22),transparent_55%)]"
       />
 
-      <Container className="relative flex min-h-[58vh] flex-col justify-end pt-[calc(var(--header-height)+var(--space-12))] pb-[var(--section-space-md)]">
+      <Container className="relative flex min-h-[52vh] flex-col justify-end pt-[calc(var(--header-height)+var(--space-10))] pb-[var(--section-space-md)] sm:min-h-[58vh] sm:pt-[calc(var(--header-height)+var(--space-12))]">
         <Reveal className="max-w-3xl" variant="fade">
           {breadcrumbs && breadcrumbs.length > 0 ? (
-            <p className="text-sm text-white/70">
+            <nav aria-label="Fil d’Ariane" className="text-sm text-white/70">
               {breadcrumbs.map((crumb, index) => (
                 <span key={`${crumb.label}-${index}`}>
-                  {index > 0 ? " / " : null}
+                  {index > 0 ? (
+                    <span className="mx-1.5 text-white/40" aria-hidden>
+                      /
+                    </span>
+                  ) : null}
                   {crumb.href ? (
-                    <Link href={crumb.href} className="hover:text-white">
+                    <Link
+                      href={crumb.href}
+                      className="transition-colors hover:text-white"
+                    >
                       {crumb.label}
                     </Link>
                   ) : (
@@ -68,13 +79,13 @@ export function PageIntro({
                   )}
                 </span>
               ))}
-            </p>
+            </nav>
           ) : null}
 
           {eyebrow ? (
             <p
               className={cn(
-                "text-xs font-medium tracking-[0.2em] text-white/75 uppercase",
+                "text-xs font-medium tracking-[0.22em] text-white/75 uppercase",
                 breadcrumbs?.length ? "mt-4" : "",
               )}
             >
@@ -90,7 +101,7 @@ export function PageIntro({
           >
             {title}
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-white/85 sm:text-lg sm:leading-8">
             {description}
           </p>
           {actions ? (

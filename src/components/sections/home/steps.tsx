@@ -35,12 +35,7 @@ const steps = [
 
 export function HomeSteps() {
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_15%_0%,var(--accent-soft),transparent_60%)] opacity-60"
-      />
-
+    <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
         <Reveal
           className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"

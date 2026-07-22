@@ -174,12 +174,7 @@ export function TestimonialsSection() {
   const rowB = items.slice(half);
 
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_85%_0%,var(--accent-soft),transparent_60%)] opacity-60"
-      />
-
+    <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
         <Reveal className="mx-auto mb-4 max-w-2xl text-center" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">

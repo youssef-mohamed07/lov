@@ -18,24 +18,16 @@ const LOCALE_PREFIXES = new Set([
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const segments = pathname.split("/").filter(Boolean);
-  const first = segments[0]?.toLowerCase();
+  const first = pathname.split("/").filter(Boolean)[0]?.toLowerCase();
 
-  // Strip accidental locale prefixes → always land on home.
-  if (first && LOCALE_PREFIXES.has(first)) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    return NextResponse.redirect(url);
+  if (!first || !LOCALE_PREFIXES.has(first)) {
+    return NextResponse.next();
   }
 
-  // Home-only: block every route except `/`.
-  if (pathname !== "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    return NextResponse.redirect(url);
-  }
-
-  return NextResponse.next();
+  const stripped = pathname.replace(new RegExp(`^/${first}`, "i"), "") || "/";
+  const url = request.nextUrl.clone();
+  url.pathname = stripped;
+  return NextResponse.redirect(url);
 }
 
 export const config = {

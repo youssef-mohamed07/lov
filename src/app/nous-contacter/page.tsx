@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Clock3, Mail, Phone } from "lucide-react";
+import { Clock3, Mail, Phone, ShieldAlert } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
 import { ContactForm } from "@/components/sections/contact-form";
+import { ContactMap } from "@/components/sections/contact-map";
 import { PageIntro } from "@/components/sections/page-intro";
 import { Container } from "@/components/ui/container";
 import { contact } from "@/data/nous-contacter";
@@ -25,7 +26,12 @@ export default function ContactPage() {
     <main>
       <PageIntro
         eyebrow="Nous contacter"
-        title={contact.title}
+        title={
+          <>
+            Parlons de{" "}
+            <span className="squiggle-accent">votre besoin</span>
+          </>
+        }
         description={contact.description}
         image="/images/family-consult.jpg"
         breadcrumbs={[
@@ -34,8 +40,8 @@ export default function ContactPage() {
         ]}
       />
 
-      <section className="bg-background py-[var(--section-space-lg)]">
-        <Container>
+      <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
+        <Container className="relative">
           <div className="grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
             <Reveal variant="left" className="flex flex-col gap-8">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] border border-border">
@@ -56,20 +62,20 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-5">
+              <ul className="flex flex-col divide-y divide-border overflow-hidden rounded-[1.5rem] border border-border bg-surface">
                 {contact.details.map((item) => {
                   const Icon =
                     detailIcons[item.label as keyof typeof detailIcons] ?? Mail;
                   const content = (
                     <>
-                      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent">
+                      <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
                         <Icon className="size-4" aria-hidden />
                       </span>
-                      <span>
+                      <span className="min-w-0">
                         <span className="block text-xs font-medium tracking-[0.16em] text-muted uppercase">
                           {item.label}
                         </span>
-                        <span className="mt-1 block text-base font-medium text-foreground">
+                        <span className="mt-1 block text-base font-medium break-words text-foreground">
                           {item.value}
                         </span>
                       </span>
@@ -81,21 +87,26 @@ export default function ContactPage() {
                       {"href" in item && item.href ? (
                         <Link
                           href={item.href}
-                          className="flex items-center gap-4 transition-colors hover:text-accent"
+                          className="group flex min-h-11 items-center gap-4 px-5 py-4 transition-colors hover:bg-accent-soft/25"
                         >
                           {content}
                         </Link>
                       ) : (
-                        <div className="flex items-center gap-4">{content}</div>
+                        <div className="group flex items-center gap-4 px-5 py-4">
+                          {content}
+                        </div>
                       )}
                     </li>
                   );
                 })}
               </ul>
 
-              <p className="max-w-sm text-sm leading-6 text-muted">
-                {contact.note}
-              </p>
+              <div className="flex items-start gap-3 rounded-[1.25rem] border border-danger/25 bg-danger/[0.06] px-5 py-4">
+                <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-danger/10 text-danger">
+                  <ShieldAlert className="size-4" aria-hidden />
+                </span>
+                <p className="text-sm leading-6 text-muted">{contact.note}</p>
+              </div>
             </Reveal>
 
             <Reveal delay={0.08} variant="right">
@@ -104,7 +115,8 @@ export default function ContactPage() {
                   Écrire à Lov
                 </p>
                 <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                  Envoyez votre message
+                  Envoyez votre{" "}
+                  <span className="mark-accent">message</span>
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-muted">
                   Remplissez les champs — nous revenons vers vous rapidement.
@@ -117,6 +129,8 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
+
+      <ContactMap />
     </main>
   );
 }

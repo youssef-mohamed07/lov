@@ -8,9 +8,9 @@ export function AboutFounders() {
   const { founders } = about;
 
   return (
-    <section className="bg-surface py-[var(--section-space-lg)]">
-      <Container>
-        <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
+    <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
+      <Container className="relative">
+        <Reveal className="max-w-2xl" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {founders.eyebrow}
           </p>
@@ -24,9 +24,9 @@ export function AboutFounders() {
 
         <ul className="mt-12 grid gap-6 lg:grid-cols-2">
           {founders.people.map((person, index) => (
-            <li key={person.name}>
+            <li key={person.name} className="min-w-0">
               <Reveal delay={index * 0.08} variant={index === 0 ? "left" : "right"}>
-                <article className="grid overflow-hidden rounded-[1.75rem] border border-border bg-background sm:grid-cols-[0.9fr_1.1fr]">
+                <article className="grid overflow-hidden rounded-[1.75rem] border border-border bg-surface sm:grid-cols-[0.9fr_1.1fr]">
                   <div className="relative min-h-[260px] sm:min-h-[300px]">
                     <Image
                       src={person.image}
@@ -36,7 +36,7 @@ export function AboutFounders() {
                       className="object-cover object-[50%_20%]"
                     />
                   </div>
-                  <div className="flex flex-col justify-center p-6 sm:p-8">
+                  <div className="flex min-w-0 flex-col justify-center p-6 sm:p-8">
                     <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground">
                       {person.name}
                     </h3>

@@ -23,12 +23,7 @@ export function HomePricing() {
     pricingPlans.find((plan) => plan.id === activeId) ?? pricingPlans[0];
 
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_115%,var(--accent-soft),transparent_60%)] opacity-70"
-      />
-
+    <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
         <Reveal className="mx-auto mb-10 max-w-2xl text-center" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
@@ -202,7 +197,9 @@ export function HomePricing() {
                     </ul>
 
                     <div className="mt-8">
-                      <CtaButton size="md">{active.ctaLabel}</CtaButton>
+                      <CtaButton href={active.ctaHref} size="md">
+                        {active.ctaLabel}
+                      </CtaButton>
                     </div>
                   </motion.div>
                 </AnimatePresence>

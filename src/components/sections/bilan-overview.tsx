@@ -27,7 +27,7 @@ function FeatureBlock({
 }) {
   return (
     <div className="flex gap-4">
-      <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-surface-muted text-accent">
+      <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent">
         <Icon className="size-5" aria-hidden />
       </span>
       <div>
@@ -44,20 +44,24 @@ export function BilanOverview() {
   const { overview } = bilan;
 
   return (
-    <section className="bg-background py-[var(--section-space-lg)]">
-      <Container>
-        <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium tracking-[0.14em] text-muted uppercase">
-            <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-            {overview.badge}
-          </span>
-          <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            {overview.title}{" "}
-            <span className="font-medium italic text-voice">
-              {overview.titleAccent}
+    <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
+
+      <Container className="relative">
+        <Reveal
+          className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+          variant="fade"
+        >
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium tracking-[0.14em] text-muted uppercase">
+              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+              {overview.badge}
             </span>
-          </h2>
-          <p className="mt-4 text-base leading-7 text-muted sm:text-lg">
+            <h2 className="mt-5 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+              {overview.title}{" "}
+              <span className="mark-accent">{overview.titleAccent}</span>
+            </h2>
+          </div>
+          <p className="max-w-sm text-base leading-7 text-muted sm:pb-1 sm:text-right sm:text-lg">
             {overview.body}
           </p>
         </Reveal>

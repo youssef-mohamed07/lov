@@ -41,12 +41,7 @@ export function HomeStats() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-md)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_0%_50%,var(--accent-soft),transparent_60%)] opacity-50"
-      />
-
+    <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
         <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
@@ -190,7 +185,9 @@ export function HomeStats() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <CtaButton size="sm">Découvrir Lov</CtaButton>
+            <CtaButton href="/a-propos" size="sm">
+              Découvrir Lov
+            </CtaButton>
           </div>
         </div>
       </Container>

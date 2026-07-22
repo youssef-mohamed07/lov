@@ -8,6 +8,7 @@
   --muted-soft: #a5a4a5;
   --surface: #ffffff;
   --surface-muted: #f8f8f8;
+  --surface-warm: #faf4ee;
   --border: #ececec;
   --accent: #fe5110;
   --accent-hover: #e9480a;
@@ -78,6 +79,7 @@
   --color-muted-soft: var(--muted-soft);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
+  --color-surface-warm: var(--surface-warm);
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
@@ -151,6 +153,37 @@ body {
   border-radius: 0.35em;
   transform: skewX(-8deg) rotate(-1.2deg);
   z-index: -1;
+}
+
+/* Shared section atmosphere — same base color everywhere, character comes
+   from soft washes that fade to nothing. No seams, no color banding. */
+.section-warm {
+  position: relative;
+  background-color: var(--background);
+}
+.section-warm::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 85% 8%, var(--accent-soft), transparent 62%),
+    radial-gradient(ellipse 45% 40% at 8% 92%, rgba(254, 81, 16, 0.06), transparent 58%);
+  opacity: 0.5;
+}
+.section-warm::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image: radial-gradient(rgba(14, 14, 15, 0.05) 0.8px, transparent 0.8px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, black, transparent 72%);
+}
+.section-warm > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Hand-drawn squiggle underline */

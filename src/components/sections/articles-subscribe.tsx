@@ -25,9 +25,9 @@ export function ArticlesSubscribe() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full max-w-lg flex-col gap-3 sm:flex-row sm:items-center"
+      className="flex w-full max-w-lg min-w-0 flex-col gap-3 sm:flex-row sm:items-center"
     >
-      <label className="relative flex-1">
+      <label className="relative min-w-0 flex-1">
         <span className="sr-only">{articlesPage.subscribePlaceholder}</span>
         <Mail
           className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted"
@@ -39,10 +39,10 @@ export function ArticlesSubscribe() {
           required
           autoComplete="email"
           placeholder={articlesPage.subscribePlaceholder}
-          className="w-full rounded-full border border-border bg-surface py-3.5 pr-4 pl-11 text-sm text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-muted/60 focus:border-accent focus:shadow-[0_0_0_4px_var(--accent-soft)]"
+          className="w-full min-w-0 rounded-full border border-border bg-surface py-3.5 pr-4 pl-11 text-sm text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-muted/60 focus:border-accent focus:shadow-[0_0_0_4px_var(--accent-soft)]"
         />
       </label>
-      <CtaButton type="submit" size="md" className="shrink-0">
+      <CtaButton type="submit" size="md" className="w-full shrink-0 sm:w-auto">
         {articlesPage.subscribeCta}
       </CtaButton>
     </form>

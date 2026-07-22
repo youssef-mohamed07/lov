@@ -19,7 +19,12 @@ export default function TroublesPage() {
     <main>
       <PageIntro
         eyebrow="Troubles"
-        title={troublesPage.title}
+        title={
+          <>
+            Troubles que nous{" "}
+            <span className="font-medium italic text-voice">accompagnons</span>
+          </>
+        }
         description={troublesPage.description}
         image="/images/trouble-language.jpg"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "Troubles" }]}
@@ -30,8 +35,8 @@ export default function TroublesPage() {
         }
       />
 
-      <section className="bg-background py-[var(--section-space-lg)]">
-        <Container>
+      <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
+        <Container className="relative">
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {troubles.map((trouble, index) => (
               <li key={trouble.slug}>
@@ -42,7 +47,7 @@ export default function TroublesPage() {
                 >
                   <Link
                     href={`/troubles/${trouble.slug}`}
-                    className="group relative flex h-full min-h-[300px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]"
+                    className="group relative flex h-full min-h-[280px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]"
                   >
                     <Image
                       src={trouble.image}
@@ -62,7 +67,7 @@ export default function TroublesPage() {
                       <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/85">
                         {trouble.description}
                       </p>
-                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white underline-offset-4 group-hover:underline">
+                      <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-white underline-offset-4 group-hover:underline">
                         En savoir plus
                         <ArrowUpRight className="size-4" aria-hidden />
                       </span>

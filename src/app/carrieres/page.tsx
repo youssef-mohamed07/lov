@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import {
+  ArrowUpRight,
+  ClipboardCheck,
+  Handshake,
+  MapPin,
+  Send,
+  Sparkles,
+} from "lucide-react";
 
 import { Reveal } from "@/components/common/reveal";
 import { PageIntro } from "@/components/sections/page-intro";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { careers } from "@/data/carrieres";
+import { cn } from "@/lib/utils";
+
+const processIcons = [Send, Handshake, ClipboardCheck, Sparkles] as const;
 
 export const metadata: Metadata = {
   title: "Carrières",
@@ -40,8 +50,8 @@ export default function CareersPage() {
       />
 
       {/* Culture */}
-      <section className="bg-background py-[var(--section-space-lg)]">
-        <Container>
+      <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
+        <Container className="relative">
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
             <Reveal variant="left">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] sm:aspect-[5/4] lg:aspect-[4/5]">
@@ -66,9 +76,9 @@ export default function CareersPage() {
               <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
                 {careers.culture.eyebrow}
               </p>
-              <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {careers.culture.title}{" "}
-                <span className="font-medium italic text-voice">
+                <span className="squiggle-accent">
                   {careers.culture.titleAccent}
                 </span>
               </h2>
@@ -82,7 +92,7 @@ export default function CareersPage() {
                     <span className="font-display text-sm font-semibold tracking-[0.14em] text-muted">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="font-display text-lg font-semibold tracking-tight text-foreground">
                         {item.title}
                       </h3>
@@ -99,54 +109,75 @@ export default function CareersPage() {
       </section>
 
       {/* Process */}
-      <section className="bg-surface py-[var(--section-space-lg)]">
-        <Container>
-          <Reveal className="mx-auto max-w-2xl text-center" variant="up">
-            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
-              {careers.process.eyebrow}
+      <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
+        <Container className="relative">
+          <Reveal
+            className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+            variant="fade"
+          >
+            <div>
+              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+                {careers.process.eyebrow}
+              </p>
+              <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+                {careers.process.title}{" "}
+                <span className="font-medium italic text-voice">
+                  {careers.process.titleAccent}
+                </span>
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
+              Quatre temps — sans parcours opaque ni délais flous.
             </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              {careers.process.title}{" "}
-              <span className="font-medium italic text-voice">
-                {careers.process.titleAccent}
-              </span>
-            </h2>
           </Reveal>
 
-          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-            {careers.process.steps.map((step, index) => (
-              <li key={step.title}>
-                <Reveal delay={index * 0.06} variant="up">
-                  <span className="font-display text-4xl font-semibold tracking-tight text-foreground/15">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">
-                    {step.description}
-                  </p>
-                </Reveal>
-              </li>
-            ))}
+          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {careers.process.steps.map((step, index) => {
+              const Icon = processIcons[index] ?? Send;
+              return (
+                <li key={step.title}>
+                  <Reveal delay={index * 0.06} variant="up" className="h-full">
+                    <article className="group flex h-full flex-col rounded-[1.5rem] border border-border bg-background p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[var(--shadow-card)] sm:p-7">
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-accent-soft text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
+                          <Icon className="size-5" aria-hidden />
+                        </span>
+                        <span className="font-display text-4xl font-semibold tracking-tight text-foreground/10">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <h3 className="mt-6 font-display text-lg font-semibold tracking-tight text-foreground">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-muted sm:leading-7">
+                        {step.description}
+                      </p>
+                    </article>
+                  </Reveal>
+                </li>
+              );
+            })}
           </ol>
         </Container>
       </section>
 
       {/* Roles */}
       <section className="bg-background py-[var(--section-space-lg)]">
-        <Container>
-          <Reveal className="max-w-2xl" variant="up">
-            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
-              {careers.roles.eyebrow}
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              {careers.roles.title}{" "}
-              <span className="font-medium italic text-voice">
-                {careers.roles.titleAccent}
-              </span>
-            </h2>
-            <p className="mt-4 text-base leading-7 text-muted">
+        <Container className="relative">
+          <Reveal
+            className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+            variant="fade"
+          >
+            <div>
+              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+                {careers.roles.eyebrow}
+              </p>
+              <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+                {careers.roles.title}{" "}
+                <span className="mark-accent">{careers.roles.titleAccent}</span>
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
               {careers.roles.description}
             </p>
           </Reveal>
@@ -156,7 +187,7 @@ export default function CareersPage() {
               <li key={role.title}>
                 <Reveal delay={index * 0.05} variant="fade">
                   <article className="group grid gap-6 rounded-[1.5rem] border border-border bg-surface p-6 transition-[border-color,background-color] duration-200 hover:border-accent/30 hover:bg-accent-soft/20 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
-                    <div>
+                    <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
                         <span className="rounded-full bg-accent-soft px-2.5 py-1 text-accent">
                           {role.type}
@@ -165,7 +196,7 @@ export default function CareersPage() {
                           {role.mode}
                         </span>
                         <span className="inline-flex items-center gap-1 px-1">
-                          <MapPin className="size-3.5" aria-hidden />
+                          <MapPin className="size-3.5 shrink-0" aria-hidden />
                           {role.location}
                         </span>
                       </div>
@@ -193,26 +224,42 @@ export default function CareersPage() {
       </section>
 
       {/* Spontaneous CTA */}
-      <section className="relative overflow-hidden bg-surface py-[var(--section-space-lg)]">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_20%_20%,var(--accent-soft),transparent_55%),radial-gradient(ellipse_50%_40%_at_90%_80%,rgba(254,81,16,0.14),transparent_50%)]"
-        />
-        <Container className="relative">
-          <Reveal className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              {careers.cta.title}
-            </h2>
-            <p className="mt-4 text-base leading-7 text-muted">
-              {careers.cta.description}
-            </p>
-            <CtaButton href="/nous-contacter" size="lg" className="mt-8">
-              {careers.cta.action}
-            </CtaButton>
-            <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted">
-              Réponse sous quelques jours
-              <ArrowUpRight className="size-3.5" aria-hidden />
-            </p>
+      <section className="bg-background py-[var(--section-space-lg)]">
+        <Container>
+          <Reveal>
+            <div className="relative overflow-hidden rounded-[2rem] bg-foreground px-6 py-12 text-background sm:px-12 sm:py-14 lg:px-16">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+              >
+                <div className="absolute -top-1/3 -right-10 size-[34rem] rounded-full bg-[radial-gradient(circle,rgba(254,81,16,0.35),transparent_62%)] blur-2xl" />
+                <div className="absolute inset-0 opacity-[0.05] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
+              </div>
+
+              <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+                <div className="max-w-xl">
+                  <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
+                    Candidature spontanée
+                  </p>
+                  <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-background sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
+                    {careers.cta.title}
+                  </h2>
+                  <p className="mt-4 max-w-lg text-base leading-7 text-background/70">
+                    {careers.cta.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-start gap-3 lg:items-end">
+                  <CtaButton href="/nous-contacter" size="lg">
+                    {careers.cta.action}
+                  </CtaButton>
+                  <p className="inline-flex items-center gap-1.5 text-sm text-background/55">
+                    Réponse sous quelques jours
+                    <ArrowUpRight className="size-3.5" aria-hidden />
+                  </p>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </Container>
       </section>

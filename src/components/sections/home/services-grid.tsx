@@ -1,6 +1,8 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
@@ -17,7 +19,7 @@ const services = [
 
 export function HomeServicesGrid() {
   return (
-    <section className="bg-background py-[var(--section-space-lg)]">
+    <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container>
         <Reveal
           className="mb-[var(--space-10)] flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
@@ -53,13 +55,16 @@ export function HomeServicesGrid() {
                 className="h-full"
               >
                 <li className="h-full">
-                  <article className="relative flex h-full min-h-[300px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]">
+                  <Link
+                    href={`/troubles/${trouble.slug}`}
+                    className="group relative flex h-full min-h-[300px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]"
+                  >
                     <Image
                       src={trouble.image}
                       alt=""
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                     <div
                       aria-hidden
@@ -79,8 +84,12 @@ export function HomeServicesGrid() {
                       <p className="mt-2 line-clamp-2 min-h-[3rem] text-sm leading-6 text-white/85">
                         {trouble.description}
                       </p>
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white underline-offset-4 group-hover:underline">
+                        En savoir plus
+                        <ArrowUpRight className="size-4" aria-hidden />
+                      </span>
                     </div>
-                  </article>
+                  </Link>
                 </li>
               </Reveal>
             );

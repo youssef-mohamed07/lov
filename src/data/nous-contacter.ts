@@ -18,6 +18,21 @@ export const contact = {
       value: "Lun–Ven, 9h–18h",
     },
   ],
+  location: {
+    eyebrow: "Nous trouver",
+    title: "Un point d’ancrage",
+    titleAccent: "à Paris",
+    description:
+      "Les bilans se déroulent en présentiel. L’orientation et le premier échange peuvent commencer à distance.",
+    label: "Adresse",
+    address: "12 rue de la Clarté",
+    city: "75011 Paris",
+    // Approximate pin — update when the real address is confirmed.
+    lat: 48.8584,
+    lng: 2.379,
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=12+rue+de+la+Clart%C3%A9+75011+Paris",
+  },
   subjects: [
     { value: "bilan", label: "Bilan orthophonique" },
     { value: "rdv", label: "Prise de rendez-vous" },

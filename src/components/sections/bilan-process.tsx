@@ -9,24 +9,22 @@ export function BilanProcess() {
   const { process, steps } = bilan;
 
   return (
-    <section className="bg-surface py-[var(--section-space-lg)]">
-      <Container>
+    <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
+      <Container className="relative">
         <div className="grid items-start gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <Reveal variant="left" className="lg:sticky lg:top-28">
-            <span className="inline-flex items-center rounded-full border border-border bg-surface-muted px-3.5 py-1.5 text-xs font-semibold tracking-[0.16em] text-muted uppercase">
+            <span className="inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-semibold tracking-[0.16em] text-muted uppercase">
               {process.badge}
             </span>
             <h2 className="mt-5 max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
               {process.title}{" "}
-              <span className="font-medium italic text-voice">
-                {process.titleAccent}
-              </span>
+              <span className="squiggle-accent">{process.titleAccent}</span>
             </h2>
             <p className="mt-4 max-w-md text-base leading-7 text-muted sm:text-lg">
               {process.body}
             </p>
             <div className="mt-8">
-              <CtaButton href={process.ctaHref} size="lg">
+              <CtaButton href={process.ctaHref} size="lg" className="min-h-11">
                 {process.ctaLabel}
               </CtaButton>
             </div>
@@ -36,8 +34,8 @@ export function BilanProcess() {
             {steps.map((item, index) => (
               <li key={item.step}>
                 <Reveal delay={index * 0.08} variant="right">
-                  <article className="overflow-hidden rounded-[1.5rem] border border-border bg-background p-4 shadow-[var(--shadow-card)] sm:p-5">
-                    <div className="grid gap-5 sm:grid-cols-[140px_1fr] sm:items-center">
+                  <article className="overflow-hidden rounded-[1.5rem] border border-border bg-surface p-4 shadow-[var(--shadow-card)] sm:p-5">
+                    <div className="grid gap-5 sm:grid-cols-[minmax(0,140px)_1fr] sm:items-center">
                       <div className="relative aspect-[4/3] overflow-hidden rounded-[1.1rem] sm:aspect-square">
                         <Image
                           src={item.image}
@@ -47,7 +45,7 @@ export function BilanProcess() {
                           className="object-cover"
                         />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                           <span className="font-display text-3xl font-semibold tracking-tight text-accent sm:text-4xl">
                             {item.step}

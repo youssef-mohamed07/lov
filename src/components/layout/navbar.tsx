@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDown, Menu, X } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -21,8 +22,11 @@ export function Navbar() {
   const moreRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
-  // Transparent nav only on the home hero; elsewhere keep a solid bar for contrast.
   const solid = pathname !== "/" || scrolled || open;
+  const moreActive = secondaryNavLinks.some(
+    (link) =>
+      pathname === link.href || pathname.startsWith(`${link.href}/`),
+  );
 
   useEffect(() => {
     setOpen(false);
@@ -46,7 +50,6 @@ export function Navbar() {
 
       setScrolled(y > 12);
 
-      // Keep visible near the top or while the mobile menu is open.
       if (y < 48 || open) {
         setHidden(false);
       } else if (delta > 6) {
@@ -95,7 +98,7 @@ export function Navbar() {
         hidden && !open ? "-translate-y-[calc(100%+0.75rem)]" : "translate-y-0",
       )}
     >
-      <Container className="pointer-events-auto relative">
+      <Container className="pointer-events-auto relative z-10">
         <div
           className={cn(
             "relative flex h-14 min-w-0 items-center justify-between gap-2 rounded-full border px-2.5 transition-[background-color,box-shadow,border-color] duration-300 sm:gap-3 sm:px-4",
@@ -113,15 +116,24 @@ export function Navbar() {
             className="absolute left-1/2 z-20 hidden -translate-x-1/2 items-center gap-1 lg:flex"
             aria-label="Principal"
           >
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                type="button"
-                className="rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-background/80 hover:text-foreground"
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const active =
+                pathname === link.href || pathname.startsWith(`${link.href}/`);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                    active
+                      ? "bg-accent-soft text-accent"
+                      : "text-foreground/70 hover:bg-background/80 hover:text-foreground",
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
 
             <div className="relative" ref={moreRef}>
               <button
@@ -132,7 +144,7 @@ export function Navbar() {
                 aria-controls="nav-autres"
                 className={cn(
                   "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                  moreOpen
+                  moreOpen || moreActive
                     ? "bg-accent-soft text-accent"
                     : "text-foreground/70 hover:bg-background/80 hover:text-foreground",
                 )}
@@ -157,17 +169,26 @@ export function Navbar() {
                     aria-hidden
                     className="absolute -top-1.5 left-1/2 size-3 -translate-x-1/2 rotate-45 border-t border-l border-border bg-surface"
                   />
-                  {secondaryNavLinks.map((link) => (
-                    <button
-                      key={link.label}
-                      type="button"
-                      role="menuitem"
-                      onClick={() => setMoreOpen(false)}
-                      className="relative block w-full rounded-xl px-3 py-2.5 text-left text-sm font-medium text-foreground/80 transition-colors hover:bg-background hover:text-foreground"
-                    >
-                      {link.label}
-                    </button>
-                  ))}
+                  {secondaryNavLinks.map((link) => {
+                    const active =
+                      pathname === link.href ||
+                      pathname.startsWith(`${link.href}/`);
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        role="menuitem"
+                        className={cn(
+                          "relative block rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                          active
+                            ? "bg-accent-soft text-accent"
+                            : "text-foreground/80 hover:bg-background hover:text-foreground",
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    );
+                  })}
                 </div>
               ) : null}
             </div>
@@ -175,6 +196,7 @@ export function Navbar() {
 
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <CtaButton
+              href="/nous-contacter"
               size="sm"
               tone="accent"
               className="max-w-[11.5rem] sm:max-w-none"
@@ -214,17 +236,26 @@ export function Navbar() {
         )}
       >
         <div className="rounded-[1.5rem] border border-border bg-surface p-3 shadow-[var(--shadow-card)]">
-          {mobileLinks.map((link) => (
-            <button
-              key={link.label}
-              type="button"
-              onClick={() => setOpen(false)}
-              className="block min-h-11 w-full rounded-xl px-3 py-3 text-left text-sm font-medium text-foreground hover:bg-background"
-            >
-              {link.label}
-            </button>
-          ))}
+          {mobileLinks.map((link) => {
+            const active =
+              pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "block min-h-11 rounded-xl px-3 py-3 text-sm font-medium",
+                  active
+                    ? "bg-accent-soft text-accent"
+                    : "text-foreground hover:bg-background",
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <CtaButton
+            href="/nous-contacter"
             size="md"
             tone="accent"
             className="mt-2 w-full justify-between"

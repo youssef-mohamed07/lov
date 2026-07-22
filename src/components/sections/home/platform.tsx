@@ -13,6 +13,7 @@ const paths = [
     title: "Simulateur",
     description:
       "Quelques questions pour une première orientation — indicative, rapide, et claire.",
+    href: "/simulateur",
     cta: "Lancer le simulateur",
     icon: Sparkles,
     image: "/images/path-simulator.jpg",
@@ -23,6 +24,7 @@ const paths = [
     title: "Bilan orthophonique",
     description:
       "Une évaluation structurée pour préciser le profil et définir la suite.",
+    href: "/bilan",
     cta: "Découvrir le bilan",
     icon: ClipboardList,
     image: "/images/path-bilan.jpg",
@@ -32,7 +34,7 @@ const paths = [
 
 export function HomePlatform() {
   return (
-    <section className="bg-background py-[var(--section-space-lg)]">
+    <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container>
         <Reveal
           className="mb-[var(--space-10)] flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
@@ -52,7 +54,7 @@ export function HomePlatform() {
             const Icon = path.icon;
             return (
               <Reveal
-                key={path.title}
+                key={path.href}
                 delay={index * 0.1}
                 variant={index === 0 ? "left" : "right"}
               >
@@ -93,7 +95,7 @@ export function HomePlatform() {
                         </li>
                       ))}
                     </ul>
-                    <CtaButton size="md" className="mt-6 w-fit">
+                    <CtaButton href={path.href} size="md" className="mt-6 w-fit">
                       {path.cta}
                     </CtaButton>
                   </div>

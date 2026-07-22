@@ -23,7 +23,7 @@ export function SiteCta({
   accent = "plus clair ?",
   description = "Bilan, orientation et accompagnement — pour les familles qui veulent des repères concrets.",
   ctaLabel = "Bilan orthophonique",
-  ctaHref,
+  ctaHref = "/bilan",
 }: SiteCtaProps) {
   const reduceMotion = useReducedMotion();
 

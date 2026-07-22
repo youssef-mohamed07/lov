@@ -119,7 +119,7 @@ export function HomeHero() {
           </FadeItem>
 
           <FadeItem className="mt-[var(--space-8)]">
-            <CtaButton size="lg">
+            <CtaButton href="/bilan" size="lg">
               Commencer le bilan
             </CtaButton>
           </FadeItem>
@@ -151,16 +151,20 @@ export function HomeHero() {
         </FadeStagger>
       </Container>
 
-      <Container className="relative pb-[var(--space-12)]">
-        <ul className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-          {trustPoints.map(({ icon: Icon, label }) => (
-            <li key={label}>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3.5 py-2 text-sm font-medium text-foreground shadow-[0_10px_28px_-22px_rgba(14,14,15,0.35)] backdrop-blur-sm">
-                <span className="inline-flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent">
-                  <Icon className="size-3.5" aria-hidden />
-                </span>
+      <Container className="pointer-events-none absolute inset-x-0 bottom-0 pb-[var(--space-10)] sm:pb-[var(--space-12)]">
+        <ul className="pointer-events-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-8">
+          {trustPoints.map(({ icon: Icon, label }, index) => (
+            <li key={label} className="flex items-center gap-6 sm:gap-8">
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                <Icon className="size-4 text-accent" aria-hidden />
                 {label}
               </span>
+              {index < trustPoints.length - 1 ? (
+                <span
+                  aria-hidden
+                  className="hidden size-1 rounded-full bg-accent/40 sm:block"
+                />
+              ) : null}
             </li>
           ))}
         </ul>

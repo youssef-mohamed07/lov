@@ -142,7 +142,7 @@ export function HomeShowcase() {
             </FadeItem>
 
             <FadeItem className="mt-7">
-              <CtaButton size="sm">
+              <CtaButton href="/bilan" size="sm">
                 Découvrir le bilan
               </CtaButton>
             </FadeItem>

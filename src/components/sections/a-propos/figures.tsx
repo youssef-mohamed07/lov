@@ -9,17 +9,15 @@ export function AboutFigures() {
   const { figures } = about;
 
   return (
-    <section className="bg-background py-[var(--section-space-lg)]">
-      <Container>
-        <Reveal className="mx-auto max-w-2xl text-center" variant="fade">
+    <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
+      <Container className="relative">
+        <Reveal className="max-w-2xl" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
             {figures.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
             {figures.title}{" "}
-            <span className="font-medium italic text-voice">
-              {figures.titleAccent}
-            </span>
+            <span className="mark-accent">{figures.titleAccent}</span>
           </h2>
         </Reveal>
 

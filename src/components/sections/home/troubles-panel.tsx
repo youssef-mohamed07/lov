@@ -44,6 +44,50 @@ const featuredSlugs = [
   "dysorthographie",
 ] as const;
 
+function TroublePanelContent({
+  active,
+  reduceMotion,
+}: {
+  active: Trouble;
+  reduceMotion: boolean;
+}) {
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={active.slug}
+        role="tabpanel"
+        initial={
+          reduceMotion ? false : { opacity: 0, y: 14, filter: "blur(4px)" }
+        }
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        exit={
+          reduceMotion ? undefined : { opacity: 0, y: -10, filter: "blur(4px)" }
+        }
+        transition={{ duration: 0.35, ease: easeOutExpo }}
+      >
+        <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl lg:text-3xl">
+          {active.title}
+        </h3>
+        <p className="mt-2 max-w-md text-sm leading-6 text-white/80 lg:mt-3">
+          {active.overview}
+        </p>
+        <ul className="mt-3 flex flex-col gap-1.5 lg:mt-4">
+          {active.signs.slice(0, 3).map((sign) => (
+            <li key={sign} className="text-sm leading-6 text-white/75">
+              — {sign}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-5 lg:mt-6">
+          <CtaButton href={`/troubles/${active.slug}`} size="sm">
+            Voir le détail
+          </CtaButton>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export function HomeTroublesPanel() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -171,7 +215,7 @@ export function HomeTroublesPanel() {
             })}
           </ul>
 
-          {!reduceMotion ? (
+          {scrubEnabled ? (
             <div className="mt-5 h-1 overflow-hidden rounded-full bg-border">
               <motion.div
                 className="h-full origin-left rounded-full bg-accent"
@@ -181,75 +225,51 @@ export function HomeTroublesPanel() {
           ) : null}
         </div>
 
-        <div className="relative overflow-hidden rounded-[1.5rem]">
-          <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
-            <AnimatePresence mode="wait">
+        <div className="overflow-hidden rounded-[1.5rem] bg-foreground">
+          {/* Image — text sits below on mobile, overlays on desktop.
+              All images stay mounted; we crossfade so the dark base never shows. */}
+          <div className="relative aspect-[16/11] sm:aspect-[16/9] lg:aspect-[4/5]">
+            {items.map((item, index) => (
               <motion.div
-                key={active.slug}
-                initial={
-                  reduceMotion ? false : { opacity: 0, y: 24, scale: 1.02 }
-                }
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={
-                  reduceMotion
-                    ? undefined
-                    : { opacity: 0, y: -16, scale: 0.99 }
-                }
-                transition={{ duration: 0.4, ease: easeOutExpo }}
+                key={item.slug}
+                initial={false}
+                animate={{
+                  opacity: index === activeIndex ? 1 : 0,
+                  scale:
+                    reduceMotion || index === activeIndex ? 1 : 1.04,
+                }}
+                transition={{ duration: 0.45, ease: easeOutExpo }}
                 className="absolute inset-0"
               >
                 <Image
-                  src={active.image}
+                  src={item.image}
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
-                  priority={activeIndex === 0}
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/25 to-transparent"
+                  priority={index === 0}
                 />
               </motion.div>
-            </AnimatePresence>
+            ))}
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/10 to-transparent lg:from-foreground/85 lg:via-foreground/25"
+            />
 
-            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active.slug}
-                  role="tabpanel"
-                  initial={
-                    reduceMotion
-                      ? false
-                      : { opacity: 0, y: 14, filter: "blur(4px)" }
-                  }
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={
-                    reduceMotion
-                      ? undefined
-                      : { opacity: 0, y: -10, filter: "blur(4px)" }
-                  }
-                  transition={{ duration: 0.35, ease: easeOutExpo }}
-                >
-                  <h3 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                    {active.title}
-                  </h3>
-                  <p className="mt-3 max-w-md text-sm leading-6 text-white/80">
-                    {active.overview}
-                  </p>
-                  <ul className="mt-4 flex flex-col gap-1.5">
-                    {active.signs.slice(0, 3).map((sign) => (
-                      <li key={sign} className="text-sm text-white/75">
-                        — {sign}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6">
-                    <CtaButton size="sm">Voir le détail</CtaButton>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+            <div className="absolute inset-x-0 bottom-0 hidden p-6 sm:p-8 lg:block">
+              <TroublePanelContent
+                active={active}
+                reduceMotion={!!reduceMotion}
+              />
             </div>
+          </div>
+
+          {/* Mobile / tablet text block */}
+          <div className="-mt-10 relative px-5 pb-6 sm:px-7 sm:pb-8 lg:hidden">
+            <TroublePanelContent
+              active={active}
+              reduceMotion={!!reduceMotion}
+            />
           </div>
         </div>
       </div>
