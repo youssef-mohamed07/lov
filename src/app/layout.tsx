@@ -28,7 +28,10 @@ export const metadata: Metadata = {
   keywords: ["orthophonie", "bilan orthophonique", "langage", "parole", "apprentissages", "lov", "accompagnement familial"],
   authors: [{ name: "Lov" }],
   creator: "Lov",
-  metadataBase: new URL("https://lov.care"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || 
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://lov.build8.dev")
+  ),
   alternates: {
     canonical: "/",
     languages: {
