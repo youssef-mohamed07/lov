@@ -10,14 +10,15 @@
   --surface-muted: #f8f8f8;
   --surface-warm: #faf4ee;
   --border: #ececec;
-  --accent: #fe5110;
-  --accent-hover: #e9480a;
+  --accent: #f9ab6c;
+  --accent-hover: #f7964f;
   --accent-foreground: #fdfdfd;
-  --accent-soft: #ffe8de;
-  --ring: #fe5110;
+  --accent-soft: #fde8da;
+  --ring: #f9ab6c;
   --danger: #c2453a;
-  --voice: #fe5110;
+  --voice: #f9ab6c;
   --success: #00b67a;
+  --brand-blue: #0d80af;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -168,7 +169,7 @@ body {
   pointer-events: none;
   background:
     radial-gradient(ellipse 55% 45% at 85% 8%, var(--accent-soft), transparent 62%),
-    radial-gradient(ellipse 45% 40% at 8% 92%, rgba(254, 81, 16, 0.06), transparent 58%);
+    radial-gradient(ellipse 45% 40% at 8% 92%, rgba(249, 171, 108, 0.06), transparent 58%);
   opacity: 0.5;
 }
 .section-warm::after {
@@ -188,7 +189,7 @@ body {
 
 /* Hand-drawn squiggle underline */
 .squiggle-accent {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='8' viewBox='0 0 80 8'%3E%3Cpath d='M1 5.5 Q 10 1.5 20 5 T 40 4.5 T 60 5 T 79 4' fill='none' stroke='%23fe5110' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='8' viewBox='0 0 80 8'%3E%3Cpath d='M1 5.5 Q 10 1.5 20 5 T 40 4.5 T 60 5 T 79 4' fill='none' stroke='%23f9ab6c' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 50% 100%;
   background-size: 100% 0.32em;

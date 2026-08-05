@@ -24,25 +24,16 @@ export function BrandMark({
       aria-label="Lov — Accueil"
     >
       <Image
-        src="/brand/logo.png"
-        alt=""
-        width={size}
-        height={size}
+        src={onDark ? "/brand/logo-horizontal-white.svg" : "/brand/logo-horizontal.svg"}
+        alt="Lov"
+        width={compact ? 107 : 133}
+        height={compact ? 24 : 30}
         className={cn(
           "shrink-0 object-contain",
-          compact ? "size-9" : "size-10",
+          compact ? "h-6 w-auto" : "h-[30px] w-auto",
         )}
         priority
       />
-      <span
-        className={cn(
-          "font-display font-semibold tracking-tight",
-          compact ? "text-base" : "text-xl",
-          onDark ? "text-white" : "text-foreground",
-        )}
-      >
-        Lov
-      </span>
     </Link>
   );
 }
