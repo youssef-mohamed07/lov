@@ -114,21 +114,24 @@ export function Footer() {
         </div>
       </Container>
 
-      {/* Oversized wordmark bleeding at the bottom */}
       <Link
         href="/"
         aria-label="Lov — Accueil"
-        className={cn(
-          "group relative block select-none overflow-hidden",
-          "leading-[0.72]",
-        )}
+        className="group relative block w-full overflow-hidden px-[var(--gutter)] pb-12 pt-8"
       >
-        <span
-          className="block bg-gradient-to-b from-white/[0.14] to-white/[0.02] bg-clip-text px-[var(--gutter)] text-center font-display font-semibold tracking-tight text-transparent transition-colors duration-500 group-hover:from-accent/40 group-hover:to-accent/5"
-          style={{ fontSize: "clamp(6rem, 26vw, 22rem)" }}
-        >
-          Lov
-        </span>
+        <div
+          className="mx-auto aspect-[4.4] w-full max-w-[80rem] bg-gradient-to-b from-white/[0.14] to-white/[0.02] transition-colors duration-500 group-hover:from-accent/40 group-hover:to-accent/5"
+          style={{
+            maskImage: "url('/brand/logo-horizontal.svg')",
+            WebkitMaskImage: "url('/brand/logo-horizontal.svg')",
+            maskSize: "contain",
+            WebkitMaskSize: "contain",
+            maskPosition: "center",
+            WebkitMaskPosition: "center",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+          }}
+        />
       </Link>
     </footer>
   );

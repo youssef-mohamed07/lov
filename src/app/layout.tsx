@@ -20,11 +20,14 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: {
-    default: "Lov",
+    default: "Lov — Orthophonie & Accompagnement",
     template: "%s · Lov",
   },
   description:
-    "Bilan orthophonique, orientation et ressources pour le langage, la parole et les apprentissages.",
+    "Lov propose un accompagnement en orthophonie, des bilans, et des ressources dédiées au langage, à la parole et aux apprentissages pour vous et votre famille.",
+  keywords: ["orthophonie", "bilan orthophonique", "langage", "parole", "apprentissages", "lov", "accompagnement familial"],
+  authors: [{ name: "Lov" }],
+  creator: "Lov",
   metadataBase: new URL("https://lov.care"),
   alternates: {
     canonical: "/",
@@ -34,9 +37,29 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    title: "Lov — Orthophonie & Accompagnement",
+    description: "Bilan orthophonique, orientation et ressources pour le langage, la parole et les apprentissages.",
+    url: "https://lov.care",
+    siteName: "Lov",
     locale: "fr_FR",
     type: "website",
-    siteName: "Lov",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lov — Orthophonie & Accompagnement",
+    description: "Bilan orthophonique, orientation et ressources pour le langage, la parole et les apprentissages.",
+    creator: "@lov",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
