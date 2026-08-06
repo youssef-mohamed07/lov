@@ -90,8 +90,8 @@
   --color-danger: var(--danger);
   --color-voice: var(--voice);
   --color-success: var(--success);
-  --font-sans: var(--font-body), "Figtree", ui-sans-serif, sans-serif;
-  --font-display: var(--font-heading), Fraunces, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-body), "Modulus Pro", ui-sans-serif, sans-serif;
+  --font-display: var(--font-body), "Modulus Pro", ui-sans-serif, sans-serif;
 
   --spacing-gutter: var(--gutter);
   --spacing-section-sm: var(--section-space-sm);
@@ -113,7 +113,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01" on, "kern" on;
+  font-feature-settings: "kern" on;
   letter-spacing: 0.005em;
   overflow-x: clip;
 }

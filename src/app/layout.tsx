@@ -1,21 +1,55 @@
 import type { Metadata } from "next";
-import { Figtree, Fraunces } from "next/font/google";
+import localFont from "next/font/local";
 
 import { SiteChrome } from "@/components/layout/site-chrome";
 
 import "./globals.css";
 
-const figtree = Figtree({
+const modulus = localFont({
+  src: [
+    {
+      path: "../fonts/modulus-pro/ModulusPro-ExtraLight.otf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../fonts/modulus-pro/ModulusPro-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../fonts/modulus-pro/ModulusPro-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/modulus-pro/ModulusPro-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/modulus-pro/ModulusPro-SemiBold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../fonts/modulus-pro/ModulusPro-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../fonts/modulus-pro/ModulusPro-ExtraBold.otf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../fonts/modulus-pro/ModulusPro-Black.otf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
   variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -74,7 +108,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${figtree.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${modulus.variable} h-full antialiased`}
     >
       <body className="flex min-h-full min-w-0 flex-col overflow-x-clip font-sans">
         <SiteChrome>{children}</SiteChrome>
