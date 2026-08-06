@@ -1,100 +1,21 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Figtree, Fraunces } from "next/font/google";
 
 import { SiteChrome } from "@/components/layout/site-chrome";
 
 import "./globals.css";
 
-const modulusPro = localFont({
-  src: [
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Extra Light.otf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Semi Bold.otf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Extra Bold.otf",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Black.otf",
-      weight: "900",
-      style: "normal",
-    },
-  ],
+const figtree = Figtree({
   variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const modulusProHeading = localFont({
-  src: [
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Extra Light.otf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Semi Bold.otf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Extra Bold.otf",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/Arkitype - Modulus Pro Black.otf",
-      weight: "900",
-      style: "normal",
-    },
-  ],
+const fraunces = Fraunces({
   variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -153,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${modulusPro.variable} ${modulusProHeading.variable} h-full antialiased`}
+      className={`${figtree.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full min-w-0 flex-col overflow-x-clip font-sans">
         <SiteChrome>{children}</SiteChrome>
