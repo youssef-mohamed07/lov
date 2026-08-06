@@ -380,7 +380,7 @@ function WelcomeStep({ onStart }: { onStart: () => void }) {
       <div className="mx-auto mb-6 inline-flex size-14 items-center justify-center rounded-[1.25rem] bg-accent-soft text-accent lg:mx-0">
         <Sparkles className="size-6" aria-hidden />
       </div>
-      <p className="text-xs font-medium tracking-[0.2em] text-muted uppercase">
+      <p className="text-xs font-medium tracking-[0.2em] text-brand uppercase">
         {bilanFormCopy.eyebrow}
       </p>
       <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">

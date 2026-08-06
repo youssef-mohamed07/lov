@@ -12,11 +12,11 @@ const buttonVariants = cva(
         primary:
           "bg-accent text-accent-foreground hover:bg-accent-hover",
         secondary:
-          "bg-surface-muted text-foreground hover:bg-border/80",
+          "bg-brand-soft text-brand hover:bg-brand/15",
         outline:
-          "border border-border bg-transparent text-foreground hover:border-accent/40 hover:bg-accent-soft/40",
+          "border border-border bg-transparent text-foreground hover:border-brand/35 hover:bg-brand-soft/60",
         ghost: "bg-transparent text-foreground hover:bg-surface-muted",
-        link: "rounded-none bg-transparent px-0 text-accent underline-offset-4 hover:underline",
+        link: "rounded-none bg-transparent px-0 text-brand underline-offset-4 hover:underline",
       },
       size: {
         sm: "h-9 px-4",

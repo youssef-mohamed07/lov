@@ -146,7 +146,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             variant="fade"
           >
             <div>
-              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
                 Galerie
               </p>
               <h2 className="mt-3 max-w-xl font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">

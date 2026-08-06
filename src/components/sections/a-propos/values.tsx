@@ -28,7 +28,7 @@ export function AboutValues() {
     <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container className="relative">
         <Reveal className="max-w-2xl" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
             {values.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">

@@ -41,7 +41,7 @@ export default function BilanPage() {
             variant="fade"
           >
             <div>
-              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
                 Avant tout
               </p>
               <h2 className="mt-2 max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -95,7 +95,7 @@ export default function BilanPage() {
             variant="fade"
           >
             <div>
-              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
                 Inclus
               </p>
               <h2 className="mt-2 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

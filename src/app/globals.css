@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Lov brand — black, white, orange accent */
+/* Lov brand — Orange Abricot + Bleu Azur */
 :root {
   --background: #fdfdfd;
   --foreground: #0e0e0f;
@@ -9,16 +9,21 @@
   --surface: #ffffff;
   --surface-muted: #f8f8f8;
   --surface-warm: #faf4ee;
+  --surface-cool: #f3f8fb;
   --border: #ececec;
   --accent: #f9ab6c;
   --accent-hover: #f7964f;
   --accent-foreground: #fdfdfd;
   --accent-soft: #fde8da;
+  --brand: #0d80af;
+  --brand-hover: #0a6a91;
+  --brand-foreground: #fdfdfd;
+  --brand-soft: #e5f2f8;
+  --brand-blue: #0d80af;
   --ring: #f9ab6c;
   --danger: #c2453a;
   --voice: #f9ab6c;
   --success: #00b67a;
-  --brand-blue: #0d80af;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -81,11 +86,17 @@
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-surface-warm: var(--surface-warm);
+  --color-surface-cool: var(--surface-cool);
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-blue: var(--brand-blue);
   --color-ring: var(--ring);
   --color-danger: var(--danger);
   --color-voice: var(--voice);

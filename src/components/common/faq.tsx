@@ -21,7 +21,7 @@ export function Faq({
   return (
     <div className={cn("flex flex-col gap-[var(--space-10)]", className)}>
       <div className="mx-auto max-w-2xl text-center">
-        <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
+        <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-brand uppercase">
           Questions
         </p>
         <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

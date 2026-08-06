@@ -97,7 +97,7 @@ export function HomeShowcase() {
 
           <FadeStagger className="max-w-xl">
             <FadeItem>
-              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
                 Pourquoi Lov
               </p>
               <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">

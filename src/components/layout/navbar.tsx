@@ -13,13 +13,17 @@ import { cn } from "@/lib/utils";
 
 const mobileLinks = [...navLinks, ...secondaryNavLinks];
 
+const secondaryMeta: Record<(typeof secondaryNavLinks)[number]["href"], string> =
+  {
+    "/a-propos": "Notre histoire et notre approche",
+    "/carrieres": "Rejoindre l'équipe Lov",
+  };
+
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const moreRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
   const solid = pathname !== "/" || scrolled || open;
@@ -30,7 +34,6 @@ export function Navbar() {
 
   useEffect(() => {
     setOpen(false);
-    setMoreOpen(false);
     setHidden(false);
   }, [pathname]);
 
@@ -54,7 +57,6 @@ export function Navbar() {
         setHidden(false);
       } else if (delta > 6) {
         setHidden(true);
-        setMoreOpen(false);
       } else if (delta < -6) {
         setHidden(false);
       }
@@ -68,28 +70,15 @@ export function Navbar() {
   }, [open]);
 
   useEffect(() => {
-    if (!moreOpen && !open) return;
-
-    function onPointerDown(event: MouseEvent) {
-      if (moreOpen && !moreRef.current?.contains(event.target as Node)) {
-        setMoreOpen(false);
-      }
-    }
+    if (!open) return;
 
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setMoreOpen(false);
-        setOpen(false);
-      }
+      if (event.key === "Escape") setOpen(false);
     }
 
-    document.addEventListener("mousedown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [moreOpen, open]);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
     <header
@@ -135,40 +124,49 @@ export function Navbar() {
               );
             })}
 
-            <div className="relative" ref={moreRef}>
+            <div className="group/more relative">
               <button
                 type="button"
-                onClick={() => setMoreOpen((value) => !value)}
-                aria-expanded={moreOpen}
                 aria-haspopup="menu"
                 aria-controls="nav-autres"
                 className={cn(
                   "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                  moreOpen || moreActive
+                  moreActive
                     ? "bg-accent-soft text-accent"
-                    : "text-foreground/70 hover:bg-background/80 hover:text-foreground",
+                    : "text-foreground/70 group-hover/more:bg-background/80 group-hover/more:text-foreground group-focus-within/more:bg-background/80 group-focus-within/more:text-foreground",
                 )}
               >
                 Autres
                 <ChevronDown
-                  className={cn(
-                    "size-3.5 transition-transform duration-200",
-                    moreOpen && "rotate-180",
-                  )}
+                  className="size-3.5 transition-transform duration-200 ease-out group-hover/more:rotate-180 group-focus-within/more:rotate-180"
                   aria-hidden
                 />
               </button>
 
-              {moreOpen ? (
-                <div
-                  id="nav-autres"
-                  role="menu"
-                  className="absolute top-[calc(100%+0.45rem)] left-1/2 z-[80] w-48 -translate-x-1/2 rounded-2xl border border-border bg-surface p-1.5 shadow-[0_18px_40px_-20px_rgba(14,14,15,0.55)]"
-                >
+              <div
+                id="nav-autres"
+                role="menu"
+                className={cn(
+                  "pointer-events-none absolute top-full left-1/2 z-[80] w-[17.5rem] -translate-x-1/2 pt-3",
+                  "invisible translate-y-1 opacity-0",
+                  "transition-[opacity,transform,visibility] duration-200 ease-out",
+                  "group-hover/more:pointer-events-auto group-hover/more:visible group-hover/more:translate-y-0 group-hover/more:opacity-100",
+                  "group-focus-within/more:pointer-events-auto group-focus-within/more:visible group-focus-within/more:translate-y-0 group-focus-within/more:opacity-100",
+                )}
+              >
+                <div className="overflow-hidden rounded-[1.25rem] border border-border/70 bg-surface/95 p-1.5 shadow-[0_24px_48px_-28px_rgba(14,14,15,0.55)] backdrop-blur-xl">
                   <div
                     aria-hidden
-                    className="absolute -top-1.5 left-1/2 size-3 -translate-x-1/2 rotate-45 border-t border-l border-border bg-surface"
-                  />
+                    className="mb-1.5 rounded-[0.9rem] bg-gradient-to-br from-brand-soft/90 via-surface to-accent-soft/70 px-3.5 py-2.5"
+                  >
+                    <p className="text-[11px] font-medium tracking-[0.18em] text-brand uppercase">
+                      Découvrir
+                    </p>
+                    <p className="mt-0.5 text-xs leading-5 text-muted">
+                      Lov au-delà du parcours
+                    </p>
+                  </div>
+
                   {secondaryNavLinks.map((link) => {
                     const active =
                       pathname === link.href ||
@@ -179,18 +177,30 @@ export function Navbar() {
                         href={link.href}
                         role="menuitem"
                         className={cn(
-                          "relative block rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                          "group/item relative flex flex-col rounded-[0.9rem] px-3.5 py-2.5 transition-colors",
                           active
                             ? "bg-accent-soft text-accent"
-                            : "text-foreground/80 hover:bg-background hover:text-foreground",
+                            : "text-foreground hover:bg-brand-soft/70",
                         )}
                       >
-                        {link.label}
+                        <span className="text-sm font-medium tracking-tight">
+                          {link.label}
+                        </span>
+                        <span
+                          className={cn(
+                            "mt-0.5 text-xs leading-5 transition-colors",
+                            active
+                              ? "text-accent/80"
+                              : "text-muted group-hover/item:text-brand",
+                          )}
+                        >
+                          {secondaryMeta[link.href]}
+                        </span>
                       </Link>
                     );
                   })}
                 </div>
-              ) : null}
+              </div>
             </div>
           </nav>
 

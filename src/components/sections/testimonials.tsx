@@ -177,7 +177,7 @@ export function TestimonialsSection() {
     <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
         <Reveal className="mx-auto mb-4 max-w-2xl text-center" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
             {testimonials.eyebrow}
           </p>
           <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

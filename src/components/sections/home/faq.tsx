@@ -23,7 +23,7 @@ export function HomeFaq() {
           {/* Left — questions as a conversation menu */}
           <div>
             <Reveal variant="fade">
-              <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+              <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
                 FAQ
               </p>
               <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

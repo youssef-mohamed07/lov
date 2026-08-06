@@ -153,7 +153,7 @@ export function HomeTroublesPanel() {
       <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
           <Reveal variant="fade">
-            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+            <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
               Troubles
             </p>
             <h2 className="mt-2 max-w-sm font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

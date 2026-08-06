@@ -14,6 +14,7 @@ const iconBoxVariants = cva(
       },
       tone: {
         soft: "bg-accent-soft text-accent",
+        brand: "bg-brand-soft text-brand",
         solid: "bg-accent text-accent-foreground",
         muted: "bg-surface-muted text-foreground",
       },

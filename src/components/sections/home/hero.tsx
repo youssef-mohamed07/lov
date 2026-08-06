@@ -50,9 +50,10 @@ export function HomeHero() {
       className="relative min-h-svh overflow-hidden bg-background"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        {/* Soft clinical wash instead of a hard grid */}
+        {/* Soft clinical wash — orange + bleu azur */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-15%,var(--accent-soft),transparent_58%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_90%_80%,rgba(254,81,16,0.1),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_45%_40%_at_8%_75%,var(--brand-soft),transparent_58%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_90%_80%,rgba(13,128,175,0.1),transparent_55%)]" />
         <div className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(rgba(14,14,15,0.06)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
       </div>
 
@@ -156,13 +157,13 @@ export function HomeHero() {
           {trustPoints.map(({ icon: Icon, label }, index) => (
             <li key={label} className="flex items-center gap-6 sm:gap-8">
               <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
-                <Icon className="size-4 text-accent" aria-hidden />
+                <Icon className="size-4 text-brand" aria-hidden />
                 {label}
               </span>
               {index < trustPoints.length - 1 ? (
                 <span
                   aria-hidden
-                  className="hidden size-1 rounded-full bg-accent/40 sm:block"
+                  className="hidden size-1 rounded-full bg-brand/35 sm:block"
                 />
               ) : null}
             </li>

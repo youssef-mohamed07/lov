@@ -17,7 +17,7 @@ export function AboutWhyOnline() {
           variant="fade"
         >
           <div>
-            <p className="text-xs font-medium tracking-[0.22em] text-muted uppercase">
+            <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
               {whyOnline.eyebrow}
             </p>
             <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">

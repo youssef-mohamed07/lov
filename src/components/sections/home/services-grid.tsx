@@ -26,7 +26,7 @@ export function HomeServicesGrid() {
           variant="fade"
         >
           <div>
-            <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-muted uppercase">
+            <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-brand uppercase">
               Spécialités
             </p>
             <h2 className="max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
