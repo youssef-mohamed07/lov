@@ -23,81 +23,52 @@ export function HomeExpertise() {
   return (
     <section className="bg-background py-[var(--section-space-md)]">
       <Container>
-        <Reveal className="mx-auto mb-8 max-w-2xl text-center" variant="fade">
+        <Reveal className="mx-auto mb-8 max-w-2xl text-center sm:mb-10" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
             Savoir-faire
           </p>
-          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl">
             Une clinique au service de{" "}
-            <span className="font-medium italic text-voice">la clarté</span>
+            <span className="mark-accent text-voice">la clarté</span>
           </h2>
-          <p className="mt-3 text-base leading-7 text-muted">
+          <p className="mt-3 text-[0.95rem] leading-7 text-muted sm:text-base">
             Explorez chaque intention — preuve, écoute, suivi.
           </p>
         </Reveal>
 
-        {/* Mobile / tablet: stacked cards */}
+        {/* Mobile / tablet: stacked cards — no cramped tabs */}
         <Reveal variant="fade" className="lg:hidden">
-          <div
-            role="tablist"
-            aria-label="Savoir-faire"
-            className="mb-4 flex gap-2 overflow-x-auto pb-1"
-          >
-            {expertiseItems.map((item, index) => {
-              const selected = index === active;
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setActive(index)}
-                  className={cn(
-                    "min-h-11 shrink-0 rounded-full px-4 py-2.5 text-sm font-medium transition-colors",
-                    selected
-                      ? "bg-foreground text-background"
-                      : "bg-surface-muted text-muted hover:text-foreground",
-                  )}
-                >
-                  {item.title}
-                </button>
-              );
-            })}
+          <div className="flex flex-col gap-3">
+            {expertiseItems.map((item, index) => (
+              <article
+                key={item.title}
+                className="relative min-h-[240px] overflow-hidden rounded-[1.35rem] sm:min-h-[280px]"
+              >
+                <Image
+                  src={images[index] ?? images[0]}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-foreground/92 via-foreground/45 to-foreground/10"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <span className="font-display text-xs font-semibold tracking-[0.16em] text-accent">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-1.5 font-display text-xl font-semibold tracking-tight text-background sm:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 max-w-md text-sm leading-6 text-background/78">
+                    {item.description}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
-
-          <AnimatePresence mode="wait">
-            <motion.article
-              key={expertiseItems[active]?.title}
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
-              transition={{ duration: 0.35, ease: easeOutExpo }}
-              className="relative min-h-[320px] overflow-hidden rounded-[1.35rem] sm:min-h-[380px]"
-            >
-              <Image
-                src={images[active] ?? images[0]}
-                alt=""
-                fill
-                sizes="100vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent"
-              />
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-                <span className="font-display text-xs font-semibold tracking-[0.16em] text-accent">
-                  {String(active + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight text-background">
-                  {expertiseItems[active]?.title}
-                </h3>
-                <p className="mt-2 max-w-sm text-sm leading-6 text-background/75">
-                  {expertiseItems[active]?.description}
-                </p>
-              </div>
-            </motion.article>
-          </AnimatePresence>
         </Reveal>
 
         {/* Desktop: hover accordion */}
