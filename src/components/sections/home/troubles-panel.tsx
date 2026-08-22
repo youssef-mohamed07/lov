@@ -95,7 +95,9 @@ export function HomeTroublesPanel() {
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia(
+      "(min-width: 1280px) and (hover: hover) and (pointer: fine)",
+    );
     const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener("change", update);

@@ -28,16 +28,16 @@ export function SiteCta({
     <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
         <div className="rounded-[var(--radius-card)] border border-border bg-surface px-6 py-12 shadow-[var(--shadow-card)] sm:px-10 sm:py-16 lg:px-12">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,11rem)_1fr_minmax(0,11rem)] lg:gap-8 xl:grid-cols-[minmax(0,13rem)_1fr_minmax(0,13rem)]">
-            <div className="flex items-center justify-center gap-5 lg:block">
+          <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,13rem)_1fr_minmax(0,13rem)] xl:gap-8">
+            <div className="flex items-center justify-center gap-3 sm:gap-5 xl:block">
               <HeartCutout
                 src="/images/hero-child.jpg"
-                className="w-32 -rotate-6 sm:w-40 lg:w-full"
+                className="w-28 -rotate-6 sm:w-40 xl:w-full"
                 tone="warm"
               />
               <HeartCutout
                 src="/images/hero-therapist.jpg"
-                className="w-32 rotate-6 sm:w-40 lg:hidden"
+                className="w-28 rotate-6 sm:w-40 xl:hidden"
                 tone="cool"
               />
             </div>
@@ -67,7 +67,7 @@ export function SiteCta({
 
             <HeartCutout
               src="/images/hero-therapist.jpg"
-              className="mx-auto hidden w-full rotate-6 lg:block"
+              className="mx-auto hidden w-full rotate-6 xl:block"
               tone="cool"
             />
           </div>

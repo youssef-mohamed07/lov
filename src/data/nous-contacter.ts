@@ -9,11 +9,6 @@ export const contact = {
       href: "mailto:bonjour@lov.care",
     },
     {
-      label: "Téléphone",
-      value: "+33 1 23 45 67 89",
-      href: "tel:+33123456789",
-    },
-    {
       label: "Horaires",
       value: "Lun–Ven, 9h–18h",
     },
@@ -23,7 +18,7 @@ export const contact = {
     title: "Un point d’ancrage",
     titleAccent: "à Paris",
     description:
-      "Les bilans se déroulent en présentiel. L’orientation et le premier échange peuvent commencer à distance.",
+      "Les bilans et les accompagnements se déroulent en téléconsultation. Le premier échange permet de vérifier que ce format est adapté.",
     label: "Adresse",
     address: "12 rue de la Clarté",
     city: "75011 Paris",
@@ -37,6 +32,7 @@ export const contact = {
     { value: "bilan", label: "Bilan orthophonique" },
     { value: "rdv", label: "Prise de rendez-vous" },
     { value: "trouble", label: "Question sur un trouble" },
+    { value: "carriere", label: "Candidature" },
     { value: "autre", label: "Autre demande" },
   ],
   note: "En cas d’urgence vitale, contactez le 15. Pour une souffrance psychique aiguë, le 3114 est disponible 24h/24.",

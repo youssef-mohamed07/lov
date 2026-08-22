@@ -30,7 +30,7 @@ export type CtaButtonProps = CtaAsLink | CtaAsButton;
 
 const sizeStyles = {
   sm: {
-    root: "gap-2.5 py-1 pl-4 pr-1 text-sm",
+    root: "min-h-11 gap-2.5 py-1 pl-4 pr-1 text-sm",
     icon: "size-8",
     arrow: "size-3.5",
   },

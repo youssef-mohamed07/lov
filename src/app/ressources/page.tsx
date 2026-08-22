@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/common/reveal";
 import { ArticlesSubscribe } from "@/components/sections/articles-subscribe";
 import { PageIntro } from "@/components/sections/page-intro";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import {
   articleCategories,
@@ -13,15 +14,47 @@ import {
   getArticleHref,
   getCategoryHref,
 } from "@/data/articles";
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Ressources",
+export const metadata: Metadata = createPageMetadata({
+  title: "Ressources et conseils en orthophonie",
   description: articlesPage.description,
+  path: "/ressources",
+  image: "/images/ortho-reading.jpg",
+  imageAlt: "Ressources sur le langage et les apprentissages",
+});
+
+const resourcesJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": absoluteUrl("/ressources#collection"),
+      name: "Ressources et conseils en orthophonie",
+      description: articlesPage.description,
+      url: absoluteUrl("/ressources"),
+      inLanguage: "fr-FR",
+      hasPart: articles.map((article) => ({
+        "@type": "Article",
+        headline: article.title,
+        url: absoluteUrl(getArticleHref(article)),
+      })),
+    },
+    breadcrumbJsonLd([
+      { name: "Accueil", path: "/" },
+      { name: "Ressources", path: "/ressources" },
+    ]),
+  ],
 };
 
 export default function ArticlesPage() {
   return (
     <main>
+      <JsonLd id="resources-jsonld" data={resourcesJsonLd} />
       <PageIntro
         eyebrow="Ressources"
         title={
@@ -32,6 +65,7 @@ export default function ArticlesPage() {
         }
         description={articlesPage.description}
         image="/images/ortho-reading.jpg"
+        imageAlt="Lecture et ressources autour de l’orthophonie"
         breadcrumbs={[
           { label: "Accueil", href: "/" },
           { label: "Ressources" },

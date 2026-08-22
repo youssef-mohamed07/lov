@@ -71,25 +71,30 @@ export function FlowNav({
   className?: string;
 }) {
   return (
-    <div className={cn("flex items-center justify-between gap-3", className)}>
+    <div
+      className={cn(
+        "flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between",
+        className,
+      )}
+    >
       {onBack ? (
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition-colors hover:bg-surface-muted hover:text-foreground"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition-colors hover:bg-surface-muted hover:text-foreground sm:w-auto"
         >
           <ArrowLeft className="size-4" aria-hidden />
           {backLabel}
         </button>
       ) : (
-        <span />
+        <span className="hidden sm:block" />
       )}
       {onNext ? (
         <button
           type="button"
           onClick={onNext}
           disabled={!canContinue}
-          className={flowPrimaryClass}
+          className={cn(flowPrimaryClass, "w-full sm:w-auto")}
         >
           {nextLabel}
           <ArrowRight className="size-4" aria-hidden />
@@ -145,7 +150,7 @@ export function FlowSteps({
 
   return (
     <div>
-      <ol className="hidden items-center gap-2 sm:flex">
+      <ol className="hidden items-center gap-2 md:flex">
         {steps.map((step, index) => {
           const done = index < safeCurrent;
           const active = index === safeCurrent;
@@ -183,7 +188,7 @@ export function FlowSteps({
         })}
       </ol>
 
-      <div className="sm:hidden">
+      <div className="md:hidden">
         <div className="flex items-baseline justify-between gap-3">
           <p className="text-xs font-medium text-foreground">
             {steps[safeCurrent]}

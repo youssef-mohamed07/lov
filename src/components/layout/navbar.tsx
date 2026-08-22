@@ -34,11 +34,6 @@ export function Navbar() {
   );
 
   useEffect(() => {
-    setOpen(false);
-    setHidden(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -241,12 +236,15 @@ export function Navbar() {
 
       <div
         id="mobile-nav"
+        onClick={(event) => {
+          if ((event.target as HTMLElement).closest("a")) setOpen(false);
+        }}
         className={cn(
           "pointer-events-auto relative px-[var(--gutter)] pt-3 lg:hidden",
           open ? "block" : "hidden",
         )}
       >
-        <div className="rounded-[1.5rem] border border-border bg-surface p-3 shadow-[var(--shadow-card)]">
+        <div className="max-h-[calc(100dvh-var(--header-height)-1rem)] overflow-y-auto overscroll-contain rounded-[1.5rem] border border-border bg-surface p-3 shadow-[var(--shadow-card)]">
           {mobileLinks.map((link) => {
             const active =
               pathname === link.href || pathname.startsWith(`${link.href}/`);

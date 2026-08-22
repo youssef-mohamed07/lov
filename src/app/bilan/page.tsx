@@ -6,25 +6,68 @@ import { Reveal } from "@/components/common/reveal";
 import { BilanOverview } from "@/components/sections/bilan-overview";
 import { BilanProcess } from "@/components/sections/bilan-process";
 import { PageIntro } from "@/components/sections/page-intro";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { bilan } from "@/data/bilan";
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
 
 const reassuranceIcons = [MessageCircle, Users, Compass] as const;
 
-export const metadata: Metadata = {
-  title: "Bilan orthophonique",
+export const metadata: Metadata = createPageMetadata({
+  title: "Bilan orthophonique en ligne et en visioconférence",
   description: bilan.description,
+  path: "/bilan",
+  image: "/images/path-bilan.jpg",
+  imageAlt: "Bilan orthophonique en téléconsultation",
+});
+
+const bilanJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": absoluteUrl("/bilan#service"),
+      name: "Bilan orthophonique en téléconsultation",
+      description: bilan.description,
+      url: absoluteUrl("/bilan"),
+      serviceType: "Bilan orthophonique",
+      areaServed: {
+        "@type": "Country",
+        name: "France",
+      },
+      provider: {
+        "@id": absoluteUrl("/#organization"),
+      },
+      offers: {
+        "@type": "Offer",
+        price: "180",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: absoluteUrl("/demander-un-bilan"),
+      },
+    },
+    breadcrumbJsonLd([
+      { name: "Accueil", path: "/" },
+      { name: "Bilan orthophonique", path: "/bilan" },
+    ]),
+  ],
 };
 
 export default function BilanPage() {
   return (
     <main>
+      <JsonLd id="bilan-jsonld" data={bilanJsonLd} />
       <PageIntro
         eyebrow={bilan.heroEyebrow}
         title={bilan.title}
         description={bilan.description}
         image="/images/path-bilan.jpg"
+        imageAlt="Consultation pour un bilan orthophonique"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "Bilan" }]}
         actions={
           <CtaButton href="/nous-contacter" size="lg" className="min-h-11">
@@ -55,17 +98,17 @@ export default function BilanPage() {
           </Reveal>
 
           <Reveal className="mt-10" variant="fade">
-            <ul className="relative grid gap-8 sm:grid-cols-3 sm:gap-0">
+            <ul className="relative grid gap-8 md:grid-cols-3 md:gap-0">
               <div
                 aria-hidden
-                className="absolute top-5 right-[16.5%] left-[16.5%] hidden h-px bg-border sm:block"
+                className="absolute top-5 right-[16.5%] left-[16.5%] hidden h-px bg-border md:block"
               />
               {bilan.reassurance.map((item, index) => {
                 const Icon = reassuranceIcons[index] ?? MessageCircle;
                 return (
                   <li
                     key={item.title}
-                    className="relative px-0 text-center sm:px-6"
+                    className="relative px-0 text-center md:px-6"
                   >
                     <div className="relative z-10 mx-auto flex size-11 items-center justify-center rounded-full bg-accent-soft text-accent shadow-[0_10px_24px_-14px_rgba(254,81,16,0.5)]">
                       <Icon className="size-4" aria-hidden />

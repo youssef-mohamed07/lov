@@ -23,10 +23,12 @@ export type Article = {
   title: string;
   excerpt: string;
   date: string;
+  datePublished: string;
   category: string;
   image: string;
   gallery: ArticleGalleryImage[];
   content: string[];
+  relatedLinks: { href: string; label: string }[];
 };
 
 export const articleCategories: ArticleCategory[] = [
@@ -59,6 +61,7 @@ export const articles: Article[] = [
     excerpt:
       "Les signaux qui indiquent qu’un bilan orthophonique peut être utile — sans attendre que les difficultés s’installent.",
     date: "12 mars 2026",
+    datePublished: "2026-03-12",
     category: "orientation",
     image: "/images/path-bilan.jpg",
     gallery: [
@@ -72,6 +75,16 @@ export const articles: Article[] = [
       "Des retards de parole, une lecture très coûteuse, un bégaiement qui s’installe ou une voix « cassée » durablement sont autant de motifs légitimes pour demander un avis.",
       "Si vous hésitez, le simulateur Lov peut vous donner une première orientation. Ensuite, un bilan orthophonique pose un cadre précis et rassurant.",
     ],
+    relatedLinks: [
+      {
+        href: "/simulateur",
+        label: "Faire le simulateur d’orientation orthophonique",
+      },
+      {
+        href: "/bilan",
+        label: "Comprendre le déroulement d’un bilan orthophonique",
+      },
+    ],
   },
   {
     slug: "reperer-dyslexie",
@@ -79,6 +92,7 @@ export const articles: Article[] = [
     excerpt:
       "Ce qui doit alerter à l’école et à la maison, et pourquoi une évaluation spécialisée compte.",
     date: "28 février 2026",
+    datePublished: "2026-02-28",
     category: "troubles",
     image: "/images/trouble-dyslexia.jpg",
     gallery: [
@@ -92,6 +106,16 @@ export const articles: Article[] = [
       "Les enseignants sont souvent les premiers à remarquer un décalage. Les parents, eux, voient le coût émotionnel : évitement des devoirs, perte de confiance, conflits autour de la lecture.",
       "Un bilan orthophonique permet de décrire le profil (phonologique, visuel, mixte) et d’ouvrir des aménagements utiles dès maintenant.",
     ],
+    relatedLinks: [
+      {
+        href: "/troubles/dyslexie",
+        label: "Comprendre les signes et l’accompagnement de la dyslexie",
+      },
+      {
+        href: "/bilan",
+        label: "Découvrir le bilan orthophonique",
+      },
+    ],
   },
   {
     slug: "bilan-ou-suivi",
@@ -99,6 +123,7 @@ export const articles: Article[] = [
     excerpt:
       "Deux temps complémentaires du parcours orthophonique, selon que vous ayez besoin de clarifier ou d’entraîner.",
     date: "4 février 2026",
+    datePublished: "2026-02-04",
     category: "parcours",
     image: "/images/step-eval.jpg",
     gallery: [
@@ -112,6 +137,16 @@ export const articles: Article[] = [
       "Parfois, un bilan suffit à rassurer et à proposer des aménagements scolaires. D’autres fois, il ouvre une prise en charge structurée.",
       "Chez Lov, nous vous aidons à choisir le bon format — sans jargon, avec des prochaines étapes concrètes.",
     ],
+    relatedLinks: [
+      {
+        href: "/bilan",
+        label: "Voir ce qui est inclus dans le bilan orthophonique",
+      },
+      {
+        href: "/deja-un-bilan",
+        label: "Transmettre un bilan existant pour préparer la suite",
+      },
+    ],
   },
   {
     slug: "aider-enfant-maison",
@@ -119,6 +154,7 @@ export const articles: Article[] = [
     excerpt:
       "Des gestes simples pour soutenir les progrès entre les séances, sans transformer le salon en salle de classe.",
     date: "18 janvier 2026",
+    datePublished: "2026-01-18",
     category: "familles",
     image: "/images/showcase-family.jpg",
     gallery: [
@@ -132,6 +168,16 @@ export const articles: Article[] = [
       "Lire ensemble, reformuler, jouer avec les sons, valoriser les efforts plutôt que la performance : ces habitudes comptent autant qu’un exercice supplémentaire.",
       "Demandez à l’orthophoniste 2 ou 3 objectifs réalistes entre deux séances. La régularité douce bat les grandes sessions stressantes.",
     ],
+    relatedLinks: [
+      {
+        href: "/ressources/orientation/quand-consulter",
+        label: "Savoir quand consulter un orthophoniste",
+      },
+      {
+        href: "/troubles",
+        label: "Explorer les troubles accompagnés en orthophonie",
+      },
+    ],
   },
   {
     slug: "begaiement-ecole",
@@ -139,6 +185,7 @@ export const articles: Article[] = [
     excerpt:
       "Préparer un échange clair avec enseignants et AESH pour réduire la pression autour de la prise de parole.",
     date: "9 janvier 2026",
+    datePublished: "2026-01-09",
     category: "troubles",
     image: "/images/trouble-stutter.jpg",
     gallery: [
@@ -152,6 +199,16 @@ export const articles: Article[] = [
       "Un message simple à l’équipe pédagogique aide : laisser le temps, ne pas finir les phrases, éviter les lectures à haute voix surprises.",
       "L’orthophoniste peut fournir des recommandations écrites utiles pour formaliser ces aménagements.",
     ],
+    relatedLinks: [
+      {
+        href: "/troubles/begaiement",
+        label: "Comprendre le bégaiement et son accompagnement",
+      },
+      {
+        href: "/bilan",
+        label: "Découvrir le bilan orthophonique",
+      },
+    ],
   },
   {
     slug: "suivi-regulier",
@@ -159,6 +216,7 @@ export const articles: Article[] = [
     excerpt:
       "Ce que la continuité apporte quand on veut transformer une difficulté durable de langage ou d’apprentissage.",
     date: "2 janvier 2026",
+    datePublished: "2026-01-02",
     category: "parcours",
     image: "/images/step-followup.jpg",
     gallery: [
@@ -171,6 +229,16 @@ export const articles: Article[] = [
       "Les apprentissages langagiers se consolidient par répétition espacée. Une séance isolée éclaire ; un rythme régulier transforme.",
       "La régularité permet aussi d’ajuster les objectifs : ce qui fonctionnait en septembre n’est pas forcément le bon levier en mars.",
       "Si la charge est trop lourde, mieux vaut un rythme soutenable qu’un planning idéal abandonné au bout de trois semaines.",
+    ],
+    relatedLinks: [
+      {
+        href: "/bilan",
+        label: "Comprendre le point de départ du parcours",
+      },
+      {
+        href: "/nous-contacter",
+        label: "Échanger avec Lov sur votre situation",
+      },
     ],
   },
 ];

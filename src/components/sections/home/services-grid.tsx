@@ -22,7 +22,7 @@ export function HomeServicesGrid() {
     <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container>
         <Reveal
-          className="mb-[var(--space-10)] flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+          className="mb-[var(--space-10)] flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
           variant="fade"
         >
           <div>
@@ -36,7 +36,7 @@ export function HomeServicesGrid() {
               </span>
             </h2>
           </div>
-          <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
+          <p className="max-w-xs text-sm leading-6 text-muted lg:pb-1.5 lg:text-right">
             Six motifs fréquents — chacun avec un parcours pensé pour lui.
           </p>
         </Reveal>

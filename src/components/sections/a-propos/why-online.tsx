@@ -30,7 +30,7 @@ export function AboutWhyOnline() {
           </p>
         </Reveal>
 
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-[1.75rem] border border-border bg-border sm:grid-cols-3">
+        <ul className="mt-12 grid gap-px overflow-hidden rounded-[1.75rem] border border-border bg-border md:grid-cols-3">
           {whyOnline.points.map((point, index) => {
             const Icon = icons[index] ?? Zap;
             return (

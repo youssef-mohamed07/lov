@@ -15,7 +15,6 @@ export function BrandMark({
   tone = "default",
 }: BrandMarkProps) {
   const onDark = tone === "onDark";
-  const size = compact ? 36 : 40;
 
   return (
     <Link

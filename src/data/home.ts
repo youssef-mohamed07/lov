@@ -50,15 +50,15 @@ export const conditions = troubles.slice(0, 8).map((trouble) => ({
 }));
 
 export const platform = {
-  eyebrow: "Outils",
-  titleStart: "S’orienter",
-  titleAccent: "avant de s’engager",
+  eyebrow: "Savoir-faire",
+  titleStart: "À votre rythme,",
+  titleAccent: "du bilan au suivi",
   description:
-    "Le simulateur et le bilan vous donnent une première lecture — pour décider ensuite avec plus de clarté.",
-  ctaLabel: "Lancer le simulateur",
-  ctaHref: "/simulateur",
-  secondaryLabel: "Bilan orthophonique",
-  secondaryHref: "/bilan",
+    "Deux temps forts de votre parcours : le bilan, puis l'accompagnement.",
+  ctaLabel: "Découvrir le bilan",
+  ctaHref: "/bilan",
+  secondaryLabel: "Parler du suivi",
+  secondaryHref: "/deja-un-bilan",
 } as const;
 
 export const expertiseItems = [

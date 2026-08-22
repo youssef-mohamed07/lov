@@ -23,7 +23,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const faq = getFaqForPathname(pathname);
 
   if (immersive) {
-    return <div className="flex min-h-full flex-1 flex-col">{children}</div>;
+    return (
+      <div className="flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip">
+        {children}
+      </div>
+    );
   }
 
   return (

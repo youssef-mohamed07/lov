@@ -5,7 +5,7 @@ export type SimulatorQuestion = {
 };
 
 export const simulatorPage = {
-  title: "Par où commencer ?",
+  title: "Simulateur d’orientation orthophonique",
   description:
     "Répondez à quelques questions pour une première orientation — indicative, rapide, et sans diagnostic.",
   disclaimer:

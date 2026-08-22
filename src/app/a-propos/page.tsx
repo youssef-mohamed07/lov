@@ -17,11 +17,15 @@ import {
 import { PageIntro } from "@/components/sections/page-intro";
 import { CtaButton } from "@/components/ui/cta-button";
 import { about } from "@/data/a-propos";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "À propos",
+export const metadata: Metadata = createPageMetadata({
+  title: "À propos de Lov et de notre approche orthophonique",
   description: about.description,
-};
+  path: "/a-propos",
+  image: "/images/home-showcase.jpg",
+  imageAlt: "L’équipe et l’approche de Lov",
+});
 
 export default function AboutPage() {
   return (
@@ -31,6 +35,7 @@ export default function AboutPage() {
         title={about.title}
         description={about.description}
         image="/images/home-showcase.jpg"
+        imageAlt="Échange entre une famille et une professionnelle de l’orthophonie"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "À propos" }]}
         actions={
           <CtaButton href="/bilan" size="lg">

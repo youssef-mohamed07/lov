@@ -77,7 +77,7 @@ export function HomeHero() {
         rotate={rightRotate}
       />
 
-      <Container className="relative flex min-h-svh flex-col items-center justify-center pt-[calc(var(--header-height)+var(--space-8))] pb-[var(--space-16)] text-center sm:pb-[var(--space-20)]">
+      <Container className="relative flex flex-col items-center justify-center pt-[calc(var(--header-height)+var(--space-8))] pb-[var(--space-8)] text-center lg:min-h-svh lg:pb-[var(--space-20)]">
         <FadeStagger immediate className="mx-auto flex max-w-4xl flex-col items-center">
           <FadeItem>
             <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">
@@ -110,8 +110,8 @@ export function HomeHero() {
             </CtaButton>
           </FadeItem>
 
-          <FadeItem className="mt-10 w-full max-w-md lg:hidden">
-            <div className="grid grid-cols-2 gap-2.5">
+          <FadeItem className="mt-10 w-full max-w-md px-2 lg:hidden">
+            <div className="grid grid-cols-2 gap-3">
               <MobileHeartImage
                 src="/images/hero-child.jpg"
                 className="-rotate-6"
@@ -127,7 +127,7 @@ export function HomeHero() {
         </FadeStagger>
       </Container>
 
-      <Container className="pointer-events-none absolute inset-x-0 bottom-0 pb-[var(--space-10)] sm:pb-[var(--space-12)]">
+      <Container className="pointer-events-none relative pb-[var(--space-10)] sm:pb-[var(--space-12)] lg:absolute lg:inset-x-0 lg:bottom-0 lg:pb-[var(--space-10)]">
         <ul className="pointer-events-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-8">
           {trustPoints.map(({ icon: Icon, label }, index) => (
             <li key={label} className="flex items-center gap-6 sm:gap-8">

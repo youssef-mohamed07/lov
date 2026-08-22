@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react";
 
 import { CtaButton } from "@/components/ui/cta-button";
 import { contact } from "@/data/nous-contacter";
+import { submitJson } from "@/lib/submit";
 import { cn } from "@/lib/utils";
 
 const fieldClassName =
@@ -15,10 +16,34 @@ export function ContactForm() {
     contact.subjects[0].value,
   );
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError("");
+
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      await submitJson({
+        kind: "contact",
+        name: formData.get("name"),
+        email: formData.get("email"),
+        subject,
+        message: formData.get("message"),
+      });
+      setSubmitted(true);
+    } catch (submissionError) {
+      setError(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Une erreur est survenue.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -109,11 +134,22 @@ export function ContactForm() {
       </label>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs leading-5 text-muted">
-          Réponse sous 24–48h ouvrables.
+        <p
+          className={cn(
+            "text-xs leading-5",
+            error ? "text-red-600" : "text-muted",
+          )}
+          role={error ? "alert" : undefined}
+        >
+          {error || "Réponse sous 24–48h ouvrables."}
         </p>
-        <CtaButton type="submit" size="md" className="w-full sm:w-auto">
-          Envoyer le message
+        <CtaButton
+          type="submit"
+          size="md"
+          className="w-full sm:w-auto"
+          disabled={submitting}
+        >
+          {submitting ? "Envoi…" : "Envoyer le message"}
         </CtaButton>
       </div>
     </form>

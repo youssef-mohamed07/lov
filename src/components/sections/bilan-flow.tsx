@@ -29,6 +29,7 @@ import {
   technicalConditions,
   type EligibilityOption,
 } from "@/data/bilan-form";
+import { submitJson } from "@/lib/submit";
 import { cn } from "@/lib/utils";
 
 type TestStep =
@@ -93,6 +94,8 @@ export function BilanFlow() {
   const [step, setStep] = useState<TestStep>("welcome");
   const [answers, setAnswers] = useState<EligibilityAnswers>(emptyAnswers);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const age = useMemo(
     () => calculateAge(answers.birthDate),
@@ -122,6 +125,8 @@ export function BilanFlow() {
   function resetFlow() {
     setAnswers(emptyAnswers);
     setSubmitted(false);
+    setSubmitting(false);
+    setError("");
     setStep("welcome");
   }
 
@@ -199,10 +204,56 @@ export function BilanFlow() {
     if (target) setStep(target);
   }
 
-  function handleDetailsSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleDetailsSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
-    setStep("thanks");
+    setSubmitting(true);
+    setError("");
+
+    const formData = new FormData(event.currentTarget);
+    const value = (name: string) => String(formData.get(name) ?? "");
+    const checked = (name: string) => formData.get(name) === "on";
+
+    try {
+      await submitJson({
+        kind: "eligibility_request",
+        eligibility: {
+          ...answers,
+          reasonEligible: selectedReason?.eligible === true,
+          technicalComplete,
+        },
+        patientLastName: value("patientLastName"),
+        patientFirstName: value("patientFirstName"),
+        patientBirthDate: value("patientBirthDate"),
+        patientSex: value("patientSex"),
+        guardianLastName: value("guardianLastName"),
+        guardianFirstName: value("guardianFirstName"),
+        guardianLink: value("guardianLink"),
+        parentalAuthority: checked("parentalAuthority"),
+        email: value("email"),
+        phone: value("phone"),
+        address: value("address"),
+        postalCode: value("postalCode"),
+        city: value("city"),
+        country: value("country"),
+        doctorName: value("doctorName"),
+        prescription: value("prescription"),
+        previousCare: value("previousCare"),
+        source: value("source"),
+        terms: checked("terms"),
+        earlyStart: checked("earlyStart"),
+        marketing: checked("marketing"),
+      });
+      setSubmitted(true);
+      setStep("thanks");
+    } catch (submissionError) {
+      setError(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Une erreur est survenue.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -368,6 +419,8 @@ export function BilanFlow() {
           birthDate={answers.birthDate}
           onBack={goBack}
           onSubmit={handleDetailsSubmit}
+          submitting={submitting}
+          error={error}
         />
       ) : null}
 
@@ -564,10 +617,14 @@ function DetailsForm({
   birthDate,
   onBack,
   onSubmit,
+  submitting,
+  error,
 }: {
   birthDate: string;
   onBack: () => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  submitting: boolean;
+  error: string;
 }) {
   const [patientBirthDate, setPatientBirthDate] = useState(birthDate);
   const patientAge = calculateAge(patientBirthDate);
@@ -835,7 +892,13 @@ function DetailsForm({
           </div>
         </FormSection>
 
-        <div className="sticky bottom-4 mt-2">
+        {error ? (
+          <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+            {error}
+          </p>
+        ) : null}
+
+        <div className="sticky bottom-[max(1rem,env(safe-area-inset-bottom))] z-20 mt-2">
           <div className="flex flex-col-reverse gap-3 rounded-[var(--radius-card)] border border-border bg-surface/95 p-3 shadow-[var(--shadow-card)] backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:rounded-full sm:py-2 sm:pl-5">
             <button
               type="button"
@@ -845,8 +908,12 @@ function DetailsForm({
               <ArrowLeft className="size-4" aria-hidden />
               Retour
             </button>
-            <button type="submit" className={flowPrimaryClass}>
-              Envoyer ma demande
+            <button
+              type="submit"
+              disabled={submitting}
+              className={`${flowPrimaryClass} w-full sm:w-auto`}
+            >
+              {submitting ? "Envoi…" : "Envoyer ma demande"}
               <ArrowRight className="size-4" aria-hidden />
             </button>
           </div>

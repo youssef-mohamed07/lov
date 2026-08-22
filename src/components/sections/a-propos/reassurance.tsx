@@ -11,7 +11,7 @@ export function AboutReassurance() {
     <section className="bg-background py-[var(--section-space-sm)]">
       <Container className="relative">
         <Reveal variant="fade">
-          <ul className="flex flex-col divide-y divide-border overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[var(--shadow-card)] sm:flex-row sm:divide-x sm:divide-y-0">
+          <ul className="flex flex-col divide-y divide-border overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[var(--shadow-card)] md:flex-row md:divide-x md:divide-y-0">
             {about.reassurance.map((item, index) => {
               const Icon = icons[index] ?? ShieldCheck;
               return (

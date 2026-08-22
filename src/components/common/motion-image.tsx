@@ -24,6 +24,7 @@ export function MotionImage({
   ...props
 }: MotionImageProps) {
   const reduceMotion = useReducedMotion();
+  void _zoomOnHover;
 
   return (
     <motion.div

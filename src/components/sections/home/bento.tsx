@@ -1,142 +1,112 @@
-import { FolderOpen, ListChecks, Users, Video } from "lucide-react";
-import Image from "next/image";
+import {
+  Activity,
+  BellRing,
+  CalendarDays,
+  ClipboardCheck,
+  FileText,
+  MessagesSquare,
+} from "lucide-react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
-import { cn } from "@/lib/utils";
 
-const community = ["A", "M", "S", "L", "N", "C"];
+const features = [
+  {
+    title: "Agenda en ligne",
+    description:
+      "Choisissez un créneau en quelques clics, à l’heure qui vous arrange.",
+    icon: CalendarDays,
+    tone: "bg-accent-soft text-accent",
+  },
+  {
+    title: "Rappels automatiques",
+    description:
+      "Un message avant chaque rendez-vous, pour ne rien manquer.",
+    icon: BellRing,
+    tone: "bg-brand-soft text-brand",
+  },
+  {
+    title: "Comptes-rendus",
+    description:
+      "Retrouvez le compte-rendu de chaque séance dans votre espace, dès qu’il est prêt.",
+    icon: FileText,
+    tone: "bg-surface-muted text-foreground",
+  },
+  {
+    title: "Exercices personnalisés",
+    description:
+      "Des activités choisies par l’orthophoniste, à faire entre les séances.",
+    icon: ClipboardCheck,
+    tone: "bg-accent-soft text-accent",
+  },
+  {
+    title: "Mesurer pour mieux progresser",
+    description:
+      "Un point régulier sur l’évolution de votre enfant, à partager avec l’école si besoin.",
+    icon: Activity,
+    tone: "bg-brand-soft text-brand",
+  },
+  {
+    title: "Messagerie sécurisée",
+    description:
+      "Une question entre deux séances ? Échangez directement avec l’orthophoniste.",
+    icon: MessagesSquare,
+    tone: "bg-surface-muted text-foreground",
+  },
+] as const;
 
 export function HomeBento() {
   return (
-    <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40 [background-image:radial-gradient(rgba(14,14,15,0.07)_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,black,transparent)]"
-      />
-
-      <Container className="relative">
-        <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
-          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Votre espace LOV
-          </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            Une plateforme pensée pour{" "}
-            <span className="mark-accent">simplifier votre suivi</span>
-          </h2>
-        </Reveal>
-
-        <div className="grid items-stretch gap-4 lg:grid-cols-3">
-          <div className="flex flex-col gap-4">
-            <Reveal variant="fade-scale" className="overflow-hidden rounded-[1.5rem]">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(14,14,15,0.45)]">
-                <Image
-                  src="/images/hero-child.jpg"
-                  alt="Enfant concentré pendant une activité de langage"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.06} variant="fade-scale" className="flex-1">
-              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)]">
-                <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
-                  <FolderOpen className="size-5" aria-hidden />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-                  Votre espace personnel
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-muted">
-                  Retrouvez vos rendez-vous, comptes-rendus et échanges avec
-                  l’orthophoniste, réunis au même endroit.
-                </p>
-              </article>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.08} variant="fade-scale" className="h-full">
-            <article className="flex h-full min-h-[420px] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)] lg:min-h-0">
-              <div className="relative mx-auto flex aspect-square w-full max-w-[280px] flex-1 items-center justify-center">
-                <div
-                  aria-hidden
-                  className="absolute inset-[8%] rounded-full border border-dashed border-border"
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-[22%] rounded-full border border-dashed border-border/80"
-                />
-
-                <div className="relative z-10 flex size-20 items-center justify-center rounded-full bg-accent-soft text-accent shadow-[var(--shadow-card)]">
-                  <Users className="size-8" aria-hidden />
-                </div>
-
-                {community.map((initial, index) => {
-                  const angle = (index / community.length) * Math.PI * 2 - Math.PI / 2;
-                  const radius = 42;
-                  const x = 50 + Math.cos(angle) * radius;
-                  const y = 50 + Math.sin(angle) * radius;
-                  return (
-                    <span
-                      key={initial + index}
-                      className={cn(
-                        "absolute z-10 flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-surface text-xs font-semibold shadow-sm",
-                        index % 2 === 0
-                          ? "bg-accent text-accent-foreground"
-                          : "bg-accent-soft text-accent",
-                      )}
-                      style={{ left: `${x}%`, top: `${y}%` }}
-                    >
-                      {initial}
-                    </span>
-                  );
-                })}
-              </div>
-
-              <div className="mt-6">
-                <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
-                  <ListChecks className="size-5" aria-hidden />
-                </div>
-                <h3 className="mt-4 text-xl font-semibold tracking-tight text-foreground">
-                  Un suivi qui reste lisible
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-muted">
-                  Historique des séances, objectifs partagés et prochaines
-                  étapes toujours visibles.
-                </p>
-              </div>
-            </article>
+    <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
+      <Container>
+        <div className="grid items-start gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <Reveal variant="fade" className="lg:sticky lg:top-28">
+            <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
+              La plateforme
+            </p>
+            <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+              De la prise de rendez-vous au compte-rendu,{" "}
+              <span className="mark-accent">tout est simplifié</span>
+            </h2>
+            <p className="mt-5 max-w-lg text-base leading-7 text-muted sm:text-lg sm:leading-8">
+              Chaque étape de votre parcours se passe au même endroit, sans
+              jongler entre plusieurs outils.
+            </p>
           </Reveal>
 
-          <div className="flex flex-col gap-4">
-            <Reveal delay={0.1} variant="fade-scale" className="flex-1">
-              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)]">
-                <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
-                  <Video className="size-5" aria-hidden />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-                  Des séances en visio, sans complication
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-muted">
-                  Une connexion simple, pour se concentrer sur l’essentiel de
-                  la séance.
-                </p>
-              </article>
-            </Reveal>
-
-            <Reveal delay={0.14} variant="fade-scale">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(14,14,15,0.45)]">
-                <Image
-                  src="/images/hero-therapist.jpg"
-                  alt="Professionnel préparant un accompagnement orthophonique"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-            </Reveal>
-          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <li key={feature.title}>
+                  <Reveal
+                    delay={(index % 2) * 0.05}
+                    variant="fade-scale"
+                    className="h-full"
+                  >
+                    <article className="group flex h-full min-h-[168px] flex-col rounded-[1.35rem] border border-border bg-surface p-5 transition-colors hover:border-accent/30 sm:p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <span
+                          className={`inline-flex size-10 shrink-0 items-center justify-center rounded-xl ${feature.tone}`}
+                        >
+                          <Icon className="size-[1.125rem]" aria-hidden />
+                        </span>
+                        <span className="font-display text-xs font-semibold tabular-nums text-muted-soft">
+                          0{index + 1}
+                        </span>
+                      </div>
+                      <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-foreground">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-muted">
+                        {feature.description}
+                      </p>
+                    </article>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </Container>
     </section>

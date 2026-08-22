@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { Reveal } from "@/components/common/reveal";
 import { PageIntro } from "@/components/sections/page-intro";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import {
@@ -12,6 +13,11 @@ import {
   getRelatedTroubles,
   getTrouble,
 } from "@/data/troubles";
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
 
 type TroublePageProps = {
   params: Promise<{ slug: string }>;
@@ -27,10 +33,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const trouble = getTrouble(slug);
   if (!trouble) return {};
-  return {
-    title: trouble.title,
+  return createPageMetadata({
+    title: `${trouble.title} : signes et accompagnement orthophonique`,
     description: trouble.description,
-  };
+    path: `/troubles/${trouble.slug}`,
+    image: trouble.image,
+    imageAlt: `${trouble.title} — accompagnement orthophonique`,
+  });
 }
 
 export default async function TroubleDetailPage({ params }: TroublePageProps) {
@@ -39,15 +48,46 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
   if (!trouble) notFound();
 
   const related = getRelatedTroubles(trouble.slug);
+  const path = `/troubles/${trouble.slug}`;
+  const troubleJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MedicalWebPage",
+        "@id": absoluteUrl(`${path}#webpage`),
+        name: trouble.title,
+        description: trouble.description,
+        url: absoluteUrl(path),
+        inLanguage: "fr-FR",
+        image: absoluteUrl(trouble.image),
+        about: {
+          "@type": "MedicalCondition",
+          name: trouble.title,
+          description: trouble.overview,
+        },
+        publisher: {
+          "@id": absoluteUrl("/#organization"),
+        },
+      },
+      breadcrumbJsonLd([
+        { name: "Accueil", path: "/" },
+        { name: "Troubles", path: "/troubles" },
+        { name: trouble.title, path },
+      ]),
+    ],
+  };
 
   return (
     <main>
+      <JsonLd id="trouble-jsonld" data={troubleJsonLd} />
       <PageIntro
         eyebrow="Orthophonie"
         title={trouble.title}
         description={trouble.description}
         image={trouble.image}
+        imageAlt={`Illustration de la page ${trouble.title}`}
         breadcrumbs={[
+          { label: "Accueil", href: "/" },
           { label: "Troubles", href: "/troubles" },
           { label: trouble.title },
         ]}

@@ -47,12 +47,19 @@ export function useBilanDraft() {
   const [answers, setAnswers] = useState<BilanAnswers>(emptyBilanAnswers);
 
   useEffect(() => {
-    const draft = readDraft();
-    if (draft) {
-      setStepIndex(draft.stepIndex);
-      setAnswers(draft.answers);
-    }
-    setHydrated(true);
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
+      const draft = readDraft();
+      if (draft) {
+        setStepIndex(draft.stepIndex);
+        setAnswers(draft.answers);
+      }
+      setHydrated(true);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {

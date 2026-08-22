@@ -15,6 +15,7 @@ import {
   flowGhostClass,
   flowPrimaryClass,
 } from "@/components/common/flow-shell";
+import { submitFormData } from "@/lib/submit";
 import { cn } from "@/lib/utils";
 
 type Step = "welcome" | "profile" | "birth-date" | "need" | "details" | "thanks";
@@ -51,6 +52,8 @@ export function ExistingBilanForm() {
   const [answers, setAnswers] = useState<Answers>(emptyAnswers);
   const [fileName, setFileName] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const age = calculateAge(answers.birthDate);
   const progressIndex = stepOrder.indexOf(step);
@@ -74,13 +77,31 @@ export function ExistingBilanForm() {
     setAnswers(emptyAnswers);
     setFileName("");
     setSubmitted(false);
+    setSubmitting(false);
+    setError("");
     setStep("welcome");
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
-    setStep("thanks");
+    setSubmitting(true);
+    setError("");
+
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      await submitFormData(formData);
+      setSubmitted(true);
+      setStep("thanks");
+    } catch (submissionError) {
+      setError(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Une erreur est survenue.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -246,7 +267,7 @@ export function ExistingBilanForm() {
                     {fileName || "Ajouter votre bilan"}
                   </span>
                   <span className="mt-1 block text-xs text-muted">
-                    PDF, JPG ou PNG · 10 Mo max.
+                    PDF, JPG ou PNG · 4 Mo max.
                   </span>
                 </span>
                 <input
@@ -276,18 +297,27 @@ export function ExistingBilanForm() {
             <p className="mt-5 text-xs leading-5 text-muted">
               Vos informations et documents restent confidentiels.
             </p>
+            {error ? (
+              <p className="mt-3 text-sm text-red-600" role="alert">
+                {error}
+              </p>
+            ) : null}
 
-            <div className="mt-7 flex items-center justify-between gap-3 border-t border-border pt-6">
+            <div className="mt-7 flex flex-col-reverse items-stretch gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
               <button
                 type="button"
                 onClick={goBack}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition-colors hover:bg-surface-muted hover:text-foreground"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition-colors hover:bg-surface-muted hover:text-foreground sm:w-auto"
               >
                 <ArrowLeft className="size-4" aria-hidden />
                 Retour
               </button>
-              <button type="submit" className={flowPrimaryClass}>
-                Envoyer ma demande
+              <button
+                type="submit"
+                disabled={submitting}
+                className={`${flowPrimaryClass} w-full sm:w-auto`}
+              >
+                {submitting ? "Envoi…" : "Envoyer ma demande"}
                 <ArrowRight className="size-4" aria-hidden />
               </button>
             </div>

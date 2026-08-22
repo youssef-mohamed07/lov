@@ -14,14 +14,17 @@ import { PageIntro } from "@/components/sections/page-intro";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { careers } from "@/data/carrieres";
-import { cn } from "@/lib/utils";
+import { createPageMetadata } from "@/lib/seo";
 
 const processIcons = [Send, Handshake, ClipboardCheck, Sparkles] as const;
 
-export const metadata: Metadata = {
-  title: "Carrières",
+export const metadata: Metadata = createPageMetadata({
+  title: "Carrières en orthophonie et recrutement",
   description: careers.description,
-};
+  path: "/carrieres",
+  image: "/images/ortho-session.jpg",
+  imageAlt: "Travailler avec l’équipe Lov",
+});
 
 export default function CareersPage() {
   return (
@@ -38,6 +41,7 @@ export default function CareersPage() {
         }
         description={careers.description}
         image="/images/ortho-session.jpg"
+        imageAlt="Orthophoniste pendant une séance"
         breadcrumbs={[
           { label: "Accueil", href: "/" },
           { label: "Carrières" },
@@ -131,7 +135,7 @@ export default function CareersPage() {
             </p>
           </Reveal>
 
-          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {careers.process.steps.map((step, index) => {
               const Icon = processIcons[index] ?? Send;
               return (

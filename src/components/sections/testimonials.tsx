@@ -34,35 +34,79 @@ function Stars({ count }: { count: number }) {
 
 type Item = (typeof testimonials.items)[number];
 
+type CardTone = "surface" | "warm" | "cool" | "ink";
+
+const cardTones: CardTone[] = ["surface", "warm", "cool", "ink"];
+
+const toneStyles: Record<
+  CardTone,
+  {
+    card: string;
+    quote: string;
+    text: string;
+    muted: string;
+    avatar: string;
+  }
+> = {
+  surface: {
+    card: "border-border bg-surface shadow-[var(--shadow-card)]",
+    quote: "text-accent/30",
+    text: "text-foreground",
+    muted: "text-muted",
+    avatar: "bg-foreground text-background",
+  },
+  warm: {
+    card: "border-accent/20 bg-accent-soft/70 shadow-[var(--shadow-card)]",
+    quote: "text-accent/45",
+    text: "text-foreground",
+    muted: "text-muted",
+    avatar: "bg-accent text-accent-foreground",
+  },
+  cool: {
+    card: "border-brand/15 bg-brand-soft/80 shadow-[var(--shadow-card)]",
+    quote: "text-brand/40",
+    text: "text-foreground",
+    muted: "text-muted",
+    avatar: "bg-brand text-brand-foreground",
+  },
+  ink: {
+    card: "border-transparent bg-foreground shadow-[0_24px_60px_-30px_rgba(14,14,15,0.55)]",
+    quote: "text-accent",
+    text: "text-background",
+    muted: "text-background/65",
+    avatar: "bg-background text-foreground",
+  },
+};
+
 function TestimonialCard({
   item,
   tilt,
-  accent,
+  tone = "surface",
   fluid,
 }: {
   item: Item;
   tilt: string;
-  accent?: boolean;
+  tone?: CardTone;
   fluid?: boolean;
 }) {
+  const styles = toneStyles[tone];
+
   return (
     <figure
       className={cn(
         "relative flex flex-col justify-between gap-5 rounded-[1.35rem] border p-5 transition-transform duration-300 ease-out sm:p-6",
         fluid
           ? "w-full"
-          : "w-[min(19rem,calc(100vw-3rem))] shrink-0 sm:w-[21rem]",
+          : "w-[min(19rem,calc(100vw-3rem))] shrink-0 hover:rotate-0 hover:scale-[1.03] sm:w-[21rem]",
         tilt,
-        accent
-          ? "border-transparent bg-foreground text-background shadow-[0_24px_60px_-30px_rgba(14,14,15,0.55)]"
-          : "border-border bg-surface shadow-[var(--shadow-card)]",
+        styles.card,
       )}
     >
       <span
         aria-hidden
         className={cn(
           "pointer-events-none absolute -top-1 right-4 select-none font-display text-6xl leading-none",
-          accent ? "text-accent" : "text-accent/25",
+          styles.quote,
         )}
       >
         ”
@@ -73,7 +117,7 @@ function TestimonialCard({
         <blockquote
           className={cn(
             "mt-4 font-display text-lg font-medium leading-snug tracking-tight",
-            accent ? "text-background" : "text-foreground",
+            styles.text,
           )}
         >
           {item.quote}
@@ -84,30 +128,16 @@ function TestimonialCard({
         <span
           className={cn(
             "inline-flex size-9 shrink-0 items-center justify-center rounded-full font-display text-[11px] font-semibold",
-            accent
-              ? "bg-background text-foreground"
-              : "bg-foreground text-background",
+            styles.avatar,
           )}
         >
           {initials(item.author)}
         </span>
         <div className="min-w-0">
-          <p
-            className={cn(
-              "truncate text-sm font-semibold",
-              accent ? "text-background" : "text-foreground",
-            )}
-          >
+          <p className={cn("truncate text-sm font-semibold", styles.text)}>
             {item.author}
           </p>
-          <p
-            className={cn(
-              "truncate text-xs",
-              accent ? "text-background/65" : "text-muted",
-            )}
-          >
-            {item.role}
-          </p>
+          <p className={cn("truncate text-xs", styles.muted)}>{item.role}</p>
         </div>
       </figcaption>
     </figure>
@@ -137,11 +167,11 @@ function fillMarqueeItems(items: readonly Item[]) {
 function MarqueeRow({
   items,
   reverse,
-  accentIndex,
+  toneOffset = 0,
 }: {
   items: readonly Item[];
   reverse?: boolean;
-  accentIndex: number;
+  toneOffset?: number;
 }) {
   const track = fillMarqueeItems(items);
   const duration = track.length * SECONDS_PER_CARD;
@@ -166,7 +196,7 @@ function MarqueeRow({
                 key={`${copy}-${item.author}-${index}`}
                 item={item}
                 tilt={tilts[index % tilts.length]}
-                accent={index === accentIndex}
+                tone={cardTones[(index + toneOffset) % cardTones.length]}
               />
             ))}
           </div>
@@ -215,7 +245,7 @@ export function TestimonialsSection() {
                 key={item.author}
                 item={item}
                 tilt="rotate-0"
-                accent={index === 0}
+                tone={cardTones[index % cardTones.length]}
                 fluid
               />
             ))}
@@ -226,15 +256,15 @@ export function TestimonialsSection() {
           {/* Edge fades so cards melt into the page */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-28"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--background)] to-transparent sm:w-28"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-28"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--background)] to-transparent sm:w-28"
           />
 
-          <MarqueeRow items={rowA} accentIndex={1} />
-          <MarqueeRow items={rowB} reverse accentIndex={2} />
+          <MarqueeRow items={rowA} />
+          <MarqueeRow items={rowB} reverse toneOffset={2} />
         </Reveal>
       )}
     </section>

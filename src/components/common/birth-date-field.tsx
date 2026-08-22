@@ -169,11 +169,11 @@ export function BirthDateField({
     <div ref={rootRef} className="min-w-0">
       {featured ? (
         <div className="mb-5">
-          <p className="font-display text-[2rem] font-semibold leading-none tracking-tight sm:text-[2.35rem]">
+          <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-1 font-display text-xl font-semibold leading-tight tracking-tight sm:text-[2.35rem] sm:leading-none">
             <span className={day.length === 2 ? "text-foreground" : "text-muted-soft"}>
               {day.length === 2 ? padDay(day) : "JJ"}
             </span>
-            <span className="mx-2.5 text-muted-soft/70">·</span>
+            <span className="text-muted-soft/70">·</span>
             <span
               className={cn(
                 "italic",
@@ -182,7 +182,7 @@ export function BirthDateField({
             >
               {monthMeta ? monthMeta.label.toLowerCase() : "mois"}
             </span>
-            <span className="mx-2.5 text-muted-soft/70">·</span>
+            <span className="text-muted-soft/70">·</span>
             <span className={year.length === 4 ? "text-foreground" : "text-muted-soft"}>
               {year.length === 4 ? year : "AAAA"}
             </span>
@@ -199,7 +199,7 @@ export function BirthDateField({
 
       <div
         className={cn(
-          "grid grid-cols-[4.6rem_1fr_5.6rem] overflow-hidden rounded-2xl border bg-background transition-[border-color,box-shadow]",
+          "grid grid-cols-[3.5rem_minmax(0,1fr)_5rem] overflow-hidden rounded-2xl border bg-background transition-[border-color,box-shadow] sm:grid-cols-[4.6rem_minmax(0,1fr)_5.6rem]",
           active
             ? "border-[var(--flow-tone)] shadow-[0_0_0_4px_var(--flow-tone-soft)]"
             : "border-border",
@@ -208,7 +208,7 @@ export function BirthDateField({
         <label
           htmlFor={dayId}
           className={cn(
-            "flex min-h-[4.25rem] cursor-text flex-col justify-center border-r border-border px-3 transition-colors",
+            "flex min-h-[4.25rem] cursor-text flex-col justify-center border-r border-border px-2 transition-colors sm:px-3",
             active === "day" && "bg-[var(--flow-tone-soft)]",
           )}
         >
@@ -228,7 +228,7 @@ export function BirthDateField({
             onBlur={handleDayBlur}
             onChange={(event) => handleDayChange(event.target.value)}
             onKeyDown={handleDayKeyDown}
-            className="w-full bg-transparent font-display text-2xl font-semibold tracking-tight text-foreground outline-none placeholder:text-muted-soft"
+            className="w-full bg-transparent font-display text-xl font-semibold tracking-tight text-foreground outline-none placeholder:text-muted-soft sm:text-2xl"
           />
         </label>
 
@@ -238,7 +238,7 @@ export function BirthDateField({
           aria-label="Mois de naissance"
           onClick={() => setActive(active === "month" ? null : "month")}
           className={cn(
-            "flex min-h-[4.25rem] flex-col items-start justify-center border-r border-border px-4 text-left transition-colors",
+            "flex min-h-[4.25rem] min-w-0 flex-col items-start justify-center border-r border-border px-2 text-left transition-colors sm:px-4",
             active === "month" && "bg-[var(--flow-tone-soft)]",
           )}
         >
@@ -247,7 +247,7 @@ export function BirthDateField({
           </span>
           <span
             className={cn(
-              "font-display text-2xl font-semibold tracking-tight",
+              "block max-w-full truncate font-display text-lg font-semibold tracking-tight sm:text-2xl",
               monthMeta ? "text-foreground" : "text-muted-soft",
             )}
           >
@@ -258,7 +258,7 @@ export function BirthDateField({
         <label
           htmlFor={yearId}
           className={cn(
-            "flex min-h-[4.25rem] cursor-text flex-col justify-center px-3 transition-colors",
+            "flex min-h-[4.25rem] cursor-text flex-col justify-center px-2 transition-colors sm:px-3",
             active === "year" && "bg-[var(--flow-tone-soft)]",
           )}
         >
@@ -277,7 +277,7 @@ export function BirthDateField({
             onFocus={() => setActive("year")}
             onChange={(event) => applyYear(event.target.value)}
             onKeyDown={handleYearKeyDown}
-            className="w-full bg-transparent font-display text-2xl font-semibold tracking-tight text-foreground outline-none placeholder:text-muted-soft"
+            className="w-full bg-transparent font-display text-xl font-semibold tracking-tight text-foreground outline-none placeholder:text-muted-soft sm:text-2xl"
           />
         </label>
       </div>
@@ -298,7 +298,7 @@ export function BirthDateField({
                   type="button"
                   onClick={() => applyMonth(item.value)}
                   className={cn(
-                    "rounded-xl px-2 py-2.5 text-center text-sm font-medium transition-colors",
+                    "min-h-11 rounded-xl px-2 py-2.5 text-center text-sm font-medium transition-colors",
                     selected
                       ? "bg-[var(--flow-tone)] text-[var(--flow-tone-fg)]"
                       : "bg-surface-muted text-foreground hover:bg-[var(--flow-tone-soft)]",

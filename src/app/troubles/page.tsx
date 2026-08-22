@@ -5,18 +5,52 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
 import { PageIntro } from "@/components/sections/page-intro";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { troubles, troublesPage } from "@/data/troubles";
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Troubles",
+export const metadata: Metadata = createPageMetadata({
+  title: "Troubles du langage, de la parole et des apprentissages",
   description: troublesPage.description,
+  path: "/troubles",
+  image: "/images/trouble-language.jpg",
+  imageAlt: "Accompagnement des troubles du langage et des apprentissages",
+});
+
+const troublesJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": absoluteUrl("/troubles#collection"),
+      name: troublesPage.title,
+      description: troublesPage.description,
+      url: absoluteUrl("/troubles"),
+      inLanguage: "fr-FR",
+      hasPart: troubles.map((trouble) => ({
+        "@type": "MedicalWebPage",
+        name: trouble.title,
+        description: trouble.description,
+        url: absoluteUrl(`/troubles/${trouble.slug}`),
+      })),
+    },
+    breadcrumbJsonLd([
+      { name: "Accueil", path: "/" },
+      { name: "Troubles", path: "/troubles" },
+    ]),
+  ],
 };
 
 export default function TroublesPage() {
   return (
     <main>
+      <JsonLd id="troubles-jsonld" data={troublesJsonLd} />
       <PageIntro
         eyebrow="Troubles"
         title={
@@ -27,6 +61,7 @@ export default function TroublesPage() {
         }
         description={troublesPage.description}
         image="/images/trouble-language.jpg"
+        imageAlt="Activité d’accompagnement du langage"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "Troubles" }]}
         actions={
           <CtaButton href="/bilan" size="lg">
@@ -68,7 +103,7 @@ export default function TroublesPage() {
                         {trouble.description}
                       </p>
                       <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-white underline-offset-4 group-hover:underline">
-                        En savoir plus
+                        Comprendre {trouble.shortTitle.toLowerCase()}
                         <ArrowUpRight className="size-4" aria-hidden />
                       </span>
                     </div>

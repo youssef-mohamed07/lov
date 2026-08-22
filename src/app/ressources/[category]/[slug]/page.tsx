@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { Reveal } from "@/components/common/reveal";
 import { PageIntro } from "@/components/sections/page-intro";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import {
@@ -16,6 +17,11 @@ import {
   getRelatedArticles,
 } from "@/data/articles";
 import { cn } from "@/lib/utils";
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
 
 type ArticlePageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -34,10 +40,15 @@ export async function generateMetadata({
   const { category, slug } = await params;
   const article = getArticle(category, slug);
   if (!article) return {};
-  return {
+  return createPageMetadata({
     title: article.title,
     description: article.excerpt,
-  };
+    path: getArticleHref(article),
+    image: article.image,
+    imageAlt: article.title,
+    type: "article",
+    publishedTime: article.datePublished,
+  });
 }
 
 export default async function ArticleDetailPage({ params }: ArticlePageProps) {
@@ -50,15 +61,53 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
   const [firstParagraph, ...restParagraphs] = article.content;
   const wordCount = article.content.join(" ").split(/\s+/).length;
   const readingMinutes = Math.max(1, Math.round(wordCount / 200));
+  const path = getArticleHref(article);
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": absoluteUrl(`${path}#article`),
+        headline: article.title,
+        description: article.excerpt,
+        image: [absoluteUrl(article.image)],
+        datePublished: article.datePublished,
+        inLanguage: "fr-FR",
+        mainEntityOfPage: absoluteUrl(path),
+        author: {
+          "@id": absoluteUrl("/#organization"),
+        },
+        publisher: {
+          "@id": absoluteUrl("/#organization"),
+        },
+      },
+      breadcrumbJsonLd([
+        { name: "Accueil", path: "/" },
+        { name: "Ressources", path: "/ressources" },
+        ...(category
+          ? [
+              {
+                name: category.title,
+                path: getCategoryHref(category.slug),
+              },
+            ]
+          : []),
+        { name: article.title, path },
+      ]),
+    ],
+  };
 
   return (
     <main>
+      <JsonLd id="article-jsonld" data={articleJsonLd} />
       <PageIntro
         title={article.title}
         description={article.excerpt}
         image={article.image}
+        imageAlt={article.title}
         eyebrow={`${category?.title ?? "Ressource"} · ${article.date}`}
         breadcrumbs={[
+          { label: "Accueil", href: "/" },
           { label: "Ressources", href: "/ressources" },
           ...(category
             ? [
@@ -91,9 +140,12 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                   <p className="text-xs font-medium tracking-[0.18em] text-muted-soft uppercase">
                     Publié le
                   </p>
-                  <p className="mt-1.5 text-sm font-medium text-foreground">
+                  <time
+                    dateTime={article.datePublished}
+                    className="mt-1.5 block text-sm font-medium text-foreground"
+                  >
                     {article.date}
-                  </p>
+                  </time>
                 </div>
                 <div>
                   <p className="text-xs font-medium tracking-[0.18em] text-muted-soft uppercase">
@@ -118,7 +170,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
               <p
                 className={cn(
                   "font-display text-xl font-medium leading-9 tracking-tight text-foreground sm:text-2xl sm:leading-[1.55]",
-                  "first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-[3.4em] first-letter:leading-[0.85] first-letter:font-semibold first-letter:text-accent",
+                  "sm:first-letter:float-left sm:first-letter:mr-3 sm:first-letter:font-display sm:first-letter:text-[3.4em] sm:first-letter:leading-[0.85] sm:first-letter:font-semibold sm:first-letter:text-accent",
                 )}
               >
                 {firstParagraph}
@@ -133,6 +185,26 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                   </p>
                 ))}
               </div>
+              <nav
+                aria-label="Pour aller plus loin"
+                className="mt-10 rounded-[var(--radius-card)] border border-border bg-surface p-5 sm:p-6"
+              >
+                <h2 className="font-display text-xl font-semibold tracking-tight text-foreground">
+                  Pour aller plus loin
+                </h2>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {article.relatedLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="inline-flex min-h-11 items-center text-sm font-medium text-brand underline-offset-4 hover:underline"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </Reveal>
           </div>
         </Container>

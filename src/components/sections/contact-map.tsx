@@ -1,6 +1,7 @@
 import { ArrowUpRight, Clock3, MapPin } from "lucide-react";
 import Link from "next/link";
 
+import { DeferredMap } from "@/components/common/deferred-map";
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { contact } from "@/data/nous-contacter";
@@ -81,12 +82,11 @@ export function ContactMap() {
 
             {/* Map side */}
             <div className="relative min-h-[280px] border-t border-border lg:border-t-0 lg:border-l">
-              <iframe
+              <DeferredMap
                 title={`Carte — ${location.address}, ${location.city}`}
-                src={embedSrc}
-                className="absolute inset-0 size-full border-0 grayscale-[0.15] contrast-[1.05]"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                address={location.address}
+                city={location.city}
+                embedSrc={embedSrc}
               />
             </div>
           </div>

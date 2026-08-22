@@ -27,7 +27,7 @@ export function PageIntro({
   title,
   description,
   image = "/images/clinic-welcome.jpg",
-  imageAlt = "",
+  imageAlt = "Accompagnement orthophonique Lov",
   breadcrumbs,
   actions,
   className,
@@ -59,9 +59,15 @@ export function PageIntro({
       <Container className="relative flex min-h-[52vh] flex-col justify-end pt-[calc(var(--header-height)+var(--space-10))] pb-[var(--section-space-md)] sm:min-h-[58vh] sm:pt-[calc(var(--header-height)+var(--space-12))]">
         <Reveal className="max-w-3xl" variant="fade">
           {breadcrumbs && breadcrumbs.length > 0 ? (
-            <nav aria-label="Fil d’Ariane" className="text-sm text-white/70">
+            <nav
+              aria-label="Fil d’Ariane"
+              className="flex max-w-full flex-wrap items-center gap-y-1 text-sm text-white/70"
+            >
               {breadcrumbs.map((crumb, index) => (
-                <span key={`${crumb.label}-${index}`}>
+                <span
+                  key={`${crumb.label}-${index}`}
+                  className="min-w-0 max-w-full break-words"
+                >
                   {index > 0 ? (
                     <span className="mx-1.5 text-white/40" aria-hidden>
                       /

@@ -47,12 +47,12 @@ export function FaqDirectory() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-3 sm:justify-end">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-end">
               <p className="inline-flex items-center gap-2 text-xs font-medium text-muted">
                 <MoveHorizontal className="size-4 text-accent" aria-hidden />
                 Faites défiler les thèmes
               </p>
-              <div className="flex gap-2">
+              <div className="flex justify-end gap-2">
                 <button
                   type="button"
                   aria-label="Voir les catégories précédentes"

@@ -178,11 +178,6 @@ body {
   position: relative;
   z-index: 0;
 }
-@media (min-width: 640px) {
-  .mark-accent {
-    white-space: nowrap;
-  }
-}
 .mark-accent::before {
   content: "";
   position: absolute;

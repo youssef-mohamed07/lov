@@ -62,8 +62,8 @@ export function HomeDialogue() {
             ref={stageRef}
             className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] border border-border bg-surface"
           >
-            <div className="grid min-h-[340px] sm:min-h-[420px] lg:min-h-[480px] lg:grid-cols-2">
-              <div className="relative min-h-[260px] border-b border-border lg:border-r lg:border-b-0">
+            <div className="grid min-h-[340px] sm:min-h-[420px] md:grid-cols-2 lg:min-h-[480px]">
+              <div className="relative min-h-[260px] border-b border-border md:border-r md:border-b-0">
                 <Image
                   src="/images/dialogue-therapist.jpg"
                   alt="Orthophoniste"

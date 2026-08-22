@@ -67,14 +67,14 @@ export function FlowShell({
   return (
     <div
       style={toneVars[tone]}
-      className="relative isolate flex min-h-svh flex-col bg-background"
+      className="relative isolate flex min-h-dvh min-w-0 flex-col overflow-x-clip bg-background"
     >
       <FlowBackdrop />
 
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/85 backdrop-blur-md">
         <div
           className={cn(
-            "mx-auto flex w-full items-center gap-4 px-5 py-3 sm:px-8",
+            "mx-auto flex w-full items-center gap-4 px-5 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 sm:px-8",
             barWidth,
           )}
         >
@@ -100,8 +100,8 @@ export function FlowShell({
 
       <div
         className={cn(
-          "relative flex flex-1 flex-col px-5 py-10 sm:px-8 sm:py-14",
-          align === "center" && "justify-center",
+          "relative flex flex-1 scroll-pb-24 flex-col px-5 py-8 sm:px-8 sm:py-12",
+          align === "center" && "md:justify-center",
         )}
       >
         <div className={cn("mx-auto w-full", widthClasses[width])}>{children}</div>

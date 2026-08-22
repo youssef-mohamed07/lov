@@ -1,29 +1,58 @@
 import type { Metadata } from "next";
-import { Clock3, Mail, Phone, ShieldAlert } from "lucide-react";
+import { Clock3, Mail, ShieldAlert } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
 import { ContactForm } from "@/components/sections/contact-form";
-import { ContactMap } from "@/components/sections/contact-map";
 import { PageIntro } from "@/components/sections/page-intro";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { contact } from "@/data/nous-contacter";
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
 
 const detailIcons = {
   Courriel: Mail,
-  Téléphone: Phone,
   Horaires: Clock3,
 } as const;
 
-export const metadata: Metadata = {
-  title: "Nous contacter",
+export const metadata: Metadata = createPageMetadata({
+  title: "Contacter Lov et prendre rendez-vous en orthophonie",
   description: contact.description,
+  path: "/nous-contacter",
+  image: "/images/family-consult.jpg",
+  imageAlt: "Échange avec une famille au sujet d’un bilan orthophonique",
+});
+
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": absoluteUrl("/nous-contacter#contact"),
+      name: "Contacter Lov",
+      description: contact.description,
+      url: absoluteUrl("/nous-contacter"),
+      inLanguage: "fr-FR",
+      about: {
+        "@id": absoluteUrl("/#organization"),
+      },
+    },
+    breadcrumbJsonLd([
+      { name: "Accueil", path: "/" },
+      { name: "Nous contacter", path: "/nous-contacter" },
+    ]),
+  ],
 };
 
 export default function ContactPage() {
   return (
     <main>
+      <JsonLd id="contact-jsonld" data={contactJsonLd} />
       <PageIntro
         eyebrow="Nous contacter"
         title={
@@ -34,6 +63,7 @@ export default function ContactPage() {
         }
         description={contact.description}
         image="/images/family-consult.jpg"
+        imageAlt="Échange avec une famille au sujet d’un parcours orthophonique"
         breadcrumbs={[
           { label: "Accueil", href: "/" },
           { label: "Nous contacter" },
@@ -129,8 +159,6 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
-
-      <ContactMap />
     </main>
   );
 }
