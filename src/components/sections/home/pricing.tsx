@@ -1,211 +1,90 @@
-"use client";
-
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Check } from "lucide-react";
+import { ArrowRight, Check, Heart } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { pricingPlans } from "@/data/home";
-import { easeOutExpo } from "@/lib/motion";
-import { cn } from "@/lib/utils";
+
+const plan = pricingPlans[0];
 
 export function HomePricing() {
-  const reduceMotion = useReducedMotion();
-  const defaultId =
-    pricingPlans.find((plan) => "highlighted" in plan && plan.highlighted)?.id ??
-    pricingPlans[0].id;
-  const [activeId, setActiveId] = useState(defaultId);
-
-  const active =
-    pricingPlans.find((plan) => plan.id === activeId) ?? pricingPlans[0];
-
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
-        <Reveal className="mx-auto mb-10 max-w-2xl text-center" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Tarifs
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Combien ça{" "}
-            <span className="font-medium italic text-voice">coûte ?</span>
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted">
-            Trois formules. Un prix affiché. Aucune surprise.
-          </p>
-        </Reveal>
+        <Reveal className="mx-auto max-w-5xl" variant="fade-scale">
+          <article className="overflow-hidden rounded-[2rem] border border-border bg-surface shadow-[0_28px_70px_-32px_rgba(14,14,15,0.28)]">
+            <div className="grid lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
+              <div className="relative aspect-[16/11] min-h-[220px] lg:aspect-auto lg:min-h-[32rem]">
+                <Image
+                  src={plan.image}
+                  alt={plan.imageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 24rem"
+                  className="object-cover object-[50%_42%]"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-foreground/35 via-transparent to-transparent"
+                />
+                <span className="absolute bottom-4 left-4 inline-flex size-11 items-center justify-center rounded-full bg-surface/95 text-accent shadow-[var(--shadow-card)] backdrop-blur-sm">
+                  <Heart className="size-4 fill-accent" aria-hidden />
+                </span>
+              </div>
 
-        <Reveal className="mx-auto max-w-4xl" variant="fade">
-          <div className="overflow-hidden rounded-[1.5rem] border border-border bg-surface shadow-[var(--shadow-card)]">
-            {/* Plan switcher */}
-            <div
-              role="tablist"
-              aria-label="Choisir une formule"
-              className="flex gap-px overflow-x-auto border-b border-border bg-border sm:grid sm:grid-cols-3 sm:overflow-visible"
-            >
-              {pricingPlans.map((plan) => {
-                const selected = plan.id === activeId;
-                return (
-                  <button
-                    key={plan.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={selected}
-                    onClick={() => setActiveId(plan.id)}
-                    onMouseEnter={() => {
-                      if (
-                        !reduceMotion &&
-                        window.matchMedia("(hover: hover)").matches
-                      ) {
-                        setActiveId(plan.id);
-                      }
-                    }}
-                    className={cn(
-                      "relative min-h-[5.5rem] min-w-[7.5rem] flex-1 px-3 pt-7 pb-4 text-center transition-colors sm:min-w-0 sm:px-6 sm:pt-9 sm:pb-6",
-                      selected
-                        ? "bg-foreground text-background"
-                        : "bg-surface text-muted hover:bg-surface-muted hover:text-foreground",
-                    )}
-                  >
-                    {"badge" in plan && plan.badge ? (
-                      <span
-                        className={cn(
-                          "absolute top-2 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-[10px] font-medium tracking-wide whitespace-nowrap",
-                          selected
-                            ? "bg-accent text-accent-foreground"
-                            : "bg-accent-soft text-accent",
-                        )}
-                      >
-                        Populaire
-                      </span>
-                    ) : null}
-
-                    <span
-                      className={cn(
-                        "block font-display text-xl font-semibold tracking-tight sm:text-[2rem]",
-                        selected ? "text-background" : "text-foreground",
-                      )}
-                    >
+              <div className="flex flex-col justify-center px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
+                <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
+                  <p className="pt-1.5 text-xs font-semibold tracking-[0.18em] text-brand uppercase">
+                    {plan.name}
+                  </p>
+                  <div className="text-right">
+                    <p className="font-display text-[2.5rem] leading-none font-semibold tracking-tight text-foreground">
                       {plan.price}
-                    </span>
-                    <span
-                      className={cn(
-                        "mt-1 block text-xs font-medium sm:text-sm",
-                        selected ? "text-background/65" : "text-muted",
-                      )}
-                    >
-                      {plan.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Active plan detail */}
-            <div className="grid lg:grid-cols-[1.05fr_1fr]">
-              <div className="relative min-h-[240px] lg:min-h-[320px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={active.id}
-                    initial={
-                      reduceMotion ? false : { opacity: 0, scale: 1.03 }
-                    }
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={reduceMotion ? undefined : { opacity: 0 }}
-                    transition={{ duration: 0.4, ease: easeOutExpo }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={active.image}
-                      alt={active.imageAlt}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-foreground/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-surface/80"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 p-5 lg:hidden">
-                      <p className="font-display text-3xl font-semibold text-background">
-                        {active.price}
-                      </p>
-                      <p className="mt-0.5 text-sm text-background/75">
-                        {active.name} {active.period}
-                      </p>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={active.id}
-                    initial={
-                      reduceMotion
-                        ? false
-                        : { opacity: 0, y: 14, filter: "blur(4px)" }
-                    }
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    exit={
-                      reduceMotion
-                        ? undefined
-                        : { opacity: 0, y: -10, filter: "blur(4px)" }
-                    }
-                    transition={{ duration: 0.35, ease: easeOutExpo }}
-                  >
-                    <div className="hidden items-baseline gap-3 lg:flex">
-                      <p className="font-display text-4xl font-semibold tracking-tight text-foreground">
-                        {active.price}
-                      </p>
-                      <p className="text-sm text-muted">
-                        {active.name} {active.period}
-                      </p>
-                    </div>
-
-                    <h3 className="sr-only">{active.name}</h3>
-
-                    <p className="mt-3 max-w-sm text-sm leading-6 text-muted sm:text-[0.95rem] sm:leading-7 lg:mt-4">
-                      {active.description}
                     </p>
+                    <p className="mt-1.5 text-sm text-muted">{plan.period}</p>
+                  </div>
+                </div>
 
-                    <ul className="mt-6 flex flex-col gap-3">
-                      {active.features.map((feature, index) => (
-                        <motion.li
-                          key={feature}
-                          initial={
-                            reduceMotion ? false : { opacity: 0, x: -8 }
-                          }
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{
-                            delay: 0.05 + index * 0.05,
-                            duration: 0.3,
-                            ease: easeOutExpo,
-                          }}
-                          className="flex items-center gap-3 text-sm text-foreground"
-                        >
-                          <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-accent-soft">
-                            <Check className="size-3.5 text-accent" aria-hidden />
-                          </span>
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </ul>
+                <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-[1.85rem] sm:leading-snug">
+                  {plan.tagline}
+                </h2>
+                <p className="mt-3 max-w-lg text-sm leading-6 text-muted">
+                  {plan.description}
+                </p>
 
-                    <div className="mt-8">
-                      <CtaButton href={active.ctaHref} size="md">
-                        {active.ctaLabel}
-                      </CtaButton>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+                <ul className="mt-7 flex flex-col gap-2.5">
+                  {plan.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-2.5 text-sm leading-6 text-foreground"
+                    >
+                      <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
+                        <Check className="size-3" aria-hidden />
+                      </span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <CtaButton href={plan.ctaHref} size="lg">
+                    {plan.ctaLabel}
+                  </CtaButton>
+                  <Link
+                    href="/deja-un-bilan"
+                    className="group inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-muted transition-colors hover:text-foreground"
+                  >
+                    J’ai déjà un bilan
+                    <ArrowRight
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </article>
         </Reveal>
       </Container>
     </section>

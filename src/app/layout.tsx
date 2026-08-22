@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { CustomCursor } from "@/components/layout/custom-cursor";
 import { SiteChrome } from "@/components/layout/site-chrome";
 
 import "./globals.css";
@@ -111,6 +112,7 @@ export default function RootLayout({
       className={`${modulus.variable} h-full antialiased`}
     >
       <body className="flex min-h-full min-w-0 flex-col overflow-x-clip font-sans">
+        <CustomCursor />
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

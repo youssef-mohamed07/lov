@@ -1,4 +1,3 @@
-import type { FaqItem } from "@/components/common/faq";
 import { troubles } from "@/data/troubles";
 
 export const reassuranceItems = [
@@ -82,76 +81,32 @@ export const expertiseItems = [
 
 export const pricingPlans = [
   {
-    id: "seance",
-    name: "Séance",
-    price: "70€",
-    period: "/ séance",
-    description: "Rééducation orthophonique individuelle.",
-    features: [
-      "45 à 50 minutes",
-      "Cabinet ou distanciel",
-      "Objectifs partagés",
-    ],
-    ctaLabel: "Réserver",
-    ctaHref: "/nous-contacter",
-    image: "/images/pricing-seance.jpg",
-    imageAlt: "Séance d’accompagnement autour d’une activité",
-  },
-  {
     id: "bilan",
-    name: "Bilan",
+    name: "Bilan orthophonique",
     price: "180€",
-    period: "/ parcours",
-    description: "Évaluation structurée du profil.",
+    period: "parcours complet",
+    tagline: "Comprendre ce qui bloque, et repartir avec un plan.",
+    description:
+      "Une évaluation complète en visio, par une orthophoniste diplômée. Tout est inclus.",
     features: [
-      "Tests adaptés au motif",
-      "Restitution claire",
-      "Compte-rendu écrit",
+      "Questionnaire d’anamnèse en ligne",
+      "1 heure de tests étalonnés en visio",
+      "Restitution des résultats",
+      "Compte rendu écrit sous 10 jours — reconnu médecins et MDPH",
+      "Recommandations pour l’école et la maison",
+    ],
+    report:
+      "Rédigé selon les mêmes exigences qu’en cabinet, avec les tests de référence de la profession. Il est reconnu par les médecins et la MDPH, et peut servir de base à une demande de PAP, de PPS ou d’aménagements aux examens.",
+    steps: [
+      "Vous réservez votre créneau en ligne",
+      "Vous remplissez le questionnaire d’anamnèse",
+      "Vous transmettez l’ordonnance de votre médecin",
+      "Vous vivez la séance de bilan en visio, depuis chez vous",
+      "Vous recevez le compte rendu écrit",
     ],
     ctaLabel: "Demander un bilan",
-    ctaHref: "/bilan",
-    highlighted: true,
-    badge: "Le plus choisi",
+    ctaHref: "/demander-un-bilan",
     image: "/images/pricing-bilan.jpg",
     imageAlt: "Échange autour d’un bilan orthophonique",
   },
-  {
-    id: "suivi",
-    name: "Suivi",
-    price: "240€",
-    period: "/ 4 séances",
-    description: "Accompagnement régulier pour ancrer les progrès.",
-    features: [
-      "4 séances planifiées",
-      "Guidance parentale",
-      "Ajustements continus",
-    ],
-    ctaLabel: "Commencer",
-    ctaHref: "/nous-contacter",
-    image: "/images/pricing-suivi.jpg",
-    imageAlt: "Professionnel préparant un suivi personnalisé",
-  },
 ] as const;
-
-export const faqItems: FaqItem[] = [
-  {
-    question: "Est-ce que Lov remplace un médecin ou un ORL ?",
-    answer:
-      "Non. Lov propose une orientation et un accompagnement orthophonique. Selon le motif, un avis médical peut rester nécessaire.",
-  },
-  {
-    question: "Combien de temps dure un bilan orthophonique ?",
-    answer:
-      "Le bilan s’étale généralement sur une à plusieurs séances selon l’âge et le motif, puis une restitution claire vous est proposée.",
-  },
-  {
-    question: "Puis-je commencer par le simulateur ?",
-    answer:
-      "Oui. Le simulateur donne une première lecture indicative, non diagnostique. Vous pourrez ensuite demander un bilan si besoin.",
-  },
-  {
-    question: "Les échanges sont-ils confidentiels ?",
-    answer:
-      "Oui. La confidentialité est au cœur de notre pratique. Vos informations sont traitées avec le plus grand soin.",
-  },
-];

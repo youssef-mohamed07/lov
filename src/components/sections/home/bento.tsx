@@ -1,4 +1,4 @@
-import { BookOpen, PencilLine, Users } from "lucide-react";
+import { FolderOpen, ListChecks, Users, Video } from "lucide-react";
 import Image from "next/image";
 
 import { Reveal } from "@/components/common/reveal";
@@ -18,11 +18,11 @@ export function HomeBento() {
       <Container className="relative">
         <Reveal className="mx-auto mb-[var(--space-10)] max-w-2xl text-center" variant="fade">
           <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Pourquoi Lov
+            Votre espace LOV
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            Une plateforme pensée{" "}
-            <span className="mark-accent">pour les familles</span>
+            Une plateforme pensée pour{" "}
+            <span className="mark-accent">simplifier votre suivi</span>
           </h2>
         </Reveal>
 
@@ -43,14 +43,14 @@ export function HomeBento() {
             <Reveal delay={0.06} variant="fade-scale" className="flex-1">
               <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)]">
                 <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
-                  <BookOpen className="size-5" aria-hidden />
+                  <FolderOpen className="size-5" aria-hidden />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-                  2 400+ bilans accompagnés
+                  Votre espace personnel
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">
-                  Des évaluations structurées, pensées pour clarifier le profil
-                  et ouvrir des pistes concrètes.
+                  Retrouvez vos rendez-vous, comptes-rendus et échanges avec
+                  l’orthophoniste, réunis au même endroit.
                 </p>
               </article>
             </Reveal>
@@ -96,14 +96,14 @@ export function HomeBento() {
 
               <div className="mt-6">
                 <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
-                  <Users className="size-5" aria-hidden />
+                  <ListChecks className="size-5" aria-hidden />
                 </div>
                 <h3 className="mt-4 text-xl font-semibold tracking-tight text-foreground">
-                  Une communauté bienveillante
+                  Un suivi qui reste lisible
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">
-                  Familles, enseignants et cliniciens — un même espace pour
-                  avancer avec clarté et confiance.
+                  Historique des séances, objectifs partagés et prochaines
+                  étapes toujours visibles.
                 </p>
               </div>
             </article>
@@ -113,14 +113,14 @@ export function HomeBento() {
             <Reveal delay={0.1} variant="fade-scale" className="flex-1">
               <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(14,14,15,0.4)]">
                 <div className="inline-flex size-10 items-center justify-center rounded-xl bg-surface-muted text-foreground">
-                  <PencilLine className="size-5" aria-hidden />
+                  <Video className="size-5" aria-hidden />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-                  Comprendre pour mieux agir
+                  Des séances en visio, sans complication
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">
-                  Notre approche : des mots simples, des étapes visibles, et des
-                  outils concrets dès le premier contact.
+                  Une connexion simple, pour se concentrer sur l’essentiel de
+                  la séance.
                 </p>
               </article>
             </Reveal>

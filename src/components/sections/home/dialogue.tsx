@@ -49,10 +49,10 @@ export function HomeDialogue() {
           <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
             La relation thérapeutique
           </p>
-          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Du clinicien à l’enfant,{" "}
+          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-tight">
+            Orthophoniste, parent, enfant :{" "}
             <span className="font-medium italic text-voice">
-              des mots qui circulent
+              tous ensemble pour progresser
             </span>
           </h2>
         </Reveal>
@@ -76,9 +76,6 @@ export function HomeDialogue() {
                   aria-hidden
                   className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent"
                 />
-                <p className="absolute bottom-4 left-4 rounded-full border border-border/50 bg-surface/95 px-3.5 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">
-                  Orthophoniste
-                </p>
               </div>
 
               <div className="relative min-h-[260px]">
@@ -94,9 +91,6 @@ export function HomeDialogue() {
                   aria-hidden
                   className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent"
                 />
-                <p className="absolute right-4 bottom-4 rounded-full border border-border/50 bg-surface/95 px-3.5 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">
-                  Enfant
-                </p>
               </div>
             </div>
 
@@ -225,13 +219,6 @@ export function HomeDialogue() {
               </div>
             </div>
           </div>
-        </Reveal>
-
-        <Reveal delay={0.08} className="mx-auto mt-6 max-w-xl text-center">
-          <p className="text-sm leading-7 text-muted sm:text-base">
-            Un échange clair, patient et guidé — pour que chaque mot trouve sa
-            place, de la voix du clinicien jusqu’à celle de l’enfant.
-          </p>
         </Reveal>
       </Container>
     </section>

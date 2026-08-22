@@ -51,7 +51,7 @@ function TestimonialCard({
         "relative flex flex-col justify-between gap-5 rounded-[1.35rem] border p-5 transition-transform duration-300 ease-out sm:p-6",
         fluid
           ? "w-full"
-          : "w-[min(19rem,calc(100vw-3rem))] shrink-0 hover:rotate-0 hover:scale-[1.03] sm:w-[21rem]",
+          : "w-[min(19rem,calc(100vw-3rem))] shrink-0 sm:w-[21rem]",
         tilt,
         accent
           ? "border-transparent bg-foreground text-background shadow-[0_24px_60px_-30px_rgba(14,14,15,0.55)]"
@@ -123,25 +123,35 @@ const tilts = [
   "rotate-[0.9deg]",
 ] as const;
 
+const MARQUEE_MIN_CARDS = 16;
+const SECONDS_PER_CARD = 3.6;
+
+function fillMarqueeItems(items: readonly Item[]) {
+  const filled: Item[] = [];
+  while (filled.length < MARQUEE_MIN_CARDS) {
+    filled.push(...items);
+  }
+  return filled;
+}
+
 function MarqueeRow({
   items,
   reverse,
-  duration,
   accentIndex,
 }: {
   items: readonly Item[];
   reverse?: boolean;
-  duration: number;
   accentIndex: number;
 }) {
+  const track = fillMarqueeItems(items);
+  const duration = track.length * SECONDS_PER_CARD;
+
   return (
-    <div className="group/row overflow-hidden">
+    <div className="overflow-hidden py-4">
       <div
         className={cn(
-          "flex w-max gap-4 py-4 group-hover/row:[animation-play-state:paused] motion-reduce:animate-none",
-          reverse
-            ? "animate-[testimonial-marquee-reverse_var(--marquee-duration)_linear_infinite]"
-            : "animate-[testimonial-marquee_var(--marquee-duration)_linear_infinite]",
+          "flex w-max flex-nowrap",
+          reverse ? "testimonials-marquee-reverse" : "testimonials-marquee",
         )}
         style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
       >
@@ -149,11 +159,11 @@ function MarqueeRow({
           <div
             key={copy}
             aria-hidden={copy === 1}
-            className="flex shrink-0 gap-4"
+            className="flex shrink-0 gap-4 pr-4"
           >
-            {items.map((item, index) => (
+            {track.map((item, index) => (
               <TestimonialCard
-                key={`${copy}-${item.author}`}
+                key={`${copy}-${item.author}-${index}`}
                 item={item}
                 tilt={tilts[index % tilts.length]}
                 accent={index === accentIndex}
@@ -223,8 +233,8 @@ export function TestimonialsSection() {
             className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-28"
           />
 
-          <MarqueeRow items={rowA} duration={42} accentIndex={1} />
-          <MarqueeRow items={rowB} reverse duration={52} accentIndex={2} />
+          <MarqueeRow items={rowA} accentIndex={1} />
+          <MarqueeRow items={rowB} reverse accentIndex={2} />
         </Reveal>
       )}
     </section>

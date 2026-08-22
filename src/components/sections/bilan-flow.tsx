@@ -1,682 +1,953 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Sparkles } from "lucide-react";
-import Image from "next/image";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  CircleAlert,
+  Laptop,
+  ShieldCheck,
+} from "lucide-react";
 import Link from "next/link";
-import {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type MutableRefObject,
-  type ReactNode,
-} from "react";
+import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 
-import { BrandMark } from "@/components/layout/brand-mark";
+import { BirthDateField, calculateAge } from "@/components/common/birth-date-field";
+import { FlowChoice, FlowNav, FlowSteps } from "@/components/common/flow-controls";
 import {
-  bilanFormCopy,
-  bilanQuestions,
-  labelForAnswer,
-  type BilanAnswers,
-  type BilanStep,
+  FlowCard,
+  FlowEyebrow,
+  FlowHeart,
+  FlowShell,
+  flowFieldClass,
+  flowGhostClass,
+  flowPrimaryClass,
+} from "@/components/common/flow-shell";
+import {
+  bookingForOptions,
+  eligibilityReasons,
+  particularSituations,
+  technicalConditions,
+  type EligibilityOption,
 } from "@/data/bilan-form";
-import { clearBilanDraft, useBilanDraft } from "@/hooks/use-bilan-draft";
-import { transition } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-type Phase = "welcome" | "question" | "summary" | "contact" | "merci";
+type TestStep =
+  | "welcome"
+  | "booking-for"
+  | "birth-date"
+  | "reason"
+  | "situations"
+  | "technical"
+  | "eligible"
+  | "technical-warning"
+  | "ineligible"
+  | "details"
+  | "thanks";
 
-const TOTAL_FLOW = bilanQuestions.length + 2;
+type EligibilityAnswers = {
+  bookingFor: string;
+  birthDate: string;
+  reason: string;
+  situations: string[];
+  technical: string[];
+};
 
-const fieldClassName =
-  "w-full rounded-2xl border border-border/80 bg-background px-4 py-3.5 text-base text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-muted/50 focus:border-accent focus:shadow-[0_0_0_4px_var(--accent-soft)]";
+const emptyAnswers: EligibilityAnswers = {
+  bookingFor: "",
+  birthDate: "",
+  reason: "",
+  situations: [],
+  technical: [],
+};
 
-function phaseFromIndex(index: number, started: boolean): Phase {
-  if (!started) return "welcome";
-  if (index < bilanQuestions.length) return "question";
-  if (index === bilanQuestions.length) return "summary";
-  if (index === bilanQuestions.length + 1) return "contact";
-  return "merci";
-}
+const testStepOrder: TestStep[] = [
+  "booking-for",
+  "birth-date",
+  "reason",
+  "situations",
+  "technical",
+];
 
-function isEmailValid(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-}
+const stepLabels = [
+  "Profil",
+  "Naissance",
+  "Motif",
+  "Situation",
+  "Technique",
+] as const;
 
-function isQuestionValid(step: BilanStep, answers: BilanAnswers) {
-  if (step.kind === "text") return answers[step.id].trim().length >= 2;
-  if (step.kind === "choice") return Boolean(answers[step.id]);
-  return true;
-}
+const guarantees = [
+  "Moins d’une minute",
+  "Filtrage clinique",
+  "Données protégées",
+] as const;
 
-function isContactValid(answers: BilanAnswers) {
-  return (
-    answers.parentName.trim().length >= 2 &&
-    isEmailValid(answers.email) &&
-    answers.phone.trim().replace(/\s/g, "").length >= 8
-  );
+function reasonOptionsForAge(age: number | null): readonly EligibilityOption[] {
+  if (age === null) return [];
+  if (age <= 6) return eligibilityReasons.young;
+  if (age <= 17) return eligibilityReasons.minor;
+  return eligibilityReasons.adult;
 }
 
 export function BilanFlow() {
-  const reduceMotion = useReducedMotion();
-  const {
-    hydrated,
-    stepIndex,
-    setStepIndex,
-    answers,
-    updateAnswer,
-    resetDraft,
-  } = useBilanDraft();
-  const [started, setStarted] = useState(false);
-  const [direction, setDirection] = useState(1);
-  const [submitting, setSubmitting] = useState(false);
+  const [step, setStep] = useState<TestStep>("welcome");
+  const [answers, setAnswers] = useState<EligibilityAnswers>(emptyAnswers);
   const [submitted, setSubmitted] = useState(false);
-  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
-  const canContinueRef = useRef(false);
 
-  useEffect(() => {
-    if (!hydrated) return;
-    if (stepIndex > 0 || answers.firstName.trim()) setStarted(true);
-  }, [hydrated, stepIndex, answers.firstName]);
+  const age = useMemo(
+    () => calculateAge(answers.birthDate),
+    [answers.birthDate],
+  );
+  const minor = age !== null && age < 18;
+  const reasonOptions = useMemo(() => reasonOptionsForAge(age), [age]);
+  const selectedReason = reasonOptions.find(
+    (option) => option.value === answers.reason,
+  );
+  const requiredTechnical = technicalConditions.filter(
+    (condition) => !condition.minorOnly || minor,
+  );
+  const technicalComplete = requiredTechnical.every((condition) =>
+    answers.technical.includes(condition.value),
+  );
 
-  const phase = submitted
-    ? "merci"
-    : phaseFromIndex(stepIndex, started);
-  const question =
-    phase === "question" ? bilanQuestions[stepIndex] : undefined;
-  const progressIndex = Math.min(stepIndex, TOTAL_FLOW - 1);
-  const progressPct =
-    phase === "welcome"
-      ? 0
-      : phase === "merci"
-        ? 100
-        : Math.round(((progressIndex + 1) / TOTAL_FLOW) * 100);
+  const progressIndex = testStepOrder.indexOf(step);
 
-  const canContinue = useMemo(() => {
-    if (phase === "welcome") return true;
-    if (phase === "question" && question) {
-      return isQuestionValid(question, answers);
-    }
-    if (phase === "summary") return true;
-    if (phase === "contact") return isContactValid(answers);
-    return false;
-  }, [answers, phase, question]);
-
-  canContinueRef.current = canContinue;
-
-  useEffect(() => {
-    if (!hydrated || phase === "merci" || phase === "summary" || phase === "welcome")
-      return;
-    const timer = window.setTimeout(() => inputRef.current?.focus(), 240);
-    return () => window.clearTimeout(timer);
-  }, [hydrated, phase, stepIndex]);
-
-  function goTo(next: number) {
-    setDirection(next > stepIndex ? 1 : -1);
-    setStepIndex(next);
+  function updateAnswer<K extends keyof EligibilityAnswers>(
+    key: K,
+    value: EligibilityAnswers[K],
+  ) {
+    setAnswers((current) => ({ ...current, [key]: value }));
   }
 
-  async function handleSubmit() {
-    if (!isContactValid(answers) || submitting || submitted) return;
-    setSubmitting(true);
-    await new Promise((resolve) => window.setTimeout(resolve, 700));
-    clearBilanDraft();
-    setDirection(1);
-    setSubmitted(true);
-    setSubmitting(false);
+  function resetFlow() {
+    setAnswers(emptyAnswers);
+    setSubmitted(false);
+    setStep("welcome");
   }
 
-  function goNext() {
-    if (!canContinueRef.current || phase === "merci") return;
-    if (phase === "welcome") {
-      setStarted(true);
-      setDirection(1);
+  function continueFromBirthDate() {
+    if (age === null || age < 0 || age > 120) return;
+    if (age < 1) {
+      setStep("ineligible");
       return;
     }
-    if (phase === "contact") {
-      void handleSubmit();
+    updateAnswer("reason", "");
+    setStep("reason");
+  }
+
+  function continueFromReason() {
+    if (!selectedReason) return;
+    if (!selectedReason.eligible) {
+      setStep("ineligible");
       return;
     }
-    goTo(stepIndex + 1);
+    setStep("situations");
+  }
+
+  function continueFromSituations() {
+    if (answers.situations.length === 0) return;
+    if (!answers.situations.includes("none")) {
+      setStep("ineligible");
+      return;
+    }
+    setStep("technical");
+  }
+
+  function continueFromTechnical() {
+    setStep(technicalComplete ? "eligible" : "technical-warning");
+  }
+
+  function toggleSituation(value: string) {
+    setAnswers((current) => {
+      if (value === "none") {
+        return {
+          ...current,
+          situations: current.situations.includes("none") ? [] : ["none"],
+        };
+      }
+      const withoutNone = current.situations.filter((item) => item !== "none");
+      return {
+        ...current,
+        situations: withoutNone.includes(value)
+          ? withoutNone.filter((item) => item !== value)
+          : [...withoutNone, value],
+      };
+    });
+  }
+
+  function toggleTechnical(value: string) {
+    setAnswers((current) => ({
+      ...current,
+      technical: current.technical.includes(value)
+        ? current.technical.filter((item) => item !== value)
+        : [...current.technical, value],
+    }));
   }
 
   function goBack() {
-    if (phase === "merci") return;
-    if (phase === "welcome") return;
-    if (phase === "question" && stepIndex === 0) {
-      setStarted(false);
-      setDirection(-1);
-      return;
-    }
-    goTo(stepIndex - 1);
+    const previous: Partial<Record<TestStep, TestStep>> = {
+      "booking-for": "welcome",
+      "birth-date": "booking-for",
+      reason: "birth-date",
+      situations: "reason",
+      technical: "situations",
+      eligible: "technical",
+      "technical-warning": "technical",
+      details: "eligible",
+    };
+    const target = previous[step];
+    if (target) setStep(target);
   }
 
-  function handleRestart() {
-    setSubmitted(false);
-    setStarted(false);
-    resetDraft();
-    setDirection(1);
-  }
-
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key !== "Enter" || event.shiftKey || submitted) return;
-      const tag = (event.target as HTMLElement | null)?.tagName;
-      if (tag === "TEXTAREA") return;
-      event.preventDefault();
-      if (!canContinueRef.current) return;
-      goNext();
-    }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  });
-
-  const slide = reduceMotion
-    ? {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0 },
-      }
-    : {
-        initial: { opacity: 0, y: direction > 0 ? 24 : -24 },
-        animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: direction > 0 ? -18 : 18 },
-      };
-
-  if (!hydrated) {
-    return (
-      <section className="flex min-h-svh items-center justify-center bg-background">
-        <div className="size-9 animate-pulse rounded-full bg-accent-soft" />
-      </section>
-    );
+  function handleDetailsSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+    setStep("thanks");
   }
 
   return (
-    <section className="min-h-svh bg-background lg:grid lg:h-svh lg:grid-cols-[0.95fr_1.05fr] lg:overflow-hidden">
-      {/* Visual side */}
-      <aside className="relative hidden overflow-hidden lg:block">
-        <Image
-          src="/images/path-bilan.jpg"
-          alt=""
-          fill
-          priority
-          sizes="50vw"
-          className="object-cover"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/90 via-[#0E0E0F]/45 to-[#0E0E0F]/20"
-        />
-        <div className="relative flex h-full min-h-svh flex-col justify-between p-10 xl:p-14">
-          <BrandMark tone="onDark" />
+    <FlowShell
+      tone="brand"
+      width={step === "details" ? "lg" : "md"}
+      align={step === "details" ? "top" : "center"}
+      rail={
+        progressIndex >= 0 ? (
+          <FlowSteps steps={stepLabels} current={progressIndex} />
+        ) : null
+      }
+    >
+      {step === "welcome" ? (
+        <WelcomeStep onStart={() => setStep("booking-for")} />
+      ) : null}
 
-          <div className="max-w-md">
-            <p className="text-xs font-medium tracking-[0.22em] text-white/70 uppercase">
-              Bilan orthophonique
-            </p>
-            <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-white xl:text-5xl">
-              Préparez votre bilan{" "}
-              <span className="font-medium italic text-voice">en douceur</span>
-            </h2>
-            <p className="mt-5 text-base leading-7 text-white/80">
-              Une question à la fois. Vos réponses sont enregistrées
-              automatiquement — pour un échange plus clair dès le premier
-              contact.
-            </p>
-
-            <ul className="mt-8 flex flex-col gap-3">
-              {[
-                "5 à 7 minutes chrono",
-                "Sans engagement",
-                "Réponse sous 24–48h",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="inline-flex items-center gap-3 text-sm text-white/85"
-                >
-                  <span className="inline-flex size-6 items-center justify-center rounded-full bg-white/15">
-                    <Check className="size-3.5 text-white" aria-hidden />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <p className="max-w-sm text-xs leading-5 text-white/55">
-            {bilanFormCopy.disclaimer}
-          </p>
-        </div>
-      </aside>
-
-      {/* Flow side */}
-      <div className="relative flex min-h-svh flex-col px-5 pt-6 pb-8 sm:px-8 lg:h-svh lg:overflow-y-auto lg:px-12 lg:pt-10 xl:px-16">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle_at_top_right,var(--accent-soft),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(254,81,16,0.12),transparent_40%)]"
-        />
-
-        <div className="relative mx-auto flex w-full max-w-lg items-center justify-between gap-3 lg:hidden">
-          <BrandMark compact />
-          {phase !== "merci" && phase !== "welcome" ? (
-            <p className="text-sm tabular-nums text-muted">{progressPct}%</p>
-          ) : null}
-        </div>
-
-        {phase !== "merci" && phase !== "welcome" ? (
-          <header className="relative mx-auto mt-5 w-full max-w-lg lg:mt-0">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <p className="text-xs font-medium tracking-[0.18em] text-muted uppercase">
-                {bilanFormCopy.eyebrow}
-              </p>
-              <p className="hidden text-sm tabular-nums text-muted lg:block">
-                {progressPct}%
-              </p>
-            </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-surface-muted">
-              <motion.div
-                className="h-full rounded-full bg-accent"
-                initial={false}
-                animate={{ width: `${progressPct}%` }}
-                transition={transition.base}
+      {step === "booking-for" ? (
+        <QuestionCard
+          title="Pour qui réservez-vous ?"
+          onBack={goBack}
+          onNext={() => setStep("birth-date")}
+          canContinue={Boolean(answers.bookingFor)}
+        >
+          <div className="grid gap-2.5 sm:grid-cols-3">
+            {bookingForOptions.map((option) => (
+              <FlowChoice
+                key={option.value}
+                label={option.label}
+                selected={answers.bookingFor === option.value}
+                onSelect={() => updateAnswer("bookingFor", option.value)}
               />
-            </div>
-          </header>
-        ) : null}
+            ))}
+          </div>
+        </QuestionCard>
+      ) : null}
 
-        <div className="relative mx-auto flex w-full max-w-lg flex-1 flex-col justify-center py-8 sm:py-10">
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={
-                phase === "question"
-                  ? question?.id
-                  : phase === "welcome"
-                    ? "welcome"
-                    : phase
-              }
-              initial={slide.initial}
-              animate={slide.animate}
-              exit={slide.exit}
-              transition={transition.base}
-            >
-              {phase === "welcome" ? (
-                <WelcomeStep onStart={goNext} />
-              ) : null}
+      {step === "birth-date" ? (
+        <QuestionCard
+          title="Quelle est la date de naissance du patient ?"
+          description="Elle nous permet d’adapter les questions et de vérifier l’éligibilité selon l’âge."
+          onBack={goBack}
+          onNext={continueFromBirthDate}
+          canContinue={age !== null && age >= 0 && age <= 120}
+        >
+          <BirthDateField
+            featured
+            value={answers.birthDate}
+            onChange={(value) => updateAnswer("birthDate", value)}
+          />
+        </QuestionCard>
+      ) : null}
 
-              {phase === "question" && question ? (
-                <QuestionStep
-                  step={question}
-                  answers={answers}
-                  updateAnswer={updateAnswer}
-                  inputRef={inputRef}
-                  onAutoAdvance={() => {
-                    window.setTimeout(() => {
-                      setDirection(1);
-                      setStepIndex((value) => value + 1);
-                    }, 200);
-                  }}
-                />
-              ) : null}
+      {step === "reason" ? (
+        <QuestionCard
+          title="Quel est le motif principal de la demande ?"
+          onBack={goBack}
+          onNext={continueFromReason}
+          canContinue={Boolean(selectedReason)}
+        >
+          <div className="grid gap-2.5">
+            {reasonOptions.map((option) => (
+              <FlowChoice
+                key={option.value}
+                label={option.label}
+                selected={answers.reason === option.value}
+                onSelect={() => updateAnswer("reason", option.value)}
+              />
+            ))}
+          </div>
+        </QuestionCard>
+      ) : null}
 
-              {phase === "summary" ? <SummaryStep answers={answers} /> : null}
+      {step === "situations" ? (
+        <QuestionCard
+          title="Le patient est-il concerné par l’une de ces situations ?"
+          description="Ces informations nous permettent de vérifier que l’accompagnement à distance est réellement adapté."
+          onBack={goBack}
+          onNext={continueFromSituations}
+          canContinue={answers.situations.length > 0}
+        >
+          <div className="flex flex-col gap-2.5">
+            {particularSituations.map((option) => (
+              <FlowChoice
+                key={option.value}
+                label={option.label}
+                multi
+                selected={answers.situations.includes(option.value)}
+                onSelect={() => toggleSituation(option.value)}
+              />
+            ))}
+          </div>
+        </QuestionCard>
+      ) : null}
 
-              {phase === "contact" ? (
-                <ContactStep
-                  answers={answers}
-                  updateAnswer={updateAnswer}
-                  inputRef={inputRef}
-                />
-              ) : null}
+      {step === "technical" ? (
+        <QuestionCard
+          title="Pouvez-vous réunir ces conditions techniques ?"
+          description="Cochez toutes les conditions dont vous disposez aujourd’hui."
+          onBack={goBack}
+          onNext={continueFromTechnical}
+          canContinue
+        >
+          <div className="flex flex-col gap-2.5">
+            {requiredTechnical.map((option) => (
+              <FlowChoice
+                key={option.value}
+                label={option.label}
+                multi
+                selected={answers.technical.includes(option.value)}
+                onSelect={() => toggleTechnical(option.value)}
+              />
+            ))}
+          </div>
+        </QuestionCard>
+      ) : null}
 
-              {phase === "merci" ? (
-                <MerciStep onRestart={handleRestart} />
-              ) : null}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+      {step === "eligible" ? (
+        <ResultCard
+          tone="positive"
+          icon={ShieldCheck}
+          eyebrow="Éligibilité confirmée"
+          title="Votre situation est éligible"
+          body="Votre situation est éligible à la prise en soin en visioconférence. Il ne vous reste qu’une étape : remplir vos coordonnées."
+          primaryLabel="Remplir mes coordonnées"
+          onPrimary={() => setStep("details")}
+          onBack={goBack}
+        />
+      ) : null}
 
-        {phase !== "merci" && phase !== "welcome" ? (
-          <footer className="relative mx-auto w-full max-w-lg">
-            <div className="flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={goBack}
-                className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
-              >
-                <ArrowLeft className="size-4" aria-hidden />
-                {bilanFormCopy.back}
-              </button>
+      {step === "technical-warning" ? (
+        <ResultCard
+          tone="neutral"
+          icon={Laptop}
+          eyebrow="À prévoir"
+          title="Conditions techniques à prévoir"
+          body="Nos séances nécessitent un ordinateur ou une tablette avec caméra et micro, une connexion stable et une pièce calme. Si vous pensez pouvoir réunir ces conditions d’ici votre rendez-vous, vous pouvez poursuivre votre réservation."
+          primaryLabel="Je poursuis quand même"
+          onPrimary={() => setStep("eligible")}
+          secondaryHref="/nous-contacter"
+          secondaryLabel="Nous contacter"
+          onBack={goBack}
+        />
+      ) : null}
 
-              <button
-                type="button"
-                onClick={goNext}
-                disabled={!canContinue || submitting}
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-[0_14px_30px_-16px_rgba(254,81,16,0.7)] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {phase === "contact"
-                  ? submitting
-                    ? "Envoi…"
-                    : bilanFormCopy.submit
-                  : bilanFormCopy.next}
-                {phase !== "contact" ? (
-                  <ArrowRight className="size-4" aria-hidden />
-                ) : null}
-              </button>
-            </div>
-            <p className="mt-4 text-center text-xs leading-5 text-muted lg:hidden">
-              {bilanFormCopy.disclaimer}
-            </p>
-          </footer>
-        ) : null}
-      </div>
-    </section>
+      {step === "ineligible" ? (
+        <ResultCard
+          tone="warning"
+          icon={CircleAlert}
+          eyebrow="Orientation"
+          title="Un accompagnement en présence est recommandé"
+          body="D’après vos réponses, la situation décrite nécessite un accompagnement en présence physique, que nous ne pouvons pas assurer dans de bonnes conditions à distance. Pour trouver un orthophoniste près de chez vous, Allo Ortho recense les praticiens disponibles dans votre région."
+          primaryLabel="Trouver un orthophoniste"
+          primaryHref="https://app.allo-ortho.com/?utm_page=49&utm_cta=video"
+          secondaryHref="/nous-contacter"
+          secondaryLabel="Nous contacter"
+          onRestart={resetFlow}
+        />
+      ) : null}
+
+      {step === "details" ? (
+        <DetailsForm
+          birthDate={answers.birthDate}
+          onBack={goBack}
+          onSubmit={handleDetailsSubmit}
+        />
+      ) : null}
+
+      {step === "thanks" && submitted ? (
+        <ThanksStep onRestart={resetFlow} />
+      ) : null}
+    </FlowShell>
   );
 }
 
 function WelcomeStep({ onStart }: { onStart: () => void }) {
   return (
-    <div className="text-center lg:text-left">
-      <div className="mx-auto mb-6 inline-flex size-14 items-center justify-center rounded-[1.25rem] bg-accent-soft text-accent lg:mx-0">
-        <Sparkles className="size-6" aria-hidden />
-      </div>
-      <p className="text-xs font-medium tracking-[0.2em] text-brand uppercase">
-        {bilanFormCopy.eyebrow}
-      </p>
-      <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-        {bilanFormCopy.title}
-      </h1>
-      <p className="mx-auto mt-4 max-w-md text-base leading-7 text-muted lg:mx-0">
-        {bilanFormCopy.description}
-      </p>
-
-      <div className="mt-8 overflow-hidden rounded-[1.5rem] border border-border lg:hidden">
-        <div className="relative aspect-[16/10]">
-          <Image
-            src="/images/path-bilan.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
+    <FlowCard>
+      <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
+        <div className="min-w-0 flex-1">
+          <FlowEyebrow icon={ShieldCheck}>Test d’éligibilité</FlowEyebrow>
+          <h1 className="mt-5 font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-tight">
+            Vérifions que la visio est{" "}
+            <span className="font-medium italic text-brand">adaptée</span>
+          </h1>
         </div>
+        <FlowHeart
+          src="/images/path-bilan.jpg"
+          className="w-24 rotate-6 sm:w-32"
+          sizes="128px"
+          priority
+        />
       </div>
 
-      <button
-        type="button"
-        onClick={onStart}
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground shadow-[0_14px_30px_-16px_rgba(254,81,16,0.7)]"
-      >
-        Commencer
+      <p className="mt-5 text-base leading-7 text-muted">
+        Cinq questions rapides pour vérifier que nous pouvons vous accompagner à
+        distance. Vos coordonnées ne sont demandées qu’ensuite, si votre
+        situation est éligible.
+      </p>
+
+      <ul className="mt-6 flex flex-wrap gap-2">
+        {guarantees.map((item) => (
+          <li
+            key={item}
+            className="inline-flex items-center gap-1.5 rounded-full bg-surface-muted px-3 py-1.5 text-xs font-medium text-muted"
+          >
+            <Check className="size-3.5 text-brand" aria-hidden />
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-7 border-l-2 border-brand bg-brand-soft/50 px-5 py-4">
+        <p className="text-sm leading-6 text-muted">
+          Les Orthos en Visio est responsable du traitement. Les réponses au test
+          restent dans cette session et sont supprimées si votre situation n’est
+          pas éligible. Si vous poursuivez, vos informations sont traitées selon
+          notre politique de confidentialité.
+        </p>
+      </div>
+
+      <button type="button" onClick={onStart} className={cn(flowPrimaryClass, "mt-8 w-full sm:w-auto")}>
+        Commencer le test
         <ArrowRight className="size-4" aria-hidden />
       </button>
-    </div>
+    </FlowCard>
   );
 }
 
-function QuestionStep({
-  step,
-  answers,
-  updateAnswer,
-  inputRef,
-  onAutoAdvance,
+function QuestionCard({
+  title,
+  description,
+  children,
+  onBack,
+  onNext,
+  canContinue,
 }: {
-  step: BilanStep;
-  answers: BilanAnswers;
-  updateAnswer: <K extends keyof BilanAnswers>(
-    key: K,
-    value: BilanAnswers[K],
-  ) => void;
-  inputRef: MutableRefObject<HTMLInputElement | HTMLTextAreaElement | null>;
-  onAutoAdvance: () => void;
+  title: string;
+  description?: string;
+  children: ReactNode;
+  onBack: () => void;
+  onNext: () => void;
+  canContinue: boolean;
 }) {
   return (
-    <div>
-      <h1 className="font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-[1.15]">
-        {step.prompt}
+    <FlowCard>
+      <h1 className="font-display text-[1.6rem] font-semibold tracking-tight text-foreground sm:text-[2rem] sm:leading-tight">
+        {title}
       </h1>
-
-      {step.kind === "text" ? (
-        <div className="mt-8">
-          <input
-            ref={inputRef as MutableRefObject<HTMLInputElement>}
-            type="text"
-            value={answers.firstName}
-            onChange={(event) => updateAnswer("firstName", event.target.value)}
-            placeholder={step.placeholder}
-            autoComplete="given-name"
-            className="w-full border-0 border-b-2 border-border bg-transparent px-0 py-3 font-display text-3xl text-foreground outline-none transition-colors placeholder:text-muted/40 focus:border-accent sm:text-4xl"
-          />
-          {step.helper ? (
-            <p className="mt-4 text-sm leading-6 text-muted">{step.helper}</p>
-          ) : null}
-        </div>
+      {description ? (
+        <p className="mt-3 text-sm leading-6 text-muted sm:text-base sm:leading-7">
+          {description}
+        </p>
       ) : null}
-
-      {step.kind === "textarea" ? (
-        <div className="mt-8">
-          <textarea
-            ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
-            value={answers.notes}
-            onChange={(event) => updateAnswer("notes", event.target.value)}
-            placeholder={step.placeholder}
-            rows={5}
-            className={cn(fieldClassName, "resize-none leading-7")}
-          />
-          {step.optional ? (
-            <p className="mt-3 text-sm text-muted">
-              Facultatif — vous pouvez passer.
-            </p>
-          ) : null}
-        </div>
-      ) : null}
-
-      {step.kind === "choice" ? (
-        <div className="mt-8 flex flex-col gap-2.5">
-          {step.options.map((option, index) => {
-            const selected = answers[step.id] === option.value;
-            return (
-              <motion.button
-                key={option.value}
-                type="button"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05, ...transition.fast }}
-                onClick={() => {
-                  updateAnswer(step.id, option.value);
-                  onAutoAdvance();
-                }}
-                className={cn(
-                  "group flex items-center gap-4 rounded-2xl border px-4 py-4 text-left text-[0.95rem] font-medium transition-all sm:px-5",
-                  selected
-                    ? "border-accent bg-accent text-accent-foreground shadow-[0_16px_36px_-20px_rgba(254,81,16,0.65)]"
-                    : "border-border bg-surface text-foreground hover:border-accent/40 hover:bg-accent-soft/50",
-                )}
-              >
-                <span
-                  className={cn(
-                    "inline-flex size-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors",
-                    selected
-                      ? "border-white/30 bg-white/15 text-white"
-                      : "border-border bg-background text-muted group-hover:border-accent/30",
-                  )}
-                >
-                  {selected ? (
-                    <Check className="size-3.5" aria-hidden />
-                  ) : (
-                    String.fromCharCode(65 + index)
-                  )}
-                </span>
-                {option.label}
-              </motion.button>
-            );
-          })}
-        </div>
-      ) : null}
-    </div>
+      <div className="mt-7">{children}</div>
+      <FlowNav
+        onBack={onBack}
+        onNext={onNext}
+        canContinue={canContinue}
+        className="mt-7 border-t border-border pt-6"
+      />
+    </FlowCard>
   );
 }
 
-function SummaryStep({ answers }: { answers: BilanAnswers }) {
-  const rows = [
-    { label: "Prénom", value: answers.firstName || "—" },
-    { label: "Âge", value: labelForAnswer("age", answers.age) },
-    { label: "Motif", value: labelForAnswer("reason", answers.reason) },
-    { label: "Durée", value: labelForAnswer("duration", answers.duration) },
-    {
-      label: "Suivi actuel",
-      value: labelForAnswer("followed", answers.followed),
-    },
-    {
-      label: "Remarques",
-      value: answers.notes.trim() || "Aucune",
-    },
-  ];
+const resultTones = {
+  positive: "bg-brand-soft text-brand",
+  neutral: "bg-surface-muted text-foreground",
+  warning: "bg-accent-soft text-foreground",
+} as const;
 
+function ResultCard({
+  tone,
+  icon: Icon,
+  eyebrow,
+  title,
+  body,
+  primaryLabel,
+  primaryHref,
+  onPrimary,
+  secondaryHref,
+  secondaryLabel,
+  onBack,
+  onRestart,
+}: {
+  tone: keyof typeof resultTones;
+  icon: typeof ShieldCheck;
+  eyebrow: string;
+  title: string;
+  body: string;
+  primaryLabel: string;
+  primaryHref?: string;
+  onPrimary?: () => void;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  onBack?: () => void;
+  onRestart?: () => void;
+}) {
   return (
-    <div>
-      <h1 className="font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl">
-        {bilanFormCopy.summaryTitle}
-      </h1>
-      <p className="mt-3 text-base leading-7 text-muted">
-        {bilanFormCopy.summarySubtitle}
-      </p>
+    <FlowCard>
+      <span
+        className={cn(
+          "inline-flex size-14 items-center justify-center rounded-2xl",
+          resultTones[tone],
+        )}
+      >
+        <Icon className="size-6" aria-hidden />
+      </span>
 
-      <dl className="mt-8 overflow-hidden rounded-[1.5rem] border border-border bg-surface shadow-[var(--shadow-card)]">
-        {rows.map((row, index) => (
-          <div
-            key={row.label}
-            className={cn(
-              "grid gap-1 px-5 py-4 sm:grid-cols-[7.5rem_1fr] sm:items-center sm:gap-4",
-              index !== rows.length - 1 && "border-b border-border",
-            )}
+      <p className="mt-6 text-xs font-semibold tracking-[0.16em] text-muted uppercase">
+        {eyebrow}
+      </p>
+      <h1 className="mt-2 font-display text-[1.6rem] font-semibold tracking-tight text-foreground sm:text-[2rem] sm:leading-tight">
+        {title}
+      </h1>
+      <p className="mt-4 text-base leading-7 text-muted">{body}</p>
+
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+        {primaryHref ? (
+          <a
+            href={primaryHref}
+            target="_blank"
+            rel="noreferrer"
+            className={flowPrimaryClass}
           >
-            <dt className="text-xs font-medium tracking-[0.12em] text-muted uppercase">
-              {row.label}
-            </dt>
-            <dd className="text-sm font-medium text-foreground sm:text-base">
-              {row.value}
-            </dd>
+            {primaryLabel}
+            <ArrowRight className="size-4" aria-hidden />
+          </a>
+        ) : (
+          <button type="button" onClick={onPrimary} className={flowPrimaryClass}>
+            {primaryLabel}
+            <ArrowRight className="size-4" aria-hidden />
+          </button>
+        )}
+        {secondaryHref && secondaryLabel ? (
+          <Link href={secondaryHref} className={flowGhostClass}>
+            {secondaryLabel}
+          </Link>
+        ) : null}
+      </div>
+
+      {onBack || onRestart ? (
+        <div className="mt-7 border-t border-border pt-5">
+          <button
+            type="button"
+            onClick={onBack ?? onRestart}
+            className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium text-muted transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="size-4" aria-hidden />
+            {onBack ? "Modifier mes réponses" : "Recommencer le test"}
+          </button>
+        </div>
+      ) : null}
+    </FlowCard>
+  );
+}
+
+function DetailsForm({
+  birthDate,
+  onBack,
+  onSubmit,
+}: {
+  birthDate: string;
+  onBack: () => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+}) {
+  const [patientBirthDate, setPatientBirthDate] = useState(birthDate);
+  const patientAge = calculateAge(patientBirthDate);
+  const patientIsMinor = patientAge !== null && patientAge < 18;
+
+  return (
+    <div>
+      <div className="max-w-xl">
+        <FlowEyebrow icon={Check}>Dernière étape</FlowEyebrow>
+        <h1 className="mt-5 font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl">
+          Finalisez votre demande
+        </h1>
+        <p className="mt-4 text-base leading-7 text-muted">
+          Votre situation est éligible. Renseignez les informations nécessaires à
+          la préparation du rendez-vous.
+        </p>
+      </div>
+
+      <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
+        <FormSection index={1} title="Le patient">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field label="Nom" htmlFor="patient-last-name" required>
+              <input
+                id="patient-last-name"
+                name="patientLastName"
+                required
+                autoComplete="family-name"
+                className={flowFieldClass}
+              />
+            </Field>
+            <Field label="Prénom" htmlFor="patient-first-name" required>
+              <input
+                id="patient-first-name"
+                name="patientFirstName"
+                required
+                autoComplete="given-name"
+                className={flowFieldClass}
+              />
+            </Field>
           </div>
-        ))}
-      </dl>
+
+          <div className="mt-5">
+            <p className="mb-2 text-sm font-medium text-foreground">
+              Date de naissance <span className="text-accent">*</span>
+            </p>
+            <BirthDateField
+              name="patientBirthDate"
+              value={patientBirthDate}
+              onChange={setPatientBirthDate}
+            />
+          </div>
+          <div className="mt-5 max-w-xs">
+            <Field label="Sexe" htmlFor="patient-sex">
+              <select
+                id="patient-sex"
+                name="patientSex"
+                defaultValue=""
+                className={flowFieldClass}
+              >
+                <option value="">Non renseigné</option>
+                <option value="female">Féminin</option>
+                <option value="male">Masculin</option>
+              </select>
+            </Field>
+          </div>
+        </FormSection>
+
+        {patientIsMinor ? (
+          <FormSection index={2} title="Le représentant légal">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Nom" htmlFor="guardian-last-name" required>
+                <input
+                  id="guardian-last-name"
+                  name="guardianLastName"
+                  required
+                  className={flowFieldClass}
+                />
+              </Field>
+              <Field label="Prénom" htmlFor="guardian-first-name" required>
+                <input
+                  id="guardian-first-name"
+                  name="guardianFirstName"
+                  required
+                  className={flowFieldClass}
+                />
+              </Field>
+              <Field label="Lien avec le patient" htmlFor="guardian-link" required>
+                <select
+                  id="guardian-link"
+                  name="guardianLink"
+                  required
+                  defaultValue=""
+                  className={flowFieldClass}
+                >
+                  <option value="" disabled>
+                    Sélectionner
+                  </option>
+                  <option value="mother">Mère</option>
+                  <option value="father">Père</option>
+                  <option value="legal-guardian">Tuteur légal</option>
+                  <option value="other">Autre</option>
+                </select>
+              </Field>
+            </div>
+            <div className="mt-5">
+              <Consent name="parentalAuthority" required>
+                Je certifie être titulaire de l’autorité parentale.
+              </Consent>
+            </div>
+          </FormSection>
+        ) : null}
+
+        <FormSection index={patientIsMinor ? 3 : 2} title="Coordonnées">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field label="Adresse e-mail" htmlFor="email" required>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                className={flowFieldClass}
+              />
+            </Field>
+            <Field label="Téléphone" htmlFor="phone" required>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                autoComplete="tel"
+                placeholder="+33 6 00 00 00 00"
+                className={flowFieldClass}
+              />
+            </Field>
+            <Field label="Adresse postale" htmlFor="address" required>
+              <input
+                id="address"
+                name="address"
+                required
+                autoComplete="street-address"
+                className={flowFieldClass}
+              />
+            </Field>
+            <Field label="Code postal" htmlFor="postal-code" required>
+              <input
+                id="postal-code"
+                name="postalCode"
+                required
+                autoComplete="postal-code"
+                className={flowFieldClass}
+              />
+            </Field>
+            <Field label="Ville" htmlFor="city" required>
+              <input
+                id="city"
+                name="city"
+                required
+                autoComplete="address-level2"
+                className={flowFieldClass}
+              />
+            </Field>
+            <Field label="Pays" htmlFor="country" required>
+              <select
+                id="country"
+                name="country"
+                required
+                defaultValue="France"
+                autoComplete="country-name"
+                className={flowFieldClass}
+              >
+                <option>France</option>
+                <option>Belgique</option>
+                <option>Suisse</option>
+                <option>Luxembourg</option>
+                <option>Autre</option>
+              </select>
+            </Field>
+          </div>
+        </FormSection>
+
+        <FormSection index={patientIsMinor ? 4 : 3} title="Parcours de soin">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field label="Nom du médecin prescripteur" htmlFor="doctor-name">
+              <input
+                id="doctor-name"
+                name="doctorName"
+                className={flowFieldClass}
+              />
+            </Field>
+            <Field
+              label="Avez-vous déjà une ordonnance ?"
+              htmlFor="prescription"
+              required
+            >
+              <select
+                id="prescription"
+                name="prescription"
+                required
+                defaultValue=""
+                className={flowFieldClass}
+              >
+                <option value="" disabled>
+                  Sélectionner
+                </option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+                <option value="planned">Non, je vais l’obtenir</option>
+              </select>
+            </Field>
+            <Field
+              label="Le patient a-t-il déjà été suivi en orthophonie ?"
+              htmlFor="previous-care"
+              required
+            >
+              <select
+                id="previous-care"
+                name="previousCare"
+                required
+                defaultValue=""
+                className={flowFieldClass}
+              >
+                <option value="" disabled>
+                  Sélectionner
+                </option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select>
+            </Field>
+            <Field label="Comment nous avez-vous connus ?" htmlFor="source">
+              <select
+                id="source"
+                name="source"
+                defaultValue=""
+                className={flowFieldClass}
+              >
+                <option value="">Sélectionner</option>
+                <option value="instagram">Instagram</option>
+                <option value="facebook">Facebook</option>
+                <option value="google">Recherche Google</option>
+                <option value="word-of-mouth">Bouche-à-oreille</option>
+                <option value="health-professional">
+                  Professionnel de santé
+                </option>
+                <option value="other">Autre</option>
+              </select>
+            </Field>
+          </div>
+        </FormSection>
+
+        <FormSection index={patientIsMinor ? 5 : 4} title="Consentements">
+          <div className="flex flex-col gap-3">
+            <Consent name="terms" required>
+              J’accepte les Conditions Générales de Vente et ai pris connaissance
+              de la politique de confidentialité.
+            </Consent>
+            <Consent name="earlyStart" required>
+              Je demande expressément que la prestation commence avant la fin du
+              délai de rétractation de 14 jours.
+            </Consent>
+            <Consent name="marketing">
+              J’accepte de recevoir des e-mails d’information de la part des
+              Orthos en Visio.
+            </Consent>
+          </div>
+        </FormSection>
+
+        <div className="sticky bottom-4 mt-2">
+          <div className="flex flex-col-reverse gap-3 rounded-[var(--radius-card)] border border-border bg-surface/95 p-3 shadow-[var(--shadow-card)] backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:rounded-full sm:py-2 sm:pl-5">
+            <button
+              type="button"
+              onClick={onBack}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-3 text-sm font-medium text-muted transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="size-4" aria-hidden />
+              Retour
+            </button>
+            <button type="submit" className={flowPrimaryClass}>
+              Envoyer ma demande
+              <ArrowRight className="size-4" aria-hidden />
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }
 
-function ContactStep({
-  answers,
-  updateAnswer,
-  inputRef,
+function FormSection({
+  index,
+  title,
+  children,
 }: {
-  answers: BilanAnswers;
-  updateAnswer: <K extends keyof BilanAnswers>(
-    key: K,
-    value: BilanAnswers[K],
-  ) => void;
-  inputRef: MutableRefObject<HTMLInputElement | HTMLTextAreaElement | null>;
+  index: number;
+  title: string;
+  children: ReactNode;
 }) {
   return (
-    <div>
-      <h1 className="font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl">
-        {bilanFormCopy.contactTitle}
-      </h1>
-      <p className="mt-3 text-base leading-7 text-muted">
-        {bilanFormCopy.contactSubtitle}
-      </p>
-
-      <div className="mt-8 flex flex-col gap-4 rounded-[1.5rem] border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-6">
-        <Field label="Nom du parent" htmlFor="parentName">
-          <input
-            ref={inputRef as MutableRefObject<HTMLInputElement>}
-            id="parentName"
-            type="text"
-            value={answers.parentName}
-            onChange={(event) => updateAnswer("parentName", event.target.value)}
-            autoComplete="name"
-            className={fieldClassName}
-            placeholder="Votre nom"
-          />
-        </Field>
-        <Field label="Courriel" htmlFor="email">
-          <input
-            id="email"
-            type="email"
-            value={answers.email}
-            onChange={(event) => updateAnswer("email", event.target.value)}
-            autoComplete="email"
-            className={fieldClassName}
-            placeholder="vous@exemple.fr"
-          />
-        </Field>
-        <Field label="Téléphone" htmlFor="phone">
-          <input
-            id="phone"
-            type="tel"
-            value={answers.phone}
-            onChange={(event) => updateAnswer("phone", event.target.value)}
-            autoComplete="tel"
-            className={fieldClassName}
-            placeholder="06 00 00 00 00"
-          />
-        </Field>
+    <FlowCard>
+      <div className="flex items-center gap-3">
+        <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand">
+          {index}
+        </span>
+        <h2 className="font-display text-lg font-semibold text-foreground">
+          {title}
+        </h2>
       </div>
-    </div>
+      <div className="mt-6">{children}</div>
+    </FlowCard>
   );
 }
 
 function Field({
   label,
   htmlFor,
+  required = false,
   children,
 }: {
   label: string;
   htmlFor: string;
+  required?: boolean;
   children: ReactNode;
 }) {
   return (
-    <label htmlFor={htmlFor} className="block">
+    <label htmlFor={htmlFor} className="block min-w-0">
       <span className="mb-2 block text-sm font-medium text-foreground">
         {label}
+        {required ? <span className="ml-1 text-accent">*</span> : null}
       </span>
       {children}
     </label>
   );
 }
 
-function MerciStep({ onRestart }: { onRestart: () => void }) {
+function Consent({
+  name,
+  required = false,
+  children,
+}: {
+  name: string;
+  required?: boolean;
+  children: ReactNode;
+}) {
   return (
-    <div className="text-center">
-      <motion.div
-        initial={{ scale: 0.85, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={transition.base}
-        className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-accent-soft text-accent"
-      >
+    <label className="flex items-start gap-3 rounded-xl bg-surface-muted/70 px-4 py-3 text-sm leading-6 text-foreground transition-colors hover:bg-surface-muted">
+      <input
+        type="checkbox"
+        name={name}
+        required={required}
+        className="mt-1 size-4 shrink-0 accent-[var(--brand)]"
+      />
+      <span>
+        {children}
+        {required ? <span className="ml-1 text-accent">*</span> : null}
+      </span>
+    </label>
+  );
+}
+
+function ThanksStep({ onRestart }: { onRestart: () => void }) {
+  return (
+    <FlowCard className="text-center">
+      <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-brand-soft text-brand">
         <Check className="size-7" aria-hidden />
-      </motion.div>
-      <h1 className="mt-6 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-        {bilanFormCopy.merciTitle}
+      </span>
+      <h1 className="mt-6 font-display text-3xl font-semibold text-foreground sm:text-4xl">
+        Demande envoyée
       </h1>
-      <p className="mx-auto mt-4 max-w-md text-base leading-7 text-muted sm:text-lg">
-        {bilanFormCopy.merciBody}
+      <p className="mx-auto mt-4 max-w-md text-base leading-7 text-muted">
+        Merci. Votre demande a bien été enregistrée. Notre équipe vous
+        recontactera rapidement pour la suite.
       </p>
-      <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Link
-          href="/"
-          className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground"
-        >
-          {bilanFormCopy.home}
+      <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <Link href="/" className={flowPrimaryClass}>
+          Retour à l’accueil
         </Link>
-        <button
-          type="button"
-          onClick={onRestart}
-          className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-accent-soft"
-        >
-          {bilanFormCopy.restart}
+        <button type="button" onClick={onRestart} className={flowGhostClass}>
+          Nouvelle demande
         </button>
       </div>
-    </div>
+    </FlowCard>
   );
 }

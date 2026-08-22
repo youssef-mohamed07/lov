@@ -2,46 +2,50 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
-import { faqItems } from "@/data/home";
+import { homeFaq, type PageFaqContent } from "@/data/faqs";
 import { transition } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-export function HomeFaq() {
+export function HomeFaq({
+  content = homeFaq,
+  showAllLink = false,
+}: {
+  content?: PageFaqContent;
+  showAllLink?: boolean;
+}) {
   const reduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = faqItems[activeIndex];
+  const active = content.items[activeIndex] ?? content.items[0];
 
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
         <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
-          {/* Left — questions as a conversation menu */}
           <div>
             <Reveal variant="fade">
               <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-                FAQ
+                {content.eyebrow}
               </p>
               <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Questions{" "}
-                <span className="font-medium italic text-voice">
-                  fréquentes
-                </span>
+                {content.title}
               </h2>
               <p className="mt-3 max-w-sm text-base leading-7 text-muted">
-                Choisissez une question — on vous répond comme dans une vraie
-                conversation.
+                {content.description}
               </p>
             </Reveal>
 
             <Reveal variant="fade" className="mt-8">
-              <ul className="flex flex-col gap-2">
-                {faqItems.map((item, index) => {
+              <ul className="flex max-h-[34rem] flex-col gap-2 overflow-y-auto pr-1">
+                {content.items.map((item, index) => {
                   const isActive = index === activeIndex;
+
                   return (
                     <li key={item.question}>
                       <button
@@ -83,13 +87,17 @@ export function HomeFaq() {
             </Reveal>
           </div>
 
-          {/* Right — chat thread */}
           <Reveal variant="fade" delay={0.08}>
-            <div className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[var(--shadow-card)]">
-              {/* Chat header */}
+            <div className="flex min-h-[28rem] flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[var(--shadow-card)] lg:h-[34rem]">
               <div className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-6">
-                <span className="relative inline-flex size-9 items-center justify-center rounded-full bg-accent font-display text-sm font-semibold text-white">
-                  L
+                <span className="relative inline-flex size-9 items-center justify-center rounded-full bg-accent">
+                  <Image
+                    src="/brand/heart-icon-white.svg"
+                    alt=""
+                    width={22}
+                    height={20}
+                    className="h-5 w-auto"
+                  />
                   <span className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-surface bg-success" />
                 </span>
                 <div className="min-w-0">
@@ -100,8 +108,7 @@ export function HomeFaq() {
                 </div>
               </div>
 
-              {/* Messages */}
-              <div className="flex flex-1 flex-col gap-4 px-5 py-6 sm:px-6 sm:py-7">
+              <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-5 py-6 sm:px-6 sm:py-7">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
@@ -111,7 +118,6 @@ export function HomeFaq() {
                     transition={transition.fast}
                     className="flex flex-col gap-4"
                   >
-                    {/* Outgoing question bubble */}
                     <motion.div
                       initial={
                         reduceMotion ? false : { opacity: 0, y: 12, scale: 0.98 }
@@ -125,7 +131,6 @@ export function HomeFaq() {
                       </p>
                     </motion.div>
 
-                    {/* Incoming answer bubble */}
                     <motion.div
                       initial={
                         reduceMotion ? false : { opacity: 0, y: 12, scale: 0.98 }
@@ -134,8 +139,14 @@ export function HomeFaq() {
                       transition={{ ...transition.base, delay: 0.12 }}
                       className="flex items-end gap-2.5"
                     >
-                      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-foreground font-display text-[0.7rem] font-semibold text-background">
-                        L
+                      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-foreground">
+                        <Image
+                          src="/brand/heart-icon-white.svg"
+                          alt=""
+                          width={17}
+                          height={15}
+                          className="h-4 w-auto"
+                        />
                       </span>
                       <p className="max-w-[85%] rounded-[1.25rem] rounded-bl-md bg-surface-muted px-4 py-3 text-sm leading-6 text-foreground">
                         {active?.answer}
@@ -145,15 +156,30 @@ export function HomeFaq() {
                 </AnimatePresence>
               </div>
 
-              {/* Footer CTA row */}
-              <div className="flex flex-col gap-3 border-t border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+              <div className="flex flex-col gap-3 border-t border-border px-5 py-4 sm:px-6">
                 <p className="inline-flex items-center gap-2 text-xs text-muted">
                   <Check className="size-3.5 text-success" aria-hidden />
                   Une autre question ? On répond sous 24–48h.
                 </p>
-                <CtaButton href="/nous-contacter" size="sm">
-                  Nous écrire
-                </CtaButton>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  {showAllLink ? (
+                    <CtaButton href="/faq" size="sm">
+                      Toutes les questions
+                    </CtaButton>
+                  ) : null}
+                  {showAllLink ? (
+                    <Link
+                      href="/nous-contacter"
+                      className="inline-flex min-h-10 items-center rounded-full border border-border bg-surface px-4 text-sm font-medium text-foreground transition-colors hover:bg-surface-muted"
+                    >
+                      Nous écrire
+                    </Link>
+                  ) : (
+                    <CtaButton href="/nous-contacter" size="sm">
+                      Nous écrire
+                    </CtaButton>
+                  )}
+                </div>
               </div>
             </div>
           </Reveal>

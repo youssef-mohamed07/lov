@@ -16,6 +16,7 @@ const mobileLinks = [...navLinks, ...secondaryNavLinks];
 const secondaryMeta: Record<(typeof secondaryNavLinks)[number]["href"], string> =
   {
     "/a-propos": "Notre histoire et notre approche",
+    "/faq": "Toutes vos questions, par thème",
     "/carrieres": "Rejoindre l'équipe Lov",
   };
 

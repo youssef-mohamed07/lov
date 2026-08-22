@@ -3,7 +3,6 @@
 import {
   CalendarDays,
   ClipboardList,
-  Compass,
   TrendingUp,
 } from "lucide-react";
 
@@ -12,23 +11,18 @@ import { Container } from "@/components/ui/container";
 
 const steps = [
   {
-    title: "S’orienter",
-    description: "Clarifiez le besoin avec le simulateur, en quelques minutes.",
-    icon: Compass,
-  },
-  {
-    title: "Réserver",
-    description: "Choisissez un créneau et préparez le motif simplement.",
+    title: "Réservation",
+    description: "Choisissez un créneau dans notre agenda en ligne.",
     icon: CalendarDays,
   },
   {
     title: "Évaluation",
-    description: "Un bilan orthophonique précis, adapté à l’âge et au besoin.",
+    description: "Le bilan est réalisé en visio, depuis chez vous.",
     icon: ClipboardList,
   },
   {
-    title: "Suivi",
-    description: "Des objectifs partagés et des progrès visibles, ensemble.",
+    title: "Rééducation",
+    description: "Objectifs clairs et adaptés pour progresser.",
     icon: TrendingUp,
   },
 ] as const;
@@ -37,29 +31,22 @@ export function HomeSteps() {
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
       <Container className="relative">
-        <Reveal
-          className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
-          variant="fade"
-        >
+        <Reveal variant="fade">
           <div>
             <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
               Parcours
             </p>
             <h2 className="mt-2 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              Des étapes simples{" "}
-              <span className="mark-accent">vers plus de clarté</span>
+              3 étapes simples
             </h2>
           </div>
-          <p className="max-w-xs text-base leading-7 text-muted sm:pb-1 sm:text-right">
-            Un parcours fluide — de la première orientation jusqu’au suivi.
-          </p>
         </Reveal>
 
         <Reveal className="mt-10" variant="fade">
-          <ol className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          <ol className="relative grid gap-8 sm:grid-cols-3 sm:gap-0">
             <div
               aria-hidden
-              className="absolute top-5 right-[12.5%] left-[12.5%] hidden h-px bg-border lg:block"
+              className="absolute top-5 right-[16.666%] left-[16.666%] hidden h-px bg-border sm:block"
             />
 
             {steps.map((item, index) => {
@@ -67,7 +54,7 @@ export function HomeSteps() {
               return (
                 <li
                   key={item.title}
-                  className="relative px-0 text-center lg:px-6"
+                  className="relative px-0 text-center sm:px-6"
                 >
                   <div className="relative z-10 mx-auto flex size-10 items-center justify-center rounded-full bg-accent-soft text-accent shadow-[0_10px_24px_-14px_rgba(254,81,16,0.5)]">
                     <Icon className="size-4" aria-hidden />
@@ -84,7 +71,7 @@ export function HomeSteps() {
                   {index < steps.length - 1 ? (
                     <span
                       aria-hidden
-                      className="mx-auto mt-6 block h-px w-10 bg-border lg:hidden"
+                      className="mx-auto mt-6 block h-px w-10 bg-border sm:hidden"
                     />
                   ) : null}
                 </li>

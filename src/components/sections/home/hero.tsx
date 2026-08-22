@@ -8,10 +8,9 @@ import {
   type MotionValue,
 } from "framer-motion";
 import {
+  BadgeCheck,
   HeartHandshake,
-  ShieldCheck,
-  Sparkles,
-  Star,
+  ShieldPlus,
 } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
@@ -22,9 +21,9 @@ import { CtaButton } from "@/components/ui/cta-button";
 import { cn } from "@/lib/utils";
 
 const trustPoints = [
-  { icon: ShieldCheck, label: "Bilan structuré" },
-  { icon: HeartHandshake, label: "Approche familiale" },
-  { icon: Sparkles, label: "Orientation claire" },
+  { icon: BadgeCheck, label: "Bilan normé" },
+  { icon: HeartHandshake, label: "Accompagnement parental" },
+  { icon: ShieldPlus, label: "Conseils et prévention" },
 ] as const;
 
 export function HomeHero() {
@@ -57,20 +56,20 @@ export function HomeHero() {
         <div className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(rgba(14,14,15,0.06)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
       </div>
 
-      <StarCutout
+      <HeartCutout
         src="/images/hero-child.jpg"
         alt=""
-        className="absolute top-[22%] left-[-7%] hidden w-[220px] lg:block xl:left-[-4%] xl:w-[260px]"
+        className="absolute top-[20%] left-[-7%] hidden w-[230px] lg:block xl:left-[-4%] xl:w-[278px]"
         tone="warm"
         reduceMotion={!!reduceMotion}
         x={leftX}
         y={leftY}
         rotate={leftRotate}
       />
-      <StarCutout
+      <HeartCutout
         src="/images/hero-therapist.jpg"
         alt=""
-        className="absolute top-[32%] right-[-8%] hidden w-[240px] lg:block xl:right-[-3%] xl:w-[280px]"
+        className="absolute top-[29%] right-[-8%] hidden w-[250px] lg:block xl:right-[-3%] xl:w-[300px]"
         tone="cool"
         reduceMotion={!!reduceMotion}
         x={rightX}
@@ -79,74 +78,50 @@ export function HomeHero() {
       />
 
       <Container className="relative flex min-h-svh flex-col items-center justify-center pt-[calc(var(--header-height)+var(--space-8))] pb-[var(--space-16)] text-center sm:pb-[var(--space-20)]">
-        <FadeStagger immediate className="mx-auto flex max-w-3xl flex-col items-center">
+        <FadeStagger immediate className="mx-auto flex max-w-4xl flex-col items-center">
           <FadeItem>
-            <div className="inline-flex items-center gap-3">
-              <div className="flex items-center gap-1 rounded-md bg-success px-2 py-1.5">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Star
-                    key={index}
-                    className="size-3.5 fill-white text-white"
-                    aria-hidden
-                  />
-                ))}
-              </div>
-              <p className="text-sm text-muted">
-                4.9 <span className="text-muted/80">(1 248)</span>
-              </p>
-            </div>
-          </FadeItem>
-
-          <FadeItem className="mt-[var(--space-6)]">
-            <p className="font-display text-5xl font-semibold tracking-[-0.03em] text-accent sm:text-6xl lg:text-7xl">
-              Lov
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">
+              Les Orthos en Visio
             </p>
           </FadeItem>
 
           <FadeItem className="mt-[var(--space-5)]">
-            <h1 className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              <span className="block">Comprendre le langage</span>
+            <h1 className="font-display text-[2rem] font-semibold tracking-tight text-foreground sm:text-5xl sm:leading-[1.12] lg:text-[3.25rem]">
+              <span className="block">
+                Bilan et rééducation orthophonique
+              </span>
               <span className="mt-2 block font-medium italic text-voice">
-                pour avancer mieux
+                en téléconsultation, depuis chez vous.
               </span>
             </h1>
           </FadeItem>
 
           <FadeItem className="mt-[var(--space-5)]">
-            <p className="mx-auto max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-              Bilan orthophonique, orientation et accompagnement — pour les
-              familles et les adultes qui veulent des repères clairs.
+            <p className="mx-auto max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
+              Une évaluation structurée du langage, de la parole et des
+              apprentissages, suivie d’un accompagnement adapté pour progresser
+              à votre rythme.
             </p>
           </FadeItem>
 
           <FadeItem className="mt-[var(--space-8)]">
-            <CtaButton href="/bilan" size="lg">
-              Commencer le bilan
+            <CtaButton href="/demander-un-bilan" size="lg">
+              Prendre rendez-vous
             </CtaButton>
           </FadeItem>
 
           <FadeItem className="mt-10 w-full max-w-md lg:hidden">
             <div className="grid grid-cols-2 gap-2.5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]">
-                <Image
-                  src="/images/hero-child.jpg"
-                  alt=""
-                  fill
-                  sizes="50vw"
-                  className="object-cover object-[50%_20%]"
-                  priority
-                />
-              </div>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]">
-                <Image
-                  src="/images/hero-therapist.jpg"
-                  alt=""
-                  fill
-                  sizes="50vw"
-                  className="object-cover object-[50%_18%]"
-                  priority
-                />
-              </div>
+              <MobileHeartImage
+                src="/images/hero-child.jpg"
+                className="-rotate-6"
+                imageClassName="object-[50%_18%]"
+              />
+              <MobileHeartImage
+                src="/images/hero-therapist.jpg"
+                className="rotate-6"
+                imageClassName="object-[50%_16%]"
+              />
             </div>
           </FadeItem>
         </FadeStagger>
@@ -157,7 +132,9 @@ export function HomeHero() {
           {trustPoints.map(({ icon: Icon, label }, index) => (
             <li key={label} className="flex items-center gap-6 sm:gap-8">
               <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
-                <Icon className="size-4 text-brand" aria-hidden />
+                <span className="inline-flex size-7 items-center justify-center rounded-full bg-brand-soft text-brand ring-1 ring-brand/15">
+                  <Icon className="size-4" aria-hidden />
+                </span>
                 {label}
               </span>
               {index < trustPoints.length - 1 ? (
@@ -174,7 +151,7 @@ export function HomeHero() {
   );
 }
 
-function StarCutout({
+function HeartCutout({
   src,
   alt,
   className,
@@ -197,7 +174,7 @@ function StarCutout({
     <motion.div
       aria-hidden
       className={cn(
-        "pointer-events-none aspect-square will-change-transform",
+        "pointer-events-none aspect-[1.185] will-change-transform",
         tone === "cool" && "opacity-95",
         className,
       )}
@@ -205,23 +182,50 @@ function StarCutout({
     >
       <div
         className={cn(
-          "relative size-full overflow-hidden",
-          "bg-surface-muted",
+          "relative size-full",
+          tone === "cool" ? "drop-shadow-[0_18px_42px_rgba(13,128,175,0.22)]" : "drop-shadow-[0_18px_42px_rgba(249,171,108,0.2)]",
         )}
-        style={{
-          clipPath:
-            "polygon(50% 0%, 66% 34%, 100% 50%, 66% 66%, 50% 100%, 34% 66%, 0% 50%, 34% 34%)",
-        }}
       >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="280px"
-          className="object-cover"
-          priority
-        />
+        <div className="lov-heart-clip absolute inset-[-5%] bg-brand/25" />
+        <div className="lov-heart-clip absolute inset-0 overflow-hidden bg-surface-muted">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="300px"
+            className="object-cover"
+            priority
+          />
+        </div>
       </div>
     </motion.div>
+  );
+}
+
+function MobileHeartImage({
+  src,
+  className,
+  imageClassName,
+}: {
+  src: string;
+  className?: string;
+  imageClassName?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "lov-heart-clip relative aspect-[1.185] overflow-hidden bg-surface-muted",
+        className,
+      )}
+    >
+      <Image
+        src={src}
+        alt=""
+        fill
+        sizes="50vw"
+        className={cn("object-cover", imageClassName)}
+        priority
+      />
+    </div>
   );
 }

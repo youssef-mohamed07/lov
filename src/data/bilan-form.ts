@@ -138,3 +138,68 @@ export function labelForAnswer(
   if (!step || step.kind !== "choice") return value;
   return step.options.find((option) => option.value === value)?.label ?? value;
 }
+
+export type EligibilityOption = {
+  label: string;
+  value: string;
+  eligible: boolean;
+};
+
+export const bookingForOptions = [
+  { label: "Mon enfant", value: "child" },
+  { label: "Moi-même", value: "self" },
+  { label: "Un proche", value: "relative" },
+] as const;
+
+export const eligibilityReasons = {
+  young: [
+    { label: "Mon enfant parle peu ou pas encore", value: "late-language", eligible: true },
+    { label: "On le comprend difficilement", value: "speech-clarity", eligible: true },
+    { label: "Mon enfant bégaie, répète des mots", value: "stuttering-young", eligible: true },
+    { label: "Mon enfant a du mal à manger, refuse des aliments", value: "feeding-young", eligible: true },
+    { label: "Mon enfant place mal sa langue, avale mal", value: "swallowing-young", eligible: false },
+    { label: "Mon enfant respire par la bouche / bave beaucoup", value: "mouth-breathing-young", eligible: false },
+    { label: "Mon enfant a la voix enrouée", value: "voice-young", eligible: false },
+    { label: "Mon enfant s’étouffe, il fait des fausses routes", value: "choking-young", eligible: false },
+    { label: "Mon enfant a du mal à écrire / dessiner", value: "writing-young", eligible: false },
+    { label: "Autre situation", value: "other-young", eligible: false },
+  ],
+  minor: [
+    { label: "Mon enfant a du mal à parler, communiquer", value: "communication-minor", eligible: true },
+    { label: "Mon enfant bégaie, répète des mots", value: "stuttering-minor", eligible: false },
+    { label: "Mon enfant a du mal à lire et/ou écrire", value: "literacy-minor", eligible: true },
+    { label: "Mon enfant a des difficultés en mathématiques", value: "math-minor", eligible: true },
+    { label: "Mon enfant a du mal à manger, refuse des aliments", value: "feeding-minor", eligible: true },
+    { label: "Mon enfant place mal sa langue, avale mal", value: "swallowing-minor", eligible: true },
+    { label: "Mon enfant respire par la bouche", value: "mouth-breathing-minor", eligible: true },
+    { label: "Mon enfant a la voix enrouée", value: "voice-minor", eligible: false },
+    { label: "Mon enfant s’étouffe, il fait des fausses routes", value: "choking-minor", eligible: false },
+    { label: "Mon enfant a du mal à écrire / dessiner", value: "writing-minor", eligible: false },
+    { label: "Autre situation", value: "other-minor", eligible: false },
+  ],
+  adult: [
+    { label: "Difficultés à lire et/ou écrire", value: "literacy-adult", eligible: true },
+    { label: "Difficultés à parler, à trouver des mots", value: "communication-adult", eligible: true },
+    { label: "Difficultés d’attention et de mémoire", value: "memory-adult", eligible: true },
+    { label: "Bégaiement, bredouillement", value: "stuttering-adult", eligible: false },
+    { label: "Problème de voix, d’articulation", value: "voice-adult", eligible: false },
+    { label: "Problème de déglutition", value: "swallowing-adult", eligible: false },
+  ],
+} as const satisfies Record<string, readonly EligibilityOption[]>;
+
+export const particularSituations = [
+  { label: "Troubles sensoriels : surdité ou malvoyance", value: "sensory" },
+  { label: "Déficience intellectuelle avérée", value: "intellectual" },
+  { label: "Trouble du spectre de l’autisme modéré à sévère", value: "autism" },
+  { label: "Paralysie cérébrale et syndromes complexes", value: "cerebral" },
+  { label: "Maladie neurologique évolutive", value: "neurological" },
+  { label: "AVC ou traumatisme crânien datant de moins de trois mois", value: "recent-trauma" },
+  { label: "Intervention chirurgicale ORL", value: "orl-surgery" },
+  { label: "Aucune de ces situations", value: "none" },
+] as const;
+
+export const technicalConditions = [
+  { label: "Je dispose d’un ordinateur ou d’une tablette avec caméra et micro", value: "device", minorOnly: false },
+  { label: "Je dispose d’une connexion internet stable et d’une pièce calme", value: "connection", minorOnly: false },
+  { label: "Un adulte pourra être présent au domicile pendant la séance", value: "adult-present", minorOnly: true },
+] as const;

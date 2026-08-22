@@ -7,6 +7,7 @@ export const navLinks = [
 
 export const secondaryNavLinks = [
   { href: "/a-propos", label: "À propos" },
+  { href: "/faq", label: "FAQ" },
   { href: "/carrieres", label: "Carrières" },
 ] as const;
 
@@ -18,6 +19,7 @@ export const footerLinks = {
   ],
   ressources: [
     { href: "/ressources", label: "Toutes les ressources" },
+    { href: "/faq", label: "Questions fréquentes" },
     { href: "/ressources/familles", label: "Pour les familles" },
     { href: "/ressources/orientation", label: "Orientation" },
   ],

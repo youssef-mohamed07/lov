@@ -24,7 +24,6 @@
   --danger: #c2453a;
   --voice: #f9ab6c;
   --success: #00b67a;
-
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -58,6 +57,11 @@
   --header-height: 5.25rem;
   --radius-card: 1.35rem;
   --shadow-card: 0 20px 48px -34px rgba(14, 14, 15, 0.18);
+}
+
+.lov-heart-clip {
+  -webkit-mask: url("/brand/lov-heart-mask.svg") center / 100% 100% no-repeat;
+  mask: url("/brand/lov-heart-mask.svg") center / 100% 100% no-repeat;
 }
 
 @media (min-width: 640px) {
@@ -147,6 +151,28 @@ body {
   color: var(--foreground);
 }
 
+.custom-cursor-layer {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select,
+  html.has-custom-cursor [contenteditable="true"] {
+    cursor: text !important;
+  }
+
+  .custom-cursor-layer {
+    display: block;
+  }
+}
+
 /* Warm marker highlight for accent words — breaks the italic-only rhythm */
 .mark-accent {
   position: relative;
@@ -167,35 +193,10 @@ body {
   z-index: -1;
 }
 
-/* Shared section atmosphere — same base color everywhere, character comes
-   from soft washes that fade to nothing. No seams, no color banding. */
+/* One continuous canvas for every standard section. Decorative color stays
+   inside cards and hero artwork so stacked sections never form color bands. */
 .section-warm {
-  position: relative;
   background-color: var(--background);
-}
-.section-warm::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 45% at 85% 8%, var(--accent-soft), transparent 62%),
-    radial-gradient(ellipse 45% 40% at 8% 92%, rgba(249, 171, 108, 0.06), transparent 58%);
-  opacity: 0.5;
-}
-.section-warm::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.28;
-  background-image: radial-gradient(rgba(14, 14, 15, 0.05) 0.8px, transparent 0.8px);
-  background-size: 22px 22px;
-  mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, black, transparent 72%);
-}
-.section-warm > * {
-  position: relative;
-  z-index: 1;
 }
 
 /* Hand-drawn squiggle underline */
@@ -218,18 +219,43 @@ body {
 
 @keyframes testimonial-marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(calc(-50% - 0.5rem));
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @keyframes testimonial-marquee-reverse {
   from {
-    transform: translateX(calc(-50% - 0.5rem));
+    transform: translate3d(-50%, 0, 0);
   }
   to {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.testimonials-marquee,
+.testimonials-marquee-reverse {
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation-duration: var(--marquee-duration, 40s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.testimonials-marquee {
+  animation-name: testimonial-marquee;
+}
+
+.testimonials-marquee-reverse {
+  animation-name: testimonial-marquee-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee,
+  .testimonials-marquee-reverse {
+    animation: none;
   }
 }

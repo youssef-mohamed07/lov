@@ -7,7 +7,6 @@ import {
   HomePricing,
   HomeServicesGrid,
   HomeShowcase,
-  HomeStats,
   HomeSteps,
   HomeTestimonials,
   HomeTroublesPanel,
@@ -23,7 +22,6 @@ export default function HomePage() {
       <HomeTroublesPanel />
       <HomeServicesGrid />
       <HomeBento />
-      <HomeStats />
       <HomeTestimonials />
       <HomePlatform />
       <HomeExpertise />

@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 export default function SimulatorPage() {
   return (
     <main>
-      <h1 className="sr-only">{simulatorPage.title}</h1>
       <SimulatorFlow />
     </main>
   );
