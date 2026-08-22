@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { uploadPrivateFile } from "@/lib/cloudinary";
-import { sql } from "@/lib/db";
+import { getSql } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -89,6 +89,8 @@ export async function POST(request: Request) {
       );
     }
 
+    const sql = getSql();
+
     if (parsed.data.kind === "newsletter") {
       const [subscriber] = await sql`
         INSERT INTO newsletter_subscribers (email)
@@ -166,6 +168,7 @@ async function handleExistingBilan(request: Request) {
     ...parsed.data,
     report: storedReport,
   };
+  const sql = getSql();
 
   const [row] = await sql`
     INSERT INTO submissions (

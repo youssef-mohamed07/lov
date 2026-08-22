@@ -12,4 +12,6 @@ function getDatabaseUrl() {
   return databaseUrl;
 }
 
-export const sql = neon(getDatabaseUrl());
+export function getSql() {
+  return neon(getDatabaseUrl());
+}
