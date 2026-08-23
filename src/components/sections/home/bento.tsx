@@ -31,28 +31,28 @@ const features = [
     description:
       "Retrouvez le compte-rendu de chaque séance dans votre espace, dès qu’il est prêt.",
     icon: FileText,
-    tone: "bg-surface-muted text-foreground",
+    tone: "bg-accent-soft text-accent",
   },
   {
     title: "Exercices personnalisés",
     description:
       "Des activités choisies par l’orthophoniste, à faire entre les séances.",
     icon: ClipboardCheck,
-    tone: "bg-accent-soft text-accent",
+    tone: "bg-brand-soft text-brand",
   },
   {
     title: "Mesurer pour mieux progresser",
     description:
       "Un point régulier sur l’évolution de votre enfant, à partager avec l’école si besoin.",
     icon: Activity,
-    tone: "bg-brand-soft text-brand",
+    tone: "bg-accent-soft text-accent",
   },
   {
     title: "Messagerie sécurisée",
     description:
       "Une question entre deux séances ? Échangez directement avec l’orthophoniste.",
     icon: MessagesSquare,
-    tone: "bg-surface-muted text-foreground",
+    tone: "bg-brand-soft text-brand",
   },
 ] as const;
 

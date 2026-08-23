@@ -154,7 +154,7 @@ const tilts = [
 ] as const;
 
 const MARQUEE_MIN_CARDS = 16;
-const SECONDS_PER_CARD = 3.6;
+const SECONDS_PER_CARD = 5.4;
 
 function fillMarqueeItems(items: readonly Item[]) {
   const filled: Item[] = [];

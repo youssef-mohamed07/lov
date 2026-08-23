@@ -5,14 +5,12 @@ import {
   AboutFigures,
   AboutFounders,
   AboutOverview,
+  AboutPlatformBento,
   AboutReassurance,
   AboutTestimonials,
   AboutValues,
 } from "@/components/sections/a-propos";
-import {
-  HomeBento,
-  HomeDialogue,
-} from "@/components/sections/home";
+import { HomeDialogue } from "@/components/sections/home";
 import { PageIntro } from "@/components/sections/page-intro";
 import { TrustShowcase } from "@/components/sections/trust-showcase";
 import { CtaButton } from "@/components/ui/cta-button";
@@ -56,12 +54,9 @@ export default function AboutPage() {
         ctaLabel="Demander un bilan"
         ctaHref="/demander-un-bilan"
       />
+      <AboutPlatformBento />
       <HomeDialogue />
       <AboutOverview />
-      <HomeBento
-        {...about.platform}
-        title={<span className="mark-spark">{about.platform.title}</span>}
-      />
       <AboutFigures />
       <AboutFounders />
       <AboutValues />

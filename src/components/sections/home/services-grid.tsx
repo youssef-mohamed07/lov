@@ -12,9 +12,9 @@ const services = [
   { slug: "dyslexie", featured: true },
   { slug: "retard-parole-langage" },
   { slug: "begaiement" },
-  { slug: "articulation" },
   { slug: "dyscalculie" },
-  { slug: "dysphasie" },
+  { slug: "fonctions-oro-myo-faciales" },
+  { slug: "oralite-alimentaire" },
 ] as const;
 
 export function HomeServicesGrid() {

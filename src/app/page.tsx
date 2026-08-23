@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { AboutPlatformBento } from "@/components/sections/a-propos";
 import {
   HomeBento,
   HomeDialogue,
@@ -47,6 +48,7 @@ export default function HomePage() {
       <HomeShowcase />
       <HomeSteps />
       <HomeDialogue />
+      <AboutPlatformBento />
       <HomeBento />
       <HomeServicesGrid />
       <HomeTestimonials />

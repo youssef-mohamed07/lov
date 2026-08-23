@@ -7,3 +7,4 @@ export { AboutValues } from "./values";
 export { AboutTestimonials } from "./testimonials";
 export { AboutFaq } from "./faq";
 export { AboutCareersBanner } from "./careers-banner";
+export { AboutPlatformBento } from "./platform-bento";
