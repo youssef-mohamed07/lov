@@ -16,11 +16,14 @@ const immersiveRoutes = [
   "/deja-un-bilan",
 ];
 
+const hidePricingRoutes = ["/suivi"];
+
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const immersive = immersiveRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
+  const hidePricing = hidePricingRoutes.includes(pathname);
   const faq = getFaqForPathname(pathname);
 
   if (immersive) {
@@ -35,7 +38,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     <div className="flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip">
       <Navbar />
       <div className="min-w-0 flex-1">{children}</div>
-      <HomePricing />
+      {hidePricing ? null : <HomePricing />}
       {faq ? (
         <HomeFaq key={pathname} content={faq} showAllLink />
       ) : null}

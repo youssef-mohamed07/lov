@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
-import { AboutPlatformBento } from "@/components/sections/a-propos";
-import { HomeBento, HomeTestimonials } from "@/components/sections/home";
+import { HomeTestimonials } from "@/components/sections/home";
 import {
+  SuiviBento,
   SuiviHero,
+  SuiviPlatformBento,
+  SuiviPricing,
   SuiviSteps,
   SuiviTrust,
 } from "@/components/sections/suivi";
@@ -40,6 +42,12 @@ const suiviJsonLd = {
       provider: {
         "@id": absoluteUrl("/#organization"),
       },
+      offers: {
+        "@type": "Offer",
+        price: "60",
+        priceCurrency: "EUR",
+        url: absoluteUrl("/deja-un-bilan"),
+      },
     },
     breadcrumbJsonLd([
       { name: "Accueil", path: "/" },
@@ -55,8 +63,9 @@ export default function SuiviPage() {
       <SuiviHero />
       <SuiviTrust />
       <SuiviSteps />
-      <AboutPlatformBento />
-      <HomeBento />
+      <SuiviPlatformBento />
+      <SuiviBento />
+      <SuiviPricing />
       <HomeTestimonials />
     </main>
   );

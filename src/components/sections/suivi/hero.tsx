@@ -1,4 +1,4 @@
-import { BadgeCheck, FileText, MessagesSquare } from "lucide-react";
+import { Activity, CalendarDays, Target } from "lucide-react";
 import Image from "next/image";
 
 import { FadeItem, FadeStagger } from "@/components/common/fade";
@@ -7,7 +7,7 @@ import { CtaButton } from "@/components/ui/cta-button";
 import { suivi } from "@/data/suivi";
 import { cn } from "@/lib/utils";
 
-const mentionIcons = [BadgeCheck, FileText, MessagesSquare] as const;
+const mentionIcons = [CalendarDays, Target, Activity] as const;
 
 export function SuiviHero() {
   const { hero, description } = suivi;
@@ -81,7 +81,7 @@ export function SuiviHero() {
       <Container className="pointer-events-none relative pb-[var(--space-10)] sm:pb-[var(--space-12)] lg:absolute lg:inset-x-0 lg:bottom-0 lg:pb-[var(--space-10)]">
         <ul className="pointer-events-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-8">
           {hero.mentions.map((label, index) => {
-            const Icon = mentionIcons[index] ?? BadgeCheck;
+            const Icon = mentionIcons[index] ?? CalendarDays;
             return (
               <li key={label} className="flex items-center gap-6 sm:gap-8">
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground">

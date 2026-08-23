@@ -8,8 +8,6 @@ export function SuiviTrust() {
     <TrustShowcase
       image={trust.image}
       imageAlt={trust.imageAlt}
-      badgeLabel={trust.badgeLabel}
-      badgeValue={trust.badgeValue}
       imageCaption={trust.imageCaption}
       eyebrow={trust.eyebrow}
       title={

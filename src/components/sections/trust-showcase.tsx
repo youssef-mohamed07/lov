@@ -14,8 +14,8 @@ import { easeOutExpo } from "@/lib/motion";
 export type TrustShowcaseContent = {
   image: string;
   imageAlt: string;
-  badgeLabel: string;
-  badgeValue: string;
+  badgeLabel?: string;
+  badgeValue?: string;
   imageCaption: string;
   eyebrow: string;
   title: ReactNode;
@@ -60,6 +60,7 @@ export function TrustShowcase({
               />
             </div>
 
+            {badgeLabel && badgeValue ? (
             <motion.div
               className="absolute top-4 left-4 rounded-2xl border border-border/60 bg-surface/95 px-4 py-3 shadow-[var(--shadow-card)] backdrop-blur-sm sm:top-6 sm:left-6 sm:px-5 sm:py-4"
               initial={reduceMotion ? false : { opacity: 0, y: 12 }}
@@ -75,6 +76,7 @@ export function TrustShowcase({
                 {badgeValue}
               </p>
             </motion.div>
+            ) : null}
 
             <motion.div
               className="absolute bottom-4 left-4 flex max-w-[90%] items-center gap-2.5 rounded-full border border-border/60 bg-surface/95 px-3 py-2 shadow-[var(--shadow-card)] backdrop-blur-sm sm:bottom-6 sm:left-6 sm:px-3.5 sm:py-2.5"

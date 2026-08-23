@@ -227,7 +227,7 @@ export function TestimonialsSection() {
           <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-muted shadow-[var(--shadow-card)]">
             <Stars count={5} />
             <span>
-              <span className="font-semibold text-foreground">4.9 / 5</span>
+              <span className="font-semibold text-foreground">5 / 5</span>
               <span className="mx-1.5 text-border">·</span>
               avis familles
             </span>
