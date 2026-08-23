@@ -198,6 +198,23 @@ export const followupFaq: PageFaqContent = {
   eyebrow: "Suivi et accompagnement",
   title: "Le suivi en pratique",
   description: "Rythme, organisation, paiement et accompagnement entre les séances.",
+  filters: [
+    {
+      id: "seances",
+      label: "Séances",
+      itemIndexes: [0, 1, 3, 4],
+    },
+    {
+      id: "paiement",
+      label: "Paiement",
+      itemIndexes: [2, 5, 6],
+    },
+    {
+      id: "organisation",
+      label: "Organisation",
+      itemIndexes: [7, 8, 9],
+    },
+  ],
   items: [
     {
       question: "Comment déterminez-vous le nombre de séances nécessaires ?",

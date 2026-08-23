@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
-import { PageIntro } from "@/components/sections/page-intro";
+import { AboutPlatformBento } from "@/components/sections/a-propos";
+import { HomeBento, HomeTestimonials } from "@/components/sections/home";
+import {
+  SuiviHero,
+  SuiviSteps,
+  SuiviTrust,
+} from "@/components/sections/suivi";
 import { JsonLd } from "@/components/seo/json-ld";
-import { CtaButton } from "@/components/ui/cta-button";
 import { suivi } from "@/data/suivi";
 import {
   absoluteUrl,
@@ -15,8 +19,8 @@ export const metadata: Metadata = createPageMetadata({
   title: "Suivi orthophonique en visioconférence",
   description: suivi.description,
   path: "/suivi",
-  image: suivi.image,
-  imageAlt: suivi.imageAlt,
+  image: suivi.trust.image,
+  imageAlt: suivi.trust.imageAlt,
 });
 
 const suiviJsonLd = {
@@ -48,37 +52,12 @@ export default function SuiviPage() {
   return (
     <main>
       <JsonLd id="suivi-jsonld" data={suiviJsonLd} />
-      <PageIntro
-        eyebrow={suivi.eyebrow}
-        title={
-          <>
-            {suivi.title}{" "}
-            <span className="font-medium italic text-voice">
-              {suivi.titleAccent}
-            </span>
-          </>
-        }
-        description={suivi.description}
-        image={suivi.image}
-        imageAlt={suivi.imageAlt}
-        breadcrumbs={[
-          { label: "Accueil", href: "/" },
-          { label: "Suivi" },
-        ]}
-        actions={
-          <div className="flex flex-wrap gap-3">
-            <CtaButton href={suivi.ctaHref} size="lg">
-              {suivi.ctaLabel}
-            </CtaButton>
-            <Link
-              href={suivi.secondaryHref}
-              className="inline-flex min-h-12 items-center rounded-full border border-white/35 bg-white/10 px-5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-            >
-              {suivi.secondaryLabel}
-            </Link>
-          </div>
-        }
-      />
+      <SuiviHero />
+      <SuiviTrust />
+      <SuiviSteps />
+      <AboutPlatformBento />
+      <HomeBento />
+      <HomeTestimonials />
     </main>
   );
 }

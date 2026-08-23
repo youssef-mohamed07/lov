@@ -97,14 +97,7 @@ export function HomeFaq({
               variant="fade"
               className={content.filters?.length ? "mt-5" : "mt-8"}
             >
-              <ul
-                className={cn(
-                  "flex flex-col gap-2 overflow-y-auto pr-1",
-                  content.filters?.length
-                    ? "max-h-[27rem]"
-                    : "max-h-[34rem]",
-                )}
-              >
+              <ul className="flex flex-col gap-2">
                 {visibleItems.map(({ item, index }) => {
                   const isActive = index === activeIndex;
 
@@ -150,7 +143,7 @@ export function HomeFaq({
           </div>
 
           <Reveal variant="fade" delay={0.08}>
-            <div className="flex min-h-[28rem] flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[var(--shadow-card)] lg:h-[34rem]">
+            <div className="flex min-h-[28rem] flex-col rounded-[1.75rem] border border-border bg-surface shadow-[var(--shadow-card)] lg:sticky lg:top-28">
               <div className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-6">
                 <span className="relative inline-flex size-9 items-center justify-center rounded-full bg-accent">
                   <Image
@@ -170,7 +163,7 @@ export function HomeFaq({
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-5 py-6 sm:px-6 sm:py-7">
+              <div className="flex flex-1 flex-col gap-4 px-5 py-6 sm:px-6 sm:py-7">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
