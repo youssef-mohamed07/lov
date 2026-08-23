@@ -154,7 +154,7 @@ export function Navbar() {
                           <Link
                             href="/troubles"
                             role="menuitem"
-                            className="relative mt-auto inline-flex items-center justify-between rounded-xl bg-foreground px-3.5 py-3 text-sm font-medium text-white transition-colors hover:bg-brand"
+                            className="relative mt-auto inline-flex items-center justify-between rounded-xl bg-brand px-3.5 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-hover"
                           >
                             Tous les troubles
                             <ArrowRight className="size-4" aria-hidden />
