@@ -5,6 +5,11 @@ export type PageFaqContent = {
   title: string;
   description: string;
   items: FaqItem[];
+  filters?: {
+    id: string;
+    label: string;
+    itemIndexes: number[];
+  }[];
 };
 
 export type FaqGroup = {
@@ -83,6 +88,28 @@ export const bilanFaq: PageFaqContent = {
   eyebrow: "Bilan orthophonique",
   title: "Tout savoir avant le rendez-vous",
   description: "Télésoin, préparation, déroulé et compte rendu.",
+  filters: [
+    {
+      id: "telesoin",
+      label: "Télésoin",
+      itemIndexes: [0, 1, 2, 3, 4, 8, 9, 10],
+    },
+    {
+      id: "rendez-vous",
+      label: "Rendez-vous",
+      itemIndexes: [5, 6, 7, 8, 10],
+    },
+    {
+      id: "seance",
+      label: "Séance",
+      itemIndexes: [1, 2, 9, 11],
+    },
+    {
+      id: "resultats",
+      label: "Résultats",
+      itemIndexes: [12, 13, 14, 15],
+    },
+  ],
   items: [
     {
       question: "Un bilan à distance, est-ce que ça vaut vraiment un bilan en cabinet ?",

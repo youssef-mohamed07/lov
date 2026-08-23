@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Check, Compass, MessageCircle, Users } from "lucide-react";
+import { Check } from "lucide-react";
 import Image from "next/image";
 
 import { Reveal } from "@/components/common/reveal";
+import { BilanHero } from "@/components/sections/bilan-hero";
 import { BilanOverview } from "@/components/sections/bilan-overview";
 import { BilanProcess } from "@/components/sections/bilan-process";
-import { PageIntro } from "@/components/sections/page-intro";
+import { BilanSteps } from "@/components/sections/bilan-steps";
+import { BilanTrust } from "@/components/sections/bilan-trust";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
@@ -15,8 +17,6 @@ import {
   breadcrumbJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
-
-const reassuranceIcons = [MessageCircle, Users, Compass] as const;
 
 export const metadata: Metadata = createPageMetadata({
   title: "Bilan orthophonique en ligne et en visioconférence",
@@ -62,71 +62,9 @@ export default function BilanPage() {
   return (
     <main>
       <JsonLd id="bilan-jsonld" data={bilanJsonLd} />
-      <PageIntro
-        eyebrow={bilan.heroEyebrow}
-        title={bilan.title}
-        description={bilan.description}
-        image="/images/path-bilan.jpg"
-        imageAlt="Consultation pour un bilan orthophonique"
-        breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "Bilan" }]}
-        actions={
-          <CtaButton href="/nous-contacter" size="lg" className="min-h-11">
-            Demander un bilan
-          </CtaButton>
-        }
-      />
-
-      {/* Reassurance — editorial strip, not SaaS cards */}
-      <section className="section-warm overflow-hidden py-[var(--section-space-md)]">
-        <Container className="relative">
-          <Reveal
-            className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
-            variant="fade"
-          >
-            <div>
-              <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-                Avant tout
-              </p>
-              <h2 className="mt-2 max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Un bilan pensé{" "}
-                <span className="mark-accent">pour les familles</span>
-              </h2>
-            </div>
-            <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1 sm:text-right">
-              Clair dès le premier échange — et utile pour la suite.
-            </p>
-          </Reveal>
-
-          <Reveal className="mt-10" variant="fade">
-            <ul className="relative grid gap-8 md:grid-cols-3 md:gap-0">
-              <div
-                aria-hidden
-                className="absolute top-5 right-[16.5%] left-[16.5%] hidden h-px bg-border md:block"
-              />
-              {bilan.reassurance.map((item, index) => {
-                const Icon = reassuranceIcons[index] ?? MessageCircle;
-                return (
-                  <li
-                    key={item.title}
-                    className="relative px-0 text-center md:px-6"
-                  >
-                    <div className="relative z-10 mx-auto flex size-11 items-center justify-center rounded-full bg-accent-soft text-accent shadow-[0_10px_24px_-14px_rgba(254,81,16,0.5)]">
-                      <Icon className="size-4" aria-hidden />
-                    </div>
-                    <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="mx-auto mt-2 max-w-[16rem] text-sm leading-6 text-muted">
-                      {item.description}
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-          </Reveal>
-        </Container>
-      </section>
-
+      <BilanHero />
+      <BilanTrust />
+      <BilanSteps />
       <BilanOverview />
       <BilanProcess />
 

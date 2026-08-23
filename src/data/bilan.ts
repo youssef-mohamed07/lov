@@ -1,80 +1,120 @@
 import type { FaqItem } from "@/components/common/faq";
 
 export const bilan = {
-  title: "Bilan orthophonique",
+  title: "Bilan orthophonique en téléconsultation, depuis chez vous.",
   description:
-    "Une évaluation structurée du langage, de la parole et des apprentissages pour clarifier le profil et définir des pistes concrètes.",
-  heroEyebrow: "Évaluation clinique",
+    "Une évaluation structurée du langage, de la parole et des apprentissages, pour clarifier le profil de votre enfant et définir des pistes concrètes.",
+  hero: {
+    eyebrow: "Les Orthos en Visio",
+    title: "Bilan orthophonique",
+    titleAccent: "en téléconsultation, depuis chez vous.",
+    ctaLabel: "Demander un bilan",
+    ctaHref: "/demander-un-bilan",
+    mentions: ["Bilan normé", "Tests étalonnés", "Compte rendu écrit"],
+  },
+  trust: {
+    image: "/images/showcase-family.jpg",
+    imageAlt: "Échange entre une famille et un professionnel autour d’un bilan",
+    badgeLabel: "Bilans réalisés",
+    badgeValue: "400",
+    imageCaption: "Une évaluation claire, pensée pour être comprise.",
+    eyebrow: "Pourquoi nous faire confiance ?",
+    title: "Le bilan orthophonique,",
+    titleAccent: "une autre façon de procéder",
+    description:
+      "Notre cabinet en ligne réalise votre bilan depuis chez vous, avec les mêmes exigences qu’un bilan en cabinet.",
+    ctaLabel: "Demander un bilan",
+    ctaHref: "/demander-un-bilan",
+  },
+  parcours: {
+    eyebrow: "Parcours",
+    title: "3 étapes simples",
+    steps: [
+      {
+        title: "Réservation",
+        description: "Choisissez un créneau dans notre agenda en ligne.",
+      },
+      {
+        title: "Évaluation",
+        description: "Le bilan est réalisé en visio, depuis chez vous.",
+      },
+      {
+        title: "Restitution",
+        description:
+          "Vous repartez avec une lecture claire et un compte rendu écrit.",
+      },
+    ],
+  },
   overview: {
     badge: "Pourquoi le bilan",
     title: "Une évaluation claire,",
-    titleAccent: "pensée pour les familles",
-    body: "Le bilan orthophonique précise le profil, pose les priorités et ouvre une suite concrète — sans jargon inutile.",
+    titleAccent: "pensée pour être comprise",
+    body: "Le bilan orthophonique précise le profil, pose les priorités et ouvre une suite concrète, sans jargon inutile.",
     image: "/images/path-bilan.jpg",
     imageAlt: "Séance de bilan orthophonique",
     leftFeatures: [
       {
-        title: "Entretien guidé",
+        title: "Mettre des mots sur ce que vous observez",
         description:
-          "Histoire, difficultés actuelles et attentes — pour poser le bon cadre dès le départ.",
+          "Ce que vous ressentez au quotidien devient un profil clair et documenté.",
       },
       {
-        title: "Tests adaptés",
+        title: "Distinguer une variation normale d’un vrai besoin",
         description:
-          "Une batterie choisie selon l’âge et le motif, jamais générique.",
+          "Pour savoir si une inquiétude mérite un accompagnement, ou simplement du temps.",
       },
       {
-        title: "Lecture du profil",
+        title: "Un avis professionnel, sans attendre des mois",
         description:
-          "Des résultats expliqués simplement, pour comprendre ce qui se joue vraiment.",
+          "Un premier rendez-vous rapide, pour ne pas rester dans le doute.",
       },
     ],
     rightFeatures: [
       {
-        title: "Restitution claire",
+        title: "Un document reconnu pour l’école ou un médecin",
         description:
-          "Vous repartez avec des mots justes, pas seulement un compte-rendu technique.",
+          "Utile pour toutes vos démarches, sans avoir à tout réexpliquer.",
       },
       {
-        title: "Pistes concrètes",
+        title: "Savoir si un accompagnement est nécessaire, et lequel",
         description:
-          "Aménagements, suivi ou orientation — des prochaines étapes actionnables.",
+          "Une réponse concrète, adaptée à la situation de votre enfant.",
       },
       {
-        title: "Compte-rendu écrit",
+        title: "Avancer avec des réponses, plutôt qu’avec des questions",
         description:
-          "Un document utile pour la famille, l’école et les professionnels.",
+          "Le bilan referme une incertitude pour en ouvrir une plus claire.",
       },
     ],
   },
   process: {
-    badge: "Process",
-    title: "Un parcours simplifié,",
-    titleAccent: "étape par étape",
-    body: "Du premier échange à la restitution, chaque temps du bilan est clair — pour que vous sachiez toujours où vous en êtes.",
+    badge: "Infos pratiques",
+    title: "Ce qu’il faut savoir",
+    titleAccent: "avant votre rendez-vous",
+    body: "Quelques repères, pour vous présenter sereinement au bilan.",
     ctaLabel: "Demander un bilan",
     ctaHref: "/nous-contacter",
   },
   steps: [
     {
       step: "01",
-      title: "Entretien",
+      title: "Durée",
       description:
-        "Nous recueillons l’histoire développementale, les difficultés actuelles et les attentes de la famille ou de l’adulte.",
+        "Comptez environ 1h30, entretien et tests compris. La restitution peut avoir lieu le même jour ou lors d’un second rendez-vous, selon la disponibilité.",
       image: "/images/step-orient.jpg",
     },
     {
       step: "02",
-      title: "Évaluation",
+      title: "Ce qu’il faut prévoir",
       description:
-        "Tests et observations cliniques pour objectiver le langage oral, écrit, la parole, la voix ou la cognition mathématique selon le motif.",
+        "Un espace calme, une bonne connexion internet, et si possible les derniers bulletins scolaires ou comptes rendus déjà réalisés.",
       image: "/images/step-eval.jpg",
     },
     {
       step: "03",
-      title: "Restitution",
+      title: "Confidentialité",
       description:
-        "Vous repartez avec une lecture claire, des recommandations, et si besoin un projet thérapeutique.",
+        "Vos échanges restent strictement confidentiels. Le compte rendu n’est transmis qu’aux personnes que vous choisissez.",
       image: "/images/step-followup.jpg",
     },
   ],
