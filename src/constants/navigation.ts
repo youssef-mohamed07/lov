@@ -3,9 +3,7 @@ export const navLinks = [
   { href: "/troubles", label: "Troubles" },
   { href: "/simulateur", label: "Simulateur" },
   { href: "/ressources", label: "Ressources" },
-] as const;
-
-export const secondaryNavLinks = [
+  { href: "/suivi", label: "Suivi" },
   { href: "/a-propos", label: "À propos" },
   { href: "/faq", label: "FAQ" },
   { href: "/carrieres", label: "Carrières" },
@@ -14,6 +12,7 @@ export const secondaryNavLinks = [
 export const footerLinks = {
   parcours: [
     { href: "/bilan", label: "Bilan orthophonique" },
+    { href: "/suivi", label: "Suivi" },
     { href: "/troubles", label: "Troubles" },
     { href: "/simulateur", label: "Simulateur" },
   ],

@@ -23,7 +23,7 @@ const paths = [
     title: "Suivi et accompagnement",
     description:
       "Des séances régulières, des objectifs partagés et des progrès mesurés dans le temps.",
-    href: "/deja-un-bilan",
+    href: "/suivi",
     cta: "Parler du suivi",
     icon: HeartHandshake,
     image: "/images/pricing-suivi.jpg",

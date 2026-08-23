@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
-  ArrowUpRight,
   ClipboardCheck,
   Handshake,
   MapPin,
@@ -10,10 +9,11 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/common/reveal";
+import { CareersApplyForm } from "@/components/sections/careers-apply-form";
 import { PageIntro } from "@/components/sections/page-intro";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
-import { careers } from "@/data/carrieres";
+import { careers, getCareerRoleHref } from "@/data/carrieres";
 import { createPageMetadata } from "@/lib/seo";
 
 const processIcons = [Send, Handshake, ClipboardCheck, Sparkles] as const;
@@ -48,7 +48,7 @@ export default function CareersPage() {
         ]}
         actions={
           <CtaButton href="/nous-contacter" size="lg">
-            Envoyer une candidature
+            {careers.ctaLabel}
           </CtaButton>
         }
       />
@@ -129,7 +129,7 @@ export default function CareersPage() {
               </h2>
             </div>
             <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
-              Quatre temps — sans parcours opaque ni délais flous.
+              {careers.process.description}
             </p>
           </Reveal>
 
@@ -164,12 +164,12 @@ export default function CareersPage() {
       </section>
 
       {/* Roles */}
-      <section className="bg-background py-[var(--section-space-lg)]">
+      <section
+        id="postes-ouverts"
+        className="scroll-mt-28 bg-background py-[var(--section-space-lg)]"
+      >
         <Container className="relative">
-          <Reveal
-            className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
-            variant="fade"
-          >
+          <Reveal variant="fade">
             <div>
               <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
                 {careers.roles.eyebrow}
@@ -179,14 +179,11 @@ export default function CareersPage() {
                 <span className="mark-tint">{careers.roles.titleAccent}</span>
               </h2>
             </div>
-            <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
-              {careers.roles.description}
-            </p>
           </Reveal>
 
           <ul className="mt-12 flex flex-col gap-4">
             {careers.roles.items.map((role, index) => (
-              <li key={role.title}>
+              <li key={role.slug}>
                 <Reveal delay={index * 0.05} variant="fade">
                   <article className="group grid gap-6 rounded-[1.5rem] border border-border bg-surface p-6 transition-[border-color,background-color] duration-200 hover:border-accent/30 hover:bg-accent-soft/20 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
                     <div className="min-w-0">
@@ -211,7 +208,7 @@ export default function CareersPage() {
                     </div>
 
                     <CtaButton
-                      href="/nous-contacter"
+                      href={getCareerRoleHref(role.slug)}
                       size="sm"
                       className="w-fit shrink-0"
                     >
@@ -241,7 +238,7 @@ export default function CareersPage() {
               <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
                 <div className="max-w-xl">
                   <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
-                    Candidature spontanée
+                    {careers.cta.eyebrow}
                   </p>
                   <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-background sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
                     <span className="mark-brush">{careers.cta.title}</span>
@@ -251,15 +248,7 @@ export default function CareersPage() {
                   </p>
                 </div>
 
-                <div className="flex flex-col items-start gap-3 lg:items-end">
-                  <CtaButton href="/nous-contacter" size="lg">
-                    {careers.cta.action}
-                  </CtaButton>
-                  <p className="inline-flex items-center gap-1.5 text-sm text-background/55">
-                    Réponse sous quelques jours
-                    <ArrowUpRight className="size-3.5" aria-hidden />
-                  </p>
-                </div>
+                <CareersApplyForm />
               </div>
             </div>
           </Reveal>

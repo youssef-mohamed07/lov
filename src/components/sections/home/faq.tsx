@@ -201,7 +201,7 @@ export function HomeFaq({
                       transition={{ ...transition.base, delay: 0.12 }}
                       className="flex items-end gap-2.5"
                     >
-                      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-foreground">
+                      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-accent">
                         <Image
                           src="/brand/heart-icon-white.svg"
                           alt=""

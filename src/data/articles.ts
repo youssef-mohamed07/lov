@@ -1,9 +1,9 @@
 export const articlesPage = {
-  title: "Nos dernières ressources",
+  title: "Des repères pour avancer, pas à pas",
   description:
-    "Repères clairs pour les parents, les enseignants et les adultes — comprendre l’orthophonie, s’orienter, et avancer.",
+    "Des articles clairs pour comprendre l'orthophonie, reconnaître les signes qui comptent et savoir quand consulter, écrits par des orthophonistes, pour les parents et patients.",
   subscribeLabel: "Recevoir les prochaines ressources",
-  subscribePlaceholder: "Votre courriel",
+  subscribePlaceholder: "Votre adresse mail",
   subscribeCta: "S’inscrire",
 } as const;
 

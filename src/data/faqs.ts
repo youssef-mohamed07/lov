@@ -630,6 +630,7 @@ export function getFaqForPathname(pathname: string): PageFaqContent | null {
   if (pathname === "/") return homeFaq;
   if (pathname === "/a-propos") return aboutFaq;
   if (pathname === "/bilan") return bilanFaq;
+  if (pathname === "/suivi") return followupFaq;
   if (pathname === "/carrieres") return careersFaq;
   if (pathname === "/ressources" || pathname.startsWith("/ressources/")) {
     return blogFaq;

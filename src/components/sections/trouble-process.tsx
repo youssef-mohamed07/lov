@@ -1,60 +1,36 @@
 import {
-  ClipboardList,
-  MessageCircleMore,
+  CalendarDays,
+  ClipboardCheck,
+  Eye,
   Route,
   TrendingUp,
 } from "lucide-react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
+import type { TroubleItem } from "@/data/troubles";
 import { cn } from "@/lib/utils";
 
-const steps = [
-  {
-    title: "Premier échange",
-    description:
-      "Vous nous expliquez ce que vous observez, les difficultés rencontrées et vos attentes.",
-    icon: MessageCircleMore,
-  },
-  {
-    title: "Bilan ciblé",
-    description:
-      "L’orthophoniste choisit les tests adaptés pour comprendre précisément le profil.",
-    icon: ClipboardList,
-  },
-  {
-    title: "Restitution claire",
-    description:
-      "Les résultats sont expliqués avec des mots simples, puis traduits en priorités concrètes.",
-    icon: Route,
-  },
-  {
-    title: "Accompagnement",
-    description:
-      "Des objectifs adaptés et des points réguliers permettent d’avancer dans la durée.",
-    icon: TrendingUp,
-  },
-] as const;
+const stepIcons = [Eye, CalendarDays, ClipboardCheck, Route, TrendingUp] as const;
 
 type TroubleProcessProps = {
-  troubleTitle: string;
+  steps: TroubleItem[];
 };
 
-export function TroubleProcess({ troubleTitle }: TroubleProcessProps) {
+export function TroubleProcess({ steps }: TroubleProcessProps) {
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container>
         <Reveal variant="fade" className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-            Le parcours
+            Parcours
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            Du premier échange aux{" "}
-            <span className="mark-accent">progrès visibles</span>
+            De l’observation à{" "}
+            <span className="mark-accent">l’accompagnement</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-            Pour {troubleTitle.toLowerCase()}, chaque étape reste lisible, du
-            premier rendez-vous à l’accompagnement.
+            Cinq étapes claires, pour savoir où vous en êtes à chaque instant.
           </p>
         </Reveal>
 
@@ -66,7 +42,7 @@ export function TroubleProcess({ troubleTitle }: TroubleProcessProps) {
 
           <ol className="space-y-7 lg:space-y-3">
             {steps.map((step, index) => {
-              const Icon = step.icon;
+              const Icon = stepIcons[index] ?? ClipboardCheck;
               const left = index % 2 === 0;
 
               return (

@@ -4,6 +4,13 @@ export const about = {
   title: "Les Orthos en Visio",
   description:
     "Nous rendons l'orthophonie plus claire, pour que chacun puisse comprendre, s'orienter et avancer.",
+  recruitment: {
+    eyebrow: "Rejoindre l'équipe",
+    title: "Envie de faire partie de l'aventure ?",
+    description:
+      "Nous recrutons des orthophonistes et des profils produit qui partagent notre vision d'une orthophonie plus claire et plus accessible.",
+    ctaLabel: "Voir les postes ouverts",
+  },
   reassurance: [
     {
       title: "Orthophonistes diplômés",
@@ -62,21 +69,21 @@ export const about = {
     ],
   },
   founders: {
-    eyebrow: "Les co-fondatrices",
-    title: "Deux orthophonistes à l'origine de LOV",
+    eyebrow: "Qui vous encadre",
+    title: "Deux orthophonistes à la tête de LOV",
     description:
-      "Un projet né du même constat : trop de familles attendent des mois pour un premier avis clair.",
+      "Morgane et Charlène dirigent l'équipe clinique au quotidien, et restent elles-mêmes en activité auprès des familles.",
     people: [
       {
         name: "Morgane",
         role: "Orthophoniste, co-fondatrice",
-        bio: "Convaincue que la distance ne doit jamais rimer avec moins de rigueur, elle veille à ce que chaque bilan garde l'exigence d'un cabinet.",
+        bio: "Elle supervise la qualité clinique de l'équipe et veille à ce que chaque orthophoniste dispose du temps et du cadre nécessaires pour bien faire son travail.",
         image: "/images/dialogue-therapist.jpg",
       },
       {
         name: "Charlène",
         role: "Orthophoniste, co-fondatrice",
-        bio: "Portée par l'envie de rendre l'orthophonie plus accessible, elle a voulu un premier pas plus rapide pour les familles, sans jamais sacrifier la qualité de l'accompagnement.",
+        bio: "Elle pilote l'organisation et l'accompagnement des nouvelles recrues, de la candidature jusqu'à la prise de poste.",
         image: "/images/expertise-listening.jpg",
       },
     ],

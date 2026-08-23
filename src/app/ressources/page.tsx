@@ -56,13 +56,8 @@ export default function ArticlesPage() {
     <main>
       <JsonLd id="resources-jsonld" data={resourcesJsonLd} />
       <PageIntro
-        eyebrow="Ressources"
-        title={
-          <>
-            Nos dernières{" "}
-            <span className="font-medium italic text-voice">ressources</span>
-          </>
-        }
+        eyebrow="Pour vous accompagner"
+        title={articlesPage.title}
         description={articlesPage.description}
         image="/images/ortho-reading.jpg"
         imageAlt="Lecture et ressources autour de l’orthophonie"

@@ -58,7 +58,7 @@ export const platform = {
   ctaLabel: "Découvrir le bilan",
   ctaHref: "/bilan",
   secondaryLabel: "Parler du suivi",
-  secondaryHref: "/deja-un-bilan",
+  secondaryHref: "/suivi",
 } as const;
 
 export const expertiseItems = [

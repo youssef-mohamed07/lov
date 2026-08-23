@@ -6,3 +6,4 @@ export { AboutFounders } from "./founders";
 export { AboutValues } from "./values";
 export { AboutTestimonials } from "./testimonials";
 export { AboutFaq } from "./faq";
+export { AboutCareersBanner } from "./careers-banner";

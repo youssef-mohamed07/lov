@@ -6,6 +6,7 @@ import {
   getArticleHref,
   getCategoryHref,
 } from "@/data/articles";
+import { careers, getCareerRoleHref } from "@/data/carrieres";
 import { troubles } from "@/data/troubles";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -34,6 +35,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
   }));
 
+  const careerEntries: MetadataRoute.Sitemap = careers.roles.items.map(
+    (role) => ({
+      url: absoluteUrl(getCareerRoleHref(role.slug)),
+      priority: 0.55,
+      changeFrequency: "weekly",
+    }),
+  );
+
   const categoryEntries: MetadataRoute.Sitemap = articleCategories.map(
     (category) => ({
       url: absoluteUrl(getCategoryHref(category.slug)),
@@ -52,6 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticEntries,
     ...troubleEntries,
+    ...careerEntries,
     ...categoryEntries,
     ...articleEntries,
   ];

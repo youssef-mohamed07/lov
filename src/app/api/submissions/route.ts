@@ -78,7 +78,14 @@ export async function POST(request: Request) {
     const contentType = request.headers.get("content-type") ?? "";
 
     if (contentType.includes("multipart/form-data")) {
-      return handleExistingBilan(request);
+      const formData = await request.formData();
+      const kind = String(formData.get("kind") ?? "");
+
+      if (kind === "careers") {
+        return handleCareers(formData);
+      }
+
+      return handleExistingBilan(formData);
     }
 
     const parsed = jsonSubmissionSchema.safeParse(await request.json());
@@ -124,8 +131,90 @@ export async function POST(request: Request) {
   }
 }
 
-async function handleExistingBilan(request: Request) {
-  const formData = await request.formData();
+const careersSchema = z.object({
+  name: text(120),
+  email,
+  role: optionalText(120),
+  roleSlug: optionalText(80),
+});
+
+async function handleCareers(formData: FormData) {
+  const parsed = careersSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    role: formData.get("role") || "",
+    roleSlug: formData.get("roleSlug") || "",
+  });
+
+  if (!parsed.success) {
+    return Response.json(
+      { error: "Les informations envoyées sont invalides." },
+      { status: 400 },
+    );
+  }
+
+  const cv = formData.get("cv");
+  const hasCv = cv instanceof File && cv.size > 0;
+
+  if (!hasCv) {
+    return Response.json(
+      { error: "Merci de joindre votre CV." },
+      { status: 400 },
+    );
+  }
+
+  if (cv.size > 4 * 1024 * 1024) {
+    return Response.json(
+      { error: "Le CV ne doit pas dépasser 4 Mo." },
+      { status: 413 },
+    );
+  }
+
+  const allowedTypes = new Set([
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "image/jpeg",
+    "image/png",
+  ]);
+  if (!allowedTypes.has(cv.type)) {
+    return Response.json(
+      { error: "Le CV doit être un PDF, DOC, DOCX, JPG ou PNG." },
+      { status: 400 },
+    );
+  }
+
+  const storedCv = await uploadPrivateFile(cv, "lov/careers");
+  const payload = {
+    ...parsed.data,
+    cv: storedCv,
+  };
+  const sql = getSql();
+
+  const [row] = await sql`
+    INSERT INTO submissions (
+      kind,
+      email,
+      payload,
+      file_name,
+      file_type,
+      file_size
+    )
+    VALUES (
+      'careers',
+      ${parsed.data.email},
+      ${JSON.stringify(payload)}::jsonb,
+      ${cv.name},
+      ${cv.type},
+      ${cv.size}
+    )
+    RETURNING id
+  `;
+
+  return Response.json({ ok: true, id: row.id }, { status: 201 });
+}
+
+async function handleExistingBilan(formData: FormData) {
   const parsed = existingBilanSchema.safeParse({
     profile: formData.get("profile"),
     birthDate: formData.get("birthDate"),

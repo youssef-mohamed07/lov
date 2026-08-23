@@ -1,57 +1,73 @@
+export type CareerRole = {
+  slug: string;
+  title: string;
+  type: string;
+  mode: string;
+  location: string;
+  description: string;
+  image: string;
+  about: string;
+  missions: string[];
+  profile: string[];
+  offer: string[];
+};
+
 export const careers = {
-  eyebrow: "Carrières",
-  title: "Construire Lov",
-  titleAccent: "avec nous",
+  eyebrow: "Nous rejoindre",
+  title: "Donner du sens à",
+  titleAccent: "votre pratique",
   description:
-    "Rejoignez une équipe qui veut rendre l’orthophonie plus claire, plus humaine et plus accessible — pour les familles comme pour les cliniciens.",
+    "Nous cherchons des personnes qui veulent que l'orthophonie soit plus simple à trouver et plus agréable à exercer, pour les familles comme pour les professionnels.",
+  ctaLabel: "Envoyer votre candidature",
   culture: {
-    eyebrow: "Notre culture",
-    title: "Ce qui nous guide",
-    titleAccent: "au quotidien",
+    eyebrow: "Comment on travaille",
+    title: "Une équipe à",
+    titleAccent: "taille humaine",
     description:
-      "Une équipe petite, exigeante, et tournée vers le soin réel — pas vers le bruit.",
+      "Chaque professionnelle est accompagnée individuellement, avec un vrai suivi plutôt qu'une gestion à distance.",
     items: [
       {
-        title: "Clinique d’abord",
+        title: "Le soin avant tout",
         description:
-          "La qualité du soin guide chaque décision produit, éditoriale et organisationnelle.",
+          "Chaque décision, produit ou organisationnelle, part d'une question simple : est-ce que ça aide vraiment les familles ?",
       },
       {
-        title: "Travail en équipe",
+        title: "On avance ensemble",
         description:
-          "Supervision, échanges réguliers, et culture des retours bienveillants.",
+          "Supervision régulière, retours honnêtes et bienveillants, portes ouvertes entre collègues.",
       },
       {
-        title: "Effet concret",
+        title: "Vos idées comptent",
         description:
-          "Vos idées améliorent directement l’expérience des familles accompagnées.",
+          "Ce que vous proposez peut changer, concrètement, le quotidien des familles que nous accompagnons.",
       },
     ],
   },
   process: {
     eyebrow: "Candidature",
     title: "Un processus",
-    titleAccent: "simple et clair",
+    titleAccent: "simple en 4 étapes",
+    description: "Quatre étapes, sans dossier interminable ni silence radio.",
     steps: [
       {
-        title: "Envoyez votre profil",
+        title: "Vous nous écrivez",
         description:
-          "Un message court, votre parcours, et ce qui vous attire chez Lov.",
+          "Un message avec votre parcours et ce qui vous donne envie de nous rejoindre.",
       },
       {
-        title: "Échange découverte",
+        title: "On se parle",
         description:
-          "30 minutes pour parler de votre pratique, de vos attentes et des besoins.",
+          "Trente minutes pour faire connaissance, parler de votre pratique et de vos attentes.",
       },
       {
-        title: "Mise en situation",
+        title: "Une mise en situation",
         description:
-          "Un cas concret, adapté au rôle, pour voir comment vous raisonnez.",
+          "Un cas concret, pour voir ensemble comment vous raisonnez, sans piège.",
       },
       {
-        title: "Décision et intégration",
+        title: "Une réponse rapide",
         description:
-          "Retour rapide, puis intégration progressive avec un référent dédié.",
+          "Qu'elle soit positive ou non, vous avez une réponse claire, suivie d'une intégration accompagnée si vous nous rejoignez.",
       },
     ],
   },
@@ -59,39 +75,120 @@ export const careers = {
     eyebrow: "Ouvertures",
     title: "Postes",
     titleAccent: "ouverts",
-    description:
-      "Des rôles cliniques et produit, en présentiel, en formule mixte ou à distance selon les missions.",
     items: [
       {
+        slug: "orthophoniste",
         title: "Orthophoniste",
         type: "Temps partiel",
         mode: "Présentiel et distanciel",
         location: "Paris · À distance possible",
         description:
           "Réaliser des bilans et des prises en charge (langage, parole, apprentissages) et participer à l’amélioration des parcours.",
+        image: "/images/ortho-session.jpg",
+        about:
+          "Vous accompagnez des familles en visioconférence, avec le même exigence clinique qu’en cabinet, dans une équipe encadrée au quotidien.",
+        missions: [
+          "Réaliser des bilans orthophoniques structurés en télésoin",
+          "Conduire des séances de suivi adaptées à chaque profil",
+          "Rédiger des comptes-rendus clairs, utiles aux familles et aux partenaires",
+          "Échanger avec l’équipe pour faire évoluer les parcours",
+        ],
+        profile: [
+          "Diplôme d’État d’orthophoniste",
+          "À l’aise avec la visioconférence et les outils numériques",
+          "Souci du soin, de la clarté et de la relation avec les familles",
+          "Envie de contribuer à une pratique collective, pas isolée",
+        ],
+        offer: [
+          "Encadrement clinique régulier",
+          "Outils et parcours déjà structurés",
+          "Organisation souple, à taille humaine",
+          "Intégration accompagnée dès la prise de poste",
+        ],
       },
       {
+        slug: "charge-contenu-clinique",
         title: "Chargé·e de contenu clinique",
         type: "Indépendant·e ou CDI",
         mode: "À distance",
         location: "À distance",
         description:
           "Rédiger des contenus clairs et justes sur l’orthophonie à destination des parents et des enseignants.",
+        image: "/images/ortho-reading.jpg",
+        about:
+          "Vous transformez l’expertise clinique en contenus accessibles : articles, guides et repères pour aider les familles à mieux comprendre et s’orienter.",
+        missions: [
+          "Rédiger des articles et ressources sur l’orthophonie",
+          "Travailler avec les orthophonistes pour garantir la justesse clinique",
+          "Structurer des contenus clairs pour parents et enseignants",
+          "Améliorer en continu le ton, la lisibilité et l’utilité des textes",
+        ],
+        profile: [
+          "Excellente plume en français",
+          "Appétence pour la vulgarisation médicale ou éducative",
+          "Rigueur, curiosité et sens du détail",
+          "Capacité à travailler en autonomie à distance",
+        ],
+        offer: [
+          "Sujets concrets, au service des familles",
+          "Collaboration directe avec l’équipe clinique",
+          "Format flexible (indépendant·e ou CDI)",
+          "Retours rapides et cadre éditorial clair",
+        ],
       },
       {
+        slug: "concepteur-produit",
         title: "Concepteur·rice produit",
         type: "CDI",
         mode: "Mixte",
         location: "Paris / mixte",
         description:
           "Concevoir des parcours numériques sobres, accessibles et cliniquement responsables.",
+        image: "/images/expertise-follow.jpg",
+        about:
+          "Vous concevez les parcours Lov — du premier contact au suivi — pour qu’ils restent simples, humains et cliniquement responsables.",
+        missions: [
+          "Concevoir des parcours utilisateur sobres et accessibles",
+          "Travailler avec l’équipe clinique sur les priorités produit",
+          "Prototyper, tester et itérer à partir de retours réels",
+          "Veiller à la cohérence de l’expérience sur tout le site",
+        ],
+        profile: [
+          "Expérience en conception produit ou UX",
+          "Sensibilité aux enjeux de santé ou d’éducation",
+          "Capacité à simplifier sans appauvrir",
+          "Aisance en travail collaboratif mixte",
+        ],
+        offer: [
+          "Impact direct sur l’expérience des familles",
+          "Équipe petite, décisions rapides",
+          "Cadre hybride Paris / distance",
+          "Produit au service du soin, pas du volume",
+        ],
       },
-    ],
+    ] satisfies CareerRole[],
   },
   cta: {
-    title: "Pas de poste qui vous correspond ?",
+    eyebrow: "Aucun poste ne correspond ?",
+    title: "Écrivez-nous quand même",
     description:
-      "Envoyez-nous une candidature spontanée. On lit chaque message, et on revient vers vous si un besoin correspond.",
-    action: "Candidature spontanée",
+      "Déposez votre CV, chaque profil est étudié. Si un besoin correspond, on revient vers vous.",
+    fileLabel: "Déposer votre CV",
+    action: "Envoyer ma candidature",
+    successTitle: "Candidature envoyée",
+    successDescription:
+      "Merci. Nous étudions chaque profil et revenons vers vous si un besoin correspond.",
   },
 } as const;
+
+export function getCareerRole(slug: string) {
+  return careers.roles.items.find((role) => role.slug === slug);
+}
+
+export function getAllCareerRoleSlugs() {
+  return careers.roles.items.map((role) => role.slug);
+}
+
+export function getCareerRoleHref(slug: string) {
+  return `/carrieres/${slug}`;
+}
