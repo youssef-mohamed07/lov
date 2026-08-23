@@ -34,9 +34,9 @@ function Stars({ count }: { count: number }) {
 
 type Item = (typeof testimonials.items)[number];
 
-type CardTone = "surface" | "warm" | "cool" | "ink";
+type CardTone = "surface" | "warm" | "cool" | "cream";
 
-const cardTones: CardTone[] = ["surface", "warm", "cool", "ink"];
+const cardTones: CardTone[] = ["surface", "warm", "cool", "cream"];
 
 const toneStyles: Record<
   CardTone,
@@ -53,7 +53,7 @@ const toneStyles: Record<
     quote: "text-accent/30",
     text: "text-foreground",
     muted: "text-muted",
-    avatar: "bg-foreground text-background",
+    avatar: "bg-accent-soft text-accent",
   },
   warm: {
     card: "border-accent/20 bg-accent-soft/70 shadow-[var(--shadow-card)]",
@@ -69,12 +69,12 @@ const toneStyles: Record<
     muted: "text-muted",
     avatar: "bg-brand text-brand-foreground",
   },
-  ink: {
-    card: "border-transparent bg-foreground shadow-[0_24px_60px_-30px_rgba(14,14,15,0.55)]",
-    quote: "text-accent",
-    text: "text-background",
-    muted: "text-background/65",
-    avatar: "bg-background text-foreground",
+  cream: {
+    card: "border-border bg-surface-warm shadow-[var(--shadow-card)]",
+    quote: "text-accent/35",
+    text: "text-foreground",
+    muted: "text-muted",
+    avatar: "bg-brand-soft text-brand",
   },
 };
 
@@ -222,9 +222,7 @@ export function TestimonialsSection() {
           </p>
           <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {testimonials.title}{" "}
-            <span className="font-medium italic text-voice">
-              {testimonials.titleAccent}
-            </span>
+            <span className="mark-rule">{testimonials.titleAccent}</span>
           </h2>
           <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-muted shadow-[var(--shadow-card)]">
             <Stars count={5} />

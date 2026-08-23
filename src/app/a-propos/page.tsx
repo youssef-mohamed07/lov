@@ -7,14 +7,13 @@ import {
   AboutReassurance,
   AboutTestimonials,
   AboutValues,
-  AboutWhyOnline,
 } from "@/components/sections/a-propos";
 import {
   HomeBento,
   HomeDialogue,
-  HomeShowcase,
 } from "@/components/sections/home";
 import { PageIntro } from "@/components/sections/page-intro";
+import { TrustShowcase } from "@/components/sections/trust-showcase";
 import { CtaButton } from "@/components/ui/cta-button";
 import { about } from "@/data/a-propos";
 import { createPageMetadata } from "@/lib/seo";
@@ -31,24 +30,37 @@ export default function AboutPage() {
   return (
     <main>
       <PageIntro
-        eyebrow="À propos"
+        eyebrow="Qui sommes-nous ?"
         title={about.title}
         description={about.description}
         image="/images/home-showcase.jpg"
         imageAlt="Échange entre une famille et une professionnelle de l’orthophonie"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "À propos" }]}
         actions={
-          <CtaButton href="/bilan" size="lg">
-            Demander un bilan
+          <CtaButton href="/nous-contacter" size="lg">
+            Nous contacter
           </CtaButton>
         }
       />
       <AboutReassurance />
-      <HomeShowcase />
+      <TrustShowcase
+        image="/images/showcase-family.jpg"
+        imageAlt="Échange entre une famille et un professionnel autour d’un bilan"
+        badgeLabel="Bilans réalisés"
+        badgeValue="400"
+        imageCaption="Une évaluation claire, pensée pour être comprise."
+        eyebrow="Notre histoire"
+        title={<span className="mark-brush">Pourquoi LOV existe</span>}
+        description="Trop de familles attendent des mois pour un premier avis. Nous avons voulu un premier pas plus rapide, sans renoncer à la rigueur d'un bilan en cabinet."
+        ctaLabel="Demander un bilan"
+        ctaHref="/demander-un-bilan"
+      />
       <HomeDialogue />
       <AboutOverview />
-      <AboutWhyOnline />
-      <HomeBento />
+      <HomeBento
+        {...about.platform}
+        title={<span className="mark-spark">{about.platform.title}</span>}
+      />
       <AboutFigures />
       <AboutFounders />
       <AboutValues />

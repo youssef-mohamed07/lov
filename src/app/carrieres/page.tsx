@@ -82,7 +82,7 @@ export default function CareersPage() {
               </p>
               <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {careers.culture.title}{" "}
-                <span className="squiggle-accent">
+                <span className="mark-accent">
                   {careers.culture.titleAccent}
                 </span>
               </h2>
@@ -125,9 +125,7 @@ export default function CareersPage() {
               </p>
               <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {careers.process.title}{" "}
-                <span className="font-medium italic text-voice">
-                  {careers.process.titleAccent}
-                </span>
+                <span className="mark-rule">{careers.process.titleAccent}</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
@@ -178,7 +176,7 @@ export default function CareersPage() {
               </p>
               <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {careers.roles.title}{" "}
-                <span className="mark-accent">{careers.roles.titleAccent}</span>
+                <span className="mark-tint">{careers.roles.titleAccent}</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
@@ -246,7 +244,7 @@ export default function CareersPage() {
                     Candidature spontanée
                   </p>
                   <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-background sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-                    {careers.cta.title}
+                    <span className="mark-brush">{careers.cta.title}</span>
                   </h2>
                   <p className="mt-4 max-w-lg text-base leading-7 text-background/70">
                     {careers.cta.description}

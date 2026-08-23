@@ -39,7 +39,8 @@ export function FaqDirectory() {
                   Catégories FAQ
                 </p>
                 <h2 className="mt-1 font-display text-xl font-semibold text-foreground sm:text-2xl">
-                  Choisissez votre thème
+                  Choisissez votre{" "}
+                  <span className="mark-tint">thème</span>
                 </h2>
                 <p className="mt-1 text-sm text-muted">
                   {faqGroups.length} thèmes · {questionCount} réponses

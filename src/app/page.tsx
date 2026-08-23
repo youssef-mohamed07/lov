@@ -5,7 +5,6 @@ import {
   HomeDialogue,
   HomeHero,
   HomePlatform,
-  HomePricing,
   HomeServicesGrid,
   HomeShowcase,
   HomeSteps,
@@ -52,7 +51,6 @@ export default function HomePage() {
       <HomeServicesGrid />
       <HomeTestimonials />
       <HomePlatform />
-      <HomePricing />
     </main>
   );
 }

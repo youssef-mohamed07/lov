@@ -44,7 +44,7 @@ export function HomePlatform() {
             </p>
             <h2 className="max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
               À votre rythme,{" "}
-              <span className="squiggle-accent">du bilan au suivi</span>
+              <span className="mark-tint">du bilan au suivi</span>
             </h2>
           </div>
           <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">

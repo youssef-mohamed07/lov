@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
@@ -12,7 +13,7 @@ export type SimpleStep = {
 
 type SimpleStepsProps = {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   steps: readonly SimpleStep[];
   align?: "left" | "center";
 };

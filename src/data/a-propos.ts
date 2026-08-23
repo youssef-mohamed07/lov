@@ -1,13 +1,13 @@
 import type { FaqItem } from "@/components/common/faq";
 
 export const about = {
-  title: "À propos de Lov",
+  title: "Les Orthos en Visio",
   description:
-    "Nous rendons l’orthophonie plus claire — pour que familles et adultes puissent comprendre, s’orienter, et avancer.",
+    "Nous rendons l'orthophonie plus claire, pour que chacun puisse comprendre, s'orienter et avancer.",
   reassurance: [
     {
       title: "Orthophonistes diplômés",
-      description: "Une équipe formée, supervisée, et spécialisée.",
+      description: "Une équipe formée, supervisée et spécialisée.",
     },
     {
       title: "Parcours lisible",
@@ -32,22 +32,21 @@ export const about = {
     imageAlt: "Séance de bilan orthophonique",
   },
   whyOnline: {
-    eyebrow: "Pourquoi en ligne ?",
-    title: "La clarté d’abord,",
-    titleAccent: "où que vous soyez",
-    body: "L’orientation et la préparation du bilan peuvent commencer à distance — pour gagner du temps, lever le flou, et arriver mieux préparés à l’évaluation clinique.",
+    eyebrow: "Ce qui nous guide",
+    title: "Trois principes, à chaque séance",
     points: [
       {
-        title: "Premier pas immédiat",
-        description: "Simulateur et demande de bilan accessibles sans attendre.",
+        title: "Clarté",
+        description: "Des mots simples, jamais de jargon qui isole.",
       },
       {
-        title: "Plus fluide",
-        description: "Des questions guidées, des réponses enregistrées, un échange plus simple.",
+        title: "Rigueur",
+        description: "Des méthodes reconnues, adaptées à chaque profil.",
       },
       {
-        title: "Suite clinique",
-        description: "Quand un bilan est indiqué, le parcours reste humain et structuré.",
+        title: "Écoute",
+        description:
+          "Le temps d'entendre ce que vous observez, avant de répondre.",
       },
     ],
   },
@@ -63,21 +62,60 @@ export const about = {
     ],
   },
   founders: {
-    eyebrow: "Co-fondateurs",
-    title: "Ceux qui portent",
-    titleAccent: "le projet",
+    eyebrow: "Les co-fondatrices",
+    title: "Deux orthophonistes à l'origine de LOV",
+    description:
+      "Un projet né du même constat : trop de familles attendent des mois pour un premier avis clair.",
     people: [
       {
-        name: "Camille Renard",
-        role: "Orthophoniste · Co-fondatrice",
-        bio: "Clinique, pédagogie et souci du détail — pour que chaque famille reparte avec des mots qui aident.",
+        name: "Morgane",
+        role: "Orthophoniste, co-fondatrice",
+        bio: "Convaincue que la distance ne doit jamais rimer avec moins de rigueur, elle veille à ce que chaque bilan garde l'exigence d'un cabinet.",
         image: "/images/dialogue-therapist.jpg",
       },
       {
-        name: "Léo Martin",
-        role: "Produit · Co-fondateur",
-        bio: "Des parcours numériques sobres, pensés pour clarifier le premier pas sans remplacer le soin.",
+        name: "Charlène",
+        role: "Orthophoniste, co-fondatrice",
+        bio: "Portée par l'envie de rendre l'orthophonie plus accessible, elle a voulu un premier pas plus rapide pour les familles, sans jamais sacrifier la qualité de l'accompagnement.",
         image: "/images/expertise-listening.jpg",
+      },
+    ],
+  },
+  platform: {
+    eyebrow: "Notre plateforme",
+    title: "Nous avons construit ce qui nous manquait",
+    description:
+      "Morgane et Charlène ont vécu, en cabinet, les mêmes frustrations que beaucoup de familles : des outils dispersés, des informations qui se perdent, un suivi difficile à tenir dans la durée. LOV est né pour résoudre ça.",
+    items: [
+      {
+        title: "Agenda en ligne",
+        description:
+          "Fini les allers-retours par téléphone pour caler un rendez-vous : vous réservez vous-même, à l'heure qui vous arrange.",
+      },
+      {
+        title: "Rappels automatiques",
+        description:
+          "Plus de rendez-vous oublié faute de rappel : un message avant chaque séance, pour ne rien manquer.",
+      },
+      {
+        title: "Comptes-rendus",
+        description:
+          "Plus de document papier égaré entre deux rendez-vous : chaque compte-rendu rangé dans votre espace, accessible à tout moment.",
+      },
+      {
+        title: "Exercices personnalisés",
+        description:
+          "Les activités données en séance ne se perdent plus une fois rentré à la maison : retrouvez-les facilement entre les séances.",
+      },
+      {
+        title: "Mesurer pour mieux progresser",
+        description:
+          "Percevoir les progrès sans recul sur plusieurs séances est difficile : un point régulier sur l'évolution de votre enfant, à partager avec l'école si besoin.",
+      },
+      {
+        title: "Messagerie sécurisée",
+        description:
+          "Une question n'a plus besoin d'attendre le prochain rendez-vous : échangez directement avec l'orthophoniste, entre deux séances.",
       },
     ],
   },

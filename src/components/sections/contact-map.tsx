@@ -23,8 +23,7 @@ export function ContactMap() {
             {location.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            {location.title}{" "}
-            <span className="squiggle-accent">{location.titleAccent}</span>
+            {location.title} {location.titleAccent}
           </h2>
         </Reveal>
 

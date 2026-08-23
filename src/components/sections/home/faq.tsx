@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Check, ListFilter } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -21,8 +21,13 @@ export function HomeFaq({
   showAllLink?: boolean;
 }) {
   const reduceMotion = useReducedMotion();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [activeFilter, setActiveFilter] = useState("all");
+  const initialFilter = content.filters?.[0];
+  const [activeFilter, setActiveFilter] = useState(
+    initialFilter?.id ?? "all",
+  );
+  const [activeIndex, setActiveIndex] = useState(
+    initialFilter?.itemIndexes[0] ?? 0,
+  );
   const active = content.items[activeIndex] ?? content.items[0];
   const selectedFilter = content.filters?.find(
     (filter) => filter.id === activeFilter,
@@ -50,7 +55,7 @@ export function HomeFaq({
                 {content.eyebrow}
               </p>
               <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {content.title}
+                <span className="mark-brush">{content.title}</span>
               </h2>
               <p className="mt-3 max-w-sm text-base leading-7 text-muted">
                 {content.description}
@@ -59,32 +64,11 @@ export function HomeFaq({
 
             {content.filters?.length ? (
               <Reveal variant="fade" className="mt-6">
-                <div className="flex items-center gap-2 text-xs font-medium text-muted">
-                  <ListFilter className="size-4 text-brand" aria-hidden />
-                  Filtrer les questions
-                </div>
                 <div
                   role="tablist"
-                  aria-label="Filtrer les questions fréquentes"
-                  className="mt-3 flex flex-wrap gap-2"
+                  aria-label="Catégories de questions"
+                  className="flex flex-wrap gap-2"
                 >
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected={activeFilter === "all"}
-                    onClick={() => selectFilter("all")}
-                    className={cn(
-                      "min-h-9 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
-                      activeFilter === "all"
-                        ? "border-accent bg-accent text-white"
-                        : "border-border bg-surface text-muted hover:border-accent/40 hover:text-foreground",
-                    )}
-                  >
-                    Tous
-                    <span className="ml-1.5 opacity-70">
-                      {content.items.length}
-                    </span>
-                  </button>
                   {content.filters.map((filter) => (
                     <button
                       key={filter.id}

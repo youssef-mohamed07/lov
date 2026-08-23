@@ -29,7 +29,7 @@ export function HomeExpertise() {
           </p>
           <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl">
             Une clinique au service de{" "}
-            <span className="mark-accent text-voice">la clarté</span>
+            <span className="text-voice">la clarté</span>
           </h2>
           <p className="mt-3 text-[0.95rem] leading-7 text-muted sm:text-base">
             Explorez chaque intention — preuve, écoute, suivi.

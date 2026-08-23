@@ -60,7 +60,7 @@ export default function ArticlesPage() {
         title={
           <>
             Nos dernières{" "}
-            <span className="squiggle-accent">ressources</span>
+            <span className="font-medium italic text-voice">ressources</span>
           </>
         }
         description={articlesPage.description}

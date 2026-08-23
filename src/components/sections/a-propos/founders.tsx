@@ -10,16 +10,16 @@ export function AboutFounders() {
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container className="relative">
-        <Reveal className="max-w-2xl" variant="fade">
+        <Reveal className="max-w-3xl" variant="fade">
           <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
             {founders.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            {founders.title}{" "}
-            <span className="font-medium italic text-voice">
-              {founders.titleAccent}
-            </span>
+            <span className="mark-brush">{founders.title}</span>
           </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
+            {founders.description}
+          </p>
         </Reveal>
 
         <ul className="mt-12 grid gap-6 lg:grid-cols-2">

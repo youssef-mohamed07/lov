@@ -11,7 +11,7 @@ export function BilanSteps() {
   return (
     <SimpleSteps
       eyebrow={parcours.eyebrow}
-      title={parcours.title}
+      title={<span className="mark-accent">{parcours.title}</span>}
       steps={parcours.steps.map((step, index) => ({
         title: step.title,
         description: step.description,

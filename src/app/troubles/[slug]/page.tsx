@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { ArrowUpRight, BookOpen, MessageCircle, Speech } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Reveal } from "@/components/common/reveal";
+import { HomeBento } from "@/components/sections/home";
 import { PageIntro } from "@/components/sections/page-intro";
+import { TroubleProcess } from "@/components/sections/trouble-process";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
@@ -22,6 +25,8 @@ import {
 type TroublePageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const relatedIcons = [BookOpen, MessageCircle, Speech] as const;
 
 export async function generateStaticParams() {
   return getAllTroubleSlugs().map((slug) => ({ slug }));
@@ -80,6 +85,8 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
   return (
     <main>
       <JsonLd id="trouble-jsonld" data={troubleJsonLd} />
+
+      {/* 1 — Hero */}
       <PageIntro
         eyebrow="Orthophonie"
         title={trouble.title}
@@ -98,7 +105,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
         }
       />
 
-      {/* Overview + signs */}
+      {/* 2 — Overview + signs */}
       <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
         <Container className="relative">
           <Reveal className="max-w-3xl">
@@ -140,7 +147,13 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
         </Container>
       </section>
 
-      {/* Approach */}
+      {/* 3 — Platform 6 cards */}
+      <HomeBento />
+
+      {/* 4 — Process (hotspot timeline) */}
+      <TroubleProcess troubleTitle={trouble.title} />
+
+      {/* 5 — Approach bar */}
       <section className="bg-background py-[var(--section-space-lg)]">
         <Container>
           <Reveal>
@@ -171,9 +184,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
                     </p>
                     <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:leading-[1.15]">
                       Un accompagnement{" "}
-                      <span className="font-medium italic text-accent">
-                        sur mesure
-                      </span>
+                      <span className="mark-brush">sur mesure</span>
                     </h2>
                     <p className="mt-5 max-w-lg text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
                       {trouble.approach}
@@ -191,7 +202,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
         </Container>
       </section>
 
-      {/* Related */}
+      {/* 6 — Related troubles */}
       {related.length > 0 ? (
         <section className="bg-background py-[var(--section-space-lg)]">
           <Container>
@@ -217,40 +228,53 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
             </Reveal>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((item, index) => (
-                <li key={item.slug}>
-                  <Reveal delay={index * 0.05} variant="fade" className="h-full">
-                    <Link
-                      href={`/troubles/${item.slug}`}
-                      className="group relative flex h-full min-h-[220px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[240px]"
+              {related.map((item, index) => {
+                const Icon = relatedIcons[index] ?? BookOpen;
+
+                return (
+                  <li key={item.slug}>
+                    <Reveal
+                      delay={index * 0.05}
+                      variant="fade"
+                      className="h-full"
                     >
-                      <Image
-                        src={item.image}
-                        alt=""
-                        fill
-                        sizes="(max-width: 640px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                      <div
-                        aria-hidden
-                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"
-                      />
-                      <div className="relative z-10 p-5">
-                        <h3 className="font-display text-lg font-semibold text-white">
+                      <Link
+                        href={`/troubles/${item.slug}`}
+                        className="group flex h-full min-h-[240px] flex-col rounded-[1.35rem] border border-border bg-surface p-5 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/35 hover:bg-accent-soft/15 sm:p-6"
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
+                            <Icon className="size-5" aria-hidden />
+                          </span>
+                          <span className="font-display text-xs font-semibold tabular-nums text-muted-soft">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                        </div>
+                        <h3 className="mt-6 font-display text-xl font-semibold tracking-tight text-foreground">
                           {item.title}
                         </h3>
-                        <p className="mt-1 line-clamp-2 text-sm text-white/80">
+                        <p className="mt-2 flex-1 text-sm leading-6 text-muted">
                           {item.description}
                         </p>
-                      </div>
-                    </Link>
-                  </Reveal>
-                </li>
-              ))}
+                        <span className="mt-6 inline-flex w-fit min-h-11 items-center gap-2.5 rounded-full bg-accent py-1 pl-4 pr-1 text-sm font-medium text-white transition-[background-color,box-shadow] duration-300 group-hover:bg-accent-hover group-hover:shadow-[0_14px_32px_-18px_rgba(254,81,16,0.45)]">
+                          <span className="tracking-[-0.01em]">
+                            En savoir plus
+                          </span>
+                          <span className="inline-flex size-8 items-center justify-center rounded-full bg-white text-foreground transition-transform duration-300 ease-out group-hover:rotate-45 group-hover:scale-105">
+                            <ArrowUpRight className="size-3.5" aria-hidden />
+                          </span>
+                        </span>
+                      </Link>
+                    </Reveal>
+                  </li>
+                );
+              })}
             </ul>
           </Container>
         </section>
       ) : null}
+
+      {/* 7 — FAQ injected via SiteChrome for /troubles/[slug] */}
     </main>
   );
 }

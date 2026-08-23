@@ -6,6 +6,7 @@ import {
   FileText,
   MessagesSquare,
 } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
@@ -55,30 +56,48 @@ const features = [
   },
 ] as const;
 
-export function HomeBento() {
+const defaultTitle = (
+  <>
+    De la prise de rendez-vous au compte-rendu,{" "}
+    <span className="mark-accent">tout est simplifié</span>
+  </>
+);
+
+type HomeBentoProps = {
+  eyebrow?: string;
+  title?: ReactNode;
+  description?: string;
+  items?: ReadonlyArray<{ title: string; description: string }>;
+};
+
+export function HomeBento({
+  eyebrow = "La plateforme",
+  title = defaultTitle,
+  description = "Chaque étape de votre parcours se passe au même endroit, sans jongler entre plusieurs outils.",
+  items,
+}: HomeBentoProps = {}) {
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container>
         <div className="grid items-start gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
           <Reveal variant="fade" className="lg:sticky lg:top-28">
             <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-              La plateforme
+              {eyebrow}
             </p>
             <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-              De la prise de rendez-vous au compte-rendu,{" "}
-              <span className="mark-accent">tout est simplifié</span>
+              {title}
             </h2>
             <p className="mt-5 max-w-lg text-base leading-7 text-muted sm:text-lg sm:leading-8">
-              Chaque étape de votre parcours se passe au même endroit, sans
-              jongler entre plusieurs outils.
+              {description}
             </p>
           </Reveal>
 
           <ul className="grid gap-3 sm:grid-cols-2">
             {features.map((feature, index) => {
               const Icon = feature.icon;
+              const content = items?.[index] ?? feature;
               return (
-                <li key={feature.title}>
+                <li key={content.title}>
                   <Reveal
                     delay={(index % 2) * 0.05}
                     variant="fade-scale"
@@ -96,10 +115,10 @@ export function HomeBento() {
                         </span>
                       </div>
                       <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-foreground">
-                        {feature.title}
+                        {content.title}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-muted">
-                        {feature.description}
+                        {content.description}
                       </p>
                     </article>
                   </Reveal>

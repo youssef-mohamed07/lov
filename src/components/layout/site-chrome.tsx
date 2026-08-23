@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { HomeFaq } from "@/components/sections/home/faq";
+import { HomePricing } from "@/components/sections/home/pricing";
 import { SiteCta } from "@/components/sections/site-cta";
 import { getFaqForPathname } from "@/data/faqs";
 
@@ -34,6 +35,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     <div className="flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip">
       <Navbar />
       <div className="min-w-0 flex-1">{children}</div>
+      <HomePricing />
       {faq ? (
         <HomeFaq key={pathname} content={faq} showAllLink />
       ) : null}

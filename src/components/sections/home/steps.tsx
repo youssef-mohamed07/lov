@@ -28,7 +28,11 @@ export function HomeSteps() {
   return (
     <SimpleSteps
       eyebrow="Parcours"
-      title="3 étapes simples"
+      title={
+        <>
+          3 <span className="mark-brush">étapes simples</span>
+        </>
+      }
       steps={steps}
     />
   );

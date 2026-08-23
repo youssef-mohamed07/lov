@@ -18,7 +18,7 @@ export function BilanProcess() {
             </span>
             <h2 className="mt-5 max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
               {process.title}{" "}
-              <span className="squiggle-accent">{process.titleAccent}</span>
+              <span className="mark-spark">{process.titleAccent}</span>
             </h2>
             <p className="mt-4 max-w-md text-base leading-7 text-muted sm:text-lg">
               {process.body}

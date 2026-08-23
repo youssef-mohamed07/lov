@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+import {
+  ArrowUpRight,
+  AudioLines,
+  BookOpen,
+  BrainCircuit,
+  Calculator,
+  MessageCircle,
+  Mic2,
+  PenLine,
+  Speech,
+} from "lucide-react";
 import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
@@ -47,6 +56,17 @@ const troublesJsonLd = {
   ],
 };
 
+const troubleIcons = [
+  BookOpen,
+  MessageCircle,
+  AudioLines,
+  PenLine,
+  Calculator,
+  Speech,
+  BrainCircuit,
+  Mic2,
+] as const;
+
 export default function TroublesPage() {
   return (
     <main>
@@ -64,8 +84,8 @@ export default function TroublesPage() {
         imageAlt="Activité d’accompagnement du langage"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "Troubles" }]}
         actions={
-          <CtaButton href="/bilan" size="lg">
-            Demander un bilan
+          <CtaButton href="/nous-contacter" size="lg">
+            Nous contacter
           </CtaButton>
         }
       />
@@ -73,44 +93,49 @@ export default function TroublesPage() {
       <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
         <Container className="relative">
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {troubles.map((trouble, index) => (
-              <li key={trouble.slug}>
-                <Reveal
-                  delay={(index % 3) * 0.06}
-                  variant="fade"
-                  className="h-full"
-                >
-                  <Link
-                    href={`/troubles/${trouble.slug}`}
-                    className="group relative flex h-full min-h-[280px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]"
+            {troubles.map((trouble, index) => {
+              const Icon = troubleIcons[index] ?? BookOpen;
+
+              return (
+                <li key={trouble.slug}>
+                  <Reveal
+                    delay={(index % 3) * 0.06}
+                    variant="fade"
+                    className="h-full"
                   >
-                    <Image
-                      src={trouble.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 1280px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10"
-                    />
-                    <div className="relative z-10 p-5 sm:p-6">
-                      <h2 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                        {trouble.title}
-                      </h2>
-                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/85">
-                        {trouble.description}
-                      </p>
-                      <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-white underline-offset-4 group-hover:underline">
-                        Comprendre {trouble.shortTitle.toLowerCase()}
-                        <ArrowUpRight className="size-4" aria-hidden />
-                      </span>
-                    </div>
-                  </Link>
-                </Reveal>
-              </li>
-            ))}
+                    <Link
+                      href={`/troubles/${trouble.slug}`}
+                      className="group flex h-full min-h-[250px] flex-col rounded-[1.35rem] border border-border bg-surface p-5 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/35 hover:bg-accent-soft/15 sm:p-6"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
+                          <Icon className="size-5" aria-hidden />
+                        </span>
+                        <span className="font-display text-xs font-semibold tabular-nums text-muted-soft">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <div className="mt-6 flex flex-1 flex-col">
+                        <h2 className="font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                          {trouble.title}
+                        </h2>
+                        <p className="mt-2 flex-1 text-sm leading-6 text-muted">
+                          {trouble.description}
+                        </p>
+                        <span className="mt-6 inline-flex w-fit min-h-11 items-center gap-2.5 rounded-full bg-accent py-1 pl-4 pr-1 text-sm font-medium text-white transition-[background-color,box-shadow] duration-300 group-hover:bg-accent-hover group-hover:shadow-[0_14px_32px_-18px_rgba(254,81,16,0.45)]">
+                          <span className="tracking-[-0.01em]">
+                            En savoir plus
+                          </span>
+                          <span className="inline-flex size-8 items-center justify-center rounded-full bg-white text-foreground transition-transform duration-300 ease-out group-hover:rotate-45 group-hover:scale-105">
+                            <ArrowUpRight className="size-3.5" aria-hidden />
+                          </span>
+                        </span>
+                      </div>
+                    </Link>
+                  </Reveal>
+                </li>
+              );
+            })}
           </ul>
         </Container>
       </section>

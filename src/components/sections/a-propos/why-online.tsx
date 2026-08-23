@@ -1,10 +1,10 @@
-import { HeartHandshake, MessagesSquare, Zap } from "lucide-react";
+import { Ear, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { about } from "@/data/a-propos";
 
-const icons = [Zap, MessagesSquare, HeartHandshake] as const;
+const icons = [MessageCircle, ShieldCheck, Ear] as const;
 
 export function AboutWhyOnline() {
   const { whyOnline } = about;
@@ -12,27 +12,18 @@ export function AboutWhyOnline() {
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container className="relative">
-        <Reveal
-          className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
-          variant="fade"
-        >
-          <div>
-            <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-              {whyOnline.eyebrow}
-            </p>
-            <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-              {whyOnline.title}{" "}
-              <span className="squiggle-accent">{whyOnline.titleAccent}</span>
-            </h2>
-          </div>
-          <p className="max-w-sm text-base leading-7 text-muted sm:pb-1 sm:text-right sm:text-lg">
-            {whyOnline.body}
+        <Reveal variant="fade">
+          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
+            {whyOnline.eyebrow}
           </p>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+            {whyOnline.title}
+          </h2>
         </Reveal>
 
         <ul className="mt-12 grid gap-px overflow-hidden rounded-[1.75rem] border border-border bg-border md:grid-cols-3">
           {whyOnline.points.map((point, index) => {
-            const Icon = icons[index] ?? Zap;
+            const Icon = icons[index] ?? MessageCircle;
             return (
               <li key={point.title} className="bg-surface">
                 <Reveal delay={index * 0.07} className="h-full">
