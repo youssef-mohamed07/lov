@@ -29,12 +29,12 @@ export function SimpleSteps({
       <Container className="relative">
         <Reveal variant="fade">
           <div className={cn(align === "center" && "text-center")}>
-            <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
+            <p className="text-sm font-medium tracking-[0.22em] text-brand uppercase">
               {eyebrow}
             </p>
             <h2
               className={cn(
-                "mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl",
+                "mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl",
                 align === "center" ? "mx-auto" : "max-w-xl",
               )}
             >
@@ -43,11 +43,11 @@ export function SimpleSteps({
           </div>
         </Reveal>
 
-        <Reveal className="mt-10" variant="fade">
+        <Reveal className="mt-12" variant="fade">
           <ol className="relative grid gap-8 md:grid-cols-3 md:gap-0">
             <div
               aria-hidden
-              className="absolute top-5 right-[16.666%] left-[16.666%] hidden h-px bg-border md:block"
+              className="absolute top-6 right-[16.666%] left-[16.666%] hidden h-px bg-border md:block"
             />
 
             {steps.map((item, index) => {
@@ -57,16 +57,16 @@ export function SimpleSteps({
                   key={item.title}
                   className="relative px-0 text-center md:px-6"
                 >
-                  <div className="relative z-10 mx-auto flex size-10 items-center justify-center rounded-full bg-accent-soft text-accent shadow-[0_10px_24px_-14px_rgba(254,81,16,0.5)]">
-                    <Icon className="size-4" aria-hidden />
+                  <div className="relative z-10 mx-auto flex size-12 items-center justify-center rounded-full bg-accent-soft text-accent shadow-[0_10px_24px_-14px_rgba(254,81,16,0.5)]">
+                    <Icon className="size-5" aria-hidden />
                   </div>
-                  <span className="mt-3 block font-display text-xs font-semibold tracking-[0.14em] text-muted-soft uppercase">
+                  <span className="mt-4 block font-display text-sm font-semibold tracking-[0.14em] text-muted-soft uppercase">
                     Étape {index + 1}
                   </span>
-                  <h3 className="mt-1 text-lg font-semibold tracking-tight text-foreground">
+                  <h3 className="mt-1.5 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
                     {item.title}
                   </h3>
-                  <p className="mx-auto mt-2 max-w-[16rem] text-sm leading-6 text-muted">
+                  <p className="mx-auto mt-3 max-w-[18rem] text-base leading-7 text-muted sm:text-lg sm:leading-8">
                     {item.description}
                   </p>
                   {index < steps.length - 1 ? (

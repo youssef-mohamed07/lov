@@ -17,7 +17,7 @@ export const bilan = {
     imageAlt: "Échange entre une famille et un professionnel autour d’un bilan",
     badgeLabel: "Bilans réalisés",
     badgeValue: "400",
-    imageCaption: "Une évaluation claire, pensée pour être comprise.",
+    imageCaption: "Évaluation conforme aux exigences administratives",
     eyebrow: "Pourquoi nous faire confiance ?",
     title: "Le bilan orthophonique,",
     titleAccent: "une autre façon de procéder",

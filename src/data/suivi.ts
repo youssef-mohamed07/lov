@@ -97,9 +97,9 @@ export const suivi = {
           "Rendez-vous, comptes-rendus, exercices entre les séances et échanges avec l’orthophoniste : tout votre suivi se retrouve au même endroit, simple à consulter à tout moment.",
       },
       understand: {
-        title: "Comprendre pour mieux agir",
+        title: "Notre approche",
         description:
-          "Notre approche : des mots simples, des étapes visibles, et des outils concrets dès le premier contact.",
+          "Un accompagnement professionnel, clair et bienveillant, avec des étapes visibles et des repères concrets à chaque moment du parcours.",
       },
     },
   },

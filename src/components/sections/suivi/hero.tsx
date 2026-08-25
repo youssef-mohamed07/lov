@@ -41,16 +41,16 @@ export function SuiviHero() {
           </FadeItem>
 
           <FadeItem className="mt-[var(--space-5)]">
-            <h1 className="font-display text-[2rem] font-semibold tracking-tight text-foreground sm:text-5xl sm:leading-[1.12] lg:text-[3.25rem]">
-              <span className="block">{hero.title}</span>
-              <span className="mt-2 block font-medium italic text-voice">
+            <h1 className="font-display text-[2.35rem] font-semibold tracking-tight text-foreground sm:text-6xl sm:leading-[1.1] lg:text-[3.75rem]">
+              <span className="block text-balance">{hero.title}</span>
+              <span className="mt-2 block font-medium italic text-voice text-balance">
                 {hero.titleAccent}
               </span>
             </h1>
           </FadeItem>
 
           <FadeItem className="mt-[var(--space-5)]">
-            <p className="mx-auto max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
+            <p className="mx-auto max-w-2xl text-lg leading-8 text-muted sm:text-xl sm:leading-9">
               {description}
             </p>
           </FadeItem>

@@ -108,6 +108,14 @@
   --font-sans: var(--font-body), "Modulus Pro", ui-sans-serif, sans-serif;
   --font-display: var(--font-body), "Modulus Pro", ui-sans-serif, sans-serif;
 
+  /* Body + subtitle slightly larger than Tailwind defaults */
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.875rem;
+
   --spacing-gutter: var(--gutter);
   --spacing-section-sm: var(--section-space-sm);
   --spacing-section-md: var(--section-space-md);

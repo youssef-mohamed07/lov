@@ -1,10 +1,10 @@
 import {
   Activity,
-  BellRing,
-  CalendarDays,
+  Bell,
+  Calendar,
   ClipboardCheck,
   FileText,
-  MessagesSquare,
+  MessageCircle,
 } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -16,14 +16,14 @@ const features = [
     title: "Agenda en ligne",
     description:
       "Choisissez un créneau en quelques clics, à l’heure qui vous arrange.",
-    icon: CalendarDays,
+    icon: Calendar,
     tone: "bg-accent-soft text-accent",
   },
   {
     title: "Rappels automatiques",
     description:
       "Un message avant chaque rendez-vous, pour ne rien manquer.",
-    icon: BellRing,
+    icon: Bell,
     tone: "bg-brand-soft text-brand",
   },
   {
@@ -51,7 +51,7 @@ const features = [
     title: "Messagerie sécurisée",
     description:
       "Une question entre deux séances ? Échangez directement avec l’orthophoniste.",
-    icon: MessagesSquare,
+    icon: MessageCircle,
     tone: "bg-brand-soft text-brand",
   },
 ] as const;

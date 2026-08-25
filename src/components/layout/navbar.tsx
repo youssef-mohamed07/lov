@@ -25,7 +25,6 @@ import { navLinks } from "@/constants/navigation";
 import { troubles } from "@/data/troubles";
 import { cn } from "@/lib/utils";
 
-const primaryNavLinks = navLinks.filter((link) => link.href !== "/faq");
 const troubleIcons = [
   MessageCircleMore,
   BookOpenText,
@@ -102,10 +101,10 @@ export function Navbar() {
           <BrandMark compact className="min-w-0 shrink rounded-xl px-1.5 py-2" />
 
           <nav
-            className="absolute left-1/2 z-20 hidden -translate-x-1/2 items-center gap-1 xl:flex"
+            className="absolute left-1/2 z-20 hidden -translate-x-1/2 items-center gap-0.5 xl:flex"
             aria-label="Principal"
           >
-            {primaryNavLinks.map((link) => {
+            {navLinks.map((link) => {
               if (link.href === "/troubles") {
                 return (
                   <div key={link.href} className="group/troubles relative">
@@ -113,7 +112,7 @@ export function Navbar() {
                       href={link.href}
                       aria-haspopup="menu"
                       className={cn(
-                        "inline-flex min-h-10 items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors",
+                        "inline-flex min-h-10 items-center gap-1 whitespace-nowrap rounded-xl px-2.5 py-2 text-[0.8125rem] font-medium transition-colors",
                         troublesActive
                           ? "bg-accent-soft/80 text-accent-hover"
                           : "text-foreground/70 group-hover/troubles:bg-surface-muted group-hover/troubles:text-foreground group-focus-within/troubles:bg-surface-muted group-focus-within/troubles:text-foreground",
@@ -121,7 +120,7 @@ export function Navbar() {
                     >
                       {link.label}
                       <ChevronDown
-                        className="size-3.5 transition-transform duration-200 group-hover/troubles:rotate-180 group-focus-within/troubles:rotate-180"
+                        className="size-3.5 shrink-0 transition-transform duration-200 group-hover/troubles:rotate-180 group-focus-within/troubles:rotate-180"
                         aria-hidden
                       />
                     </Link>
@@ -207,13 +206,15 @@ export function Navbar() {
               }
 
               const active =
-                pathname === link.href || pathname.startsWith(`${link.href}/`);
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname === link.href || pathname.startsWith(`${link.href}/`);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "inline-flex min-h-10 items-center rounded-xl px-3 py-2 text-sm font-medium transition-colors",
+                    "inline-flex min-h-10 items-center whitespace-nowrap rounded-xl px-2.5 py-2 text-[0.8125rem] font-medium transition-colors",
                     active
                       ? "bg-accent-soft/80 text-accent-hover"
                       : "text-foreground/70 hover:bg-surface-muted hover:text-foreground",
@@ -263,7 +264,7 @@ export function Navbar() {
       >
         <div className="mx-auto max-h-[calc(100dvh-var(--header-height)-1rem)] max-w-[var(--container-xl)] overflow-y-auto overscroll-contain rounded-[1.5rem] border border-border bg-surface p-3 shadow-[0_24px_60px_-32px_rgba(14,14,15,0.45)]">
           <div className="grid gap-1 sm:grid-cols-2">
-            {primaryNavLinks.map((link) => {
+            {navLinks.map((link) => {
               if (link.href === "/troubles") {
                 return (
                   <div key={link.href} className="sm:col-span-2">
@@ -307,7 +308,9 @@ export function Navbar() {
               }
 
               const active =
-                pathname === link.href || pathname.startsWith(`${link.href}/`);
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname === link.href || pathname.startsWith(`${link.href}/`);
               return (
                 <Link
                   key={link.href}

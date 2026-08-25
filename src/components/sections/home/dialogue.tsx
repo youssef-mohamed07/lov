@@ -46,10 +46,10 @@ export function HomeDialogue() {
     <section className="bg-background py-[var(--section-space-md)]">
       <Container>
         <Reveal className="mx-auto mb-8 max-w-2xl text-center" variant="fade">
-          <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
+          <p className="text-sm font-medium tracking-[0.22em] text-brand uppercase">
             La relation thérapeutique
           </p>
-          <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-tight">
+          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl sm:leading-tight">
             Orthophoniste, parent, enfant :{" "}
             <span className="font-medium italic text-voice">
               tous ensemble pour progresser

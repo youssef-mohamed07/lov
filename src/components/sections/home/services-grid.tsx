@@ -9,7 +9,7 @@ import { Container } from "@/components/ui/container";
 import { getTrouble } from "@/data/troubles";
 
 const services = [
-  { slug: "dyslexie", featured: true },
+  { slug: "dyslexie" },
   { slug: "retard-parole-langage" },
   { slug: "begaiement" },
   { slug: "dyscalculie" },
@@ -45,7 +45,6 @@ export function HomeServicesGrid() {
           {services.map((service, index) => {
             const trouble = getTrouble(service.slug);
             if (!trouble) return null;
-            const featured = "featured" in service && service.featured;
 
             return (
               <Reveal
@@ -70,12 +69,6 @@ export function HomeServicesGrid() {
                       aria-hidden
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10"
                     />
-
-                    {featured ? (
-                      <span className="absolute top-4 left-4 z-10 rounded-full bg-accent px-3 py-1 text-[11px] font-medium text-accent-foreground">
-                        Populaire
-                      </span>
-                    ) : null}
 
                     <div className="relative z-10 p-5 sm:p-6">
                       <h3 className="font-display text-xl font-semibold tracking-tight text-white">

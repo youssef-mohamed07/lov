@@ -1,11 +1,27 @@
-import { BookOpen, PencilLine, Users } from "lucide-react";
+import {
+  Activity,
+  BookOpen,
+  CalendarDays,
+  ClipboardCheck,
+  FileText,
+  MessagesSquare,
+  PencilLine,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 
-const community = ["A", "M", "S", "L", "N", "C"];
+const orbitIcons = [
+  MessagesSquare,
+  ClipboardCheck,
+  FileText,
+  Activity,
+  CalendarDays,
+  Users,
+] as const;
 
 export function AboutPlatformBento() {
   return (
@@ -49,10 +65,10 @@ export function AboutPlatformBento() {
                   <BookOpen className="size-5" aria-hidden />
                 </span>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-                  400+ bilans accompagnés
+                  400 bilans réalisés
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">
-                  Des évaluations structurées, pensées pour clarifier le profil et ouvrir des pistes concrètes.
+                  Des évaluations structurées pour clarifier le profil et ouvrir des pistes concrètes.
                 </p>
               </article>
             </Reveal>
@@ -68,23 +84,23 @@ export function AboutPlatformBento() {
                   <Users className="size-8" aria-hidden />
                 </div>
 
-                {community.map((initial, index) => {
-                  const angle = (index / community.length) * Math.PI * 2 - Math.PI / 2;
+                {orbitIcons.map((Icon, index) => {
+                  const angle = (index / orbitIcons.length) * Math.PI * 2 - Math.PI / 2;
                   const radius = 42;
                   const x = 50 + Math.cos(angle) * radius;
                   const y = 50 + Math.sin(angle) * radius;
                   return (
                     <span
-                      key={initial + index}
+                      key={`orbit-${index}`}
                       className={cn(
-                        "absolute z-10 flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-surface text-xs font-semibold shadow-sm",
+                        "absolute z-10 flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-surface shadow-sm",
                         index % 2 === 0
                           ? "bg-accent text-accent-foreground"
                           : "bg-accent-soft text-accent",
                       )}
                       style={{ left: `${x}%`, top: `${y}%` }}
                     >
-                      {initial}
+                      <Icon className="size-4" aria-hidden />
                     </span>
                   );
                 })}
@@ -111,10 +127,10 @@ export function AboutPlatformBento() {
                   <PencilLine className="size-5" aria-hidden />
                 </span>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-                  Comprendre pour mieux agir
+                  Notre approche
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">
-                  Notre approche : des mots simples, des étapes visibles, et des outils concrets dès le premier contact.
+                  Un accompagnement professionnel, clair et bienveillant, avec des étapes visibles et des repères concrets à chaque moment du parcours.
                 </p>
               </article>
             </Reveal>
