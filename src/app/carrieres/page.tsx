@@ -66,13 +66,6 @@ export default function CareersPage() {
                   sizes="(max-width: 1024px) 100vw, 48vw"
                   className="object-cover"
                 />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-[#0E0E0F]/55 via-transparent to-transparent"
-                />
-                <p className="absolute bottom-6 left-6 max-w-[16rem] font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                  Une équipe au service du soin, pas du spectacle.
-                </p>
               </div>
             </Reveal>
 
@@ -86,10 +79,6 @@ export default function CareersPage() {
                   {careers.culture.titleAccent}
                 </span>
               </h2>
-              <p className="mt-4 max-w-md text-base leading-7 text-muted">
-                {careers.culture.description}
-              </p>
-
               <ul className="mt-10 flex flex-col gap-8">
                 {careers.culture.items.map((item, index) => (
                   <li key={item.title} className="flex gap-4">
@@ -115,10 +104,7 @@ export default function CareersPage() {
       {/* Process */}
       <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
         <Container className="relative">
-          <Reveal
-            className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
-            variant="fade"
-          >
+          <Reveal variant="fade">
             <div>
               <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
                 {careers.process.eyebrow}
@@ -128,9 +114,6 @@ export default function CareersPage() {
                 <span className="mark-rule">{careers.process.titleAccent}</span>
               </h2>
             </div>
-            <p className="max-w-xs text-sm leading-6 text-muted sm:pb-1.5 sm:text-right">
-              {careers.process.description}
-            </p>
           </Reveal>
 
           <ol className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

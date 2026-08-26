@@ -24,7 +24,7 @@ const paths = [
     description:
       "Des séances régulières, des objectifs partagés et des progrès mesurés dans le temps.",
     href: "/suivi",
-    cta: "Parler du suivi",
+    cta: "Découvrir le suivi",
     icon: HeartHandshake,
     image: "/images/pricing-suivi.jpg",
   },
@@ -39,9 +39,6 @@ export function HomePlatform() {
           variant="fade"
         >
           <div>
-            <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-brand uppercase">
-              Savoir-faire
-            </p>
             <h2 className="max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
               À votre rythme,{" "}
               <span className="mark-tint">du bilan au suivi</span>

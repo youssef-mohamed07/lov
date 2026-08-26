@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import {
   AboutCareersBanner,
-  AboutFigures,
   AboutFounders,
   AboutOverview,
   AboutPlatformBento,
@@ -49,15 +48,14 @@ export default function AboutPage() {
         badgeValue="400"
         imageCaption="Une évaluation claire, pensée pour être comprise."
         eyebrow="Notre histoire"
-        title={<span className="mark-brush">Pourquoi LOV existe</span>}
-        description="Trop de familles attendent des mois pour un premier avis. Nous avons voulu un premier pas plus rapide, sans renoncer à la rigueur d'un bilan en cabinet."
+        title={<span className="mark-brush">Pourquoi Les Orthos en Visio existent ?</span>}
+        description="En cabinet, les délais d’attente pour un premier rendez-vous se comptent souvent en mois. Pendant ce temps, les difficultés d’un enfant s’installent, parfois se compliquent. Nous avons voulu un relais à cette attente : un premier pas plus rapide, pour que la prise en soin commence le plus tôt possible, sans attendre une place en libéral."
         ctaLabel="Demander un bilan"
         ctaHref="/demander-un-bilan"
       />
       <AboutPlatformBento />
       <HomeDialogue />
       <AboutOverview />
-      <AboutFigures />
       <AboutFounders />
       <AboutValues />
       <AboutCareersBanner />

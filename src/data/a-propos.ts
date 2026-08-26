@@ -3,12 +3,12 @@ import type { FaqItem } from "@/components/common/faq";
 export const about = {
   title: "Les Orthos en Visio",
   description:
-    "Nous rendons l'orthophonie plus claire, pour que chacun puisse comprendre, s'orienter et avancer.",
+    "Nous rendons l’orthophonie plus accessible, pour pallier le manque d’accès aux soins.",
   recruitment: {
     eyebrow: "Rejoindre l'équipe",
     title: "Envie de faire partie de l'aventure ?",
     description:
-      "Nous recrutons des orthophonistes et des profils produit qui partagent notre vision d'une orthophonie plus claire et plus accessible.",
+      "Nous recrutons des orthophonistes qui partagent notre vision d’une orthophonie plus accessible.",
     ctaLabel: "Voir les postes ouverts",
   },
   reassurance: [
@@ -17,8 +17,8 @@ export const about = {
       description: "Une équipe formée, supervisée et spécialisée.",
     },
     {
-      title: "Parcours lisible",
-      description: "Du simulateur au bilan, chaque étape est claire.",
+      title: "Parcours simplifié",
+      description: "De l’évaluation au suivi, tout se fait au même endroit.",
     },
     {
       title: "Cadre confidentiel",
@@ -29,7 +29,7 @@ export const about = {
     eyebrow: "Le bilan",
     title: "Un bilan orthophonique",
     titleAccent: "structuré et lisible",
-    body: "Le bilan précise le profil, pose les priorités et ouvre une suite concrète — sans jargon inutile. C’est le cœur de notre accompagnement : évaluer pour mieux orienter.",
+    body: "Le bilan précise le profil, pose les priorités et ouvre une suite concrète. C’est le cœur de notre accompagnement : évaluer pour mieux orienter.",
     points: [
       "Tests adaptés à l’âge et au motif",
       "Restitution claire pour la famille",
@@ -145,15 +145,15 @@ export const about = {
       },
       {
         title: "Accessibilité",
-        description: "Rendre l’orientation possible sans parcours opaque ni jargon.",
+        description: "Rendez-vous en ligne, depuis chez vous, à votre rythme.",
       },
       {
         title: "Proximité",
-        description: "Une écoute humaine, disponible dès le premier message.",
+        description: "Nous sommes disponibles, à votre écoute, dès le premier contact.",
       },
       {
         title: "Continuité",
-        description: "Du simulateur au suivi, un fil clair sans rupture.",
+        description: "De l’évaluation à la rééducation, nous vous accompagnons à chaque étape, au même endroit.",
       },
     ],
   },

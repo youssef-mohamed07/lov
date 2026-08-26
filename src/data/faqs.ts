@@ -287,17 +287,12 @@ export const careersFaq: PageFaqContent = {
     {
       question: "Quel matériel et quelle installation dois-je avoir pour exercer en téléconsultation ?",
       answer:
-        "Un ordinateur équipé d’une caméra et d’un micro de bonne qualité, une connexion internet stable, et un espace calme garantissant la confidentialité des échanges. Nous vous accompagnons sur le choix des outils si besoin.",
+        "Un ordinateur équipé d’une caméra et d’un micro de bonne qualité, une connexion internet stable, et un espace calme garantissant la confidentialité des échanges.",
     },
     {
       question: "Puis-je exercer en parallèle de mon activité en cabinet ?",
       answer:
         "Cela dépend du volume d’activité souhaité et de votre organisation ; nous en discutons ensemble lors de l’entretien de recrutement pour définir un rythme qui vous convient.",
-    },
-    {
-      question: "Quelle formation est prévue à la téléconsultation ?",
-      answer:
-        "L’exercice à distance demande des ajustements spécifiques, notamment pour capter l’attention d’un jeune enfant à travers un écran ou adapter la passation des tests. Nous accompagnons chaque nouvelle orthophoniste à sa prise de poste et échangeons régulièrement sur les pratiques entre praticiennes.",
     },
     {
       question: "Comment se passe le recrutement, de la candidature à la prise de poste ?",

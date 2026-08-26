@@ -1,9 +1,9 @@
-import { CalendarDays, FileText, Video } from "lucide-react";
+import { ClipboardList, Target, Video } from "lucide-react";
 
 import { SimpleSteps } from "@/components/sections/simple-steps";
 import { suivi } from "@/data/suivi";
 
-const stepIcons = [CalendarDays, Video, FileText] as const;
+const stepIcons = [ClipboardList, Target, Video] as const;
 
 export function SuiviSteps() {
   const { parcours } = suivi;

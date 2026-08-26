@@ -51,7 +51,7 @@ export const testimonials = {
     {
       quote:
         "Très bonne expérience pour le bilan orthophonique de mon enfant. Orthophoniste douce, professionnelle et rassurante, elle a pris le temps.",
-      author: "Ada Yagmur",
+      author: "Ada",
       role: "Mai 2026",
       rating: 5,
     },

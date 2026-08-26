@@ -816,7 +816,7 @@ function DetailsForm({
               />
             </Field>
             <Field
-              label="Avez-vous déjà une ordonnance ?"
+              label="Avez-vous une ordonnance ?"
               htmlFor="prescription"
               required
             >
@@ -832,7 +832,6 @@ function DetailsForm({
                 </option>
                 <option value="yes">Oui</option>
                 <option value="no">Non</option>
-                <option value="planned">Non, je vais l’obtenir</option>
               </select>
             </Field>
             <Field

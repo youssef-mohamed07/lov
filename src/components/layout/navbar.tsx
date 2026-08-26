@@ -2,16 +2,16 @@
 
 import {
   ArrowRight,
-  AudioWaveform,
-  BookOpenText,
-  Brain,
+  AudioLines,
+  BookOpen,
+  BrainCircuit,
   Calculator,
   ChevronDown,
   Menu,
-  MessageCircleMore,
-  SmilePlus,
+  MessageCircle,
+  PenLine,
   Sparkles,
-  Utensils,
+  Speech,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -26,13 +26,13 @@ import { troubles } from "@/data/troubles";
 import { cn } from "@/lib/utils";
 
 const troubleIcons = [
-  MessageCircleMore,
-  BookOpenText,
-  AudioWaveform,
+  BookOpen,
+  MessageCircle,
+  AudioLines,
+  PenLine,
   Calculator,
-  SmilePlus,
-  Utensils,
-  Brain,
+  Speech,
+  BrainCircuit,
 ] as const;
 
 export function Navbar() {
@@ -164,7 +164,7 @@ export function Navbar() {
                           {troubles.map((trouble, index) => {
                             const href = `/troubles/${trouble.slug}`;
                             const active = pathname === href;
-                            const Icon = troubleIcons[index] ?? MessageCircleMore;
+                            const Icon = troubleIcons[index] ?? BookOpen;
                             return (
                               <Link
                                 key={trouble.slug}

@@ -38,8 +38,8 @@ const childCta = "Une évaluation structurée, pour savoir précisément où en 
 export const troubles: Trouble[] = [
   {
     slug: "retard-parole-langage",
-    title: "Retard de parole et de langage",
-    shortTitle: "Retard de parole",
+    title: "RP/RL - Troubles de la parole et du langage oral",
+    shortTitle: "RP/RL",
     eyebrow: "Troubles du langage oral",
     description: "Un développement plus lent du vocabulaire, de la phrase ou de l’intelligibilité par rapport à l’âge attendu.",
     overviewTitle: "Un rythme différent, pas forcément un problème",
@@ -67,8 +67,8 @@ export const troubles: Trouble[] = [
   },
   {
     slug: "dyslexie",
-    title: "Dyslexie et dysorthographie",
-    shortTitle: "Dyslexie et dysorthographie",
+    title: "DL/DO - Troubles du langage écrit",
+    shortTitle: "DL/DO",
     eyebrow: "Troubles du langage écrit",
     description: "Un trouble durable de l’apprentissage de la lecture et de l’orthographe, qui persiste malgré un enseignement adapté.",
     overviewTitle: "Une difficulté spécifique, pas un manque d’effort",
@@ -132,7 +132,7 @@ export const troubles: Trouble[] = [
     shortTitle: "Cognition mathématique",
     eyebrow: "Troubles des apprentissages",
     description: "Un trouble spécifique du sens du nombre, du calcul ou de la résolution de problèmes.",
-    overviewTitle: "Une difficulté ciblée, pas un manque de logique",
+    overviewTitle: "Une difficulté ciblée, pas un manque de volonté",
     overview: "Ce trouble ne se résume pas à « être mauvais en maths ». Un bilan clarifie les compétences numériques et oriente les aménagements.",
     signs: [
       "Difficulté à comparer des quantités",
@@ -168,7 +168,7 @@ export const troubles: Trouble[] = [
       "Respiration buccale fréquente",
       "Difficultés à mastiquer ou avaler certains aliments",
       "Position de langue inhabituelle au repos",
-      "Impact possible sur l’articulation ou la posture dentaire",
+      "Impact possible sur l’articulation",
     ],
     recommendations: [
       item("Observer la respiration au repos", "Nez ou bouche : notez ce que vous remarquez."),
@@ -189,8 +189,8 @@ export const troubles: Trouble[] = [
   },
   {
     slug: "oralite-alimentaire",
-    title: "Troubles de l’oralité alimentaire",
-    shortTitle: "Oralité alimentaire",
+    title: "TOA : Troubles alimentaires pédiatriques",
+    shortTitle: "TOA",
     eyebrow: "Troubles de l’oralité",
     description: "Des difficultés dans la relation à l’alimentation : sélectivité, refus, sensibilité sensorielle.",
     overviewTitle: "Un rapport à l’alimentation qui se travaille, en douceur",
@@ -206,7 +206,7 @@ export const troubles: Trouble[] = [
       item("Proposer sans exiger", "Un aliment peut être présenté plusieurs fois, sans obligation d’y goûter."),
       item("Garder les repas courts et calmes", "Un cadre apaisé aide davantage qu’une négociation prolongée."),
       item("Impliquer l’enfant dans la préparation", "Toucher, sentir, manipuler avant de goûter."),
-      item("Ne pas comparer avec d’autres enfants", "Chaque parcours alimentaire est différent."),
+      item("Consulter un ORL", "Utile en complément, pour écarter une cause organique aux difficultés."),
       item("Valoriser chaque petit pas", "Une nouvelle texture explorée est déjà une avancée."),
     ],
     journey: journey(
@@ -225,7 +225,7 @@ export const troubles: Trouble[] = [
     eyebrow: "Troubles neurologiques",
     description: "Des troubles du langage ou de la communication consécutifs à une atteinte neurologique.",
     overviewTitle: "Un accompagnement adapté à chaque situation",
-    overview: "Ces troubles surviennent après un accident vasculaire, un traumatisme ou dans le cadre d’une maladie neurologique. Un bilan précise les capacités préservées et les axes de travail.",
+    overview: "Ces troubles surviennent après un accident vasculaire, un traumatisme ou dans le cadre d’une maladie neurodégénérative. Un bilan précise les capacités préservées et les axes de travail.",
     signs: [
       "Difficultés à trouver ses mots",
       "Compréhension partielle des phrases longues",

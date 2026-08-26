@@ -17,29 +17,27 @@ export const careers = {
   title: "Donner du sens à",
   titleAccent: "votre pratique",
   description:
-    "Nous cherchons des personnes qui veulent que l'orthophonie soit plus simple à trouver et plus agréable à exercer, pour les familles comme pour les professionnels.",
+    "La flexibilité du libéral, le confort du salariat, depuis chez soi.",
   ctaLabel: "Envoyer votre candidature",
   culture: {
     eyebrow: "Comment on travaille",
     title: "Une équipe à",
     titleAccent: "taille humaine",
-    description:
-      "Chaque professionnelle est accompagnée individuellement, avec un vrai suivi plutôt qu'une gestion à distance.",
     items: [
       {
-        title: "Le soin avant tout",
+        title: "Respecter votre personnalité clinique",
         description:
-          "Chaque décision, produit ou organisationnelle, part d'une question simple : est-ce que ça aide vraiment les familles ?",
+          "Chaque professionnel a son parcours, ses particularités, ses préférences thérapeutiques.",
       },
       {
-        title: "On avance ensemble",
+        title: "Créer une vraie relation de travail",
         description:
-          "Supervision régulière, retours honnêtes et bienveillants, portes ouvertes entre collègues.",
+          "Même à distance, nous échangeons, nous partageons, nous rions et buvons des cafés, entre deux bilans.",
       },
       {
-        title: "Vos idées comptent",
+        title: "Co-construire notre entreprise",
         description:
-          "Ce que vous proposez peut changer, concrètement, le quotidien des familles que nous accompagnons.",
+          "Vos idées comptent et vos retours sont précieux, ils nous aident à améliorer ce que nous proposons aux familles.",
       },
     ],
   },
@@ -47,7 +45,6 @@ export const careers = {
     eyebrow: "Candidature",
     title: "Un processus",
     titleAccent: "simple en 4 étapes",
-    description: "Quatre étapes, sans dossier interminable ni silence radio.",
     steps: [
       {
         title: "Vous nous écrivez",
@@ -62,7 +59,7 @@ export const careers = {
       {
         title: "Une mise en situation",
         description:
-          "Un cas concret, pour voir ensemble comment vous raisonnez, sans piège.",
+          "Un cas concret, pour voir ensemble comment vous raisonnez.",
       },
       {
         title: "Une réponse rapide",

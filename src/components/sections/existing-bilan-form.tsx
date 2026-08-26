@@ -121,8 +121,8 @@ export function ExistingBilanForm() {
             <div className="min-w-0 flex-1">
               <FlowEyebrow icon={FileText}>J’ai déjà un bilan</FlowEyebrow>
               <h1 className="mt-5 font-display text-[1.75rem] font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-tight">
-                Parlons de{" "}
-                <span className="font-medium italic text-brand">la suite</span>
+                Expliquez-nous{" "}
+                <span className="font-medium italic text-brand">votre situation</span>
               </h1>
             </div>
             <FlowHeart

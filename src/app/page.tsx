@@ -51,8 +51,8 @@ export default function HomePage() {
       <AboutPlatformBento />
       <HomeBento />
       <HomeServicesGrid />
-      <HomeTestimonials />
       <HomePlatform />
+      <HomeTestimonials />
     </main>
   );
 }

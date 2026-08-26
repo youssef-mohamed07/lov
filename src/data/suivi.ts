@@ -4,8 +4,8 @@ export const suivi = {
     "Des séances régulières, un rythme adapté à votre enfant, et des progrès mesurés dans le temps.",
   hero: {
     eyebrow: "Les Orthos en Visio",
-    title: "Suivi et accompagnement orthophonique",
-    titleAccent: "en téléconsultation, depuis chez vous.",
+    title: "Un suivi qui s’adapte",
+    titleAccent: "à votre rythme",
     ctaLabel: "Demander un suivi",
     ctaHref: "/deja-un-bilan",
     mentions: ["Séances régulières", "Objectifs partagés", "Suivi mesuré"],
@@ -13,7 +13,7 @@ export const suivi = {
   trust: {
     image: "/images/pricing-suivi.jpg",
     imageAlt: "Séance de suivi orthophonique en visioconférence",
-    imageCaption: "Un suivi clair, pensé pour avancer ensemble.",
+    imageCaption: "Suivi personnalisé, et adapté pour avancer",
     eyebrow: "Pourquoi nous faire confiance ?",
     title: "Un suivi qui s’adapte à votre rythme,",
     titleAccent: "pas l’inverse",
@@ -29,17 +29,17 @@ export const suivi = {
       {
         title: "Bilan",
         description:
-          "Prenez rendez-vous en ligne pour les objectifs de votre enfant.",
+          "Prenez rendez-vous en ligne pour l’évaluation de votre enfant.",
       },
       {
-        title: "Séance",
+        title: "Objectifs thérapeutiques",
         description:
-          "Une séance individuelle en visio avec votre orthophoniste (30 minutes).",
+          "Ensemble nous établissons le plan de rééducation de votre enfant.",
       },
       {
-        title: "Compte rendu",
+        title: "Séances",
         description:
-          "Nous faisons le point sur ce qui a été travaillé, et ce qu’il reste à faire à la maison.",
+          "Votre orthophoniste vous guide en visio et vous envoie les exercices à faire à la maison.",
       },
     ],
   },

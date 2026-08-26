@@ -16,14 +16,18 @@ const immersiveRoutes = [
   "/deja-un-bilan",
 ];
 
-const hidePricingRoutes = ["/suivi"];
+const hidePricingRoutes = ["/suivi", "/carrieres"];
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const immersive = immersiveRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
-  const hidePricing = hidePricingRoutes.includes(pathname);
+  const hidePricing = hidePricingRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+  const hideClosingCta =
+    pathname === "/carrieres" || pathname.startsWith("/carrieres/");
   const faq = getFaqForPathname(pathname);
 
   if (immersive) {
@@ -42,7 +46,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       {faq ? (
         <HomeFaq key={pathname} content={faq} showAllLink />
       ) : null}
-      <SiteCta />
+      {hideClosingCta ? null : <SiteCta />}
       <Footer />
     </div>
   );

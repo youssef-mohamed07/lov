@@ -18,7 +18,7 @@ type SiteCtaProps = {
 export function SiteCta({
   title = "Prêt à y voir",
   accent = "plus clair ?",
-  description = "Bilan, orientation et accompagnement — pour les familles qui veulent des repères concrets.",
+  description = "Bilan, orientation et accompagnement pour les familles qui veulent des repères concrets.",
   ctaLabel = "Prendre rendez-vous",
   ctaHref = "/demander-un-bilan",
   secondaryLabel = "Lancer le simulateur",
