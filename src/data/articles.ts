@@ -1,7 +1,7 @@
 export const articlesPage = {
   title: "Des repères pour avancer, pas à pas",
   description:
-    "Des articles clairs pour comprendre l'orthophonie, reconnaître les signes qui comptent et savoir quand consulter, écrits par des orthophonistes, pour les parents et patients.",
+    "Des articles clairs pour comprendre l'orthophonie, reconnaître les signes qui comptent et savoir quand consulter, écrits par des orthophonistes, pour les parents, professionnels et patients.",
   subscribeLabel: "Recevoir les prochaines ressources",
   subscribePlaceholder: "Votre adresse mail",
   subscribeCta: "S’inscrire",

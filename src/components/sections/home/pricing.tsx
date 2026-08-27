@@ -44,7 +44,7 @@ export function HomePricing() {
                   Comprendre ce qui bloque.{" "}
                   <span className="mark-accent">Savoir quoi faire ensuite.</span>
                 </h2>
-                <p className="mt-4 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
+                <p className="mt-4 max-w-xl text-base leading-7 text-foreground sm:text-lg sm:leading-8">
                   {plan.description}
                 </p>
 
@@ -133,7 +133,7 @@ export function HomePricing() {
                 <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">
                   Votre parcours comprend
                 </p>
-                <ul className="mt-5 grid gap-x-7 gap-y-4 sm:grid-cols-2">
+                <ul className="mt-5 grid gap-x-7 gap-y-4 sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-3">
                   {plan.features.map((feature) => (
                     <li
                       key={feature}

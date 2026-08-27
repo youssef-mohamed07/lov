@@ -7,7 +7,7 @@ export function HomeShowcase() {
       imageAlt="Échange entre une famille et un professionnel autour d’un bilan"
       badgeLabel="Bilans réalisés"
       badgeValue="400"
-      imageCaption="Une évaluation claire, pensée pour être comprise."
+      imageCaption="Une évaluation conforme aux exigences professionnelles"
       eyebrow="Pourquoi nous faire confiance ?"
       title={
         <>
