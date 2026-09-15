@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -137,9 +137,10 @@ export function BirthDateField({
     }
   }
 
-  function handleDayBlur() {
-    if (day.length === 1 && Number(day) > 0) {
-      applyDay(padDay(day));
+  function handleDayBlur(event: FocusEvent<HTMLInputElement>) {
+    const current = event.target.value;
+    if (current.length === 1 && Number(current) > 0) {
+      applyDay(padDay(current));
     }
   }
 
@@ -224,7 +225,10 @@ export function BirthDateField({
             placeholder="15"
             aria-label="Jour de naissance"
             value={day}
-            onFocus={() => setActive("day")}
+            onFocus={(event) => {
+              setActive("day");
+              event.target.select();
+            }}
             onBlur={handleDayBlur}
             onChange={(event) => handleDayChange(event.target.value)}
             onKeyDown={handleDayKeyDown}
@@ -274,7 +278,10 @@ export function BirthDateField({
             placeholder="2018"
             aria-label="Année de naissance"
             value={year}
-            onFocus={() => setActive("year")}
+            onFocus={(event) => {
+              setActive("year");
+              event.target.select();
+            }}
             onChange={(event) => applyYear(event.target.value)}
             onKeyDown={handleYearKeyDown}
             className="w-full bg-transparent font-display text-xl font-semibold tracking-tight text-foreground outline-none placeholder:text-muted-soft sm:text-2xl"
