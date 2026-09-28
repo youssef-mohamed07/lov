@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
@@ -56,32 +55,18 @@ export function HomeServicesGrid() {
                 <li className="h-full">
                   <Link
                     href={`/troubles/${trouble.slug}`}
-                    className="group relative flex h-full min-h-[300px] flex-col justify-end overflow-hidden rounded-[1.35rem] border border-border sm:min-h-[340px]"
+                    className="group flex h-full flex-col rounded-[var(--radius-card)] border border-border bg-surface p-5 transition-colors hover:border-brand/30 sm:p-6"
                   >
-                    <Image
-                      src={trouble.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10"
-                    />
-
-                    <div className="relative z-10 p-5 sm:p-6">
-                      <h3 className="font-display text-xl font-semibold tracking-tight text-white">
-                        {trouble.title}
-                      </h3>
-                      <p className="mt-2 line-clamp-2 min-h-[3rem] text-sm leading-6 text-white/85">
-                        {trouble.description}
-                      </p>
-                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white underline-offset-4 group-hover:underline">
-                        En savoir plus
-                        <ArrowUpRight className="size-4" aria-hidden />
-                      </span>
-                    </div>
+                    <h3 className="font-display text-xl font-semibold tracking-tight text-foreground">
+                      {trouble.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-2 min-h-[3rem] text-sm leading-6 text-muted">
+                      {trouble.description}
+                    </p>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-medium text-brand underline-offset-4 group-hover:underline">
+                      En savoir plus
+                      <ArrowUpRight className="size-4" aria-hidden />
+                    </span>
                   </Link>
                 </li>
               </Reveal>

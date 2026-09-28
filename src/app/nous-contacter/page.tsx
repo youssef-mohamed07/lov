@@ -145,7 +145,7 @@ export default function ContactPage() {
                   Écrire à Lov
                 </p>
                 <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                  Envoyez votre <span className="mark-accent">message</span>
+                  Envoyez votre <span className="font-medium italic text-voice">message</span>
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-muted">
                   Remplissez les champs — nous revenons vers vous rapidement.

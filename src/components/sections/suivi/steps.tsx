@@ -11,7 +11,7 @@ export function SuiviSteps() {
   return (
     <SimpleSteps
       eyebrow={parcours.eyebrow}
-      title={<span className="mark-accent">{parcours.title}</span>}
+      title={<span className="mark-brush">{parcours.title}</span>}
       steps={parcours.steps.map((step, index) => ({
         title: step.title,
         description: step.description,

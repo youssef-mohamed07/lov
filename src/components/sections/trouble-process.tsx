@@ -27,7 +27,7 @@ export function TroubleProcess({ steps }: TroubleProcessProps) {
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
             De l’observation à{" "}
-            <span className="mark-accent">l’accompagnement</span>
+            <span className="font-medium italic text-voice">l’accompagnement</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             Cinq étapes claires, pour savoir où vous en êtes à chaque instant.

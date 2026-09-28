@@ -40,7 +40,7 @@ export function FaqDirectory() {
                 </p>
                 <h2 className="mt-1 font-display text-xl font-semibold text-foreground sm:text-2xl">
                   Choisissez votre{" "}
-                  <span className="mark-tint">thème</span>
+                  <span className="font-medium italic text-voice">thème</span>
                 </h2>
                 <p className="mt-1 text-sm text-muted">
                   {faqGroups.length} thèmes · {questionCount} réponses

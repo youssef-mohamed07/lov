@@ -59,7 +59,7 @@ const features = [
 const defaultTitle = (
   <>
     De la prise de rendez-vous au compte-rendu,{" "}
-    <span className="mark-accent">tout est simplifié</span>
+    <span className="font-medium italic text-voice">tout est simplifié</span>
   </>
 );
 

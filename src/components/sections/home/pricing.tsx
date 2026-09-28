@@ -18,7 +18,7 @@ const plan = pricingPlans[0];
 const reassurance = [
   { label: "100 % en visioconférence", icon: Video },
   { label: "Compte-rendu inclus", icon: FileCheck2 },
-  { label: "Sans abonnement", icon: ShieldCheck },
+  { label: "Certifié conforme", icon: ShieldCheck },
 ] as const;
 
 export function HomePricing() {
@@ -42,7 +42,7 @@ export function HomePricing() {
 
                 <h2 className="mt-5 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-[1.15]">
                   Comprendre ce qui bloque.{" "}
-                  <span className="mark-accent">Savoir quoi faire ensuite.</span>
+                  <span className="font-medium italic text-voice">Savoir quoi faire ensuite.</span>
                 </h2>
                 <p className="mt-4 max-w-xl text-base leading-7 text-foreground sm:text-lg sm:leading-8">
                   {plan.description}
@@ -87,7 +87,7 @@ export function HomePricing() {
                       {plan.price}
                     </p>
                     <p className="mt-3 text-sm leading-6 text-muted">
-                      Un seul paiement pour l’évaluation, la restitution et le compte-rendu écrit.
+                      Un seul paiement pour l’évaluation et le compte-rendu écrit.
                     </p>
                   </div>
 

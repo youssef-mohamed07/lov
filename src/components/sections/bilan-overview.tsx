@@ -17,12 +17,10 @@ const leftIcons: LucideIcon[] = [MessageCircle, ClipboardList, Sparkles];
 const rightIcons: LucideIcon[] = [ListChecks, Route, FileText];
 
 function FeatureBlock({
-  title,
-  description,
+  text,
   icon: Icon,
 }: {
-  title: string;
-  description: string;
+  text: string;
   icon: LucideIcon;
 }) {
   return (
@@ -30,12 +28,7 @@ function FeatureBlock({
       <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent">
         <Icon className="size-5" aria-hidden />
       </span>
-      <div>
-        <h3 className="text-base font-semibold tracking-tight text-foreground">
-          {title}
-        </h3>
-        <p className="mt-1.5 text-sm leading-6 text-muted">{description}</p>
-      </div>
+      <p className="self-center text-base leading-7 text-foreground">{text}</p>
     </div>
   );
 }
@@ -58,7 +51,7 @@ export function BilanOverview() {
             </span>
             <h2 className="mt-5 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
               {overview.title}{" "}
-              <span className="mark-tint">{overview.titleAccent}</span>
+              <span className="font-medium italic text-voice">{overview.titleAccent}</span>
             </h2>
           </div>
           <p className="max-w-sm text-base leading-7 text-muted sm:pb-1 sm:text-right sm:text-lg">
@@ -70,11 +63,10 @@ export function BilanOverview() {
           {/* Left features */}
           <ul className="flex flex-col gap-8 xl:gap-10">
             {overview.leftFeatures.map((feature, index) => (
-              <li key={feature.title}>
+              <li key={feature}>
                 <Reveal delay={index * 0.06} variant="left">
                   <FeatureBlock
-                    title={feature.title}
-                    description={feature.description}
+                    text={feature}
                     icon={leftIcons[index] ?? MessageCircle}
                   />
                 </Reveal>
@@ -99,11 +91,10 @@ export function BilanOverview() {
           {/* Right features */}
           <ul className="flex flex-col gap-8 xl:gap-10">
             {overview.rightFeatures.map((feature, index) => (
-              <li key={feature.title}>
+              <li key={feature}>
                 <Reveal delay={0.1 + index * 0.06} variant="right">
                   <FeatureBlock
-                    title={feature.title}
-                    description={feature.description}
+                    text={feature}
                     icon={rightIcons[index] ?? FileText}
                   />
                 </Reveal>

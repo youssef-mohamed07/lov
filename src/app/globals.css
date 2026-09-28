@@ -42,9 +42,9 @@
   --gutter-md: var(--space-6);
   --gutter-lg: var(--space-8);
 
-  --section-space-sm: var(--space-12);
-  --section-space-md: var(--space-16);
-  --section-space-lg: var(--space-24);
+  --section-space-sm: var(--space-10);
+  --section-space-md: var(--space-12);
+  --section-space-lg: var(--space-16);
 
   --container-sm: 40rem;
   --container-md: 48rem;
@@ -67,17 +67,17 @@
 @media (min-width: 640px) {
   :root {
     --gutter: var(--gutter-md);
-    --section-space-sm: var(--space-16);
-    --section-space-md: var(--space-20);
-    --section-space-lg: var(--space-24);
+    --section-space-sm: var(--space-12);
+    --section-space-md: var(--space-16);
+    --section-space-lg: var(--space-20);
   }
 }
 
 @media (min-width: 1024px) {
   :root {
     --gutter: var(--gutter-lg);
-    --section-space-md: var(--space-24);
-    --section-space-lg: var(--space-32);
+    --section-space-md: var(--space-16);
+    --section-space-lg: var(--space-24);
     --grid-gap: var(--grid-gap-lg);
   }
 }
@@ -181,67 +181,16 @@ body {
   }
 }
 
-/* Heading accents — a small family so consecutive sections never repeat the same
-   mark. Each is an inline background (or trailing glyph) rather than an absolute
-   layer, so a phrase that wraps keeps one clean mark per line. */
-.mark-accent,
-.mark-brush,
-.mark-rule,
-.mark-tint {
+/* Brush underline, reserved for the process, reviews and FAQ headings. Other
+   headings use the italic `text-voice` accent instead. */
+.mark-brush {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-}
-
-/* Warm marker stroke, as if swiped with a highlighter. */
-.mark-accent {
-  padding-inline: 0.1em;
-  border-radius: 0.18em;
-  background-image: linear-gradient(
-    to top,
-    var(--accent-soft) 0.36em,
-    transparent 0.36em
-  );
-}
-
-/* Tapered ink stroke — the only mark that also reads on dark artwork. */
-.mark-brush {
   padding-bottom: 0.22em;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 7.1C22 3.9 62 2.9 118 4.3c-.6 2.2-2.4 3.4-5.4 3.6-30 1.4-70 1.6-104 .8-4-.2-6-.6-6.6-1.6Z' fill='%23f9ab6c'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 50% 100%;
   background-size: 100% 0.2em;
-}
-
-/* Two hairlines — a quieter, more editorial underline. */
-.mark-rule {
-  padding-bottom: 0.24em;
-  background-image:
-    linear-gradient(var(--accent), var(--accent)),
-    linear-gradient(var(--accent-soft), var(--accent-soft));
-  background-repeat: no-repeat, no-repeat;
-  background-size: 100% 0.055em, 100% 0.055em;
-  background-position:
-    0 100%,
-    0 calc(100% - 0.14em);
-}
-
-/* Cool tint block — balances the warm marks on pages that lean orange. */
-.mark-tint {
-  padding: 0.02em 0.24em 0.06em;
-  border-radius: 0.34em;
-  background-color: var(--brand-soft);
-}
-
-/* Trailing spark — an accent that sits beside the words instead of behind. */
-.mark-spark::after {
-  content: "";
-  display: inline-block;
-  width: 0.32em;
-  height: 0.32em;
-  margin-left: 0.18em;
-  vertical-align: 0.5em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c1.1 5.4 2.6 8.9 5.6 10.4C20.2 11.7 22 12 24 12c-2 0-3.8.3-6.4 1.6C14.6 15.1 13.1 18.6 12 24c-1.1-5.4-2.6-8.9-5.6-10.4C3.8 12.3 2 12 0 12c2 0 3.8-.3 6.4-1.6C9.4 8.9 10.9 5.4 12 0Z' fill='%23f9ab6c'/%3E%3C/svg%3E")
-    center / contain no-repeat;
 }
 
 /* One continuous canvas for every standard section. Decorative color stays

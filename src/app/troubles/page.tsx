@@ -1,15 +1,5 @@
 import type { Metadata } from "next";
-import {
-  ArrowUpRight,
-  AudioLines,
-  BookOpen,
-  BrainCircuit,
-  Calculator,
-  MessageCircle,
-  Mic2,
-  PenLine,
-  Speech,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { Reveal } from "@/components/common/reveal";
@@ -17,6 +7,7 @@ import { PageIntro } from "@/components/sections/page-intro";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
+import { getTroubleIcon } from "@/constants/trouble-icons";
 import { troubles, troublesPage } from "@/data/troubles";
 import {
   absoluteUrl,
@@ -56,17 +47,6 @@ const troublesJsonLd = {
   ],
 };
 
-const troubleIcons = [
-  BookOpen,
-  MessageCircle,
-  AudioLines,
-  PenLine,
-  Calculator,
-  Speech,
-  BrainCircuit,
-  Mic2,
-] as const;
-
 export default function TroublesPage() {
   return (
     <main>
@@ -94,7 +74,7 @@ export default function TroublesPage() {
         <Container className="relative">
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {troubles.map((trouble, index) => {
-              const Icon = troubleIcons[index] ?? BookOpen;
+              const Icon = getTroubleIcon(trouble.slug);
 
               return (
                 <li key={trouble.slug}>

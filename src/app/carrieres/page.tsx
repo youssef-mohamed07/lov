@@ -75,7 +75,7 @@ export default function CareersPage() {
               </p>
               <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {careers.culture.title}{" "}
-                <span className="mark-accent">
+                <span className="font-medium italic text-voice">
                   {careers.culture.titleAccent}
                 </span>
               </h2>
@@ -111,7 +111,7 @@ export default function CareersPage() {
               </p>
               <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {careers.process.title}{" "}
-                <span className="mark-rule">{careers.process.titleAccent}</span>
+                <span className="font-medium italic text-voice">{careers.process.titleAccent}</span>
               </h2>
             </div>
           </Reveal>
@@ -159,7 +159,7 @@ export default function CareersPage() {
               </p>
               <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 {careers.roles.title}{" "}
-                <span className="mark-tint">{careers.roles.titleAccent}</span>
+                <span className="font-medium italic text-voice">{careers.roles.titleAccent}</span>
               </h2>
             </div>
           </Reveal>
@@ -224,7 +224,7 @@ export default function CareersPage() {
                     {careers.cta.eyebrow}
                   </p>
                   <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-background sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-                    <span className="mark-brush">{careers.cta.title}</span>
+                    {careers.cta.title}
                   </h2>
                   <p className="mt-4 max-w-lg text-base leading-7 text-background/70">
                     {careers.cta.description}

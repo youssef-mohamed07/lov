@@ -222,7 +222,7 @@ export function TestimonialsSection() {
           </p>
           <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {testimonials.title}{" "}
-            <span className="mark-rule">{testimonials.titleAccent}</span>
+            <span className="mark-brush">{testimonials.titleAccent}</span>
           </h2>
           <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-muted shadow-[var(--shadow-card)]">
             <Stars count={5} />

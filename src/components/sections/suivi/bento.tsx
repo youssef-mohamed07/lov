@@ -10,7 +10,7 @@ export function SuiviBento() {
       title={
         <>
           {bento.title}{" "}
-          <span className="mark-accent">{bento.titleAccent}</span>
+          <span className="font-medium italic text-voice">{bento.titleAccent}</span>
         </>
       }
       description={bento.description}

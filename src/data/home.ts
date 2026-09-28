@@ -90,10 +90,10 @@ export const pricingPlans = [
       "Une évaluation complète en visio, par une orthophoniste diplômée. Tout est inclus.",
     features: [
       "Questionnaire d’anamnèse en ligne",
-      "Restitution des résultats",
-      "Recommandations pour l’école et la maison",
       "1 heure de tests étalonnés en visio",
-      "Compte rendu écrit sous 10 jours — reconnu médecins et MDPH",
+      "Restitution orale des résultats",
+      "Compte rendu écrit sous 10 jours, aux normes MDPH",
+      "Recommandations pour l’école et la maison",
     ],
     report:
       "Rédigé selon les mêmes exigences qu’en cabinet, avec les tests de référence de la profession. Il est reconnu par les médecins et la MDPH, et peut servir de base à une demande de PAP, de PPS ou d’aménagements aux examens.",

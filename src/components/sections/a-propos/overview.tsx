@@ -20,7 +20,7 @@ export function AboutOverview() {
             </p>
             <h2 className="mt-3 max-w-md font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
               {overview.title}{" "}
-              <span className="mark-accent">{overview.titleAccent}</span>
+              <span className="font-medium italic text-voice">{overview.titleAccent}</span>
             </h2>
             <p className="mt-5 max-w-md text-base leading-7 text-muted">
               {overview.body}

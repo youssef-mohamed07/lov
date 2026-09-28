@@ -37,7 +37,7 @@ export function SuiviPricing() {
 
                 <h2 className="mt-5 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-[1.15]">
                   {pricing.title}{" "}
-                  <span className="mark-accent">{pricing.titleAccent}</span>
+                  <span className="font-medium italic text-voice">{pricing.titleAccent}</span>
                 </h2>
                 <p className="mt-4 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
                   {pricing.description}

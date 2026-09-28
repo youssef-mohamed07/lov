@@ -7,7 +7,6 @@ export type TroubleItem = { title: string; description: string };
 export type Trouble = {
   slug: string;
   title: string;
-  shortTitle: string;
   eyebrow: string;
   description: string;
   overviewTitle: string;
@@ -38,8 +37,7 @@ const childCta = "Une évaluation structurée, pour savoir précisément où en 
 export const troubles: Trouble[] = [
   {
     slug: "retard-parole-langage",
-    title: "RP/RL - Troubles de la parole et du langage oral",
-    shortTitle: "RP/RL",
+    title: "Troubles de la parole et du langage oral",
     eyebrow: "Troubles du langage oral",
     description: "Un développement plus lent du vocabulaire, de la phrase ou de l’intelligibilité par rapport à l’âge attendu.",
     overviewTitle: "Un rythme différent, pas forcément un problème",
@@ -67,8 +65,7 @@ export const troubles: Trouble[] = [
   },
   {
     slug: "dyslexie",
-    title: "DL/DO - Troubles du langage écrit",
-    shortTitle: "DL/DO",
+    title: "Troubles du langage écrit",
     eyebrow: "Troubles du langage écrit",
     description: "Un trouble durable de l’apprentissage de la lecture et de l’orthographe, qui persiste malgré un enseignement adapté.",
     overviewTitle: "Une difficulté spécifique, pas un manque d’effort",
@@ -98,7 +95,6 @@ export const troubles: Trouble[] = [
   {
     slug: "begaiement",
     title: "Bégaiement et troubles de la fluence",
-    shortTitle: "Bégaiement",
     eyebrow: "Troubles de la fluence",
     description: "Une disfluence qui coupe le flux de la parole : répétitions, blocages, prolongements.",
     overviewTitle: "Un défaut de fluidité, jamais un défaut de volonté",
@@ -129,7 +125,6 @@ export const troubles: Trouble[] = [
   {
     slug: "dyscalculie",
     title: "Troubles de la cognition mathématique",
-    shortTitle: "Cognition mathématique",
     eyebrow: "Troubles des apprentissages",
     description: "Un trouble spécifique du sens du nombre, du calcul ou de la résolution de problèmes.",
     overviewTitle: "Une difficulté ciblée, pas un manque de volonté",
@@ -159,7 +154,6 @@ export const troubles: Trouble[] = [
   {
     slug: "fonctions-oro-myo-faciales",
     title: "Troubles des fonctions oro-myo-faciales",
-    shortTitle: "Fonctions oro-myo-faciales",
     eyebrow: "Troubles orofaciaux",
     description: "Des difficultés touchant les fonctions de la sphère orale : succion, mastication, déglutition, respiration.",
     overviewTitle: "Des fonctions qui s’apprennent, et parfois se réapprennent",
@@ -189,8 +183,7 @@ export const troubles: Trouble[] = [
   },
   {
     slug: "oralite-alimentaire",
-    title: "TOA : Troubles alimentaires pédiatriques",
-    shortTitle: "TOA",
+    title: "Troubles alimentaires pédiatriques",
     eyebrow: "Troubles de l’oralité",
     description: "Des difficultés dans la relation à l’alimentation : sélectivité, refus, sensibilité sensorielle.",
     overviewTitle: "Un rapport à l’alimentation qui se travaille, en douceur",
@@ -221,7 +214,6 @@ export const troubles: Trouble[] = [
   {
     slug: "origine-neurologique",
     title: "Troubles d’origine neurologique",
-    shortTitle: "Origine neurologique",
     eyebrow: "Troubles neurologiques",
     description: "Des troubles du langage ou de la communication consécutifs à une atteinte neurologique.",
     overviewTitle: "Un accompagnement adapté à chaque situation",

@@ -22,7 +22,7 @@ export function AboutCareersBanner() {
                   {content.eyebrow}
                 </p>
                 <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-                  <span className="mark-brush">{content.title}</span>
+                  {content.title}
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
                   {content.description}

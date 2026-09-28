@@ -1,19 +1,6 @@
 "use client";
 
-import {
-  ArrowRight,
-  AudioLines,
-  BookOpen,
-  BrainCircuit,
-  Calculator,
-  ChevronDown,
-  Menu,
-  MessageCircle,
-  PenLine,
-  Sparkles,
-  Speech,
-  X,
-} from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, Sparkles, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -22,18 +9,9 @@ import { BrandMark } from "@/components/layout/brand-mark";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { navLinks } from "@/constants/navigation";
+import { getTroubleIcon } from "@/constants/trouble-icons";
 import { troubles } from "@/data/troubles";
 import { cn } from "@/lib/utils";
-
-const troubleIcons = [
-  BookOpen,
-  MessageCircle,
-  AudioLines,
-  PenLine,
-  Calculator,
-  Speech,
-  BrainCircuit,
-] as const;
 
 export function Navbar() {
   const pathname = usePathname();
@@ -161,10 +139,10 @@ export function Navbar() {
                         </div>
 
                         <div className="grid grid-cols-2 content-start gap-1.5 p-1">
-                          {troubles.map((trouble, index) => {
+                          {troubles.map((trouble) => {
                             const href = `/troubles/${trouble.slug}`;
                             const active = pathname === href;
-                            const Icon = troubleIcons[index] ?? BookOpen;
+                            const Icon = getTroubleIcon(trouble.slug);
                             return (
                               <Link
                                 key={trouble.slug}
@@ -189,7 +167,7 @@ export function Navbar() {
                                 </span>
                                 <span className="min-w-0">
                                   <span className="block text-sm font-medium leading-5">
-                                    {trouble.shortTitle}
+                                    {trouble.title}
                                   </span>
                                   <span className="mt-0.5 block truncate text-[11px] leading-4 text-muted">
                                     {trouble.eyebrow}
@@ -297,7 +275,7 @@ export function Navbar() {
                                 pathname === href ? "bg-white font-medium text-accent-hover" : "text-muted",
                               )}
                             >
-                              {trouble.shortTitle}
+                              {trouble.title}
                             </Link>
                           );
                         })}

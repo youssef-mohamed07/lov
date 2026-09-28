@@ -41,50 +41,26 @@ export const bilan = {
       {
         title: "Restitution",
         description:
-          "Vous repartez avec une lecture claire et un compte rendu écrit.",
+          "Vous repartez avec des réponses à vos questions et un compte rendu écrit.",
       },
     ],
   },
   overview: {
     badge: "Pourquoi le bilan",
-    title: "Une évaluation claire,",
-    titleAccent: "pensée pour être comprise",
-    body: "Le bilan orthophonique précise le profil, pose les priorités et ouvre une suite concrète, sans jargon inutile.",
+    title: "Une évaluation complète",
+    titleAccent: "pour comprendre son fonctionnement",
+    body: "Le bilan orthophonique précise le profil, pose les priorités et ouvre une suite concrète.",
     image: "/images/path-bilan.jpg",
     imageAlt: "Séance de bilan orthophonique",
     leftFeatures: [
-      {
-        title: "Mettre des mots sur ce que vous observez",
-        description:
-          "Ce que vous ressentez au quotidien devient un profil clair et documenté.",
-      },
-      {
-        title: "Distinguer une variation normale d’un vrai besoin",
-        description:
-          "Pour savoir si une inquiétude mérite un accompagnement, ou simplement du temps.",
-      },
-      {
-        title: "Un avis professionnel, sans attendre des mois",
-        description:
-          "Un premier rendez-vous rapide, pour ne pas rester dans le doute.",
-      },
+      "Propose des pistes concrètes.",
+      "Pour savoir si une inquiétude mérite un accompagnement, ou quelques conseils à la maison.",
+      "Un document conforme pour les médecins et les aménagements scolaires.",
     ],
     rightFeatures: [
-      {
-        title: "Un document reconnu pour l’école ou un médecin",
-        description:
-          "Utile pour toutes vos démarches, sans avoir à tout réexpliquer.",
-      },
-      {
-        title: "Savoir si un accompagnement est nécessaire, et lequel",
-        description:
-          "Une réponse concrète, adaptée à la situation de votre enfant.",
-      },
-      {
-        title: "Avancer avec des réponses, plutôt qu’avec des questions",
-        description:
-          "Le bilan referme une incertitude pour en ouvrir une plus claire.",
-      },
+      "Essentiel pour toutes vos démarches (PAP, PPS, MDPH…).",
+      "Avancer avec des réponses et des conseils adaptés.",
+      "L’orthophoniste répond à toutes vos questions et vous guide pour la suite.",
     ],
   },
   process: {
@@ -100,21 +76,21 @@ export const bilan = {
       step: "01",
       title: "Durée",
       description:
-        "Comptez environ 1h30, entretien et tests compris. La restitution peut avoir lieu le même jour ou lors d’un second rendez-vous, selon la disponibilité.",
+        "Comptez environ 1h, entretien et tests compris. Un second rendez-vous pourra vous être proposé pour terminer les épreuves si besoin.",
       image: "/images/step-orient.jpg",
     },
     {
       step: "02",
       title: "Ce qu’il faut prévoir",
       description:
-        "Un espace calme, une bonne connexion internet, et si possible les derniers bulletins scolaires ou comptes rendus déjà réalisés.",
+        "Un espace calme, une bonne connexion internet, et un ordinateur ou tablette avec un écran suffisamment grand pour le confort visuel.",
       image: "/images/step-eval.jpg",
     },
     {
       step: "03",
       title: "Confidentialité",
       description:
-        "Vos échanges restent strictement confidentiels. Le compte rendu n’est transmis qu’aux personnes que vous choisissez.",
+        "Nos échanges restent strictement confidentiels, le compte rendu est déposé sur votre espace personnel sécurisé.",
       image: "/images/step-followup.jpg",
     },
   ],

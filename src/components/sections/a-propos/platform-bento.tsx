@@ -41,7 +41,7 @@ export function AboutPlatformBento() {
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
             Nous avons conçu un espace pensé{" "}
-            <span className="mark-accent">pour votre suivi</span>
+            <span className="font-medium italic text-voice">pour votre suivi</span>
           </h2>
         </Reveal>
 

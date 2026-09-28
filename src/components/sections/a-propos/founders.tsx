@@ -15,7 +15,7 @@ export function AboutFounders() {
             {founders.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            <span className="mark-brush">{founders.title}</span>
+            {founders.title}
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             {founders.description}

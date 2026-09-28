@@ -148,7 +148,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
               Recommandations
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-              Ce que vous pouvez faire <span className="mark-accent">dès maintenant</span>
+              Ce que vous pouvez faire <span className="font-medium italic text-voice">dès maintenant</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
               Quelques gestes simples, à intégrer dans le quotidien.

@@ -32,7 +32,7 @@ export function AboutValues() {
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
             {values.title}{" "}
-            <span className="mark-tint">{values.titleAccent}</span>
+            <span className="font-medium italic text-voice">{values.titleAccent}</span>
           </h2>
         </Reveal>
 

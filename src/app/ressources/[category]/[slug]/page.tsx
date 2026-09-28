@@ -190,7 +190,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                 className="mt-10 rounded-[var(--radius-card)] border border-border bg-surface p-5 sm:p-6"
               >
                 <h2 className="font-display text-xl font-semibold tracking-tight text-foreground">
-                  Pour aller <span className="mark-rule">plus loin</span>
+                  Pour aller <span className="font-medium italic text-voice">plus loin</span>
                 </h2>
                 <ul className="mt-4 flex flex-col gap-3">
                   {article.relatedLinks.map((link) => (
@@ -223,7 +223,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
               </p>
               <h2 className="mt-3 max-w-xl font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                 Autour de{" "}
-                <span className="mark-accent">la ressource</span>
+                <span className="font-medium italic text-voice">la ressource</span>
               </h2>
             </div>
           </Reveal>
@@ -261,7 +261,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
           <Reveal>
             <div className="rounded-[1.75rem] border border-border bg-surface px-6 py-8 sm:px-8">
               <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
-                Envie d’aller <span className="mark-spark">plus loin</span> ?
+                Envie d’aller <span className="font-medium italic text-voice">plus loin</span> ?
               </h2>
               <p className="mt-2 max-w-lg text-sm leading-6 text-muted sm:text-base">
                 Clarifiez le besoin avec le simulateur, ou préparez directement
