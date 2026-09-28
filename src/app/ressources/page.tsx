@@ -24,7 +24,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "Ressources et conseils en orthophonie",
   description: articlesPage.description,
   path: "/ressources",
-  image: "/images/ortho-reading.jpg",
+  image: "/images/drive-troubles-resources.png",
   imageAlt: "Ressources sur le langage et les apprentissages",
 });
 
@@ -59,7 +59,7 @@ export default function ArticlesPage() {
         eyebrow="Pour vous accompagner"
         title={articlesPage.title}
         description={articlesPage.description}
-        image="/images/ortho-reading.jpg"
+        image="/images/drive-troubles-resources.png"
         imageAlt="Lecture et ressources autour de l’orthophonie"
         breadcrumbs={[
           { label: "Accueil", href: "/" },

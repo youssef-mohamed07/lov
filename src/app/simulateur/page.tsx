@@ -8,7 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "Simulateur d’orientation orthophonique en ligne",
   description: simulatorPage.description,
   path: "/simulateur",
-  image: "/images/path-simulator.jpg",
+  image: "/images/drive-home-section-2.png",
   imageAlt: "Simulateur d’orientation pour un parcours orthophonique",
 });
 

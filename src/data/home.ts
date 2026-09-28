@@ -106,7 +106,7 @@ export const pricingPlans = [
     ],
     ctaLabel: "Demander un bilan",
     ctaHref: "/demander-un-bilan",
-    image: "/images/pricing-bilan.jpg",
+    image: "/images/drive-bilan-section-4.png",
     imageAlt: "Échange autour d’un bilan orthophonique",
   },
 ] as const;

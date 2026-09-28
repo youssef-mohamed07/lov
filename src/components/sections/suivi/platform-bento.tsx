@@ -49,7 +49,7 @@ export function SuiviPlatformBento() {
             <Reveal variant="fade-scale" className="overflow-hidden rounded-[1.5rem]">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
                 <Image
-                  src="/images/hero-child.jpg"
+                  src="/images/drive-home-section-7-b.png"
                   alt="Enfant concentré pendant une activité de langage"
                   fill
                   sizes="(max-width: 1024px) 100vw, 33vw"
@@ -137,7 +137,7 @@ export function SuiviPlatformBento() {
             <Reveal delay={0.14} variant="fade-scale">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
                 <Image
-                  src="/images/hero-therapist.jpg"
+                  src="/images/drive-home-section-7-a.png"
                   alt="Professionnelle préparant un accompagnement orthophonique"
                   fill
                   sizes="(max-width: 1024px) 100vw, 33vw"

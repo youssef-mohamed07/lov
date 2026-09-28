@@ -118,7 +118,7 @@ export function SimulatorFlow() {
               </h1>
             </div>
             <FlowHeart
-              src="/images/path-simulator.jpg"
+              src="/images/drive-home-section-2.png"
               className="w-24 rotate-6 sm:w-32"
               sizes="128px"
               priority
@@ -192,7 +192,7 @@ export function SimulatorFlow() {
               </h1>
             </div>
             <FlowHeart
-              src="/images/path-bilan.jpg"
+              src="/images/drive-bilan-section-4.png"
               className="w-24 -rotate-6 sm:w-32"
               sizes="128px"
             />

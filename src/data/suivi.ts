@@ -11,7 +11,7 @@ export const suivi = {
     mentions: ["Séances régulières", "Objectifs partagés", "Suivi mesuré"],
   },
   trust: {
-    image: "/images/pricing-suivi.jpg",
+    image: "/images/drive-home-section-7-b.png",
     imageAlt: "Séance de suivi orthophonique en visioconférence",
     imageCaption: "Suivi personnalisé, et adapté pour avancer",
     eyebrow: "Pourquoi nous faire confiance ?",

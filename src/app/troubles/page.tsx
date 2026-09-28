@@ -19,7 +19,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "Troubles du langage, de la parole et des apprentissages",
   description: troublesPage.description,
   path: "/troubles",
-  image: "/images/trouble-language.jpg",
+  image: "/images/drive-troubles-resources.png",
   imageAlt: "Accompagnement des troubles du langage et des apprentissages",
 });
 
@@ -60,7 +60,7 @@ export default function TroublesPage() {
           </>
         }
         description={troublesPage.description}
-        image="/images/trouble-language.jpg"
+        image="/images/drive-troubles-resources.png"
         imageAlt="Activité d’accompagnement du langage"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "Troubles" }]}
         actions={

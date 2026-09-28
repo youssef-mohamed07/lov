@@ -81,7 +81,7 @@ export const careers = {
         location: "Paris · À distance possible",
         description:
           "Réaliser des bilans et des prises en charge (langage, parole, apprentissages) et participer à l’amélioration des parcours.",
-        image: "/images/ortho-session.jpg",
+        image: "/images/drive-careers-section-2.png",
         about:
           "Vous accompagnez des familles en visioconférence, avec le même exigence clinique qu’en cabinet, dans une équipe encadrée au quotidien.",
         missions: [
@@ -111,7 +111,7 @@ export const careers = {
         location: "À distance",
         description:
           "Rédiger des contenus clairs et justes sur l’orthophonie à destination des parents et des enseignants.",
-        image: "/images/ortho-reading.jpg",
+        image: "/images/drive-about-section-6.png",
         about:
           "Vous transformez l’expertise clinique en contenus accessibles : articles, guides et repères pour aider les familles à mieux comprendre et s’orienter.",
         missions: [
@@ -141,7 +141,7 @@ export const careers = {
         location: "Paris / mixte",
         description:
           "Concevoir des parcours numériques sobres, accessibles et cliniquement responsables.",
-        image: "/images/expertise-follow.jpg",
+        image: "/images/drive-home-section-4.png",
         about:
           "Vous concevez les parcours Lov — du premier contact au suivi — pour qu’ils restent simples, humains et cliniquement responsables.",
         missions: [

@@ -3,8 +3,8 @@ import { TrustShowcase } from "@/components/sections/trust-showcase";
 export function HomeShowcase() {
   return (
     <TrustShowcase
-      image="/images/showcase-family.jpg"
-      imageAlt="Échange entre une famille et un professionnel autour d’un bilan"
+      image="/images/drive-home-section-2.png"
+      imageAlt="Enfant en séance d’orthophonie en visioconférence"
       badgeLabel="Bilans réalisés"
       badgeValue="400"
       imageCaption="Une évaluation conforme aux exigences professionnelles"

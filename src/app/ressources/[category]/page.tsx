@@ -38,7 +38,7 @@ export async function generateMetadata({
     title: `${category.title} — ressources en orthophonie`,
     description: category.description,
     path: getCategoryHref(category.slug),
-    image: "/images/ortho-reading.jpg",
+    image: "/images/drive-troubles-resources.png",
     imageAlt: `Ressources d’orthophonie : ${category.title}`,
   });
 }
@@ -81,7 +81,7 @@ export default async function ArticleCategoryPage({ params }: CategoryPageProps)
         eyebrow="Ressources"
         title={category.title}
         description={category.description}
-        image="/images/ortho-reading.jpg"
+        image="/images/drive-troubles-resources.png"
         imageAlt={`Lecture de ressources sur ${category.title.toLowerCase()}`}
         breadcrumbs={[
           { label: "Accueil", href: "/" },

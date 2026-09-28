@@ -26,7 +26,7 @@ export function PageIntro({
   eyebrow,
   title,
   description,
-  image = "/images/clinic-welcome.jpg",
+  image = "/images/drive-standard-hero.png",
   imageAlt = "Accompagnement orthophonique Lov",
   breadcrumbs,
   actions,

@@ -13,7 +13,7 @@ export const bilan = {
     mentions: ["Bilan normé", "Tests étalonnés", "Compte rendu écrit"],
   },
   trust: {
-    image: "/images/showcase-family.jpg",
+    image: "/images/drive-home-section-7-b.png",
     imageAlt: "Échange entre une famille et un professionnel autour d’un bilan",
     badgeLabel: "Bilans réalisés",
     badgeValue: "400",
@@ -50,7 +50,7 @@ export const bilan = {
     title: "Une évaluation complète",
     titleAccent: "pour comprendre son fonctionnement",
     body: "Le bilan orthophonique précise le profil, pose les priorités et ouvre une suite concrète.",
-    image: "/images/path-bilan.jpg",
+    image: "/images/drive-bilan-section-4.png",
     imageAlt: "Séance de bilan orthophonique",
     leftFeatures: [
       "Propose des pistes concrètes.",
@@ -77,21 +77,21 @@ export const bilan = {
       title: "Durée",
       description:
         "Comptez environ 1h, entretien et tests compris. Un second rendez-vous pourra vous être proposé pour terminer les épreuves si besoin.",
-      image: "/images/step-orient.jpg",
+      image: "/images/drive-home-section-2.png",
     },
     {
       step: "02",
       title: "Ce qu’il faut prévoir",
       description:
         "Un espace calme, une bonne connexion internet, et un ordinateur ou tablette avec un écran suffisamment grand pour le confort visuel.",
-      image: "/images/step-eval.jpg",
+      image: "/images/drive-bilan-section-4.png",
     },
     {
       step: "03",
       title: "Confidentialité",
       description:
         "Nos échanges restent strictement confidentiels, le compte rendu est déposé sur votre espace personnel sécurisé.",
-      image: "/images/step-followup.jpg",
+      image: "/images/drive-bilan-section-4.png",
     },
   ],
   includes: [

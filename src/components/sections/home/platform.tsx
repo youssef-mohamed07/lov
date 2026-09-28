@@ -16,7 +16,7 @@ const paths = [
     href: "/bilan",
     cta: "Découvrir le bilan",
     icon: ClipboardList,
-    image: "/images/path-bilan.jpg",
+    image: "/images/drive-bilan-section-4.png",
   },
   {
     eyebrow: "02 — Suivi et accompagnement",
@@ -26,7 +26,7 @@ const paths = [
     href: "/suivi",
     cta: "Découvrir le suivi",
     icon: HeartHandshake,
-    image: "/images/pricing-suivi.jpg",
+    image: "/images/drive-home-section-7-a.png",
   },
 ] as const;
 

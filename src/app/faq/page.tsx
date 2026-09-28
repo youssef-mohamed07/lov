@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "Questions fréquentes sur l’orthophonie en ligne",
   description,
   path: "/faq",
-  image: "/images/faq-calm.jpg",
+  image: "/images/drive-standard-hero.png",
   imageAlt: "Réponses aux questions sur l’orthophonie en ligne",
 });
 
@@ -67,7 +67,7 @@ export default function FaqPage() {
           </>
         }
         description="Retrouvez toutes les réponses sur le bilan, le suivi, notre équipe et les troubles accompagnés à distance."
-        image="/images/faq-calm.jpg"
+        image="/images/drive-standard-hero.png"
         imageAlt="Famille consultant les réponses de Lov"
         breadcrumbs={[
           { label: "Accueil", href: "/" },

@@ -22,12 +22,14 @@ export function BilanHero() {
       </div>
 
       <HeartImage
-        src="/images/hero-child.jpg"
+        src="/images/drive-home-hero-wide.jpg"
+        imageClassName="object-[50%_45%]"
         className="absolute top-[20%] left-[-7%] hidden w-[230px] -rotate-8 lg:block xl:left-[-4%] xl:w-[278px]"
         tone="warm"
       />
       <HeartImage
-        src="/images/hero-therapist.jpg"
+        src="/images/drive-home-hero.png"
+        imageClassName="object-[50%_14%]"
         className="absolute top-[29%] right-[-8%] hidden w-[250px] rotate-6 lg:block xl:right-[-3%] xl:w-[300px]"
         tone="cool"
       />
@@ -64,12 +66,12 @@ export function BilanHero() {
           <FadeItem className="mt-10 w-full max-w-md px-2 lg:hidden">
             <div className="grid grid-cols-2 gap-3">
               <HeartImage
-                src="/images/hero-child.jpg"
+                src="/images/drive-home-hero-wide.jpg"
                 className="-rotate-6"
                 imageClassName="object-[50%_18%]"
               />
               <HeartImage
-                src="/images/hero-therapist.jpg"
+                src="/images/drive-home-hero.png"
                 className="rotate-6"
                 imageClassName="object-[50%_16%]"
               />

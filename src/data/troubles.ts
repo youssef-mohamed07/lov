@@ -61,7 +61,7 @@ export const troubles: Trouble[] = [
       "Un bilan précis du niveau oral et de la compréhension.",
     ),
     ctaDescription: childCta,
-    image: "/images/trouble-speech.jpg",
+    image: "/images/drive-home-section-2.png",
   },
   {
     slug: "dyslexie",
@@ -90,7 +90,7 @@ export const troubles: Trouble[] = [
       "Une lecture claire des résultats, avec des recommandations pour l’école.",
     ),
     ctaDescription: childCta,
-    image: "/images/trouble-dyslexia.jpg",
+    image: "/images/drive-home-section-7-a.png",
   },
   {
     slug: "begaiement",
@@ -120,7 +120,7 @@ export const troubles: Trouble[] = [
       "Un suivi régulier, combinant fluidité et soutien émotionnel.",
     ),
     ctaDescription: childCta,
-    image: "/images/trouble-stutter.jpg",
+    image: "/images/drive-home-section-2.png",
   },
   {
     slug: "dyscalculie",
@@ -149,7 +149,7 @@ export const troubles: Trouble[] = [
       "Une lecture claire des résultats, avec des recommandations pour l’école.",
     ),
     ctaDescription: childCta,
-    image: "/images/trouble-math.jpg",
+    image: "/images/drive-home-section-7-b.png",
   },
   {
     slug: "fonctions-oro-myo-faciales",
@@ -179,7 +179,7 @@ export const troubles: Trouble[] = [
       "Une rééducation fonctionnelle, en lien avec les autres professionnels si besoin.",
     ),
     ctaDescription: childCta,
-    image: "/images/trouble-articulation.jpg",
+    image: "/images/drive-home-section-7-a.png",
   },
   {
     slug: "oralite-alimentaire",
@@ -209,7 +209,7 @@ export const troubles: Trouble[] = [
       "Un suivi progressif, au rythme de l’enfant.",
     ),
     ctaDescription: childCta,
-    image: "/images/family-consult.jpg",
+    image: "/images/drive-home-section-7-b.png",
   },
   {
     slug: "origine-neurologique",
@@ -239,7 +239,7 @@ export const troubles: Trouble[] = [
       "Une rééducation adaptée, en lien avec l’équipe médicale.",
     ),
     ctaDescription: "Une évaluation structurée, pour savoir précisément où en est votre situation.",
-    image: "/images/trouble-language.jpg",
+    image: "/images/drive-troubles-resources.png",
   },
 ];
 

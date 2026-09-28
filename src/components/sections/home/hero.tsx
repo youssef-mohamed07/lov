@@ -57,8 +57,9 @@ export function HomeHero() {
       </div>
 
       <HeartCutout
-        src="/images/hero-child.jpg"
+        src="/images/drive-home-hero-wide.jpg"
         alt=""
+        imageClassName="object-[50%_45%]"
         className="absolute top-[20%] left-[-7%] hidden w-[230px] lg:block xl:left-[-4%] xl:w-[278px]"
         tone="warm"
         reduceMotion={!!reduceMotion}
@@ -67,8 +68,9 @@ export function HomeHero() {
         rotate={leftRotate}
       />
       <HeartCutout
-        src="/images/hero-therapist.jpg"
+        src="/images/drive-home-hero.png"
         alt=""
+        imageClassName="object-[50%_14%]"
         className="absolute top-[29%] right-[-8%] hidden w-[250px] lg:block xl:right-[-3%] xl:w-[300px]"
         tone="cool"
         reduceMotion={!!reduceMotion}
@@ -113,12 +115,12 @@ export function HomeHero() {
           <FadeItem className="mt-10 w-full max-w-md px-2 lg:hidden">
             <div className="grid grid-cols-2 gap-3">
               <MobileHeartImage
-                src="/images/hero-child.jpg"
+                src="/images/drive-home-hero-wide.jpg"
                 className="-rotate-6"
                 imageClassName="object-[50%_18%]"
               />
               <MobileHeartImage
-                src="/images/hero-therapist.jpg"
+                src="/images/drive-home-hero.png"
                 className="rotate-6"
                 imageClassName="object-[50%_16%]"
               />
@@ -154,6 +156,7 @@ export function HomeHero() {
 function HeartCutout({
   src,
   alt,
+  imageClassName,
   className,
   tone = "warm",
   reduceMotion,
@@ -163,6 +166,7 @@ function HeartCutout({
 }: {
   src: string;
   alt: string;
+  imageClassName?: string;
   className?: string;
   tone?: "warm" | "cool";
   reduceMotion: boolean;
@@ -193,7 +197,7 @@ function HeartCutout({
             alt={alt}
             fill
             sizes="300px"
-            className="object-cover"
+            className={cn("object-cover", imageClassName)}
             priority
           />
         </div>

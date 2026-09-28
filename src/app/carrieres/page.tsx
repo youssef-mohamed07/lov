@@ -22,7 +22,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "Carrières en orthophonie et recrutement",
   description: careers.description,
   path: "/carrieres",
-  image: "/images/ortho-session.jpg",
+  image: "/images/drive-standard-hero.png",
   imageAlt: "Travailler avec l’équipe Lov",
 });
 
@@ -40,7 +40,7 @@ export default function CareersPage() {
           </>
         }
         description={careers.description}
-        image="/images/ortho-session.jpg"
+        image="/images/drive-standard-hero.png"
         imageAlt="Orthophoniste pendant une séance"
         breadcrumbs={[
           { label: "Accueil", href: "/" },
@@ -60,7 +60,7 @@ export default function CareersPage() {
             <Reveal variant="left">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] sm:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
-                  src="/images/expertise-listening.jpg"
+                  src="/images/drive-careers-section-2.png"
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 100vw, 48vw"

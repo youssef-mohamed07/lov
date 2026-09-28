@@ -24,7 +24,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "Contacter Lov et prendre rendez-vous en orthophonie",
   description: contact.description,
   path: "/nous-contacter",
-  image: "/images/family-consult.jpg",
+  image: "/images/drive-standard-hero.png",
   imageAlt: "Échange avec une famille au sujet d’un bilan orthophonique",
 });
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
           </>
         }
         description={contact.description}
-        image="/images/family-consult.jpg"
+        image="/images/drive-standard-hero.png"
         imageAlt="Échange avec une famille au sujet d’un parcours orthophonique"
         breadcrumbs={[
           { label: "Accueil", href: "/" },
@@ -76,7 +76,7 @@ export default function ContactPage() {
             <Reveal variant="left" className="flex flex-col gap-8">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] border border-border">
                 <Image
-                  src="/images/family-consult.jpg"
+                  src="/images/drive-standard-hero.png"
                   alt="Échange avec une famille"
                   fill
                   sizes="(max-width: 1024px) 100vw, 45vw"

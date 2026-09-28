@@ -31,12 +31,14 @@ export function SiteCta({
           <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,13rem)_1fr_minmax(0,13rem)] xl:gap-8">
             <div className="flex items-center justify-center gap-3 sm:gap-5 xl:block">
               <HeartCutout
-                src="/images/hero-child.jpg"
+                src="/images/drive-home-hero-wide.jpg"
+                imageClassName="object-[50%_45%]"
                 className="w-28 -rotate-6 sm:w-40 xl:w-full"
                 tone="warm"
               />
               <HeartCutout
-                src="/images/hero-therapist.jpg"
+                src="/images/drive-home-hero.png"
+                imageClassName="object-[50%_14%]"
                 className="w-28 rotate-6 sm:w-40 xl:hidden"
                 tone="cool"
               />
@@ -66,7 +68,8 @@ export function SiteCta({
             </div>
 
             <HeartCutout
-              src="/images/hero-therapist.jpg"
+              src="/images/drive-home-hero.png"
+              imageClassName="object-[50%_14%]"
               className="mx-auto hidden w-full rotate-6 xl:block"
               tone="cool"
             />
@@ -79,10 +82,12 @@ export function SiteCta({
 
 function HeartCutout({
   src,
+  imageClassName,
   className,
   tone = "warm",
 }: {
   src: string;
+  imageClassName?: string;
   className?: string;
   tone?: "warm" | "cool";
 }) {
@@ -98,7 +103,13 @@ function HeartCutout({
       >
         <div className="lov-heart-clip absolute inset-[-5%] bg-brand/25" />
         <div className="lov-heart-clip absolute inset-0 overflow-hidden bg-surface-muted">
-          <Image src={src} alt="" fill sizes="220px" className="object-cover" />
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes="220px"
+            className={cn("object-cover", imageClassName)}
+          />
         </div>
       </div>
     </div>

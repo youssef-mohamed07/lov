@@ -17,7 +17,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "Bilan orthophonique en ligne et en visioconférence",
   description: bilan.description,
   path: "/bilan",
-  image: "/images/path-bilan.jpg",
+  image: "/images/drive-bilan-section-4.png",
   imageAlt: "Bilan orthophonique en téléconsultation",
 });
 

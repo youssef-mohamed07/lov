@@ -60,38 +60,21 @@ export function HomeDialogue() {
         <Reveal variant="fade">
           <div
             ref={stageRef}
-            className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] border border-border bg-surface"
+            className="relative mx-auto max-w-3xl overflow-hidden rounded-[1.75rem] border border-border bg-surface"
           >
-            <div className="grid min-h-[340px] sm:min-h-[420px] md:grid-cols-2 lg:min-h-[480px]">
-              <div className="relative min-h-[260px] border-b border-border md:border-r md:border-b-0">
-                <Image
-                  src="/images/dialogue-therapist.jpg"
-                  alt="Orthophoniste"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-[50%_18%]"
-                  priority
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent"
-                />
-              </div>
-
-              <div className="relative min-h-[260px]">
-                <Image
-                  src="/images/dialogue-child.jpg"
-                  alt="Enfant"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-[48%_12%]"
-                  priority
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent"
-                />
-              </div>
+            <div className="relative aspect-square w-full">
+              <Image
+                src="/images/drive-home-section-3.png"
+                alt="Orthophoniste en visioconférence avec un enfant"
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
+                priority
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-foreground/15 via-transparent to-transparent"
+              />
             </div>
 
             <div

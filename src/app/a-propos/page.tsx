@@ -20,7 +20,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "À propos de Lov et de notre approche orthophonique",
   description: about.description,
   path: "/a-propos",
-  image: "/images/home-showcase.jpg",
+  image: "/images/drive-standard-hero.png",
   imageAlt: "L’équipe et l’approche de Lov",
 });
 
@@ -31,8 +31,8 @@ export default function AboutPage() {
         eyebrow="Qui sommes-nous ?"
         title={about.title}
         description={about.description}
-        image="/images/home-showcase.jpg"
-        imageAlt="Échange entre une famille et une professionnelle de l’orthophonie"
+        image="/images/drive-standard-hero.png"
+        imageAlt="Orthophoniste travaillant depuis son cabinet en ligne"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "À propos" }]}
         actions={
           <CtaButton href="/nous-contacter" size="lg">
@@ -42,8 +42,8 @@ export default function AboutPage() {
       />
       <AboutReassurance />
       <TrustShowcase
-        image="/images/showcase-family.jpg"
-        imageAlt="Échange entre une famille et un professionnel autour d’un bilan"
+        image="/images/drive-home-section-7-a.png"
+        imageAlt="Orthophoniste accompagnant une enfant en visioconférence"
         badgeLabel="Bilans réalisés"
         badgeValue="400"
         imageCaption="Une évaluation claire, pensée pour être comprise."

@@ -11,9 +11,9 @@ import { easeOutExpo } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const images = [
-  "/images/expertise-pedagogy.jpg",
-  "/images/expertise-listening.jpg",
-  "/images/expertise-follow.jpg",
+  "/images/drive-home-section-4.png",
+  "/images/drive-about-section-6.png",
+  "/images/drive-home-hero.png",
 ] as const;
 
 export function HomeExpertise() {

@@ -443,7 +443,7 @@ function WelcomeStep({ onStart }: { onStart: () => void }) {
           </h1>
         </div>
         <FlowHeart
-          src="/images/path-bilan.jpg"
+          src="/images/drive-bilan-section-4.png"
           className="w-24 rotate-6 sm:w-32"
           sizes="128px"
           priority
