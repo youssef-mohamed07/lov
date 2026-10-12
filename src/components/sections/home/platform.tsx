@@ -60,7 +60,7 @@ export function HomePlatform() {
                 variant={index === 0 ? "left" : "right"}
                 className="h-full"
               >
-                <article className="relative flex h-full min-h-[23.75rem] flex-col overflow-hidden rounded-[var(--radius-card)] border border-border shadow-[var(--shadow-card)] sm:min-h-[26.25rem]">
+                <article className="relative flex h-full min-h-[380px] flex-col overflow-hidden rounded-[var(--radius-card)] border border-border shadow-[var(--shadow-card)] sm:min-h-[420px]">
                   <Image
                     src={path.image}
                     alt=""
@@ -74,7 +74,7 @@ export function HomePlatform() {
                     className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10"
                   />
 
-                  <div className="relative mt-auto flex min-h-[17.5rem] flex-col p-7 sm:min-h-[18.5rem] sm:p-8">
+                  <div className="relative mt-auto flex min-h-[280px] flex-col p-7 sm:min-h-[296px] sm:p-8">
                     <div className="mb-4 inline-flex size-11 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-sm">
                       <Icon className="size-5" aria-hidden />
                     </div>

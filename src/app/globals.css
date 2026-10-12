@@ -24,19 +24,21 @@
   --danger: #c2453a;
   --voice: #f9ab6c;
   --success: #00b67a;
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
+  /* Spacing is expressed in the layout unit (see --spacing below), so it keeps
+     its original pixel size while the root font size is enlarged for type. */
+  --space-1: calc(var(--spacing) * 1);
+  --space-2: calc(var(--spacing) * 2);
+  --space-3: calc(var(--spacing) * 3);
+  --space-4: calc(var(--spacing) * 4);
+  --space-5: calc(var(--spacing) * 5);
+  --space-6: calc(var(--spacing) * 6);
+  --space-8: calc(var(--spacing) * 8);
+  --space-10: calc(var(--spacing) * 10);
+  --space-12: calc(var(--spacing) * 12);
+  --space-16: calc(var(--spacing) * 16);
+  --space-20: calc(var(--spacing) * 20);
+  --space-24: calc(var(--spacing) * 24);
+  --space-32: calc(var(--spacing) * 32);
 
   --gutter: var(--space-5);
   --gutter-md: var(--space-6);
@@ -48,14 +50,14 @@
 
   --container-sm: 40rem;
   --container-md: 48rem;
-  --container-lg: 72rem;
+  --container-lg: 64rem;
   --container-xl: 80rem;
 
   --grid-gap: var(--space-6);
   --grid-gap-lg: var(--space-8);
 
-  --header-height: 5.25rem;
-  --radius-card: 1.35rem;
+  --header-height: calc(var(--spacing) * 21);
+  --radius-card: calc(var(--spacing) * 5.4);
   --shadow-card: 0 20px 48px -34px rgba(14, 14, 15, 0.18);
 }
 
@@ -77,19 +79,34 @@
   :root {
     --gutter: var(--gutter-lg);
     --section-space-md: var(--space-16);
-    --section-space-lg: var(--space-24);
+    --section-space-lg: var(--space-20);
     --grid-gap: var(--grid-gap-lg);
   }
 }
 
-/* Breakpoints grow with the root size (Tailwind defaults × 1.25), so each layout
-   still switches at the content width it was designed for. */
+/* Breakpoints grow with the type scale (Tailwind defaults × 1.25), so each
+   layout still switches at a width where the larger text fits. */
 @theme {
   --breakpoint-sm: 50rem;
   --breakpoint-md: 60rem;
   --breakpoint-lg: 80rem;
   --breakpoint-xl: 100rem;
   --breakpoint-2xl: 120rem;
+
+  /* Only type follows the enlarged root size. The spacing unit is divided by the
+     same factor, so paddings, gaps and element sizes keep their original pixel
+     size and sections don't grow with the text. */
+  --spacing: 0.2rem;
+
+  /* Line heights stay tied to the type scale rather than to the spacing unit. */
+  --leading-3: 0.75rem;
+  --leading-4: 1rem;
+  --leading-5: 1.25rem;
+  --leading-6: 1.5rem;
+  --leading-7: 1.75rem;
+  --leading-8: 2rem;
+  --leading-9: 2.25rem;
+  --leading-10: 2.5rem;
 }
 
 @theme inline {
@@ -138,8 +155,8 @@
   --container-width-xl: var(--container-xl);
 }
 
-/* Site-wide type scale: +25%. Every size is in rem, so the root size drives the
-   whole scale (text, spacing and radii grow together and keep their proportions).
+/* Site-wide type scale: +25%. Text sizes are in rem, so the root size drives
+   them; spacing is compensated through --spacing so layout keeps its size.
    Screens under 360px ease back to +12.5% so long words keep fitting. */
 html {
   font-size: clamp(112.5%, 5vw + 12.5%, 125%);

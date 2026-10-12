@@ -33,7 +33,7 @@ export function PricingCard({
   return (
     <article
       className={cn(
-        "relative flex h-full flex-col rounded-[1.75rem] border p-[var(--space-8)] shadow-[var(--shadow-card)] transition-[border-color,background-color] duration-200",
+        "relative flex h-full flex-col rounded-[28px] border p-[var(--space-8)] shadow-[var(--shadow-card)] transition-[border-color,background-color] duration-200",
         highlighted
           ? "border-accent bg-accent-soft/50"
           : "border-border bg-surface hover:border-accent/35 hover:bg-accent-soft/15",

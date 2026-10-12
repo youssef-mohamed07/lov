@@ -10,7 +10,7 @@ export function HomeReassurance() {
           {reassuranceItems.map((item, index) => (
             <li key={item.title}>
               <Reveal delay={index * 0.06} variant="up" className="h-full">
-                <article className="flex h-full flex-col rounded-[1.5rem] border border-border bg-surface px-6 py-7 shadow-[var(--shadow-card)] sm:px-7">
+                <article className="flex h-full flex-col rounded-[24px] border border-border bg-surface px-6 py-7 shadow-[var(--shadow-card)] sm:px-7">
                   <span className="font-display text-3xl font-semibold tracking-tight text-foreground/15">
                     {String(index + 1).padStart(2, "0")}
                   </span>

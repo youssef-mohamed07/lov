@@ -66,7 +66,7 @@ export function TroubleProcess({ steps }: TroubleProcessProps) {
                   >
                     <article
                       className={cn(
-                        "group relative min-h-[10.625rem] overflow-hidden rounded-[1.35rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/35",
+                        "group relative min-h-[170px] overflow-hidden rounded-[21.6px] border border-border bg-surface p-6 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/35",
                         left ? "lg:text-right" : "lg:text-left",
                       )}
                     >

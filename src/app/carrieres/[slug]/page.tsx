@@ -158,12 +158,12 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
             </div>
 
             <Reveal delay={0.08} variant="fade">
-              <div className="sticky top-[calc(var(--header-height)+1rem)] overflow-hidden rounded-[1.75rem] bg-foreground px-6 py-8 text-background sm:px-8">
+              <div className="sticky top-[calc(var(--header-height)+1rem)] overflow-hidden rounded-[28px] bg-foreground px-6 py-8 text-background sm:px-8">
                 <div
                   aria-hidden
                   className="pointer-events-none absolute inset-0"
                 >
-                  <div className="absolute -top-1/3 -right-10 size-[22rem] rounded-full bg-[radial-gradient(circle,rgba(254,81,16,0.35),transparent_62%)] blur-2xl" />
+                  <div className="absolute -top-1/3 -right-10 size-[352px] rounded-full bg-[radial-gradient(circle,rgba(254,81,16,0.35),transparent_62%)] blur-2xl" />
                 </div>
                 <div className="relative">
                   <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">

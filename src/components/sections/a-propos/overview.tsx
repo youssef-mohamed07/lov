@@ -46,7 +46,7 @@ export function AboutOverview() {
           </Reveal>
 
           <Reveal delay={0.08} variant="right">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-border shadow-[var(--shadow-card)]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-border shadow-[var(--shadow-card)]">
               <Image
                 src={overview.image}
                 alt={overview.imageAlt}

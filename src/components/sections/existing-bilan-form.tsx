@@ -111,7 +111,11 @@ export function ExistingBilanForm() {
       align={step === "details" || step === "welcome" ? "top" : "center"}
       rail={
         progressIndex >= 0 ? (
-          <FlowSteps steps={stepLabels} current={progressIndex} />
+          <FlowSteps
+            steps={stepLabels}
+            current={progressIndex}
+            onStepClick={(index) => setStep(stepOrder[index])}
+          />
         ) : null
       }
     >

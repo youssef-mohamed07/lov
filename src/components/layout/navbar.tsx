@@ -70,7 +70,7 @@ export function Navbar() {
       <Container size="xl" className="pointer-events-auto relative z-10">
         <div
           className={cn(
-            "relative flex h-16 min-w-0 items-center justify-between gap-3 rounded-[1.6rem] border px-3 transition-[background-color,box-shadow,border-color] duration-300 sm:px-4",
+            "relative flex h-16 min-w-0 items-center justify-between gap-3 rounded-[25.6px] border px-3 transition-[background-color,box-shadow,border-color] duration-300 sm:px-4",
             solid
               ? "border-border/80 bg-surface/95 shadow-[0_18px_55px_-36px_rgba(14,14,15,0.5)] backdrop-blur-2xl"
               : "border-white/70 bg-white/82 shadow-[0_16px_46px_-38px_rgba(14,14,15,0.35)] backdrop-blur-xl",
@@ -113,8 +113,8 @@ export function Navbar() {
                         "group-focus-within/troubles:pointer-events-auto group-focus-within/troubles:visible group-focus-within/troubles:translate-y-0 group-focus-within/troubles:opacity-100",
                       )}
                     >
-                      <div className="grid grid-cols-[15rem_minmax(0,1fr)] gap-2.5 overflow-hidden rounded-[1.75rem] border border-border/80 bg-surface/98 p-2.5 shadow-[0_28px_70px_-34px_rgba(14,14,15,0.42)] backdrop-blur-2xl">
-                        <div className="relative flex min-h-[19rem] flex-col overflow-hidden rounded-[1.25rem] bg-brand-soft p-5">
+                      <div className="grid grid-cols-[15rem_minmax(0,1fr)] gap-2.5 overflow-hidden rounded-[28px] border border-border/80 bg-surface/98 p-2.5 shadow-[0_28px_70px_-34px_rgba(14,14,15,0.42)] backdrop-blur-2xl">
+                        <div className="relative flex min-h-[19rem] flex-col overflow-hidden rounded-[20px] bg-brand-soft p-5">
                           <div aria-hidden className="absolute -right-10 -bottom-12 size-44 rounded-full bg-accent-soft/80 blur-2xl" />
                           <span className="relative inline-flex size-10 items-center justify-center rounded-xl bg-white/80 text-brand shadow-sm">
                             <Sparkles className="size-4.5" aria-hidden />
@@ -240,7 +240,7 @@ export function Navbar() {
           open ? "block" : "hidden",
         )}
       >
-        <div className="mx-auto max-h-[calc(100dvh-var(--header-height)-1rem)] max-w-[var(--container-xl)] overflow-y-auto overscroll-contain rounded-[1.5rem] border border-border bg-surface p-3 shadow-[0_24px_60px_-32px_rgba(14,14,15,0.45)]">
+        <div className="mx-auto max-h-[calc(100dvh-var(--header-height)-1rem)] max-w-[var(--container-xl)] overflow-y-auto overscroll-contain rounded-[24px] border border-border bg-surface p-3 shadow-[0_24px_60px_-32px_rgba(14,14,15,0.45)]">
           <div className="grid gap-1 sm:grid-cols-2">
             {navLinks.map((link) => {
               if (link.href === "/troubles") {

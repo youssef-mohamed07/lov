@@ -42,7 +42,7 @@ export function HomeExpertise() {
             {expertiseItems.map((item, index) => (
               <article
                 key={item.title}
-                className="relative min-h-[15rem] overflow-hidden rounded-[1.35rem] sm:min-h-[17.5rem]"
+                className="relative min-h-[240px] overflow-hidden rounded-[21.6px] sm:min-h-[280px]"
               >
                 <Image
                   src={images[index] ?? images[0]}
@@ -74,7 +74,7 @@ export function HomeExpertise() {
         {/* Desktop: hover accordion */}
         <Reveal variant="fade" className="hidden lg:block">
           <div
-            className="flex h-[28.75rem] gap-3"
+            className="flex h-[460px] gap-3"
             onMouseLeave={() => {
               if (!reduceMotion) setActive(1);
             }}
@@ -93,7 +93,7 @@ export function HomeExpertise() {
                     flexGrow: selected ? 2.4 : 1,
                   }}
                   transition={{ duration: 0.45, ease: easeOutExpo }}
-                  className="relative min-w-0 overflow-hidden rounded-[1.35rem] text-left"
+                  className="relative min-w-0 overflow-hidden rounded-[21.6px] text-left"
                   style={{ flexBasis: 0 }}
                   aria-pressed={selected}
                 >

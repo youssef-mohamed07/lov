@@ -46,7 +46,7 @@ export function AboutValues() {
                   variant="fade"
                   className="h-full"
                 >
-                  <article className="group flex h-full flex-col rounded-[1.5rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/35 hover:bg-accent-soft/20 sm:p-7">
+                  <article className="group flex h-full flex-col rounded-[24px] border border-border bg-surface p-6 shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/35 hover:bg-accent-soft/20 sm:p-7">
                     <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-accent-soft text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
                       <Icon className="size-5" aria-hidden />
                     </span>

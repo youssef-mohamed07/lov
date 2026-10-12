@@ -104,7 +104,11 @@ export function SimulatorFlow() {
       width="md"
       rail={
         phase === "question" ? (
-          <FlowSteps steps={stepLabels} current={step} />
+          <FlowSteps
+            steps={stepLabels}
+            current={step}
+            onStepClick={setStep}
+          />
         ) : null
       }
     >

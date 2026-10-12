@@ -20,7 +20,7 @@ export function DeferredMap({
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="relative size-full min-h-[17.5rem] overflow-hidden bg-[#f3f0ea]">
+    <div className="relative size-full min-h-[280px] overflow-hidden bg-[#f3f0ea]">
       {isRequested && (
         <iframe
           title={title}

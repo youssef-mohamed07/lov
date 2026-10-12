@@ -46,8 +46,8 @@ export function SuiviPlatformBento() {
 
         <div className="grid items-stretch gap-4 lg:grid-cols-3">
           <div className="flex flex-col gap-4">
-            <Reveal variant="fade-scale" className="overflow-hidden rounded-[1.5rem]">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
+            <Reveal variant="fade-scale" className="overflow-hidden rounded-[24px]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
                 <Image
                   src="/images/photo-09-visio-enfant-maman.jpg"
                   alt="Enfant et sa maman pendant une séance en visioconférence"
@@ -59,7 +59,7 @@ export function SuiviPlatformBento() {
             </Reveal>
 
             <Reveal delay={0.06} variant="fade-scale" className="flex-1">
-              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)]">
+              <article className="flex h-full flex-col rounded-[24px] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)]">
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
                   <Activity className="size-5" aria-hidden />
                 </span>
@@ -74,8 +74,8 @@ export function SuiviPlatformBento() {
           </div>
 
           <Reveal delay={0.08} variant="fade-scale" className="h-full">
-            <article className="flex h-full min-h-[26.25rem] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)] lg:min-h-0">
-              <div className="relative mx-auto flex aspect-square w-full max-w-[17.5rem] flex-1 items-center justify-center">
+            <article className="flex h-full min-h-[420px] flex-col rounded-[24px] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)] lg:min-h-0">
+              <div className="relative mx-auto flex aspect-square w-full max-w-[280px] flex-1 items-center justify-center">
                 <div aria-hidden className="absolute inset-[8%] rounded-full border border-dashed border-border" />
                 <div aria-hidden className="absolute inset-[22%] rounded-full border border-dashed border-border/80" />
 
@@ -121,7 +121,7 @@ export function SuiviPlatformBento() {
 
           <div className="flex flex-col gap-4">
             <Reveal delay={0.1} variant="fade-scale" className="flex-1">
-              <article className="flex h-full flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)]">
+              <article className="flex h-full flex-col rounded-[24px] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)]">
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
                   <PencilLine className="size-5" aria-hidden />
                 </span>
@@ -135,7 +135,7 @@ export function SuiviPlatformBento() {
             </Reveal>
 
             <Reveal delay={0.14} variant="fade-scale">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
                 <Image
                   src="/images/drive-home-section-7-a.png"
                   alt="Professionnelle préparant un accompagnement orthophonique"

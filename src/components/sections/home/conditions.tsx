@@ -35,7 +35,7 @@ export function HomeConditions() {
             <li>
               <Link
                 href={condition.href}
-                className="group flex min-h-[5.5rem] items-center justify-between gap-3 rounded-2xl border border-border bg-surface px-[var(--space-5)] py-[var(--space-5)] transition-all duration-300 hover:border-foreground/15 hover:bg-accent-soft"
+                className="group flex min-h-[88px] items-center justify-between gap-3 rounded-2xl border border-border bg-surface px-[var(--space-5)] py-[var(--space-5)] transition-all duration-300 hover:border-foreground/15 hover:bg-accent-soft"
               >
                 <span className="text-base font-medium tracking-tight text-foreground">
                   {condition.label}

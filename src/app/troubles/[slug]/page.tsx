@@ -168,7 +168,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
               return (
                 <li key={recommendation.title}>
                   <Reveal delay={(index % 3) * 0.06} variant="fade" className="h-full">
-                    <article className="h-full min-h-[13.125rem] rounded-[1.35rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)]">
+                    <article className="h-full min-h-[210px] rounded-[21.6px] border border-border bg-surface p-6 shadow-[var(--shadow-card)]">
                       <span className="inline-flex size-11 items-center justify-center rounded-2xl bg-brand-soft text-brand">
                         <Icon className="size-5" aria-hidden />
                       </span>
@@ -192,7 +192,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
       <section className="bg-background py-[var(--section-space-lg)]">
         <Container>
           <Reveal>
-            <div className="relative overflow-hidden rounded-[2rem] bg-foreground px-6 py-12 text-center sm:px-10 sm:py-16">
+            <div className="relative overflow-hidden rounded-[32px] bg-foreground px-6 py-12 text-center sm:px-10 sm:py-16">
               <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_100%_at_50%_120%,rgba(249,171,108,0.28),transparent_65%)]" />
               <div className="relative mx-auto max-w-3xl">
                 <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">

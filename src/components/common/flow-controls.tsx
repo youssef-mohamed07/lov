@@ -138,13 +138,16 @@ export function FlowDots({
   );
 }
 
-/** Labelled stepper — signals a structured, multi-part process. */
+/** Labelled stepper — signals a structured, multi-part process. Completed
+ *  steps become buttons when `onStepClick` is given, to jump back to them. */
 export function FlowSteps({
   steps,
   current,
+  onStepClick,
 }: {
   steps: readonly string[];
   current: number;
+  onStepClick?: (index: number) => void;
 }) {
   const safeCurrent = Math.min(Math.max(current, 0), steps.length - 1);
 
@@ -154,8 +157,8 @@ export function FlowSteps({
         {steps.map((step, index) => {
           const done = index < safeCurrent;
           const active = index === safeCurrent;
-          return (
-            <li key={step} className="flex min-w-0 flex-1 items-center gap-2">
+          const marker = (
+            <>
               <span
                 className={cn(
                   "inline-flex size-6 shrink-0 items-center justify-center rounded-full text-[0.7rem] font-semibold transition-colors",
@@ -168,12 +171,33 @@ export function FlowSteps({
               </span>
               <span
                 className={cn(
-                  "truncate text-xs font-medium",
+                  "truncate text-xs font-medium transition-colors",
                   active ? "text-foreground" : "text-muted",
                 )}
               >
                 {step}
               </span>
+            </>
+          );
+          return (
+            <li key={step} className="flex min-w-0 flex-1 items-center gap-2">
+              {done && onStepClick ? (
+                <button
+                  type="button"
+                  onClick={() => onStepClick(index)}
+                  aria-label={`Revenir à l’étape ${index + 1} : ${step}`}
+                  className="-m-1 flex min-w-0 items-center gap-2 rounded-full p-1 pr-2.5 transition-colors hover:bg-[var(--flow-tone-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--flow-tone)] hover:[&>span:last-child]:text-foreground"
+                >
+                  {marker}
+                </button>
+              ) : (
+                <span
+                  aria-current={active ? "step" : undefined}
+                  className="flex min-w-0 items-center gap-2"
+                >
+                  {marker}
+                </span>
+              )}
               {index < steps.length - 1 ? (
                 <span
                   aria-hidden

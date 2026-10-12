@@ -31,8 +31,8 @@ export function AboutFounders() {
                 variant={index === 0 ? "left" : "right"}
                 className="h-full"
               >
-                <article className="grid h-full overflow-hidden rounded-[1.75rem] border border-border bg-surface sm:grid-cols-[0.9fr_1.1fr]">
-                  <div className="relative min-h-[16.25rem] sm:min-h-[18.75rem]">
+                <article className="grid h-full overflow-hidden rounded-[28px] border border-border bg-surface sm:grid-cols-[0.9fr_1.1fr]">
+                  <div className="relative min-h-[260px] sm:min-h-[300px]">
                     <Image
                       src={person.image}
                       alt={person.name}

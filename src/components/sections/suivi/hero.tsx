@@ -23,12 +23,12 @@ export function SuiviHero() {
 
       <HeartImage
         src="/images/photo-01-charlene-heart.jpg"
-        className="absolute top-[13%] left-[-3%] hidden w-[12.5rem] -rotate-8 lg:block xl:left-[-1%] xl:w-[17.375rem]"
+        className="absolute top-[13%] left-[-3%] hidden w-[250px] -rotate-8 lg:block xl:left-[-1%] xl:w-[348px]"
         tone="warm"
       />
       <HeartImage
         src="/images/photo-02-morgane-heart.jpg"
-        className="absolute top-[54%] right-[-5%] hidden w-[13.5rem] rotate-6 lg:block xl:right-[-2%] xl:w-[18.75rem]"
+        className="absolute top-[54%] right-[-5%] hidden w-[270px] rotate-6 lg:block xl:right-[-2%] xl:w-[375px]"
         tone="cool"
       />
 

@@ -209,7 +209,7 @@ export function BirthDateField({
         <label
           htmlFor={dayId}
           className={cn(
-            "flex min-h-[4.25rem] cursor-text flex-col justify-center border-r border-border px-2 transition-colors sm:px-3",
+            "flex min-h-[68px] cursor-text flex-col justify-center border-r border-border px-2 transition-colors sm:px-3",
             active === "day" && "bg-[var(--flow-tone-soft)]",
           )}
         >
@@ -242,7 +242,7 @@ export function BirthDateField({
           aria-label="Mois de naissance"
           onClick={() => setActive(active === "month" ? null : "month")}
           className={cn(
-            "flex min-h-[4.25rem] min-w-0 flex-col items-start justify-center border-r border-border px-2 text-left transition-colors sm:px-4",
+            "flex min-h-[68px] min-w-0 flex-col items-start justify-center border-r border-border px-2 text-left transition-colors sm:px-4",
             active === "month" && "bg-[var(--flow-tone-soft)]",
           )}
         >
@@ -262,7 +262,7 @@ export function BirthDateField({
         <label
           htmlFor={yearId}
           className={cn(
-            "flex min-h-[4.25rem] cursor-text flex-col justify-center px-2 transition-colors sm:px-3",
+            "flex min-h-[68px] cursor-text flex-col justify-center px-2 transition-colors sm:px-3",
             active === "year" && "bg-[var(--flow-tone-soft)]",
           )}
         >

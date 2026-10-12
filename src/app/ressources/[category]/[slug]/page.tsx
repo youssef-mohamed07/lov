@@ -231,7 +231,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             </div>
           </Reveal>
 
-          <div className="grid auto-rows-[9.375rem] gap-3 sm:auto-rows-[11.25rem] sm:grid-cols-2 lg:auto-rows-[13.75rem] lg:grid-cols-4">
+          <div className="grid auto-rows-[150px] gap-3 sm:auto-rows-[180px] sm:grid-cols-2 lg:auto-rows-[220px] lg:grid-cols-4">
             {article.gallery.map((frame, index) => (
               <Reveal
                 key={frame.src + index}
@@ -243,7 +243,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                   index === 3 && "sm:col-span-2",
                 )}
               >
-                <div className="relative h-full min-h-[9.375rem] overflow-hidden rounded-[1.35rem] border border-border">
+                <div className="relative h-full min-h-[150px] overflow-hidden rounded-[21.6px] border border-border">
                   <Image
                     src={frame.src}
                     alt={frame.alt}
@@ -262,7 +262,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
       <section className="bg-background py-[var(--section-space-md)]">
         <Container size="md">
           <Reveal>
-            <div className="rounded-[1.75rem] border border-border bg-surface px-6 py-8 sm:px-8">
+            <div className="rounded-[28px] border border-border bg-surface px-6 py-8 sm:px-8">
               <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
                 Envie d’aller <span className="font-medium italic text-voice">plus loin</span> ?
               </h2>
@@ -305,7 +305,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                   <Reveal delay={index * 0.05} variant="fade" className="h-full">
                     <Link
                       href={getArticleHref(item)}
-                      className="group flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-border bg-surface transition-[border-color] hover:border-accent/40"
+                      className="group flex h-full flex-col overflow-hidden rounded-[21.6px] border border-border bg-surface transition-[border-color] hover:border-accent/40"
                     >
                       <div className="relative aspect-[16/10] overflow-hidden">
                         <Image

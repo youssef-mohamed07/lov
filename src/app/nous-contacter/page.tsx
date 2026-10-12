@@ -74,7 +74,7 @@ export default function ContactPage() {
         <Container className="relative">
           <div className="grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
             <Reveal variant="left" className="flex flex-col gap-8">
-              <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] border border-border">
+              <div className="relative aspect-[5/4] overflow-hidden rounded-[28px] border border-border">
                 <Image
                   src="/images/drive-standard-hero.png"
                   alt="Échange avec une famille"
@@ -92,7 +92,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <ul className="flex flex-col divide-y divide-border overflow-hidden rounded-[1.5rem] border border-border bg-surface">
+              <ul className="flex flex-col divide-y divide-border overflow-hidden rounded-[24px] border border-border bg-surface">
                 {contact.details.map((item) => {
                   const Icon =
                     detailIcons[item.label as keyof typeof detailIcons] ?? Mail;
@@ -131,7 +131,7 @@ export default function ContactPage() {
                 })}
               </ul>
 
-              <div className="flex items-start gap-3 rounded-[1.25rem] border border-danger/25 bg-danger/[0.06] px-5 py-4">
+              <div className="flex items-start gap-3 rounded-[20px] border border-danger/25 bg-danger/[0.06] px-5 py-4">
                 <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-danger/10 text-danger">
                   <ShieldAlert className="size-4" aria-hidden />
                 </span>
@@ -140,7 +140,7 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={0.08} variant="right">
-              <div className="rounded-[1.75rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:p-10">
+              <div className="rounded-[28px] border border-border bg-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:p-10">
                 <p className="text-xs font-medium tracking-[0.18em] text-muted uppercase">
                   Écrire à Lov
                 </p>

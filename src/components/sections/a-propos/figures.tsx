@@ -21,7 +21,7 @@ export function AboutFigures() {
           </h2>
         </Reveal>
 
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-[1.75rem] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-12 grid gap-px overflow-hidden rounded-[28px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {figures.items.map((item, index) => (
             <li key={item.label} className="bg-surface px-6 py-10 text-center">
               <Reveal delay={index * 0.06} variant="fade">

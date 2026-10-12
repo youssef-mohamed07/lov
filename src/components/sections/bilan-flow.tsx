@@ -263,7 +263,11 @@ export function BilanFlow() {
       align={step === "details" ? "top" : "center"}
       rail={
         progressIndex >= 0 ? (
-          <FlowSteps steps={stepLabels} current={progressIndex} />
+          <FlowSteps
+            steps={stepLabels}
+            current={progressIndex}
+            onStepClick={(index) => setStep(testStepOrder[index])}
+          />
         ) : null
       }
     >

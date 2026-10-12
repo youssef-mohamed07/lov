@@ -72,7 +72,7 @@ export default function CareersPage() {
         <Container className="relative">
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
             <Reveal variant="left">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] sm:aspect-[5/4] lg:aspect-[4/5]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] sm:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
                   src="/images/careers-team-mug.jpg"
                   alt=""
@@ -136,7 +136,7 @@ export default function CareersPage() {
               return (
                 <li key={step.title}>
                   <Reveal delay={index * 0.06} variant="up" className="h-full">
-                    <article className="group flex h-full flex-col rounded-[1.5rem] border border-border bg-background p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[var(--shadow-card)] sm:p-7">
+                    <article className="group flex h-full flex-col rounded-[24px] border border-border bg-background p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[var(--shadow-card)] sm:p-7">
                       <div className="flex items-center justify-between">
                         <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-accent-soft text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
                           <Icon className="size-5" aria-hidden />
@@ -183,7 +183,7 @@ export default function CareersPage() {
               {openRoles.map((role, index) => (
                 <li key={role.slug}>
                   <Reveal delay={index * 0.05} variant="fade">
-                    <article className="group grid gap-6 rounded-[1.5rem] border border-border bg-surface p-6 transition-[border-color,background-color] duration-200 hover:border-accent/30 hover:bg-accent-soft/20 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
+                    <article className="group grid gap-6 rounded-[24px] border border-border bg-surface p-6 transition-[border-color,background-color] duration-200 hover:border-accent/30 hover:bg-accent-soft/20 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
                           <span className="rounded-full bg-accent-soft px-2.5 py-1 text-accent">
@@ -225,12 +225,12 @@ export default function CareersPage() {
       <section className="bg-background py-[var(--section-space-lg)]">
         <Container>
           <Reveal>
-            <div className="relative overflow-hidden rounded-[2rem] bg-foreground px-6 py-12 text-background sm:px-12 sm:py-14 lg:px-16">
+            <div className="relative overflow-hidden rounded-[32px] bg-foreground px-6 py-12 text-background sm:px-12 sm:py-14 lg:px-16">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
               >
-                <div className="absolute -top-1/3 -right-10 size-[34rem] rounded-full bg-[radial-gradient(circle,rgba(254,81,16,0.35),transparent_62%)] blur-2xl" />
+                <div className="absolute -top-1/3 -right-10 size-[544px] rounded-full bg-[radial-gradient(circle,rgba(254,81,16,0.35),transparent_62%)] blur-2xl" />
                 <div className="absolute inset-0 opacity-[0.05] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
               </div>
 

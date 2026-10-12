@@ -103,12 +103,12 @@ export function HomeBento({
                     variant="fade-scale"
                     className="h-full"
                   >
-                    <article className="group flex h-full min-h-[10.5rem] flex-col rounded-[1.35rem] border border-border bg-surface p-5 transition-colors hover:border-accent/30 sm:p-6">
+                    <article className="group flex h-full min-h-[168px] flex-col rounded-[21.6px] border border-border bg-surface p-5 transition-colors hover:border-accent/30 sm:p-6">
                       <div className="flex items-start justify-between gap-4">
                         <span
                           className={`inline-flex size-10 shrink-0 items-center justify-center rounded-xl ${feature.tone}`}
                         >
-                          <Icon className="size-[1.125rem]" aria-hidden />
+                          <Icon className="size-[18px]" aria-hidden />
                         </span>
                         <span className="font-display text-xs font-semibold tabular-nums text-muted-soft">
                           0{index + 1}

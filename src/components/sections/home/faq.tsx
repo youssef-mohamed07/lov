@@ -135,7 +135,7 @@ export function HomeFaq({
           </div>
 
           <Reveal variant="fade" delay={0.08}>
-            <div className="flex min-h-[28rem] flex-col rounded-[1.75rem] border border-border bg-surface shadow-[var(--shadow-card)] lg:sticky lg:top-28">
+            <div className="flex min-h-[448px] flex-col rounded-[28px] border border-border bg-surface shadow-[var(--shadow-card)] lg:sticky lg:top-28">
               <div className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-6">
                 <span className="relative inline-flex size-9 items-center justify-center rounded-full bg-accent">
                   <Image
@@ -173,7 +173,7 @@ export function HomeFaq({
                       transition={transition.base}
                       className="flex justify-end"
                     >
-                      <p className="max-w-[85%] rounded-[1.25rem] rounded-br-md bg-accent px-4 py-3 text-base leading-7 text-white shadow-[0_12px_30px_-18px_rgba(254,81,16,0.7)]">
+                      <p className="max-w-[85%] rounded-[20px] rounded-br-md bg-accent px-4 py-3 text-base leading-7 text-white shadow-[0_12px_30px_-18px_rgba(254,81,16,0.7)]">
                         {active?.question}
                       </p>
                     </motion.div>
@@ -195,7 +195,7 @@ export function HomeFaq({
                           className="h-4 w-auto"
                         />
                       </span>
-                      <p className="max-w-[85%] rounded-[1.25rem] rounded-bl-md bg-surface-muted px-4 py-3 text-base leading-7 text-foreground">
+                      <p className="max-w-[85%] rounded-[20px] rounded-bl-md bg-surface-muted px-4 py-3 text-base leading-7 text-foreground">
                         {active?.answer}
                       </p>
                     </motion.div>

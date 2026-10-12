@@ -111,7 +111,7 @@ export default function ArticlesPage() {
                   >
                     <Link
                       href={getArticleHref(article)}
-                      className="group flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-border bg-surface transition-[border-color,box-shadow] hover:border-accent/40 hover:shadow-[var(--shadow-card)]"
+                      className="group flex h-full flex-col overflow-hidden rounded-[21.6px] border border-border bg-surface transition-[border-color,box-shadow] hover:border-accent/40 hover:shadow-[var(--shadow-card)]"
                     >
                       <div className="relative aspect-[4/3] overflow-hidden bg-accent-soft">
                         <Image

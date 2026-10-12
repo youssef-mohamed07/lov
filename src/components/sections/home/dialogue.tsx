@@ -60,14 +60,14 @@ export function HomeDialogue() {
         <Reveal variant="fade">
           <div
             ref={stageRef}
-            className="relative mx-auto max-w-3xl overflow-hidden rounded-[1.75rem] border border-border bg-surface"
+            className="relative mx-auto max-w-[720px] overflow-hidden rounded-[28px] border border-border bg-surface"
           >
             <div className="relative aspect-square w-full">
               <Image
                 src="/images/drive-home-section-3-v2.png"
                 alt="Orthophoniste en visioconférence avec un enfant"
                 fill
-                sizes="(max-width: 960px) 100vw, 768px"
+                sizes="(max-width: 760px) 100vw, 720px"
                 className="object-cover"
                 priority
               />

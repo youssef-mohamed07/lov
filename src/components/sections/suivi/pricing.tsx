@@ -21,7 +21,7 @@ export function SuiviPricing() {
     <section className="overflow-hidden bg-background py-[var(--section-space-md)]">
       <Container className="relative">
         <Reveal className="mx-auto max-w-5xl" variant="fade-scale">
-          <article className="relative overflow-hidden rounded-[2rem] border border-border bg-surface shadow-[0_30px_80px_-48px_rgba(14,14,15,0.32)]">
+          <article className="relative overflow-hidden rounded-[32px] border border-border bg-surface shadow-[0_30px_80px_-48px_rgba(14,14,15,0.32)]">
             <div aria-hidden className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand via-brand to-accent" />
 
             <div className="grid lg:grid-cols-[minmax(0,1.18fr)_minmax(20rem,0.82fr)]">
@@ -59,7 +59,7 @@ export function SuiviPricing() {
                 </ul>
               </div>
 
-              <aside className="relative m-3 flex flex-col overflow-hidden rounded-[1.55rem] border border-brand/10 bg-brand-soft/70 p-6 text-foreground sm:m-4 sm:p-8 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:ml-0 lg:p-9">
+              <aside className="relative m-3 flex flex-col overflow-hidden rounded-[24.8px] border border-brand/10 bg-brand-soft/70 p-6 text-foreground sm:m-4 sm:p-8 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:ml-0 lg:p-9">
                 <div aria-hidden className="pointer-events-none absolute inset-0">
                   <div className="absolute -right-28 -top-28 size-80 rounded-full bg-[radial-gradient(circle,rgba(249,171,108,0.3),transparent_65%)]" />
                   <div className="absolute inset-0 opacity-[0.045] [background-image:radial-gradient(rgba(13,128,175,0.8)_0.8px,transparent_0.8px)] [background-size:20px_20px]" />

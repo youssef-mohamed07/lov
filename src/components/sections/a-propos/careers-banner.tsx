@@ -11,9 +11,9 @@ export function AboutCareersBanner() {
     <section className="overflow-hidden bg-background py-[var(--section-space-md)]">
       <Container>
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] bg-foreground px-6 py-12 sm:px-10 sm:py-14 lg:px-16 lg:py-16">
+          <div className="relative overflow-hidden rounded-[32px] bg-foreground px-6 py-12 sm:px-10 sm:py-14 lg:px-16 lg:py-16">
             <div aria-hidden className="pointer-events-none absolute inset-0">
-              <div className="absolute -top-48 right-[-8rem] size-[38rem] rounded-full bg-[radial-gradient(circle,rgba(249,171,108,0.3),transparent_64%)] blur-2xl" />
+              <div className="absolute -top-48 right-[-8rem] size-[608px] rounded-full bg-[radial-gradient(circle,rgba(249,171,108,0.3),transparent_64%)] blur-2xl" />
               <div className="absolute inset-0 opacity-[0.055] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
             </div>
 

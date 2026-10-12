@@ -21,8 +21,8 @@ export function Footer() {
   return (
     <footer className="relative mt-auto overflow-hidden bg-foreground text-background">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-1/3 left-[20%] size-[28rem] rounded-full bg-[radial-gradient(circle,rgba(249,171,108,0.12),transparent_70%)] blur-3xl" />
-        <div className="absolute top-[42%] -left-24 size-[20rem] rounded-full bg-[radial-gradient(circle,rgba(13,128,175,0.1),transparent_72%)] blur-3xl" />
+        <div className="absolute -top-1/3 left-[20%] size-[448px] rounded-full bg-[radial-gradient(circle,rgba(249,171,108,0.12),transparent_70%)] blur-3xl" />
+        <div className="absolute top-[42%] -left-24 size-[320px] rounded-full bg-[radial-gradient(circle,rgba(13,128,175,0.1),transparent_72%)] blur-3xl" />
         <div className="absolute inset-0 opacity-[0.04] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.8px,transparent_0.8px)] [background-size:22px_22px]" />
       </div>
 
@@ -130,7 +130,7 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55, ease: easeOutExpo }}
-          className="relative mx-auto w-full max-w-[72rem]"
+          className="relative mx-auto w-full max-w-[1152px]"
         >
           <Image
             src="/brand/logo-horizontal.svg"

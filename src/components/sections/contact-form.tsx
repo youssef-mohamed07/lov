@@ -48,7 +48,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-start rounded-[1.75rem] border border-border bg-surface px-6 py-10 sm:px-9">
+      <div className="flex flex-col items-start rounded-[28px] border border-border bg-surface px-6 py-10 sm:px-9">
         <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent-soft text-accent">
           <Check className="size-5" aria-hidden />
         </span>

@@ -35,9 +35,9 @@ export function BilanProcess() {
             {steps.map((item, index) => (
               <li key={item.step}>
                 <Reveal delay={index * 0.08} variant="right">
-                  <article className="overflow-hidden rounded-[1.5rem] border border-border bg-surface p-4 shadow-[var(--shadow-card)] sm:p-5">
-                    <div className="grid gap-5 sm:grid-cols-[minmax(0,8.75rem)_1fr] sm:items-center">
-                      <div className="relative aspect-[4/3] overflow-hidden rounded-[1.1rem] sm:aspect-square">
+                  <article className="overflow-hidden rounded-[24px] border border-border bg-surface p-4 shadow-[var(--shadow-card)] sm:p-5">
+                    <div className="grid gap-5 sm:grid-cols-[minmax(0,140px)_1fr] sm:items-center">
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-[17.6px] sm:aspect-square">
                         <Image
                           src={item.image}
                           alt=""

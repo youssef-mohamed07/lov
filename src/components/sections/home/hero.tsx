@@ -59,7 +59,7 @@ export function HomeHero() {
       <HeartCutout
         src="/images/photo-01-charlene-heart.jpg"
         alt=""
-        className="absolute top-[13%] left-[-3%] hidden w-[12.5rem] lg:block xl:left-[-1%] xl:w-[17.375rem]"
+        className="absolute top-[13%] left-[-3%] hidden w-[250px] lg:block xl:left-[-1%] xl:w-[348px]"
         tone="warm"
         reduceMotion={!!reduceMotion}
         x={leftX}
@@ -69,7 +69,7 @@ export function HomeHero() {
       <HeartCutout
         src="/images/photo-02-morgane-heart.jpg"
         alt=""
-        className="absolute top-[54%] right-[-5%] hidden w-[13.5rem] lg:block xl:right-[-2%] xl:w-[18.75rem]"
+        className="absolute top-[54%] right-[-5%] hidden w-[270px] lg:block xl:right-[-2%] xl:w-[375px]"
         tone="cool"
         reduceMotion={!!reduceMotion}
         x={rightX}

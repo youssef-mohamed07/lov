@@ -94,7 +94,7 @@ function TestimonialCard({
   return (
     <figure
       className={cn(
-        "relative flex flex-col justify-between gap-5 rounded-[1.35rem] border p-5 transition-transform duration-300 ease-out sm:p-6",
+        "relative flex flex-col justify-between gap-5 rounded-[21.6px] border p-5 transition-transform duration-300 ease-out sm:p-6",
         fluid
           ? "w-full"
           : "w-[min(19rem,calc(100vw-3rem))] shrink-0 hover:rotate-0 hover:scale-[1.03] sm:w-[21rem]",

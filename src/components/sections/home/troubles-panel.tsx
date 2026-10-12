@@ -227,7 +227,7 @@ export function HomeTroublesPanel() {
           ) : null}
         </div>
 
-        <div className="overflow-hidden rounded-[1.5rem] bg-foreground">
+        <div className="overflow-hidden rounded-[24px] bg-foreground">
           {/* Image — text sits below on mobile, overlays on desktop.
               All images stay mounted; we crossfade so the dark base never shows. */}
           <div className="relative aspect-[16/11] sm:aspect-[16/9] lg:aspect-[4/5]">

@@ -21,7 +21,7 @@ export function AboutWhyOnline() {
           </h2>
         </Reveal>
 
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-[1.75rem] border border-border bg-border md:grid-cols-3">
+        <ul className="mt-12 grid gap-px overflow-hidden rounded-[28px] border border-border bg-border md:grid-cols-3">
           {whyOnline.points.map((point, index) => {
             const Icon = icons[index] ?? MessageCircle;
             return (

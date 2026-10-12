@@ -28,7 +28,7 @@ export function ContactMap() {
         </Reveal>
 
         <Reveal delay={0.08} className="mt-10">
-          <div className="grid overflow-hidden rounded-[1.75rem] border border-border bg-background shadow-[var(--shadow-card)] lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="grid overflow-hidden rounded-[28px] border border-border bg-background shadow-[var(--shadow-card)] lg:grid-cols-[0.85fr_1.15fr]">
             {/* Info side */}
             <div className="flex flex-col justify-between gap-8 p-7 sm:p-9">
               <div>
@@ -80,7 +80,7 @@ export function ContactMap() {
             </div>
 
             {/* Map side */}
-            <div className="relative min-h-[17.5rem] border-t border-border lg:border-t-0 lg:border-l">
+            <div className="relative min-h-[280px] border-t border-border lg:border-t-0 lg:border-l">
               <DeferredMap
                 title={`Carte — ${location.address}, ${location.city}`}
                 address={location.address}

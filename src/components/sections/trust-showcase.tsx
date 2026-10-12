@@ -45,7 +45,7 @@ export function TrustShowcase({
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <Reveal variant="fade-scale" className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[24px]">
               <Image
                 src={image}
                 alt={imageAlt}
