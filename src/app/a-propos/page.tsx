@@ -20,7 +20,7 @@ export const metadata: Metadata = createPageMetadata({
   title: "À propos de Lov et de notre approche orthophonique",
   description: about.description,
   path: "/a-propos",
-  image: "/images/drive-standard-hero.png",
+  image: "/images/photo-05-morgane-de-dos.jpg",
   imageAlt: "L’équipe et l’approche de Lov",
 });
 
@@ -31,7 +31,7 @@ export default function AboutPage() {
         eyebrow="Qui sommes-nous ?"
         title={about.title}
         description={about.description}
-        image="/images/drive-standard-hero.png"
+        image="/images/photo-05-morgane-de-dos.jpg"
         imageAlt="Orthophoniste travaillant depuis son cabinet en ligne"
         breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "À propos" }]}
         actions={

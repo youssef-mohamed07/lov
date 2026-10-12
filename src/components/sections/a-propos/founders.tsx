@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { about } from "@/data/a-propos";
+import { cn } from "@/lib/utils";
 
 export function AboutFounders() {
   const { founders } = about;
@@ -37,7 +38,7 @@ export function AboutFounders() {
                       alt={person.name}
                       fill
                       sizes="(max-width: 1280px) 100vw, 25vw"
-                      className="object-cover object-[50%_20%]"
+                      className={cn("object-cover", person.imagePosition)}
                     />
                   </div>
                   <div className="flex min-w-0 flex-col justify-center p-6 sm:p-8">

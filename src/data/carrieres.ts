@@ -84,7 +84,7 @@ export const careers = {
         location: "Paris · À distance possible",
         description:
           "Réaliser des bilans et des prises en charge (langage, parole, apprentissages) et participer à l’amélioration des parcours.",
-        image: "/images/drive-careers-section-2.png",
+        image: "/images/careers-team-mug.jpg",
         about:
           "Vous accompagnez des familles en visioconférence, avec le même exigence clinique qu’en cabinet, dans une équipe encadrée au quotidien.",
         missions: [

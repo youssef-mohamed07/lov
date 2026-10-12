@@ -17,6 +17,7 @@ type PageIntroProps = {
   description: string;
   image?: string;
   imageAlt?: string;
+  imageClassName?: string;
   breadcrumbs?: PageIntroBreadcrumb[];
   actions?: ReactNode;
   className?: string;
@@ -28,6 +29,7 @@ export function PageIntro({
   description,
   image = "/images/drive-standard-hero.png",
   imageAlt = "Accompagnement orthophonique Lov",
+  imageClassName,
   breadcrumbs,
   actions,
   className,
@@ -45,7 +47,7 @@ export function PageIntro({
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className={cn("object-cover", imageClassName)}
       />
       <div
         aria-hidden

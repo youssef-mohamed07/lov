@@ -49,8 +49,8 @@ export function SuiviPlatformBento() {
             <Reveal variant="fade-scale" className="overflow-hidden rounded-[1.5rem]">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] shadow-[0_18px_50px_-36px_rgba(26,43,60,0.45)]">
                 <Image
-                  src="/images/drive-home-section-7-b.png"
-                  alt="Enfant concentré pendant une activité de langage"
+                  src="/images/photo-09-visio-enfant-maman.jpg"
+                  alt="Enfant et sa maman pendant une séance en visioconférence"
                   fill
                   sizes="(max-width: 1280px) 100vw, 33vw"
                   className="object-cover"

@@ -13,8 +13,8 @@ export const bilan = {
     mentions: ["Bilan normé", "Tests étalonnés", "Compte rendu écrit"],
   },
   trust: {
-    image: "/images/drive-home-section-7-b.png",
-    imageAlt: "Échange entre une famille et un professionnel autour d’un bilan",
+    image: "/images/photo-05-morgane-de-dos.jpg",
+    imageAlt: "Orthophoniste à son bureau pendant une séance en visioconférence",
     badgeLabel: "Bilans réalisés",
     badgeValue: "400",
     imageCaption: "Évaluation conforme aux exigences administratives",
@@ -77,21 +77,24 @@ export const bilan = {
       title: "Durée",
       description:
         "Comptez environ 1h, entretien et tests compris. Un second rendez-vous pourra vous être proposé pour terminer les épreuves si besoin.",
-      image: "/images/drive-home-section-2.png",
+      image: "/images/photo-06-horloge.jpg",
+      imagePosition: "object-[78%_50%]",
     },
     {
       step: "02",
       title: "Ce qu’il faut prévoir",
       description:
         "Un espace calme, une bonne connexion internet, et un ordinateur ou tablette avec un écran suffisamment grand pour le confort visuel.",
-      image: "/images/drive-bilan-section-4.png",
+      image: "/images/photo-07-visio.jpg",
+      imagePosition: "object-[46%_50%]",
     },
     {
       step: "03",
       title: "Confidentialité",
       description:
         "Nos échanges restent strictement confidentiels. Le compte rendu est déposé sur votre espace personnel sécurisé.",
-      image: "/images/drive-bilan-section-4.png",
+      image: "/images/photo-08-prise-de-notes.jpg",
+      imagePosition: "object-[72%_50%]",
     },
   ],
   includes: [

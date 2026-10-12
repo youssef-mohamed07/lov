@@ -90,6 +90,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
         title={trouble.title}
         description={trouble.description}
         image={trouble.image}
+        imageClassName={trouble.imagePosition}
         imageAlt={`Illustration de la page ${trouble.title}`}
         breadcrumbs={[
           { label: "Accueil", href: "/" },

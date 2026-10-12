@@ -16,6 +16,8 @@ export type Trouble = {
   journey: TroubleItem[];
   ctaDescription: string;
   image: string;
+  /** Focal point of the hero image, as an object-position class. */
+  imagePosition?: string;
 };
 
 const item = (title: string, description: string): TroubleItem => ({ title, description });
@@ -124,7 +126,7 @@ const allTroubles: Trouble[] = [
       "Un suivi régulier combinant fluidité et soutien émotionnel.",
     ),
     ctaDescription: childCta,
-    image: "/images/drive-home-section-2.png",
+    image: "/images/photo-10-morgane-visio-enfant.jpg",
   },
   {
     slug: "dyscalculie",
@@ -153,7 +155,7 @@ const allTroubles: Trouble[] = [
       "Une lecture claire des résultats avec des recommandations pour l’école.",
     ),
     ctaDescription: childCta,
-    image: "/images/drive-home-section-7-b.png",
+    image: "/images/photo-11-mathematiques.jpg",
   },
   {
     slug: "fonctions-oro-myo-faciales",
@@ -183,7 +185,8 @@ const allTroubles: Trouble[] = [
       "Une rééducation fonctionnelle en lien avec les autres professionnels si besoin.",
     ),
     ctaDescription: childCta,
-    image: "/images/drive-home-section-7-a.png",
+    image: "/images/photo-12-morgane-omf.jpg",
+    imagePosition: "object-[80%_50%]",
   },
   {
     slug: "oralite-alimentaire",
@@ -213,7 +216,7 @@ const allTroubles: Trouble[] = [
       "Un suivi progressif au rythme de l’enfant.",
     ),
     ctaDescription: childCta,
-    image: "/images/drive-home-section-7-b.png",
+    image: "/images/photo-13-alimentation.jpg",
   },
   {
     slug: "origine-neurologique",
@@ -243,7 +246,8 @@ const allTroubles: Trouble[] = [
       "Une rééducation adaptée en lien avec l’équipe médicale.",
     ),
     ctaDescription: "Une évaluation structurée afin de connaître votre niveau langagier.",
-    image: "/images/drive-troubles-resources.png",
+    image: "/images/photo-14-visio-adulte-aidant.jpg",
+    imagePosition: "object-[72%_0%]",
   },
 ];
 

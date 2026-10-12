@@ -57,10 +57,9 @@ export function HomeHero() {
       </div>
 
       <HeartCutout
-        src="/images/drive-about-section-6.png"
+        src="/images/photo-01-charlene-heart.jpg"
         alt=""
-        imageClassName="object-[50%_6%]"
-        className="absolute top-[20%] left-[-5.5%] hidden w-[12.5rem] lg:block xl:left-[-2%] xl:w-[17.375rem]"
+        className="absolute top-[13%] left-[-3%] hidden w-[12.5rem] lg:block xl:left-[-1%] xl:w-[17.375rem]"
         tone="warm"
         reduceMotion={!!reduceMotion}
         x={leftX}
@@ -68,10 +67,9 @@ export function HomeHero() {
         rotate={leftRotate}
       />
       <HeartCutout
-        src="/images/drive-home-hero.png"
+        src="/images/photo-02-morgane-heart.jpg"
         alt=""
-        imageClassName="object-[50%_14%]"
-        className="absolute top-[29%] right-[-8%] hidden w-[13.5rem] lg:block xl:right-[-3%] xl:w-[18.75rem]"
+        className="absolute top-[54%] right-[-5%] hidden w-[13.5rem] lg:block xl:right-[-2%] xl:w-[18.75rem]"
         tone="cool"
         reduceMotion={!!reduceMotion}
         x={rightX}
@@ -115,14 +113,12 @@ export function HomeHero() {
           <FadeItem className="mt-10 w-full max-w-md px-2 lg:hidden">
             <div className="grid grid-cols-2 gap-3">
               <MobileHeartImage
-                src="/images/drive-about-section-6.png"
+                src="/images/photo-01-charlene-heart.jpg"
                 className="-rotate-6"
-                imageClassName="object-[50%_6%]"
               />
               <MobileHeartImage
-                src="/images/drive-home-hero.png"
+                src="/images/photo-02-morgane-heart.jpg"
                 className="rotate-6"
-                imageClassName="object-[50%_16%]"
               />
             </div>
           </FadeItem>
@@ -216,20 +212,18 @@ function MobileHeartImage({
   imageClassName?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "lov-heart-clip relative aspect-[1.185] overflow-hidden bg-surface-muted",
-        className,
-      )}
-    >
-      <Image
-        src={src}
-        alt=""
-        fill
-        sizes="50vw"
-        className={cn("object-cover", imageClassName)}
-        priority
-      />
+    <div className={cn("relative aspect-[1.185]", className)}>
+      <div className="lov-heart-clip absolute inset-[-5%] bg-brand/25" />
+      <div className="lov-heart-clip absolute inset-0 overflow-hidden bg-surface-muted">
+        <Image
+          src={src}
+          alt=""
+          fill
+          sizes="50vw"
+          className={cn("object-cover", imageClassName)}
+          priority
+        />
+      </div>
     </div>
   );
 }

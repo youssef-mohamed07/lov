@@ -31,14 +31,12 @@ export function SiteCta({
           <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,13rem)_1fr_minmax(0,13rem)] xl:gap-8">
             <div className="flex items-center justify-center gap-3 sm:gap-5 xl:block">
               <HeartCutout
-                src="/images/drive-about-section-6.png"
-                imageClassName="object-[50%_6%]"
+                src="/images/photo-01-charlene-heart.jpg"
                 className="w-28 -rotate-6 sm:w-40 xl:w-full"
                 tone="warm"
               />
               <HeartCutout
-                src="/images/drive-home-hero.png"
-                imageClassName="object-[50%_14%]"
+                src="/images/photo-02-morgane-heart.jpg"
                 className="w-28 rotate-6 sm:w-40 xl:hidden"
                 tone="cool"
               />
@@ -68,8 +66,7 @@ export function SiteCta({
             </div>
 
             <HeartCutout
-              src="/images/drive-home-hero.png"
-              imageClassName="object-[50%_14%]"
+              src="/images/photo-02-morgane-heart.jpg"
               className="mx-auto hidden w-full rotate-6 xl:block"
               tone="cool"
             />

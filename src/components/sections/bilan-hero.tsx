@@ -22,15 +22,13 @@ export function BilanHero() {
       </div>
 
       <HeartImage
-        src="/images/drive-about-section-6.png"
-        imageClassName="object-[50%_6%]"
-        className="absolute top-[20%] left-[-5.5%] hidden w-[12.5rem] -rotate-8 lg:block xl:left-[-2%] xl:w-[17.375rem]"
+        src="/images/photo-01-charlene-heart.jpg"
+        className="absolute top-[13%] left-[-3%] hidden w-[12.5rem] -rotate-8 lg:block xl:left-[-1%] xl:w-[17.375rem]"
         tone="warm"
       />
       <HeartImage
-        src="/images/drive-home-hero.png"
-        imageClassName="object-[50%_14%]"
-        className="absolute top-[29%] right-[-8%] hidden w-[13.5rem] rotate-6 lg:block xl:right-[-3%] xl:w-[18.75rem]"
+        src="/images/photo-02-morgane-heart.jpg"
+        className="absolute top-[54%] right-[-5%] hidden w-[13.5rem] rotate-6 lg:block xl:right-[-2%] xl:w-[18.75rem]"
         tone="cool"
       />
 
@@ -66,14 +64,12 @@ export function BilanHero() {
           <FadeItem className="mt-10 w-full max-w-md px-2 lg:hidden">
             <div className="grid grid-cols-2 gap-3">
               <HeartImage
-                src="/images/drive-about-section-6.png"
+                src="/images/photo-01-charlene-heart.jpg"
                 className="-rotate-6"
-                imageClassName="object-[50%_6%]"
               />
               <HeartImage
-                src="/images/drive-home-hero.png"
+                src="/images/photo-02-morgane-heart.jpg"
                 className="rotate-6"
-                imageClassName="object-[50%_16%]"
               />
             </div>
           </FadeItem>

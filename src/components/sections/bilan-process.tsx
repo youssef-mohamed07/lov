@@ -4,6 +4,7 @@ import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { bilan } from "@/data/bilan";
+import { cn } from "@/lib/utils";
 
 export function BilanProcess() {
   const { process, steps } = bilan;
@@ -35,14 +36,14 @@ export function BilanProcess() {
               <li key={item.step}>
                 <Reveal delay={index * 0.08} variant="right">
                   <article className="overflow-hidden rounded-[1.5rem] border border-border bg-surface p-4 shadow-[var(--shadow-card)] sm:p-5">
-                    <div className="grid gap-5 sm:grid-cols-[minmax(0,140px)_1fr] sm:items-center">
+                    <div className="grid gap-5 sm:grid-cols-[minmax(0,8.75rem)_1fr] sm:items-center">
                       <div className="relative aspect-[4/3] overflow-hidden rounded-[1.1rem] sm:aspect-square">
                         <Image
                           src={item.image}
                           alt=""
                           fill
                           sizes="160px"
-                          className="object-cover"
+                          className={cn("object-cover", item.imagePosition)}
                         />
                       </div>
                       <div className="min-w-0">
