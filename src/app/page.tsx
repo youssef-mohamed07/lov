@@ -16,11 +16,13 @@ import {
   absoluteUrl,
   createPageMetadata,
   SITE_DESCRIPTION,
+  SITE_FULL_NAME,
   SITE_NAME,
+  SITE_TITLE,
 } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Lov — Bilan et orthophonie en téléconsultation",
+  title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   path: "/",
   absoluteTitle: true,
@@ -31,8 +33,8 @@ const websiteJsonLd = {
   "@type": "WebSite",
   "@id": absoluteUrl("/#website"),
   url: absoluteUrl("/"),
-  name: SITE_NAME,
-  alternateName: "Les Orthos en Visio",
+  name: SITE_FULL_NAME,
+  alternateName: ["LOV", SITE_NAME],
   description: SITE_DESCRIPTION,
   inLanguage: "fr-FR",
   publisher: {

@@ -7,7 +7,9 @@ import { JsonLd } from "@/components/seo/json-ld";
 import {
   absoluteUrl,
   SITE_DESCRIPTION,
+  SITE_FULL_NAME,
   SITE_NAME,
+  SITE_TITLE,
   SITE_URL,
 } from "@/lib/seo";
 
@@ -62,11 +64,11 @@ const modulus = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Lov — Bilan et orthophonie en téléconsultation",
+    default: SITE_TITLE,
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  applicationName: SITE_NAME,
+  applicationName: SITE_FULL_NAME,
   keywords: [
     "orthophoniste en ligne",
     "bilan orthophonique en ligne",
@@ -77,9 +79,9 @@ export const metadata: Metadata = {
     "parole",
     "apprentissages",
   ],
-  authors: [{ name: SITE_NAME, url: SITE_URL }],
-  creator: SITE_NAME,
-  publisher: SITE_NAME,
+  authors: [{ name: SITE_FULL_NAME, url: SITE_URL }],
+  creator: SITE_FULL_NAME,
+  publisher: SITE_FULL_NAME,
   metadataBase: SITE_URL,
   manifest: "/manifest.webmanifest",
   category: "Santé",
@@ -90,10 +92,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Lov — Bilan et orthophonie en téléconsultation",
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: "/",
-    siteName: SITE_NAME,
+    siteName: SITE_FULL_NAME,
     locale: "fr_FR",
     type: "website",
     images: [
@@ -101,15 +103,20 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Lov — bilan et orthophonie en téléconsultation",
+        alt: "Les Orthos en Visio — bilan et orthophonie en téléconsultation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lov — Bilan et orthophonie en téléconsultation",
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: ["/twitter-image.png"],
+  },
+  // Search Console ownership: set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION to the
+  // token Google provides; the tag is only rendered when it is set.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
 };
 
@@ -117,12 +124,14 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": absoluteUrl("/#organization"),
-  name: SITE_NAME,
-  alternateName: "Les Orthos en Visio",
+  name: SITE_FULL_NAME,
+  alternateName: ["LOV", SITE_NAME],
   url: absoluteUrl("/"),
   logo: absoluteUrl("/brand/logo-512.png"),
   image: absoluteUrl("/opengraph-image.png"),
   description: SITE_DESCRIPTION,
+  areaServed: { "@type": "Country", name: "France" },
+  knowsLanguage: "fr",
   email: "lesorthosenvisio@gmail.com",
   contactPoint: {
     "@type": "ContactPoint",

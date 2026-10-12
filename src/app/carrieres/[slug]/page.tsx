@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Check, MapPin } from "lucide-react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { Reveal } from "@/components/common/reveal";
 import { CareersApplyForm } from "@/components/sections/careers-apply-form";
@@ -11,6 +11,7 @@ import {
   getAllCareerRoleSlugs,
   getCareerRole,
   getCareerRoleHref,
+  showOpenRoles,
 } from "@/data/carrieres";
 import {
   absoluteUrl,
@@ -44,6 +45,7 @@ export async function generateMetadata({
 
 export default async function CareerRolePage({ params }: CareerRolePageProps) {
   const { slug } = await params;
+  if (!showOpenRoles) redirect("/carrieres");
   const role = getCareerRole(slug);
   if (!role) notFound();
 

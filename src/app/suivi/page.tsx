@@ -17,9 +17,12 @@ import {
   createPageMetadata,
 } from "@/lib/seo";
 
+const description =
+  "Suivi orthophonique en visio : séances individuelles de 30 minutes, compte rendu après chaque séance, exercices personnalisés. 60 € la séance, sans abonnement.";
+
 export const metadata: Metadata = createPageMetadata({
   title: "Suivi orthophonique en visioconférence",
-  description: suivi.description,
+  description,
   path: "/suivi",
   image: suivi.trust.image,
   imageAlt: suivi.trust.imageAlt,
@@ -32,7 +35,7 @@ const suiviJsonLd = {
       "@type": "Service",
       "@id": absoluteUrl("/suivi#service"),
       name: "Suivi orthophonique en téléconsultation",
-      description: suivi.description,
+      description,
       url: absoluteUrl("/suivi"),
       serviceType: "Suivi orthophonique",
       areaServed: {

@@ -13,6 +13,7 @@ import { absoluteUrl } from "@/lib/seo";
 const staticPages = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
   { path: "/bilan", priority: 0.95, changeFrequency: "monthly" },
+  { path: "/suivi", priority: 0.9, changeFrequency: "monthly" },
   { path: "/troubles", priority: 0.9, changeFrequency: "monthly" },
   { path: "/simulateur", priority: 0.85, changeFrequency: "monthly" },
   { path: "/ressources", priority: 0.85, changeFrequency: "weekly" },

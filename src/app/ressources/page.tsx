@@ -20,9 +20,12 @@ import {
   createPageMetadata,
 } from "@/lib/seo";
 
+const description =
+  "Des articles clairs pour comprendre l’orthophonie, repérer les signes qui comptent et savoir quand consulter, rédigés par des orthophonistes.";
+
 export const metadata: Metadata = createPageMetadata({
   title: "Ressources et conseils en orthophonie",
-  description: articlesPage.description,
+  description,
   path: "/ressources",
   image: "/images/drive-troubles-resources.png",
   imageAlt: "Ressources sur le langage et les apprentissages",
@@ -35,7 +38,7 @@ const resourcesJsonLd = {
       "@type": "CollectionPage",
       "@id": absoluteUrl("/ressources#collection"),
       name: "Ressources et conseils en orthophonie",
-      description: articlesPage.description,
+      description,
       url: absoluteUrl("/ressources"),
       inLanguage: "fr-FR",
       hasPart: articles.map((article) => ({

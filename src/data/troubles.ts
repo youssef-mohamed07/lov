@@ -6,6 +6,9 @@ export const troublesPage = {
 export type TroubleItem = { title: string; description: string };
 export type Trouble = {
   slug: string;
+  /** Title and description shown in search results (kept under ~60 / ~160 characters). */
+  seoTitle: string;
+  seoDescription: string;
   title: string;
   eyebrow: string;
   description: string;
@@ -43,6 +46,9 @@ const unpublishedSlugs = new Set(["oralite-alimentaire"]);
 const allTroubles: Trouble[] = [
   {
     slug: "retard-parole-langage",
+    seoTitle: "Retard de parole et de langage oral : signes et bilan",
+    seoDescription:
+      "Peu de mots, phrases courtes, parole difficile à comprendre : repérez les signes d’un retard de parole ou de langage et faites le point avec un bilan en visio.",
     title: "Troubles de la parole et du langage oral",
     eyebrow: "Troubles du langage oral",
     description: "Un développement plus lent du vocabulaire, de la phrase ou de l’intelligibilité par rapport à l’âge attendu.",
@@ -71,6 +77,9 @@ const allTroubles: Trouble[] = [
   },
   {
     slug: "dyslexie",
+    seoTitle: "Troubles du langage écrit (dyslexie, dysorthographie)",
+    seoDescription:
+      "Lecture lente, confusions de sons, fautes persistantes : les signes d’un trouble du langage écrit, nos conseils et le bilan orthophonique en visio.",
     title: "Troubles du langage écrit",
     eyebrow: "Troubles du langage écrit",
     description: "Un trouble durable de l’apprentissage de la lecture et de l’orthographe, qui persiste malgré un enseignement adapté.",
@@ -100,6 +109,9 @@ const allTroubles: Trouble[] = [
   },
   {
     slug: "begaiement",
+    seoTitle: "Bégaiement et troubles de la fluence : signes et suivi",
+    seoDescription:
+      "Répétitions, blocages, prolongements : comprendre le bégaiement, savoir comment réagir au quotidien et quand demander un bilan orthophonique en visio.",
     title: "Bégaiement et troubles de la fluence",
     eyebrow: "Troubles de la fluence",
     description: "Une disfluence qui coupe le flux de la parole : répétitions, blocages, prolongements.",
@@ -130,6 +142,9 @@ const allTroubles: Trouble[] = [
   },
   {
     slug: "dyscalculie",
+    seoTitle: "Troubles de la cognition mathématique (dyscalculie)",
+    seoDescription:
+      "Sens du nombre, calcul mental, résolution de problèmes : les signes d’un trouble de la cognition mathématique et le bilan orthophonique en visio.",
     title: "Troubles de la cognition mathématique",
     eyebrow: "Troubles des apprentissages",
     description: "Un trouble spécifique du sens du nombre, du calcul ou de la résolution de problèmes.",
@@ -159,6 +174,9 @@ const allTroubles: Trouble[] = [
   },
   {
     slug: "fonctions-oro-myo-faciales",
+    seoTitle: "Troubles oro-myo-fonctionnels : signes et rééducation",
+    seoDescription:
+      "Respiration buccale, déglutition atypique, position de la langue : les signes d’un trouble oro-myo-fonctionnel et la rééducation orthophonique en visio.",
     title: "Troubles des fonctions oro-myo-faciales",
     eyebrow: "Troubles orofaciaux",
     description: "Des difficultés touchant les fonctions de la sphère orale : succion, mastication, déglutition, respiration.",
@@ -190,6 +208,9 @@ const allTroubles: Trouble[] = [
   },
   {
     slug: "oralite-alimentaire",
+    seoTitle: "Troubles alimentaires pédiatriques : signes et bilan",
+    seoDescription:
+      "Sélectivité, refus de textures, repas difficiles : comprendre les troubles alimentaires pédiatriques et l’accompagnement orthophonique.",
     title: "Troubles alimentaires pédiatriques",
     eyebrow: "Troubles de l’oralité",
     description: "Des difficultés dans la relation à l’alimentation : sélectivité, refus, sensibilité sensorielle.",
@@ -220,6 +241,9 @@ const allTroubles: Trouble[] = [
   },
   {
     slug: "origine-neurologique",
+    seoTitle: "Troubles neurologiques du langage (AVC, aphasie)",
+    seoDescription:
+      "Après un AVC, un traumatisme crânien ou une maladie neurologique : rééducation orthophonique du langage et de la communication, en visio.",
     title: "Troubles d’origine neurologique",
     eyebrow: "Troubles neurologiques",
     description: "Des troubles du langage ou de la communication consécutifs à une atteinte neurologique.",
@@ -254,6 +278,10 @@ const allTroubles: Trouble[] = [
 export const troubles = allTroubles.filter(
   (trouble) => !unpublishedSlugs.has(trouble.slug),
 );
+
+export function isUnpublishedTrouble(slug: string) {
+  return unpublishedSlugs.has(slug);
+}
 
 export function getTrouble(slug: string) {
   return troubles.find((trouble) => trouble.slug === slug);

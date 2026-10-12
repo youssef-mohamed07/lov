@@ -42,6 +42,8 @@ export async function generateMetadata({
   if (!article) return {};
   return createPageMetadata({
     title: article.title,
+    // Long headlines would be cut off in results once the brand suffix is added.
+    absoluteTitle: article.title.length > 55,
     description: article.excerpt,
     path: getArticleHref(article),
     image: article.image,
@@ -72,6 +74,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
         description: article.excerpt,
         image: [absoluteUrl(article.image)],
         datePublished: article.datePublished,
+        dateModified: article.datePublished,
         inLanguage: "fr-FR",
         mainEntityOfPage: absoluteUrl(path),
         author: {

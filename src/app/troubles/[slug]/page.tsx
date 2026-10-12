@@ -7,7 +7,7 @@ import {
   MessageCircleMore,
   ShieldCheck,
 } from "lucide-react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { Reveal } from "@/components/common/reveal";
 import { PageIntro } from "@/components/sections/page-intro";
@@ -15,7 +15,11 @@ import { TroubleProcess } from "@/components/sections/trouble-process";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
-import { getAllTroubleSlugs, getTrouble } from "@/data/troubles";
+import {
+  getAllTroubleSlugs,
+  getTrouble,
+  isUnpublishedTrouble,
+} from "@/data/troubles";
 import { absoluteUrl, breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 type TroublePageProps = {
@@ -41,8 +45,8 @@ export async function generateMetadata({ params }: TroublePageProps): Promise<Me
   if (!trouble) return {};
 
   return createPageMetadata({
-    title: `${trouble.title} : signes et accompagnement orthophonique`,
-    description: trouble.description,
+    title: trouble.seoTitle,
+    description: trouble.seoDescription,
     path: `/troubles/${trouble.slug}`,
     image: trouble.image,
     imageAlt: `${trouble.title} — accompagnement orthophonique`,
@@ -52,6 +56,8 @@ export async function generateMetadata({ params }: TroublePageProps): Promise<Me
 export default async function TroubleDetailPage({ params }: TroublePageProps) {
   const { slug } = await params;
   const trouble = getTrouble(slug);
+  // A page taken offline for now sends visitors to the overview instead of a 404.
+  if (!trouble && isUnpublishedTrouble(slug)) redirect("/troubles");
   if (!trouble) notFound();
 
   const path = `/troubles/${trouble.slug}`;

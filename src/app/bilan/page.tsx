@@ -6,16 +6,18 @@ import { BilanProcess } from "@/components/sections/bilan-process";
 import { BilanSteps } from "@/components/sections/bilan-steps";
 import { BilanTrust } from "@/components/sections/bilan-trust";
 import { JsonLd } from "@/components/seo/json-ld";
-import { bilan } from "@/data/bilan";
 import {
   absoluteUrl,
   breadcrumbJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
 
+const description =
+  "Bilan orthophonique en visio par une orthophoniste diplômée : tests étalonnés, restitution et compte rendu écrit sous 10 jours. 180 €, sans liste d’attente.";
+
 export const metadata: Metadata = createPageMetadata({
   title: "Bilan orthophonique en ligne et en visioconférence",
-  description: bilan.description,
+  description,
   path: "/bilan",
   image: "/images/drive-bilan-section-4.png",
   imageAlt: "Bilan orthophonique en téléconsultation",
@@ -28,7 +30,7 @@ const bilanJsonLd = {
       "@type": "Service",
       "@id": absoluteUrl("/bilan#service"),
       name: "Bilan orthophonique en téléconsultation",
-      description: bilan.description,
+      description,
       url: absoluteUrl("/bilan"),
       serviceType: "Bilan orthophonique",
       areaServed: {

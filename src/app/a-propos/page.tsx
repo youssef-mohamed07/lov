@@ -13,20 +13,49 @@ import { HomeDialogue } from "@/components/sections/home";
 import { PageIntro } from "@/components/sections/page-intro";
 import { TrustShowcase } from "@/components/sections/trust-showcase";
 import { CtaButton } from "@/components/ui/cta-button";
+import { JsonLd } from "@/components/seo/json-ld";
 import { about } from "@/data/a-propos";
-import { createPageMetadata } from "@/lib/seo";
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
+
+const description =
+  "Les Orthos en Visio (LOV) : deux orthophonistes diplômées qui rendent le bilan et le suivi orthophonique accessibles en téléconsultation, sans liste d’attente.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "À propos de Lov et de notre approche orthophonique",
-  description: about.description,
+  title: "À propos des Orthos en Visio (LOV), orthophonistes en ligne",
+  absoluteTitle: true,
+  description,
   path: "/a-propos",
   image: "/images/photo-05-morgane-de-dos.jpg",
   imageAlt: "L’équipe et l’approche de Lov",
 });
 
+const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": absoluteUrl("/a-propos#about"),
+      name: "À propos des Orthos en Visio",
+      description,
+      url: absoluteUrl("/a-propos"),
+      inLanguage: "fr-FR",
+      about: { "@id": absoluteUrl("/#organization") },
+    },
+    breadcrumbJsonLd([
+      { name: "Accueil", path: "/" },
+      { name: "À propos", path: "/a-propos" },
+    ]),
+  ],
+};
+
 export default function AboutPage() {
   return (
     <main>
+      <JsonLd id="about-jsonld" data={aboutJsonLd} />
       <PageIntro
         eyebrow="Qui sommes-nous ?"
         title={about.title}

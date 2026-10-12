@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
 
+/** Short brand, used as the title suffix. */
 export const SITE_NAME = "Lov";
+/** Full brand name, used for the site name in search and social previews. */
+export const SITE_FULL_NAME = "Les Orthos en Visio";
+export const SITE_TITLE =
+  "Les Orthos en Visio (LOV) · Bilan orthophonique en ligne";
 export const SITE_DESCRIPTION =
-  "Bilan et accompagnement orthophonique en téléconsultation, avec des repères clairs pour le langage, la parole et les apprentissages.";
+  "Bilan et suivi orthophonique en ligne avec des orthophonistes diplômées, sans liste d’attente. Langage, parole et apprentissages, partout en France.";
 
 const configuredUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
+// On Vercel, fall back to the project's production domain rather than a
+// hard-coded one, so canonicals never point at a domain we don't serve.
+const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
 
 export const SITE_URL = new URL(
   configuredUrl && /^https?:\/\//.test(configuredUrl)
     ? configuredUrl
-    : "https://lov.care",
+    : vercelUrl
+      ? `https://${vercelUrl}`
+      : "https://lov.care",
 );
 
 export function absoluteUrl(path = "/") {
@@ -33,7 +43,7 @@ export function createPageMetadata({
   description,
   path,
   image = "/opengraph-image.png",
-  imageAlt = `${SITE_NAME} — orthophonie en téléconsultation`,
+  imageAlt = `${SITE_FULL_NAME} — orthophonie en téléconsultation`,
   type = "website",
   publishedTime,
   noIndex = false,
@@ -68,7 +78,7 @@ export function createPageMetadata({
       title: socialTitle,
       description,
       url: path,
-      siteName: SITE_NAME,
+      siteName: SITE_FULL_NAME,
       locale: "fr_FR",
       type,
       ...(type === "article" && publishedTime ? { publishedTime } : {}),

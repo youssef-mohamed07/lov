@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/troubles/dysorthographia",
-        destination: "/troubles/dysorthographie",
+        destination: "/troubles/dyslexie",
         permanent: true,
       },
       {
@@ -63,12 +63,33 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/troubles/dysphasia",
-        destination: "/troubles/dysphasie",
+        destination: "/troubles/retard-parole-langage",
         permanent: true,
       },
       {
         source: "/troubles/voice",
-        destination: "/troubles/voix",
+        destination: "/troubles",
+        permanent: true,
+      },
+      // Pages regroupées : anciens slugs → page qui couvre aujourd’hui le sujet
+      {
+        source: "/troubles/dysorthographie",
+        destination: "/troubles/dyslexie",
+        permanent: true,
+      },
+      {
+        source: "/troubles/dysphasie",
+        destination: "/troubles/retard-parole-langage",
+        permanent: true,
+      },
+      {
+        source: "/troubles/articulation",
+        destination: "/troubles/retard-parole-langage",
+        permanent: true,
+      },
+      {
+        source: "/troubles/voix",
+        destination: "/troubles",
         permanent: true,
       },
     ];

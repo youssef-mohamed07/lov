@@ -18,13 +18,20 @@ import {
   getCareerRoleHref,
   getOpenCareerRoles,
 } from "@/data/carrieres";
-import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 const processIcons = [Send, Handshake, ClipboardCheck, Sparkles] as const;
 
+const careersJsonLd = breadcrumbJsonLd([
+  { name: "Accueil", path: "/" },
+  { name: "Nous rejoindre", path: "/carrieres" },
+]);
+
 export const metadata: Metadata = createPageMetadata({
-  title: "Carrières en orthophonie et recrutement",
-  description: careers.description,
+  title: "Orthophoniste en téléconsultation : nous rejoindre",
+  description:
+    "Orthophonistes : exercez en téléconsultation au sein d’une équipe à taille humaine. La flexibilité du libéral, le confort du salariat, depuis chez vous.",
   path: "/carrieres",
   image: "/images/drive-standard-hero.png",
   imageAlt: "Travailler avec l’équipe Lov",
@@ -35,6 +42,7 @@ export default function CareersPage() {
 
   return (
     <main>
+      <JsonLd id="careers-jsonld" data={careersJsonLd} />
       <PageIntro
         eyebrow={careers.eyebrow}
         title={

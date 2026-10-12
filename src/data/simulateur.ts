@@ -141,7 +141,7 @@ export const simulatorResults = {
     title: "Piste : des difficultés en orthographe",
     body: "L’écrit et l’orthographe semblent centraux. Un bilan permet de préciser les mécanismes et les aides possibles.",
     ctaLabel: "Voir les difficultés en orthographe",
-    ctaHref: "/troubles/dysorthographie",
+    ctaHref: "/troubles/dyslexie",
   },
   "retard-parole-langage": {
     title: "Piste : retard de parole / langage",
@@ -165,19 +165,19 @@ export const simulatorResults = {
     title: "Piste : articulation",
     body: "L’intelligibilité ou certains sons semblent concernés. Une évaluation précise oriente la rééducation.",
     ctaLabel: "Voir l’articulation",
-    ctaHref: "/troubles/articulation",
+    ctaHref: "/troubles/retard-parole-langage",
   },
   dysphasie: {
     title: "Piste : des difficultés de langage oral",
     body: "Le langage oral (expression et/ou compréhension) semble durablement fragile. Un bilan approfondi est recommandé.",
     ctaLabel: "Voir les difficultés de langage oral",
-    ctaHref: "/troubles/dysphasie",
+    ctaHref: "/troubles/retard-parole-langage",
   },
   voix: {
     title: "Piste : voix",
     body: "La qualité ou le confort vocal semble central. Un bilan vocal, parfois couplé à un avis ORL, peut aider.",
-    ctaLabel: "Voir les troubles de la voix",
-    ctaHref: "/troubles/voix",
+    ctaLabel: "Nous contacter",
+    ctaHref: "/nous-contacter",
   },
   equilibre: {
     title: "Piste : besoin de repères",

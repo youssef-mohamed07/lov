@@ -36,7 +36,7 @@ export async function generateMetadata({
   if (!category) return {};
   return createPageMetadata({
     title: `${category.title} — ressources en orthophonie`,
-    description: category.description,
+    description: `${category.description} Articles et conseils pratiques rédigés par des orthophonistes.`,
     path: getCategoryHref(category.slug),
     image: "/images/drive-troubles-resources.png",
     imageAlt: `Ressources d’orthophonie : ${category.title}`,
