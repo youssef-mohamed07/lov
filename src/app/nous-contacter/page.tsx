@@ -79,7 +79,7 @@ export default function ContactPage() {
                   src="/images/drive-standard-hero.png"
                   alt="Échange avec une famille"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  sizes="(max-width: 1280px) 100vw, 45vw"
                   className="object-cover object-[50%_30%]"
                   priority
                 />
@@ -105,7 +105,7 @@ export default function ContactPage() {
                         <span className="block text-xs font-medium tracking-[0.16em] text-muted uppercase">
                           {item.label}
                         </span>
-                        <span className="mt-1 block text-base font-medium break-words text-foreground">
+                        <span className="mt-1 block text-base font-medium wrap-anywhere text-foreground">
                           {item.value}
                         </span>
                       </span>

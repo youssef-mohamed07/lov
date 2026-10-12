@@ -22,7 +22,7 @@ export const bilan = {
     title: "Le bilan orthophonique,",
     titleAccent: "une autre façon de procéder",
     description:
-      "Notre cabinet en ligne réalise votre bilan depuis chez vous, avec les mêmes exigences qu’un bilan en cabinet.",
+      "Notre cabinet en ligne réalise votre bilan depuis chez vous, avec les mêmes exigences professionnelles qu’une orthophoniste libérale.",
     ctaLabel: "Demander un bilan",
     ctaHref: "/demander-un-bilan",
   },
@@ -54,7 +54,7 @@ export const bilan = {
     imageAlt: "Séance de bilan orthophonique",
     leftFeatures: [
       "Propose des pistes concrètes.",
-      "Pour savoir si une inquiétude mérite un accompagnement, ou quelques conseils à la maison.",
+      "Afin de savoir si une inquiétude mérite un accompagnement, ou quelques conseils à la maison.",
       "Un document conforme pour les médecins et les aménagements scolaires.",
     ],
     rightFeatures: [
@@ -67,7 +67,7 @@ export const bilan = {
     badge: "Infos pratiques",
     title: "Ce qu’il faut savoir",
     titleAccent: "avant votre rendez-vous",
-    body: "Quelques repères, pour vous présenter sereinement au bilan.",
+    body: "Quelques repères pour vous présenter sereinement au bilan.",
     ctaLabel: "Demander un bilan",
     ctaHref: "/nous-contacter",
   },
@@ -90,7 +90,7 @@ export const bilan = {
       step: "03",
       title: "Confidentialité",
       description:
-        "Nos échanges restent strictement confidentiels, le compte rendu est déposé sur votre espace personnel sécurisé.",
+        "Nos échanges restent strictement confidentiels. Le compte rendu est déposé sur votre espace personnel sécurisé.",
       image: "/images/drive-bilan-section-4.png",
     },
   ],

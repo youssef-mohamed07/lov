@@ -42,13 +42,13 @@ export function HomeExpertise() {
             {expertiseItems.map((item, index) => (
               <article
                 key={item.title}
-                className="relative min-h-[240px] overflow-hidden rounded-[1.35rem] sm:min-h-[280px]"
+                className="relative min-h-[15rem] overflow-hidden rounded-[1.35rem] sm:min-h-[17.5rem]"
               >
                 <Image
                   src={images[index] ?? images[0]}
                   alt=""
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1280px) 100vw, 50vw"
                   className="object-cover"
                 />
                 <div
@@ -74,7 +74,7 @@ export function HomeExpertise() {
         {/* Desktop: hover accordion */}
         <Reveal variant="fade" className="hidden lg:block">
           <div
-            className="flex h-[460px] gap-3"
+            className="flex h-[28.75rem] gap-3"
             onMouseLeave={() => {
               if (!reduceMotion) setActive(1);
             }}

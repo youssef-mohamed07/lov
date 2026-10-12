@@ -92,12 +92,12 @@ export const bilanFaq: PageFaqContent = {
     {
       id: "telesoin",
       label: "Télésoin",
-      itemIndexes: [0, 1, 2, 3, 4, 8, 9, 10],
+      itemIndexes: [0, 3, 4, 8, 10],
     },
     {
       id: "rendez-vous",
       label: "Rendez-vous",
-      itemIndexes: [5, 6, 7, 8, 10],
+      itemIndexes: [5, 6, 7],
     },
     {
       id: "seance",
@@ -501,29 +501,29 @@ export const oromyofacialFaq: PageFaqContent = {
   description: "Comprendre ce qui peut être évalué à distance.",
   items: [
     {
-      question: "Que sont les troubles oro-myo-fonctionnels ?",
+      question: "C’est quoi, un trouble oro-myo-fonctionnel ?",
       answer:
-        "Ce sont des troubles du fonctionnement des muscles de la bouche et du visage impliqués dans la respiration, la déglutition ou l’articulation : position de la langue au repos, respiration par la bouche, déglutition dite « atypique »…",
+        "Un déséquilibre dans la façon de respirer, d’avaler, de mâcher ou de placer la langue au repos. Il peut influencer la croissance des mâchoires, la position des dents ou la prononciation.",
     },
     {
-      question: "Ce trouble est-il lié à la respiration ou à la déglutition ?",
+      question: "Quels signes doivent m’alerter ?",
       answer:
-        "Il peut concerner l’une, l’autre, ou les deux : les fonctions de respiration, de mastication, de déglutition et de phonation sont liées, et un déséquilibre dans l’une peut affecter les autres.",
+        "Bouche souvent ouverte, respiration bruyante la nuit, langue entre les dents, zozotement qui persiste, pouce ou tétine prolongés. En cas de ronflements importants, consultez d’abord votre médecin.",
     },
     {
-      question: "Le télésoin permet-il vraiment d’évaluer une fonction physique comme la déglutition ?",
+      question: "Mon enfant porte un appareil dentaire, est-ce compatible ?",
       answer:
-        "Le bilan à distance permet d’observer certains signes — respiration, posture de la langue, articulation — et de recueillir les informations utiles. Certaines situations, notamment en cas de fausses routes, nécessitent un examen physique en cabinet : votre orthophoniste vous orientera si c’est le cas.",
+        "Oui, c’est même complémentaire : l’orthodontiste agit sur les dents, l’orthophoniste sur les fonctions. Travailler les deux en parallèle aide à stabiliser les résultats.",
     },
     {
-      question: "Ce trouble est-il souvent associé à d’autres troubles ?",
+      question: "Est-ce que ça marche vraiment en visio ?",
       answer:
-        "Oui, un trouble oro-myo-fonctionnel peut retentir sur l’articulation de certains sons, et est parfois associé à des troubles orthodontiques suivis en parallèle par un orthodontiste.",
+        "Oui, car la rééducation repose surtout sur quelques minutes d’exercices quotidiens à la maison. En séance, l’orthophoniste montre, observe et ajuste. Suivi possible dès 6 ans environ.",
     },
     {
-      question: "Quand consulter un orthophoniste pour ce type de trouble plutôt qu’un autre spécialiste ?",
+      question: "Combien de temps dure la rééducation ?",
       answer:
-        "Un orthodontiste ou un ORL peuvent orienter vers un bilan orthophonique lorsqu’une rééducation des fonctions musculaires est nécessaire, en complément de leur propre prise en charge.",
+        "Cela dépend du trouble et surtout de la régularité des exercices. Après le bilan, un plan de séances aux objectifs précis vous est proposé, et chaque nouvelle séance est programmée dès que l’objectif en cours est atteint.",
     },
   ],
 };
@@ -564,32 +564,32 @@ export const feedingFaq: PageFaqContent = {
 export const neurologicalFaq: PageFaqContent = {
   eyebrow: "Troubles neurologiques",
   title: "Le télésoin après une atteinte neurologique",
-  description: "Quand il est adapté et comment se coordonne le suivi.",
+  description: "Quand il est adapté et comment se déroule le suivi.",
   items: [
     {
-      question: "Quels troubles d’origine neurologique prenez-vous en charge ?",
+      question: "Quels troubles accompagnez-vous ?",
       answer:
-        "Nous accompagnons notamment les troubles du langage et de la communication consécutifs à un accident vasculaire cérébral — aphasie —, ou associés à certaines pathologies neurodégénératives ou neurodéveloppementales, une fois la phase aiguë passée.",
+        "Les formes légères à modérées de troubles du langage, de la parole ou de la communication après un AVC, un traumatisme crânien, ou dans certaines maladies neurologiques.",
     },
     {
-      question: "Le télésoin est-il adapté après un AVC ou une pathologie neurologique récente ?",
+      question: "Dans quels cas la visio n’est-elle pas adaptée ?",
       answer:
-        "Pas immédiatement : la phase aiguë nécessite un examen physique et une prise en charge en cabinet ou en établissement. Le télésoin prend le relais une fois l’état stabilisé, souvent en poursuite d’une rééducation déjà engagée.",
+        "En cas de troubles sévères ou de troubles de la déglutition (fausses routes), un suivi en présentiel est plus adapté et plus sûr.",
     },
     {
-      question: "Comment se passe le suivi pour un trouble neurologique évolutif ?",
+      question: "Faut-il être à l’aise avec l’informatique ?",
       answer:
-        "Les objectifs et le rythme des séances sont réévalués régulièrement en fonction de l’évolution du patient, en coordination avec les autres professionnels de santé qui le suivent.",
+        "Non : un ordinateur ou une tablette avec caméra, une bonne connexion et un endroit calme suffisent. Un proche peut vous aider à lancer les premières séances.",
     },
     {
-      question: "Le télésoin est-il adapté aux personnes ayant des difficultés de mobilité ?",
+      question: "Un proche peut-il participer ?",
       answer:
-        "C’est souvent l’un des principaux intérêts du télésoin dans ce contexte : éviter les déplacements pour des patients pour qui ils sont difficiles ou fatigants, tout en maintenant un suivi régulier.",
+        "Oui, si vous le souhaitez. L’orthophoniste peut lui donner des stratégies pour faciliter vos échanges au quotidien. C’est vous qui décidez de sa place.",
     },
     {
-      question: "Travaillez-vous en coordination avec le médecin ou le neurologue ?",
+      question: "Est-il trop tard plusieurs mois après un AVC ?",
       answer:
-        "Oui, cette coordination est particulièrement importante pour les troubles neurologiques. Avec votre accord, nous échangeons avec les professionnels de santé impliqués dans le suivi.",
+        "Non. Les progrès sont plus rapides au début, mais la rééducation reste utile ensuite, surtout avec un entraînement régulier. Si c’est lent ou fatigant, c’est normal : vous avancez à votre rythme.",
     },
   ],
 };
@@ -614,11 +614,6 @@ export const faqGroups: FaqGroup[] = [
     content: oromyofacialFaq,
   },
   {
-    id: "oralite",
-    label: "Oralité alimentaire",
-    content: feedingFaq,
-  },
-  {
     id: "neurologique",
     label: "Neurologique",
     content: neurologicalFaq,
@@ -635,6 +630,8 @@ const troubleFaqBySlug: Record<string, PageFaqContent> = {
   begaiement: stutteringFaq,
   dyscalculie: mathFaq,
   articulation: oromyofacialFaq,
+  "fonctions-oro-myo-faciales": oromyofacialFaq,
+  "origine-neurologique": neurologicalFaq,
   voix: troublesFaq,
 };
 

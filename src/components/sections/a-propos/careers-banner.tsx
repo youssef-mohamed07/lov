@@ -2,6 +2,7 @@ import { Reveal } from "@/components/common/reveal";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { about } from "@/data/a-propos";
+import { showOpenRoles } from "@/data/carrieres";
 
 export function AboutCareersBanner() {
   const content = about.recruitment;
@@ -30,8 +31,11 @@ export function AboutCareersBanner() {
               </div>
 
               <div className="shrink-0 lg:pb-1">
-                <CtaButton href="/carrieres#postes-ouverts" size="lg">
-                  {content.ctaLabel}
+                <CtaButton
+                  href={showOpenRoles ? "/carrieres#postes-ouverts" : "/carrieres"}
+                  size="lg"
+                >
+                  {showOpenRoles ? content.ctaLabel : content.ctaLabelClosed}
                 </CtaButton>
               </div>
             </div>

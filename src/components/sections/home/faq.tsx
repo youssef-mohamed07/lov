@@ -57,7 +57,7 @@ export function HomeFaq({
               <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 <span className="mark-brush">{content.title}</span>
               </h2>
-              <p className="mt-3 max-w-sm text-base leading-7 text-muted">
+              <p className="mt-3 max-w-sm text-lg leading-8 text-muted">
                 {content.description}
               </p>
             </Reveal>
@@ -77,7 +77,7 @@ export function HomeFaq({
                       aria-selected={activeFilter === filter.id}
                       onClick={() => selectFilter(filter.id)}
                       className={cn(
-                        "min-h-9 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
+                        "min-h-10 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                         activeFilter === filter.id
                           ? "border-accent bg-accent text-white"
                           : "border-border bg-surface text-muted hover:border-accent/40 hover:text-foreground",
@@ -108,21 +108,13 @@ export function HomeFaq({
                         aria-pressed={isActive}
                         onClick={() => setActiveIndex(index)}
                         className={cn(
-                          "group flex w-full items-center gap-3 rounded-2xl border px-4 py-3.5 text-left transition-all",
+                          "group flex w-full items-center gap-3 rounded-2xl border px-5 py-4 text-left transition-all",
                           isActive
                             ? "border-accent/40 bg-accent-soft/60 text-foreground"
                             : "border-border bg-surface text-muted hover:border-accent/30 hover:bg-accent-soft/25 hover:text-foreground",
                         )}
                       >
-                        <span
-                          className={cn(
-                            "font-display text-xs font-semibold tracking-[0.14em] transition-colors",
-                            isActive ? "text-accent" : "text-muted-soft",
-                          )}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <span className="flex-1 text-sm font-medium tracking-tight sm:text-[0.95rem]">
+                        <span className="flex-1 text-base font-medium tracking-tight">
                           {item.question}
                         </span>
                         <ArrowUpRight
@@ -156,10 +148,10 @@ export function HomeFaq({
                   <span className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-surface bg-success" />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold tracking-tight text-foreground">
+                  <p className="text-base font-semibold tracking-tight text-foreground">
                     Lov
                   </p>
-                  <p className="text-xs text-muted">En ligne · répond vite</p>
+                  <p className="text-sm text-muted">En ligne · répond vite</p>
                 </div>
               </div>
 
@@ -181,7 +173,7 @@ export function HomeFaq({
                       transition={transition.base}
                       className="flex justify-end"
                     >
-                      <p className="max-w-[85%] rounded-[1.25rem] rounded-br-md bg-accent px-4 py-3 text-sm leading-6 text-white shadow-[0_12px_30px_-18px_rgba(254,81,16,0.7)]">
+                      <p className="max-w-[85%] rounded-[1.25rem] rounded-br-md bg-accent px-4 py-3 text-base leading-7 text-white shadow-[0_12px_30px_-18px_rgba(254,81,16,0.7)]">
                         {active?.question}
                       </p>
                     </motion.div>
@@ -203,7 +195,7 @@ export function HomeFaq({
                           className="h-4 w-auto"
                         />
                       </span>
-                      <p className="max-w-[85%] rounded-[1.25rem] rounded-bl-md bg-surface-muted px-4 py-3 text-sm leading-6 text-foreground">
+                      <p className="max-w-[85%] rounded-[1.25rem] rounded-bl-md bg-surface-muted px-4 py-3 text-base leading-7 text-foreground">
                         {active?.answer}
                       </p>
                     </motion.div>
@@ -212,8 +204,8 @@ export function HomeFaq({
               </div>
 
               <div className="flex flex-col gap-3 border-t border-border px-5 py-4 sm:px-6">
-                <p className="inline-flex items-center gap-2 text-xs text-muted">
-                  <Check className="size-3.5 text-success" aria-hidden />
+                <p className="inline-flex items-center gap-2 text-sm text-muted">
+                  <Check className="size-4 text-success" aria-hidden />
                   Une autre question ? On répond sous 24–48h.
                 </p>
                 <div className="flex flex-wrap items-center gap-2.5">

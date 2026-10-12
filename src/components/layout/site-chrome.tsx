@@ -16,7 +16,14 @@ const immersiveRoutes = [
   "/deja-un-bilan",
 ];
 
-const hidePricingRoutes = ["/suivi", "/carrieres"];
+const legalRoutes = [
+  "/mentions-legales",
+  "/cgv",
+  "/cgu",
+  "/politique-de-confidentialite",
+];
+
+const hidePricingRoutes = ["/suivi", "/carrieres", ...legalRoutes];
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -27,7 +34,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
   const hideClosingCta =
-    pathname === "/carrieres" || pathname.startsWith("/carrieres/");
+    pathname === "/carrieres" ||
+    pathname.startsWith("/carrieres/") ||
+    legalRoutes.includes(pathname);
   const faq = getFaqForPathname(pathname);
 
   if (immersive) {

@@ -92,7 +92,7 @@ export const pricingPlans = [
       "Questionnaire d’anamnèse en ligne",
       "1 heure de tests étalonnés en visio",
       "Restitution orale des résultats",
-      "Compte rendu écrit sous 10 jours, aux normes MDPH",
+      "Compte rendu écrit sous 10 jours, pouvant être associé au dossier MDPH",
       "Recommandations pour l’école et la maison",
     ],
     report:

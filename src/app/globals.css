@@ -64,7 +64,7 @@
   mask: url("/brand/lov-heart-mask.svg") center / 100% 100% no-repeat;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 50rem) {
   :root {
     --gutter: var(--gutter-md);
     --section-space-sm: var(--space-12);
@@ -73,13 +73,23 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 80rem) {
   :root {
     --gutter: var(--gutter-lg);
     --section-space-md: var(--space-16);
     --section-space-lg: var(--space-24);
     --grid-gap: var(--grid-gap-lg);
   }
+}
+
+/* Breakpoints grow with the root size (Tailwind defaults × 1.25), so each layout
+   still switches at the content width it was designed for. */
+@theme {
+  --breakpoint-sm: 50rem;
+  --breakpoint-md: 60rem;
+  --breakpoint-lg: 80rem;
+  --breakpoint-xl: 100rem;
+  --breakpoint-2xl: 120rem;
 }
 
 @theme inline {
@@ -128,7 +138,11 @@
   --container-width-xl: var(--container-xl);
 }
 
+/* Site-wide type scale: +25%. Every size is in rem, so the root size drives the
+   whole scale (text, spacing and radii grow together and keep their proportions).
+   Screens under 360px ease back to +12.5% so long words keep fitting. */
 html {
+  font-size: clamp(112.5%, 5vw + 12.5%, 125%);
   overflow-x: clip;
 }
 

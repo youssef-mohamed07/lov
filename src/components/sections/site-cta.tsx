@@ -31,8 +31,8 @@ export function SiteCta({
           <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,13rem)_1fr_minmax(0,13rem)] xl:gap-8">
             <div className="flex items-center justify-center gap-3 sm:gap-5 xl:block">
               <HeartCutout
-                src="/images/drive-home-hero-wide.jpg"
-                imageClassName="object-[50%_45%]"
+                src="/images/drive-about-section-6.png"
+                imageClassName="object-[50%_6%]"
                 className="w-28 -rotate-6 sm:w-40 xl:w-full"
                 tone="warm"
               />

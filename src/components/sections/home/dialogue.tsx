@@ -64,10 +64,10 @@ export function HomeDialogue() {
           >
             <div className="relative aspect-square w-full">
               <Image
-                src="/images/drive-home-section-3.png"
+                src="/images/drive-home-section-3-v2.png"
                 alt="Orthophoniste en visioconférence avec un enfant"
                 fill
-                sizes="(max-width: 768px) 100vw, 768px"
+                sizes="(max-width: 960px) 100vw, 768px"
                 className="object-cover"
                 priority
               />

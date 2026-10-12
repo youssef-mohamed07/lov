@@ -52,7 +52,7 @@ export function SuiviPlatformBento() {
                   src="/images/drive-home-section-7-b.png"
                   alt="Enfant concentré pendant une activité de langage"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  sizes="(max-width: 1280px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -74,8 +74,8 @@ export function SuiviPlatformBento() {
           </div>
 
           <Reveal delay={0.08} variant="fade-scale" className="h-full">
-            <article className="flex h-full min-h-[420px] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)] lg:min-h-0">
-              <div className="relative mx-auto flex aspect-square w-full max-w-[280px] flex-1 items-center justify-center">
+            <article className="flex h-full min-h-[26.25rem] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)] lg:min-h-0">
+              <div className="relative mx-auto flex aspect-square w-full max-w-[17.5rem] flex-1 items-center justify-center">
                 <div aria-hidden className="absolute inset-[8%] rounded-full border border-dashed border-border" />
                 <div aria-hidden className="absolute inset-[22%] rounded-full border border-dashed border-border/80" />
 
@@ -140,7 +140,7 @@ export function SuiviPlatformBento() {
                   src="/images/drive-home-section-7-a.png"
                   alt="Professionnelle préparant un accompagnement orthophonique"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  sizes="(max-width: 1280px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>

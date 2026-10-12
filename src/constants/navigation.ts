@@ -26,4 +26,13 @@ export const footerLinks = {
     { href: "/carrieres", label: "Nous rejoindre" },
     { href: "/nous-contacter", label: "Nous contacter" },
   ],
+  legal: [
+    { href: "/mentions-legales", label: "Mentions légales" },
+    { href: "/cgv", label: "CGV" },
+    { href: "/cgu", label: "CGU" },
+    {
+      href: "/politique-de-confidentialite",
+      label: "Politique de confidentialité",
+    },
+  ],
 } as const;

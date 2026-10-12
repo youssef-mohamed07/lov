@@ -22,8 +22,8 @@ const item = (title: string, description: string): TroubleItem => ({ title, desc
 const journey = (
   observe: string,
   evaluate: string,
-  restore = "Une lecture claire des résultats, avec des recommandations.",
-  support = "Un suivi régulier, si le bilan le préconise.",
+  restore = "Une lecture claire des résultats avec des recommandations.",
+  support = "Un suivi régulier si le bilan le préconise.",
 ): TroubleItem[] => [
   item("Observer", observe),
   item("Réserver", "Choisir un créneau de bilan dans notre agenda en ligne."),
@@ -32,9 +32,13 @@ const journey = (
   item("Accompagner", support),
 ];
 
-const childCta = "Une évaluation structurée, pour savoir précisément où en est votre enfant.";
+const childCta = "Une évaluation structurée afin de connaître le niveau langagier de votre enfant.";
 
-export const troubles: Trouble[] = [
+// Kept in the data but off the site: the practice doesn't take on this category
+// for now. Remove a slug from this list to publish its page again.
+const unpublishedSlugs = new Set(["oralite-alimentaire"]);
+
+const allTroubles: Trouble[] = [
   {
     slug: "retard-parole-langage",
     title: "Troubles de la parole et du langage oral",
@@ -49,12 +53,12 @@ export const troubles: Trouble[] = [
       "Frustration ou colères liées à la communication",
     ],
     recommendations: [
-      item("Parler beaucoup, sans forcer", "Commentez ce que vous faites ensemble, sans exiger de réponse."),
-      item("Reformuler, sans corriger", "Répétez la phrase correctement, sans pointer l’erreur."),
-      item("Laisser du temps", "Attendez la réponse, sans compléter à sa place."),
+      item("Parler beaucoup sans forcer", "Commentez ce que vous faites ensemble et n’exigez pas de réponse."),
+      item("Reformuler plutôt que corriger", "Répétez la phrase correctement et ne pointez pas l’erreur."),
+      item("Laisser du temps", "Attendez la réponse et ne complétez pas à sa place."),
       item("Lire à voix haute", "Quelques minutes par jour suffisent à enrichir le vocabulaire."),
       item("Limiter les écrans", "Les échanges en face à face restent les plus formateurs."),
-      item("Ne pas comparer", "Chaque enfant progresse à son rythme, pas selon une norme rigide."),
+      item("Ne pas comparer", "Chaque enfant progresse à son rythme et non selon une norme rigide."),
     ],
     journey: journey(
       "Repérer les signes dans le quotidien, sans dramatiser.",
@@ -87,7 +91,7 @@ export const troubles: Trouble[] = [
     journey: journey(
       "Repérer les signes dans le quotidien scolaire, sans dramatiser.",
       "Des tests étalonnés sur la lecture et l’orthographe.",
-      "Une lecture claire des résultats, avec des recommandations pour l’école.",
+      "Une lecture claire des résultats avec des recommandations pour l’école.",
     ),
     ctaDescription: childCta,
     image: "/images/drive-home-section-7-a.png",
@@ -117,7 +121,7 @@ export const troubles: Trouble[] = [
       "Repérer la fréquence et le contexte des disfluences.",
       "Une analyse fine du type et de l’intensité des disfluences.",
       undefined,
-      "Un suivi régulier, combinant fluidité et soutien émotionnel.",
+      "Un suivi régulier combinant fluidité et soutien émotionnel.",
     ),
     ctaDescription: childCta,
     image: "/images/drive-home-section-2.png",
@@ -146,7 +150,7 @@ export const troubles: Trouble[] = [
     journey: journey(
       "Repérer les difficultés dans le quotidien et à l’école.",
       "Des tests ciblés sur le sens du nombre et le calcul.",
-      "Une lecture claire des résultats, avec des recommandations pour l’école.",
+      "Une lecture claire des résultats avec des recommandations pour l’école.",
     ),
     ctaDescription: childCta,
     image: "/images/drive-home-section-7-b.png",
@@ -176,7 +180,7 @@ export const troubles: Trouble[] = [
       "Repérer les signes au quotidien, notamment autour des repas et du sommeil.",
       "Un examen des fonctions oro-myo-faciales concernées.",
       undefined,
-      "Une rééducation fonctionnelle, en lien avec les autres professionnels si besoin.",
+      "Une rééducation fonctionnelle en lien avec les autres professionnels si besoin.",
     ),
     ctaDescription: childCta,
     image: "/images/drive-home-section-7-a.png",
@@ -205,8 +209,8 @@ export const troubles: Trouble[] = [
     journey: journey(
       "Noter les aliments acceptés, refusés, et le contexte des repas.",
       "Un bilan sensoriel et fonctionnel de l’oralité alimentaire.",
-      "Une lecture claire des résultats, avec des pistes concrètes.",
-      "Un suivi progressif, au rythme de l’enfant.",
+      "Une lecture claire des résultats avec des pistes concrètes.",
+      "Un suivi progressif au rythme de l’enfant.",
     ),
     ctaDescription: childCta,
     image: "/images/drive-home-section-7-b.png",
@@ -236,12 +240,16 @@ export const troubles: Trouble[] = [
       "Noter les difficultés de communication au quotidien.",
       "Un bilan complet du langage et de la communication.",
       undefined,
-      "Une rééducation adaptée, en lien avec l’équipe médicale.",
+      "Une rééducation adaptée en lien avec l’équipe médicale.",
     ),
-    ctaDescription: "Une évaluation structurée, pour savoir précisément où en est votre situation.",
+    ctaDescription: "Une évaluation structurée afin de connaître votre niveau langagier.",
     image: "/images/drive-troubles-resources.png",
   },
 ];
+
+export const troubles = allTroubles.filter(
+  (trouble) => !unpublishedSlugs.has(trouble.slug),
+);
 
 export function getTrouble(slug: string) {
   return troubles.find((trouble) => trouble.slug === slug);

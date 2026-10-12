@@ -132,15 +132,15 @@ export const simulatorQuestions: SimulatorQuestion[] = [
 
 export const simulatorResults = {
   dyslexie: {
-    title: "Piste : dyslexie / lecture",
+    title: "Piste : des difficultés en lecture",
     body: "Vos réponses évoquent surtout des difficultés liées à la lecture. Une page dédiée et un bilan orthophonique peuvent clarifier le profil.",
-    ctaLabel: "Voir la dyslexie",
+    ctaLabel: "Voir les difficultés en lecture",
     ctaHref: "/troubles/dyslexie",
   },
   dysorthographie: {
-    title: "Piste : dysorthographie",
+    title: "Piste : des difficultés en orthographe",
     body: "L’écrit et l’orthographe semblent centraux. Un bilan permet de préciser les mécanismes et les aides possibles.",
-    ctaLabel: "Voir la dysorthographie",
+    ctaLabel: "Voir les difficultés en orthographe",
     ctaHref: "/troubles/dysorthographie",
   },
   "retard-parole-langage": {
@@ -156,9 +156,9 @@ export const simulatorResults = {
     ctaHref: "/troubles/begaiement",
   },
   dyscalculie: {
-    title: "Piste : dyscalculie",
+    title: "Piste : des difficultés en mathématiques",
     body: "Les difficultés numériques semblent dominantes. Un bilan peut objectiver le sens du nombre et le calcul.",
-    ctaLabel: "Voir la dyscalculie",
+    ctaLabel: "Voir les difficultés en mathématiques",
     ctaHref: "/troubles/dyscalculie",
   },
   articulation: {
@@ -168,9 +168,9 @@ export const simulatorResults = {
     ctaHref: "/troubles/articulation",
   },
   dysphasie: {
-    title: "Piste : dysphasie / TDL",
+    title: "Piste : des difficultés de langage oral",
     body: "Le langage oral (expression et/ou compréhension) semble durablement fragile. Un bilan approfondi est recommandé.",
-    ctaLabel: "Voir la dysphasie",
+    ctaLabel: "Voir les difficultés de langage oral",
     ctaHref: "/troubles/dysphasie",
   },
   voix: {

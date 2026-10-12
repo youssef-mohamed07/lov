@@ -4,6 +4,9 @@ export const testimonials = {
   titleAccent: "retiennent",
   description:
     "Des retours concrets — après un simulateur, un bilan, ou un suivi.",
+  // Shown under the heading until reviews collected by the company replace these.
+  sourceNote:
+    "Avis recueillis par nos deux orthophonistes auprès de leurs patients, avant la création des Orthos en Visio.",
   items: [
     {
       quote:

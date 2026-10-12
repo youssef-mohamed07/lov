@@ -50,7 +50,7 @@ export function TrustShowcase({
                 src={image}
                 alt={imageAlt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1280px) 100vw, 50vw"
                 className="object-cover"
                 priority={priority}
               />
@@ -68,7 +68,7 @@ export function TrustShowcase({
               viewport={{ once: true }}
               transition={{ duration: 0.45, ease: easeOutExpo }}
             >
-              <p className="text-[11px] font-medium tracking-[0.14em] text-muted uppercase">
+              <p className="text-[0.6875rem] font-medium tracking-[0.14em] text-muted uppercase">
                 {badgeLabel}
               </p>
               <p className="mt-1 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

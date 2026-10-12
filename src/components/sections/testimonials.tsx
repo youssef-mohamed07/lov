@@ -127,7 +127,7 @@ function TestimonialCard({
       <figcaption className="flex items-center gap-3">
         <span
           className={cn(
-            "inline-flex size-9 shrink-0 items-center justify-center rounded-full font-display text-[11px] font-semibold",
+            "inline-flex size-9 shrink-0 items-center justify-center rounded-full font-display text-[0.6875rem] font-semibold",
             styles.avatar,
           )}
         >
@@ -232,6 +232,9 @@ export function TestimonialsSection() {
               avis familles
             </span>
           </div>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted">
+            {testimonials.sourceNote}
+          </p>
         </Reveal>
       </Container>
 

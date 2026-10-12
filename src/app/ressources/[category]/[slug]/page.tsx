@@ -228,7 +228,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             </div>
           </Reveal>
 
-          <div className="grid auto-rows-[150px] gap-3 sm:auto-rows-[180px] sm:grid-cols-2 lg:auto-rows-[220px] lg:grid-cols-4">
+          <div className="grid auto-rows-[9.375rem] gap-3 sm:auto-rows-[11.25rem] sm:grid-cols-2 lg:auto-rows-[13.75rem] lg:grid-cols-4">
             {article.gallery.map((frame, index) => (
               <Reveal
                 key={frame.src + index}
@@ -240,12 +240,12 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                   index === 3 && "sm:col-span-2",
                 )}
               >
-                <div className="relative h-full min-h-[150px] overflow-hidden rounded-[1.35rem] border border-border">
+                <div className="relative h-full min-h-[9.375rem] overflow-hidden rounded-[1.35rem] border border-border">
                   <Image
                     src={frame.src}
                     alt={frame.alt}
                     fill
-                    sizes="(max-width: 640px) 100vw, 40vw"
+                    sizes="(max-width: 800px) 100vw, 40vw"
                     className="object-cover"
                   />
                 </div>
@@ -309,7 +309,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                           src={item.image}
                           alt=""
                           fill
-                          sizes="(max-width: 640px) 100vw, 33vw"
+                          sizes="(max-width: 800px) 100vw, 33vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       </div>

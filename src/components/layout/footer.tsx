@@ -46,7 +46,7 @@ export function Footer() {
 
           <Link
             href="/nous-contacter"
-            className="group inline-flex items-center gap-3 self-start rounded-full bg-accent py-2 pr-2 pl-6 text-[15px] font-medium text-white transition-[background-color,box-shadow] hover:bg-accent-hover hover:shadow-[0_0_28px_-6px_rgba(249,171,108,0.75)] lg:self-auto"
+            className="group inline-flex items-center gap-3 self-start rounded-full bg-accent py-2 pr-2 pl-6 text-[0.9375rem] font-medium text-white transition-[background-color,box-shadow] hover:bg-accent-hover hover:shadow-[0_0_28px_-6px_rgba(249,171,108,0.75)] lg:self-auto"
           >
             Nous contacter
             <span className="inline-flex size-10 items-center justify-center rounded-full bg-white text-foreground transition-transform duration-300 ease-out group-hover:rotate-45">
@@ -101,9 +101,22 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex items-center justify-between border-t border-white/10 py-6 text-xs text-background/45">
-          <p>© {new Date().getFullYear()} Lov</p>
-          <p>Tous droits réservés</p>
+        <div className="flex flex-col gap-4 border-t border-white/10 py-6 text-xs text-background/45 lg:flex-row lg:items-center lg:justify-between">
+          <p>© {new Date().getFullYear()} Lov · Tous droits réservés</p>
+          <nav aria-label="Informations légales">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {footerLinks.legal.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-background/70 transition-colors hover:text-accent"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </Container>
 

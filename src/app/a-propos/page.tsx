@@ -49,7 +49,7 @@ export default function AboutPage() {
         imageCaption="Une évaluation claire, pensée pour être comprise."
         eyebrow="Notre histoire"
         title="Pourquoi Les Orthos en Visio existent ?"
-        description="En cabinet, les délais d’attente pour un premier rendez-vous se comptent souvent en mois. Pendant ce temps, les difficultés d’un enfant s’installent, parfois se compliquent. Nous avons voulu un relais à cette attente : un premier pas plus rapide, pour que la prise en soin commence le plus tôt possible, sans attendre une place en libéral."
+        description="En cabinet, les délais d’attente pour un premier rendez-vous se comptent souvent en mois. Pendant ce temps, les difficultés d’un enfant s’installent, parfois se compliquent. Nous avons voulu un relais à cette attente : un premier pas plus rapide, pour que la prise en soin commence le plus tôt possible sans attendre une place en libéral."
         ctaLabel="Demander un bilan"
         ctaHref="/demander-un-bilan"
       />

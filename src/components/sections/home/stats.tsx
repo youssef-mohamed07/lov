@@ -60,7 +60,7 @@ export function HomeStats() {
 
         <div className="mx-auto mt-10 max-w-3xl">
           <div
-            className="relative mx-auto flex aspect-square w-full max-w-[340px] items-center justify-center sm:max-w-[380px]"
+            className="relative mx-auto flex aspect-square w-full max-w-[21.25rem] items-center justify-center sm:max-w-[23.75rem]"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >

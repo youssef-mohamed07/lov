@@ -161,7 +161,7 @@ export default async function TroubleDetailPage({ params }: TroublePageProps) {
               return (
                 <li key={recommendation.title}>
                   <Reveal delay={(index % 3) * 0.06} variant="fade" className="h-full">
-                    <article className="h-full min-h-[210px] rounded-[1.35rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)]">
+                    <article className="h-full min-h-[13.125rem] rounded-[1.35rem] border border-border bg-surface p-6 shadow-[var(--shadow-card)]">
                       <span className="inline-flex size-11 items-center justify-center rounded-2xl bg-brand-soft text-brand">
                         <Icon className="size-5" aria-hidden />
                       </span>

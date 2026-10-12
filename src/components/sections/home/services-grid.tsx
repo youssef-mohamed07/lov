@@ -13,34 +13,26 @@ const services = [
   { slug: "begaiement" },
   { slug: "dyscalculie" },
   { slug: "fonctions-oro-myo-faciales" },
-  { slug: "oralite-alimentaire" },
+  { slug: "origine-neurologique" },
 ] as const;
 
 export function HomeServicesGrid() {
   return (
     <section className="section-warm overflow-hidden py-[var(--section-space-lg)]">
       <Container>
-        <Reveal
-          className="mb-[var(--space-10)] flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
-          variant="fade"
-        >
-          <div>
-            <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-brand uppercase">
-              Spécialités
-            </p>
-            <h2 className="max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-              Des accompagnements{" "}
-              <span className="font-medium italic text-voice">
-                adaptés à chaque besoin
-              </span>
-            </h2>
-          </div>
-          <p className="max-w-xs text-sm leading-6 text-muted lg:pb-1.5 lg:text-right">
-            Six motifs fréquents — chacun avec un parcours pensé pour lui.
+        <Reveal className="mb-[var(--space-10)]" variant="fade">
+          <p className="mb-[var(--space-3)] text-xs font-medium tracking-[0.22em] text-brand uppercase">
+            Spécialités
           </p>
+          <h2 className="max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+            Des accompagnements{" "}
+            <span className="font-medium italic text-voice">
+              adaptés à chaque besoin
+            </span>
+          </h2>
         </Reveal>
 
-        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const trouble = getTrouble(service.slug);
             if (!trouble) return null;

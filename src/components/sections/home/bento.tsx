@@ -15,35 +15,35 @@ const features = [
   {
     title: "Agenda en ligne",
     description:
-      "Choisissez un créneau en quelques clics, à l’heure qui vous arrange.",
+      "Choisissez un créneau en quelques clics à l’heure qui vous arrange.",
     icon: Calendar,
     tone: "bg-accent-soft text-accent",
   },
   {
     title: "Rappels automatiques",
     description:
-      "Un message avant chaque rendez-vous, pour ne rien manquer.",
+      "Un message avant chaque rendez-vous pour ne rien manquer.",
     icon: Bell,
     tone: "bg-brand-soft text-brand",
   },
   {
     title: "Comptes-rendus",
     description:
-      "Retrouvez le compte-rendu de chaque séance dans votre espace, dès qu’il est prêt.",
+      "Retrouvez le compte-rendu de chaque séance dans votre espace dès qu’il est prêt.",
     icon: FileText,
     tone: "bg-accent-soft text-accent",
   },
   {
     title: "Exercices personnalisés",
     description:
-      "Des activités choisies par l’orthophoniste, à faire entre les séances.",
+      "Des activités choisies par l’orthophoniste à faire entre les séances.",
     icon: ClipboardCheck,
     tone: "bg-brand-soft text-brand",
   },
   {
     title: "Mesurer pour mieux progresser",
     description:
-      "Un point régulier sur l’évolution de votre enfant, à partager avec l’école si besoin.",
+      "Un point régulier sur l’évolution de votre enfant à partager avec l’école si besoin.",
     icon: Activity,
     tone: "bg-accent-soft text-accent",
   },
@@ -73,7 +73,7 @@ type HomeBentoProps = {
 export function HomeBento({
   eyebrow = "La plateforme",
   title = defaultTitle,
-  description = "Chaque étape de votre parcours se passe au même endroit, sans jongler entre plusieurs outils.",
+  description = "Chaque étape de votre parcours se passe au même endroit sans jongler entre plusieurs outils.",
   items,
 }: HomeBentoProps = {}) {
   return (
@@ -103,7 +103,7 @@ export function HomeBento({
                     variant="fade-scale"
                     className="h-full"
                   >
-                    <article className="group flex h-full min-h-[168px] flex-col rounded-[1.35rem] border border-border bg-surface p-5 transition-colors hover:border-accent/30 sm:p-6">
+                    <article className="group flex h-full min-h-[10.5rem] flex-col rounded-[1.35rem] border border-border bg-surface p-5 transition-colors hover:border-accent/30 sm:p-6">
                       <div className="flex items-start justify-between gap-4">
                         <span
                           className={`inline-flex size-10 shrink-0 items-center justify-center rounded-xl ${feature.tone}`}

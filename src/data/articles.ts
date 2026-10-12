@@ -135,7 +135,7 @@ export const articles: Article[] = [
     content: [
       "Le bilan orthophonique évalue, pose des hypothèses et restitue une lecture claire. Le suivi, lui, transforme ces pistes en entraînement régulier.",
       "Parfois, un bilan suffit à rassurer et à proposer des aménagements scolaires. D’autres fois, il ouvre une prise en charge structurée.",
-      "Chez Lov, nous vous aidons à choisir le bon format — sans jargon, avec des prochaines étapes concrètes.",
+      "Chez Lov, nous vous aidons à choisir le bon format, avec des étapes concrètes.",
     ],
     relatedLinks: [
       {

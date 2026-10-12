@@ -60,12 +60,12 @@ export function HomePlatform() {
                 variant={index === 0 ? "left" : "right"}
                 className="h-full"
               >
-                <article className="relative flex h-full min-h-[380px] flex-col overflow-hidden rounded-[var(--radius-card)] border border-border shadow-[var(--shadow-card)] sm:min-h-[420px]">
+                <article className="relative flex h-full min-h-[23.75rem] flex-col overflow-hidden rounded-[var(--radius-card)] border border-border shadow-[var(--shadow-card)] sm:min-h-[26.25rem]">
                   <Image
                     src={path.image}
                     alt=""
                     fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="(max-width: 1280px) 100vw, 50vw"
                     className="object-cover"
                   />
 

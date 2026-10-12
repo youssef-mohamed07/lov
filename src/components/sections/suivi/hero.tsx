@@ -22,15 +22,15 @@ export function SuiviHero() {
       </div>
 
       <HeartImage
-        src="/images/drive-home-hero-wide.jpg"
-        imageClassName="object-[50%_45%]"
-        className="absolute top-[20%] left-[-7%] hidden w-[230px] -rotate-8 lg:block xl:left-[-4%] xl:w-[278px]"
+        src="/images/drive-about-section-6.png"
+        imageClassName="object-[50%_6%]"
+        className="absolute top-[20%] left-[-5.5%] hidden w-[12.5rem] -rotate-8 lg:block xl:left-[-2%] xl:w-[17.375rem]"
         tone="warm"
       />
       <HeartImage
         src="/images/drive-home-hero.png"
         imageClassName="object-[50%_14%]"
-        className="absolute top-[29%] right-[-8%] hidden w-[250px] rotate-6 lg:block xl:right-[-3%] xl:w-[300px]"
+        className="absolute top-[29%] right-[-8%] hidden w-[13.5rem] rotate-6 lg:block xl:right-[-3%] xl:w-[18.75rem]"
         tone="cool"
       />
 
@@ -66,9 +66,9 @@ export function SuiviHero() {
           <FadeItem className="mt-10 w-full max-w-md px-2 lg:hidden">
             <div className="grid grid-cols-2 gap-3">
               <HeartImage
-                src="/images/drive-home-hero-wide.jpg"
+                src="/images/drive-about-section-6.png"
                 className="-rotate-6"
-                imageClassName="object-[50%_18%]"
+                imageClassName="object-[50%_6%]"
               />
               <HeartImage
                 src="/images/drive-home-hero.png"
@@ -137,7 +137,7 @@ function HeartImage({
             src={src}
             alt=""
             fill
-            sizes="(max-width: 1024px) 50vw, 300px"
+            sizes="(max-width: 1280px) 50vw, 300px"
             className={cn("object-cover", imageClassName)}
             priority
           />

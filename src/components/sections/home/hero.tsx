@@ -57,10 +57,10 @@ export function HomeHero() {
       </div>
 
       <HeartCutout
-        src="/images/drive-home-hero-wide.jpg"
+        src="/images/drive-about-section-6.png"
         alt=""
-        imageClassName="object-[50%_45%]"
-        className="absolute top-[20%] left-[-7%] hidden w-[230px] lg:block xl:left-[-4%] xl:w-[278px]"
+        imageClassName="object-[50%_6%]"
+        className="absolute top-[20%] left-[-5.5%] hidden w-[12.5rem] lg:block xl:left-[-2%] xl:w-[17.375rem]"
         tone="warm"
         reduceMotion={!!reduceMotion}
         x={leftX}
@@ -71,7 +71,7 @@ export function HomeHero() {
         src="/images/drive-home-hero.png"
         alt=""
         imageClassName="object-[50%_14%]"
-        className="absolute top-[29%] right-[-8%] hidden w-[250px] lg:block xl:right-[-3%] xl:w-[300px]"
+        className="absolute top-[29%] right-[-8%] hidden w-[13.5rem] lg:block xl:right-[-3%] xl:w-[18.75rem]"
         tone="cool"
         reduceMotion={!!reduceMotion}
         x={rightX}
@@ -115,9 +115,9 @@ export function HomeHero() {
           <FadeItem className="mt-10 w-full max-w-md px-2 lg:hidden">
             <div className="grid grid-cols-2 gap-3">
               <MobileHeartImage
-                src="/images/drive-home-hero-wide.jpg"
+                src="/images/drive-about-section-6.png"
                 className="-rotate-6"
-                imageClassName="object-[50%_18%]"
+                imageClassName="object-[50%_6%]"
               />
               <MobileHeartImage
                 src="/images/drive-home-hero.png"

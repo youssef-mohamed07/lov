@@ -79,7 +79,7 @@ export function Navbar() {
           <BrandMark compact className="min-w-0 shrink rounded-xl px-1.5 py-2" />
 
           <nav
-            className="absolute left-1/2 z-20 hidden -translate-x-1/2 items-center gap-0.5 xl:flex"
+            className="absolute left-1/2 z-20 hidden -translate-x-1/2 items-center gap-0.5 lg:flex"
             aria-label="Principal"
           >
             {navLinks.map((link) => {
@@ -119,7 +119,7 @@ export function Navbar() {
                           <span className="relative inline-flex size-10 items-center justify-center rounded-xl bg-white/80 text-brand shadow-sm">
                             <Sparkles className="size-4.5" aria-hidden />
                           </span>
-                          <p className="relative mt-8 text-[11px] font-semibold tracking-[0.18em] text-brand uppercase">
+                          <p className="relative mt-8 text-[0.6875rem] font-semibold tracking-[0.18em] text-brand uppercase">
                             Notre expertise
                           </p>
                           <p className="relative mt-2 font-display text-xl font-semibold leading-6 tracking-tight text-foreground">
@@ -169,7 +169,7 @@ export function Navbar() {
                                   <span className="block text-sm font-medium leading-5">
                                     {trouble.title}
                                   </span>
-                                  <span className="mt-0.5 block truncate text-[11px] leading-4 text-muted">
+                                  <span className="mt-0.5 block truncate text-[0.6875rem] leading-4 text-muted">
                                     {trouble.eyebrow}
                                   </span>
                                 </span>
@@ -212,7 +212,7 @@ export function Navbar() {
             </CtaButton>
             <button
               type="button"
-              className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-muted text-foreground xl:hidden"
+              className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-muted text-foreground lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
@@ -228,7 +228,7 @@ export function Navbar() {
         <button
           type="button"
           aria-label="Fermer le menu"
-          className="pointer-events-auto fixed inset-0 bg-foreground/25 backdrop-blur-[2px] xl:hidden"
+          className="pointer-events-auto fixed inset-0 bg-foreground/25 backdrop-blur-[2px] lg:hidden"
           onClick={() => setOpen(false)}
         />
       ) : null}
@@ -236,7 +236,7 @@ export function Navbar() {
       <div
         id="mobile-nav"
         className={cn(
-          "pointer-events-auto relative px-[var(--gutter)] pt-3 xl:hidden",
+          "pointer-events-auto relative px-[var(--gutter)] pt-3 lg:hidden",
           open ? "block" : "hidden",
         )}
       >

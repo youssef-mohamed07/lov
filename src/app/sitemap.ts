@@ -6,7 +6,7 @@ import {
   getArticleHref,
   getCategoryHref,
 } from "@/data/articles";
-import { careers, getCareerRoleHref } from "@/data/carrieres";
+import { getCareerRoleHref, getOpenCareerRoles } from "@/data/carrieres";
 import { troubles } from "@/data/troubles";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
   }));
 
-  const careerEntries: MetadataRoute.Sitemap = careers.roles.items.map(
+  const careerEntries: MetadataRoute.Sitemap = getOpenCareerRoles().map(
     (role) => ({
       url: absoluteUrl(getCareerRoleHref(role.slug)),
       priority: 0.55,

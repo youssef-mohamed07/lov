@@ -72,7 +72,7 @@ export default function TroublesPage() {
 
       <section className="relative overflow-hidden bg-background py-[var(--section-space-lg)]">
         <Container className="relative">
-          <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {troubles.map((trouble, index) => {
               const Icon = getTroubleIcon(trouble.slug);
 
@@ -85,7 +85,7 @@ export default function TroublesPage() {
                   >
                     <Link
                       href={`/troubles/${trouble.slug}`}
-                      className="group flex h-full min-h-[250px] flex-col rounded-[1.35rem] border border-border bg-surface p-5 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/35 hover:bg-accent-soft/15 sm:p-6"
+                      className="group flex h-full min-h-[15.625rem] flex-col rounded-[1.35rem] border border-border bg-surface p-5 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/35 hover:bg-accent-soft/15 sm:p-6"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent transition-transform duration-300 group-hover:-translate-y-0.5">

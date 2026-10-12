@@ -123,11 +123,11 @@ const organizationJsonLd = {
   logo: absoluteUrl("/brand/logo-512.png"),
   image: absoluteUrl("/opengraph-image.png"),
   description: SITE_DESCRIPTION,
-  email: "bonjour@lov.care",
+  email: "lesorthosenvisio@gmail.com",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "service client",
-    email: "bonjour@lov.care",
+    email: "lesorthosenvisio@gmail.com",
     availableLanguage: "fr",
   },
 };

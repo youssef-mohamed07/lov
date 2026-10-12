@@ -13,7 +13,11 @@ import { CareersApplyForm } from "@/components/sections/careers-apply-form";
 import { PageIntro } from "@/components/sections/page-intro";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/ui/cta-button";
-import { careers, getCareerRoleHref } from "@/data/carrieres";
+import {
+  careers,
+  getCareerRoleHref,
+  getOpenCareerRoles,
+} from "@/data/carrieres";
 import { createPageMetadata } from "@/lib/seo";
 
 const processIcons = [Send, Handshake, ClipboardCheck, Sparkles] as const;
@@ -27,6 +31,8 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function CareersPage() {
+  const openRoles = getOpenCareerRoles();
+
   return (
     <main>
       <PageIntro
@@ -63,7 +69,7 @@ export default function CareersPage() {
                   src="/images/drive-careers-section-2.png"
                   alt=""
                   fill
-                  sizes="(max-width: 1024px) 100vw, 48vw"
+                  sizes="(max-width: 1280px) 100vw, 48vw"
                   className="object-cover"
                 />
               </div>
@@ -147,63 +153,65 @@ export default function CareersPage() {
       </section>
 
       {/* Roles */}
-      <section
-        id="postes-ouverts"
-        className="scroll-mt-28 bg-background py-[var(--section-space-lg)]"
-      >
-        <Container className="relative">
-          <Reveal variant="fade">
-            <div>
-              <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
-                {careers.roles.eyebrow}
-              </p>
-              <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-                {careers.roles.title}{" "}
-                <span className="font-medium italic text-voice">{careers.roles.titleAccent}</span>
-              </h2>
-            </div>
-          </Reveal>
+      {openRoles.length > 0 ? (
+        <section
+          id="postes-ouverts"
+          className="scroll-mt-28 bg-background py-[var(--section-space-lg)]"
+        >
+          <Container className="relative">
+            <Reveal variant="fade">
+              <div>
+                <p className="text-xs font-medium tracking-[0.22em] text-brand uppercase">
+                  {careers.roles.eyebrow}
+                </p>
+                <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+                  {careers.roles.title}{" "}
+                  <span className="font-medium italic text-voice">{careers.roles.titleAccent}</span>
+                </h2>
+              </div>
+            </Reveal>
 
-          <ul className="mt-12 flex flex-col gap-4">
-            {careers.roles.items.map((role, index) => (
-              <li key={role.slug}>
-                <Reveal delay={index * 0.05} variant="fade">
-                  <article className="group grid gap-6 rounded-[1.5rem] border border-border bg-surface p-6 transition-[border-color,background-color] duration-200 hover:border-accent/30 hover:bg-accent-soft/20 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
-                        <span className="rounded-full bg-accent-soft px-2.5 py-1 text-accent">
-                          {role.type}
-                        </span>
-                        <span className="rounded-full bg-background px-2.5 py-1">
-                          {role.mode}
-                        </span>
-                        <span className="inline-flex items-center gap-1 px-1">
-                          <MapPin className="size-3.5 shrink-0" aria-hidden />
-                          {role.location}
-                        </span>
+            <ul className="mt-12 flex flex-col gap-4">
+              {openRoles.map((role, index) => (
+                <li key={role.slug}>
+                  <Reveal delay={index * 0.05} variant="fade">
+                    <article className="group grid gap-6 rounded-[1.5rem] border border-border bg-surface p-6 transition-[border-color,background-color] duration-200 hover:border-accent/30 hover:bg-accent-soft/20 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
+                          <span className="rounded-full bg-accent-soft px-2.5 py-1 text-accent">
+                            {role.type}
+                          </span>
+                          <span className="rounded-full bg-background px-2.5 py-1">
+                            {role.mode}
+                          </span>
+                          <span className="inline-flex items-center gap-1 px-1">
+                            <MapPin className="size-3.5 shrink-0" aria-hidden />
+                            {role.location}
+                          </span>
+                        </div>
+                        <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight text-foreground">
+                          {role.title}
+                        </h3>
+                        <p className="mt-2 max-w-2xl text-sm leading-7 text-muted sm:text-base">
+                          {role.description}
+                        </p>
                       </div>
-                      <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight text-foreground">
-                        {role.title}
-                      </h3>
-                      <p className="mt-2 max-w-2xl text-sm leading-7 text-muted sm:text-base">
-                        {role.description}
-                      </p>
-                    </div>
 
-                    <CtaButton
-                      href={getCareerRoleHref(role.slug)}
-                      size="sm"
-                      className="w-fit shrink-0"
-                    >
-                      Postuler
-                    </CtaButton>
-                  </article>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
+                      <CtaButton
+                        href={getCareerRoleHref(role.slug)}
+                        size="sm"
+                        className="w-fit shrink-0"
+                      >
+                        Postuler
+                      </CtaButton>
+                    </article>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </section>
+      ) : null}
 
       {/* Spontaneous CTA */}
       <section className="bg-background py-[var(--section-space-lg)]">
@@ -221,10 +229,14 @@ export default function CareersPage() {
               <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
                 <div className="max-w-xl">
                   <p className="text-xs font-medium tracking-[0.22em] text-accent uppercase">
-                    {careers.cta.eyebrow}
+                    {openRoles.length > 0
+                      ? careers.cta.eyebrow
+                      : careers.cta.closedEyebrow}
                   </p>
                   <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-background sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-                    {careers.cta.title}
+                    {openRoles.length > 0
+                      ? careers.cta.title
+                      : careers.cta.closedTitle}
                   </h2>
                   <p className="mt-4 max-w-lg text-base leading-7 text-background/70">
                     {careers.cta.description}

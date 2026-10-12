@@ -25,14 +25,18 @@ export function AboutFounders() {
         <ul className="mt-12 grid gap-6 lg:grid-cols-2">
           {founders.people.map((person, index) => (
             <li key={person.name} className="min-w-0">
-              <Reveal delay={index * 0.08} variant={index === 0 ? "left" : "right"}>
-                <article className="grid overflow-hidden rounded-[1.75rem] border border-border bg-surface sm:grid-cols-[0.9fr_1.1fr]">
-                  <div className="relative min-h-[260px] sm:min-h-[300px]">
+              <Reveal
+                delay={index * 0.08}
+                variant={index === 0 ? "left" : "right"}
+                className="h-full"
+              >
+                <article className="grid h-full overflow-hidden rounded-[1.75rem] border border-border bg-surface sm:grid-cols-[0.9fr_1.1fr]">
+                  <div className="relative min-h-[16.25rem] sm:min-h-[18.75rem]">
                     <Image
                       src={person.image}
                       alt={person.name}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 25vw"
+                      sizes="(max-width: 1280px) 100vw, 25vw"
                       className="object-cover object-[50%_20%]"
                     />
                   </div>

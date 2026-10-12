@@ -17,7 +17,7 @@ export function HomeShowcase() {
           </span>
         </>
       }
-      description="Notre cabinet en ligne réalise votre bilan depuis chez vous, avec les mêmes exigences qu’un bilan en cabinet."
+      description="Notre cabinet en ligne réalise votre bilan depuis chez vous, avec les mêmes exigences professionnelles qu’un·e orthophoniste libéral·e."
       ctaLabel="Demander un bilan"
       ctaHref="/demander-un-bilan"
       priority

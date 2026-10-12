@@ -12,6 +12,9 @@ export type CareerRole = {
   offer: string[];
 };
 
+/** The practice isn't hiring yet: set to true to list the open positions again. */
+export const showOpenRoles: boolean = false;
+
 export const careers = {
   eyebrow: "Nous rejoindre",
   title: "Donner du sens à",
@@ -168,6 +171,8 @@ export const careers = {
   cta: {
     eyebrow: "Aucun poste ne correspond ?",
     title: "Écrivez-nous quand même",
+    closedEyebrow: "Candidature spontanée",
+    closedTitle: "Écrivez-nous",
     description:
       "Déposez votre CV, chaque profil est étudié. Si un besoin correspond, on revient vers vous.",
     fileLabel: "Déposer votre CV",
@@ -178,12 +183,16 @@ export const careers = {
   },
 } as const;
 
+export function getOpenCareerRoles(): readonly CareerRole[] {
+  return showOpenRoles ? careers.roles.items : [];
+}
+
 export function getCareerRole(slug: string) {
-  return careers.roles.items.find((role) => role.slug === slug);
+  return getOpenCareerRoles().find((role) => role.slug === slug);
 }
 
 export function getAllCareerRoleSlugs() {
-  return careers.roles.items.map((role) => role.slug);
+  return getOpenCareerRoles().map((role) => role.slug);
 }
 
 export function getCareerRoleHref(slug: string) {

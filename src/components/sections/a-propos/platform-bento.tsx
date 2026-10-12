@@ -53,7 +53,7 @@ export function AboutPlatformBento() {
                   src="/images/drive-home-section-2.png"
                   alt="Enfant concentré pendant une activité de langage"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  sizes="(max-width: 1280px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -75,8 +75,8 @@ export function AboutPlatformBento() {
           </div>
 
           <Reveal delay={0.08} variant="fade-scale" className="h-full">
-            <article className="flex h-full min-h-[420px] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)] lg:min-h-0">
-              <div className="relative mx-auto flex aspect-square w-full max-w-[280px] flex-1 items-center justify-center">
+            <article className="flex h-full min-h-[26.25rem] flex-col rounded-[1.5rem] bg-surface p-7 shadow-[0_18px_50px_-36px_rgba(26,43,60,0.4)] lg:min-h-0">
+              <div className="relative mx-auto flex aspect-square w-full max-w-[17.5rem] flex-1 items-center justify-center">
                 <div aria-hidden className="absolute inset-[8%] rounded-full border border-dashed border-border" />
                 <div aria-hidden className="absolute inset-[22%] rounded-full border border-dashed border-border/80" />
 
@@ -111,7 +111,7 @@ export function AboutPlatformBento() {
                   <Users className="size-5" aria-hidden />
                 </span>
                 <h3 className="mt-4 text-xl font-semibold tracking-tight text-foreground">
-                  Un espace pensé pour simplifier votre suivi
+                  Un espace où toutes les informations sont centralisées
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">
                   Rendez-vous, comptes-rendus, exercices entre les séances et échanges avec l&apos;orthophoniste : tout votre suivi se retrouve au même endroit, simple à consulter à tout moment.
@@ -141,8 +141,8 @@ export function AboutPlatformBento() {
                   src="/images/drive-home-section-4.png"
                   alt="Professionnelle préparant un accompagnement orthophonique"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover"
+                  sizes="(max-width: 1280px) 100vw, 33vw"
+                  className="object-cover object-top"
                 />
               </div>
             </Reveal>

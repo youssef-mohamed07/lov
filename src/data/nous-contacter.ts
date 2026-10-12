@@ -5,8 +5,8 @@ export const contact = {
   details: [
     {
       label: "Courriel",
-      value: "bonjour@lov.care",
-      href: "mailto:bonjour@lov.care",
+      value: "lesorthosenvisio@gmail.com",
+      href: "mailto:lesorthosenvisio@gmail.com",
     },
     {
       label: "Horaires",

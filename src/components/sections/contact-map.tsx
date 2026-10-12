@@ -80,7 +80,7 @@ export function ContactMap() {
             </div>
 
             {/* Map side */}
-            <div className="relative min-h-[280px] border-t border-border lg:border-t-0 lg:border-l">
+            <div className="relative min-h-[17.5rem] border-t border-border lg:border-t-0 lg:border-l">
               <DeferredMap
                 title={`Carte — ${location.address}, ${location.city}`}
                 address={location.address}

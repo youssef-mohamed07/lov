@@ -59,9 +59,9 @@ export function BilanOverview() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid items-center gap-10 xl:grid-cols-[1fr_minmax(260px,0.95fr)_1fr] xl:gap-12">
+        <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1fr_minmax(16.25rem,0.95fr)_1fr] lg:gap-12">
           {/* Left features */}
-          <ul className="flex flex-col gap-8 xl:gap-10">
+          <ul className="flex flex-col gap-8 lg:gap-10">
             {overview.leftFeatures.map((feature, index) => (
               <li key={feature}>
                 <Reveal delay={index * 0.06} variant="left">
@@ -75,13 +75,13 @@ export function BilanOverview() {
           </ul>
 
           {/* Center image */}
-          <Reveal delay={0.08} variant="fade-scale" className="order-first xl:order-none">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-[1.75rem] border border-border shadow-[var(--shadow-card)] xl:max-w-none">
+          <Reveal delay={0.08} variant="fade-scale" className="order-first lg:order-none">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-[1.75rem] border border-border shadow-[var(--shadow-card)] lg:max-w-none">
               <Image
                 src={overview.image}
                 alt={overview.imageAlt}
                 fill
-                sizes="(max-width: 1024px) 90vw, 30vw"
+                sizes="(max-width: 1280px) 90vw, 30vw"
                 className="object-cover"
                 priority
               />
@@ -89,7 +89,7 @@ export function BilanOverview() {
           </Reveal>
 
           {/* Right features */}
-          <ul className="flex flex-col gap-8 xl:gap-10">
+          <ul className="flex flex-col gap-8 lg:gap-10">
             {overview.rightFeatures.map((feature, index) => (
               <li key={feature}>
                 <Reveal delay={0.1 + index * 0.06} variant="right">

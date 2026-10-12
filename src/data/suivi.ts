@@ -1,7 +1,7 @@
 export const suivi = {
   title: "Suivi et accompagnement orthophonique en téléconsultation, depuis chez vous.",
   description:
-    "Des séances régulières, un rythme adapté à votre enfant, et des progrès mesurés dans le temps.",
+    "Des séances régulières, un rythme adapté à votre enfant et des progrès mesurés dans le temps.",
   hero: {
     eyebrow: "Les Orthos en Visio",
     title: "Un suivi qui s’adapte",
@@ -48,7 +48,7 @@ export const suivi = {
     title: "Chaque séance, chaque étape,",
     titleAccent: "au même endroit",
     description:
-      "Chaque étape de votre parcours se passe au même endroit, sans jongler entre plusieurs outils.",
+      "Chaque étape de votre parcours se passe au même endroit.",
   },
   pricing: {
     name: "Suivi orthophonique",
@@ -75,7 +75,7 @@ export const suivi = {
       "Un tarif par séance, sans abonnement ni forfait imposé.",
     highlightTitle: "Un plan qui s’ajuste",
     highlightDescription:
-      "Un nombre de séances défini par le bilan, à utiliser sous 3 mois. Séances non consommées remboursées.",
+      "Un nombre de séances défini par le bilan, à utiliser sous 6 mois. Séances non consommées remboursées.",
     ctaLabel: "Demander un suivi",
     ctaHref: "/deja-un-bilan",
     secondaryLabel: "Je n’ai pas encore de bilan",
@@ -89,10 +89,10 @@ export const suivi = {
       progress: {
         title: "Des progrès visibles, séance après séance",
         description:
-          "Vous savez toujours ce qui a été travaillé, et ce qu’il reste à faire.",
+          "Vous savez ce qui a été travaillé et ce qu’il reste à faire.",
       },
       space: {
-        title: "Un espace pensé pour simplifier votre suivi",
+        title: "Un espace où toutes les informations sont centralisées",
         description:
           "Rendez-vous, comptes-rendus, exercices entre les séances et échanges avec l’orthophoniste : tout votre suivi se retrouve au même endroit, simple à consulter à tout moment.",
       },

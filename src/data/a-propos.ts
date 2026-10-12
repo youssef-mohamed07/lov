@@ -10,6 +10,7 @@ export const about = {
     description:
       "Nous recrutons des orthophonistes qui partagent notre vision d’une orthophonie plus accessible.",
     ctaLabel: "Voir les postes ouverts",
+    ctaLabelClosed: "Nous rejoindre",
   },
   reassurance: [
     {
@@ -77,14 +78,14 @@ export const about = {
       {
         name: "Morgane",
         role: "Orthophoniste, co-fondatrice",
-        bio: "Elle supervise la qualité clinique de l'équipe et veille à ce que chaque orthophoniste dispose du temps et du cadre nécessaires pour bien faire son travail.",
-        image: "/images/drive-about-section-6.png",
+        bio: "Diplômée en 2018 à Toulouse, Morgane exerce en libéral, puis en milieu hospitalier et médico-psycho-pédagogique. Devenue maman, elle découvre la téléorthophonie et y trouve un équilibre entre pratique clinique et liberté d’organisation.",
+        image: "/images/drive-home-hero.png",
       },
       {
         name: "Charlène",
         role: "Orthophoniste, co-fondatrice",
-        bio: "Elle pilote l'organisation et l'accompagnement des nouvelles recrues, de la candidature jusqu'à la prise de poste.",
-        image: "/images/drive-home-hero.png",
+        bio: "Diplômée en 2021 à Genève et ayant obtenu son équivalence, Charlène exerce d’abord en milieu scolaire, puis à distance. Sensibilisée au manque d’accès aux soins, elle fonde Les Orthos en Visio avec Morgane pour offrir une solution aux familles en attente d’un rendez-vous.",
+        image: "/images/drive-about-section-6.png",
       },
     ],
   },

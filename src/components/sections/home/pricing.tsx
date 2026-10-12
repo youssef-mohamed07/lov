@@ -3,7 +3,6 @@ import {
   Check,
   Clock3,
   FileCheck2,
-  ShieldCheck,
   Video,
 } from "lucide-react";
 import Link from "next/link";
@@ -18,7 +17,6 @@ const plan = pricingPlans[0];
 const reassurance = [
   { label: "100 % en visioconférence", icon: Video },
   { label: "Compte-rendu inclus", icon: FileCheck2 },
-  { label: "Certifié conforme", icon: ShieldCheck },
 ] as const;
 
 export function HomePricing() {
@@ -72,11 +70,11 @@ export function HomePricing() {
                 </div>
 
                 <div className="relative flex h-full flex-col">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full bg-white/80 px-3 py-1.5 text-[0.68rem] font-semibold tracking-[0.14em] text-brand uppercase shadow-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+                    <span className="rounded-full bg-white/80 px-3 py-1.5 text-[0.68rem] font-semibold tracking-[0.14em] whitespace-nowrap text-brand uppercase shadow-sm">
                       Tarif unique
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-muted">
+                    <span className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap text-muted">
                       <Clock3 className="size-3.5" aria-hidden />
                       Parcours complet
                     </span>

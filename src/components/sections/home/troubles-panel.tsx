@@ -96,7 +96,7 @@ export function HomeTroublesPanel() {
 
   useEffect(() => {
     const mq = window.matchMedia(
-      "(min-width: 1280px) and (hover: hover) and (pointer: fine)",
+      "(min-width: 1600px) and (hover: hover) and (pointer: fine)",
     );
     const update = () => setIsDesktop(mq.matches);
     update();
@@ -247,7 +247,7 @@ export function HomeTroublesPanel() {
                   src={item.image}
                   alt=""
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1280px) 100vw, 50vw"
                   className="object-cover"
                   priority={index === 0}
                 />

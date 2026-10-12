@@ -29,7 +29,7 @@ export function BrandMark({
         height={compact ? 24 : 30}
         className={cn(
           "shrink-0 object-contain",
-          compact ? "h-6 w-auto" : "h-[30px] w-auto",
+          compact ? "h-6 w-auto" : "h-[1.875rem] w-auto",
         )}
         priority
       />

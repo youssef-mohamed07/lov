@@ -40,7 +40,7 @@ const sizeStyles = {
     arrow: "size-4",
   },
   lg: {
-    root: "gap-3.5 py-2 pl-6 pr-2 text-[15px]",
+    root: "gap-3.5 py-2 pl-6 pr-2 text-[0.9375rem]",
     icon: "size-10",
     arrow: "size-4",
   },

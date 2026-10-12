@@ -51,7 +51,7 @@ export function AboutOverview() {
                 src={overview.image}
                 alt={overview.imageAlt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1280px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
