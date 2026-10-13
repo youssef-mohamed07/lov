@@ -31,7 +31,7 @@ export const homeFaq: PageFaqContent = {
     {
       question: "Prenez-vous en charge tous les troubles en visioconférence ?",
       answer:
-        "Non. Le télésoin convient à l’évaluation et à la prise en charge de la plupart des troubles du langage oral et écrit, des apprentissages, et de certains troubles de l’oralité et oro-myo-fonctionnels. Les troubles de la voix, de la déglutition avec fausses routes, les suites de chirurgie ORL ou les troubles neurologiques en phase aiguë nécessitent un examen physique que nous ne pouvons pas réaliser à distance. Retrouvez l’ensemble des troubles pris en charge dans la rubrique « Les troubles ».",
+        "Non. Le télésoin convient à l’évaluation et à la prise en charge de la plupart des troubles du langage oral et écrit, des apprentissages, et de certains troubles oro-myo-fonctionnels. Les troubles de la voix, de la déglutition avec fausses routes, les suites de chirurgie ORL ou les troubles neurologiques en phase aiguë nécessitent un examen physique que nous ne pouvons pas réaliser à distance. Retrouvez l’ensemble des troubles pris en charge dans la rubrique « Les troubles ».",
     },
     {
       question: "Combien de temps faut-il attendre pour obtenir un rendez-vous ?",
@@ -39,9 +39,9 @@ export const homeFaq: PageFaqContent = {
         "Il n’y a pas de liste d’attente : les créneaux disponibles s’affichent directement dans l’agenda au moment de la réservation. Vous voyez donc en temps réel ce que nous pouvons vous proposer.",
     },
     {
-      question: "Le compte rendu est-il accepté par la MDPH ?",
+      question: "Le compte rendu peut-il être associé à un dossier MDPH ?",
       answer:
-        "Oui. Il est rédigé selon les exigences de la profession, à partir de tests étalonnés, et signé par une orthophoniste titulaire du Certificat de Capacité d’Orthophoniste avec son numéro RPPS. Il constitue une pièce recevable pour une demande de PAP, de PPS, d’aménagements d’examens ou pour un dossier MDPH.",
+        "Oui. Il est rédigé selon les exigences de la profession, à partir de tests étalonnés, et signé par une orthophoniste titulaire du Certificat de Capacité d’Orthophoniste avec son numéro RPPS. Il peut être associé à une demande de PAP, de PPS, d’aménagements d’examens ou à un dossier MDPH.",
     },
     {
       question: "Pourquoi n’êtes-vous pas conventionnés avec l’Assurance Maladie ?",
@@ -129,7 +129,7 @@ export const bilanFaq: PageFaqContent = {
     {
       question: "Prenez-vous en charge tous les troubles en visioconférence ?",
       answer:
-        "Non, le télésoin convient à l’évaluation et la prise en charge de la plupart des troubles du langage oral et écrit, des apprentissages et certains troubles de l’oralité et oro-myo-fonctionnels. En revanche, les troubles de la voix, de la déglutition avec fausses routes, les suites de chirurgie ORL, les troubles sensoriels ou les troubles neurologiques en phase aiguë nécessitent un examen physique que nous ne pouvons pas réaliser à distance. Retrouvez l’ensemble des troubles que nous prenons en charge dans la section « Troubles » de notre site.",
+        "Non, le télésoin convient à l’évaluation et la prise en charge de la plupart des troubles du langage oral et écrit, des apprentissages et certains troubles oro-myo-fonctionnels. En revanche, les troubles de la voix, de la déglutition avec fausses routes, les suites de chirurgie ORL, les troubles sensoriels ou les troubles neurologiques en phase aiguë nécessitent un examen physique que nous ne pouvons pas réaliser à distance. Retrouvez l’ensemble des troubles que nous prenons en charge dans la section « Troubles » de notre site.",
     },
     {
       question: "À partir de quel âge, et jusqu’à quel âge ?",
@@ -177,9 +177,9 @@ export const bilanFaq: PageFaqContent = {
         "Vous recevez le compte rendu écrit complet dans un délai de dix jours, directement dans votre espace personnel sécurisé. Il détaille les résultats des tests, l’analyse clinique de votre orthophoniste, les conclusions, et des recommandations concrètes pour l’école comme pour la maison. Si vous avez besoin de ce document plus rapidement, vous pouvez souscrire à une option de rédaction accélérée sous 48 heures au moment de la réservation.",
     },
     {
-      question: "Le compte rendu est-il accepté par la MDPH ?",
+      question: "Le compte rendu peut-il être associé à un dossier MDPH ?",
       answer:
-        "Oui. Il est rédigé selon les exigences de la profession, à partir de tests étalonnés, et signé par une orthophoniste titulaire du Certificat de Capacité d’Orthophoniste avec son numéro RPPS. Il constitue une pièce recevable pour une demande de PAP, de PPS, d’aménagements d’examens ou pour un dossier MDPH. Nous vous indiquons également, dans nos recommandations, les aménagements précis à solliciter auprès de l’établissement.",
+        "Oui. Il est rédigé selon les exigences de la profession, à partir de tests étalonnés, et signé par une orthophoniste titulaire du Certificat de Capacité d’Orthophoniste avec son numéro RPPS. Il peut être associé à une demande de PAP, de PPS, d’aménagements d’examens ou à un dossier MDPH. Nous vous indiquons également, dans nos recommandations, les aménagements précis à solliciter auprès de l’établissement.",
     },
     {
       question: "Et si le bilan conclut qu’il n’y a pas de trouble ?",
@@ -338,7 +338,7 @@ export const troublesFaq: PageFaqContent = {
     {
       question: "Quels troubles prenez-vous en charge en téléconsultation ?",
       answer:
-        "La plupart des troubles du langage oral et écrit, des apprentissages, ainsi que certains troubles de l’oralité et oro-myo-fonctionnels. Retrouvez le détail par catégorie ci-dessous ; les troubles nécessitant un examen physique — voix, déglutition avec fausses routes, suites de chirurgie ORL, phase aiguë d’un trouble neurologique — ne peuvent pas être évalués à distance.",
+        "La plupart des troubles du langage oral et écrit, des apprentissages, ainsi que certains troubles oro-myo-fonctionnels. Retrouvez le détail par catégorie ci-dessous ; les troubles nécessitant un examen physique — voix, déglutition avec fausses routes, suites de chirurgie ORL, phase aiguë d’un trouble neurologique — ne peuvent pas être évalués à distance.",
     },
     {
       question: "Comment savoir quel trouble correspond à la situation de mon enfant ?",

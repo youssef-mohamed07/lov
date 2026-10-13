@@ -144,15 +144,15 @@ export const simulatorResults = {
     ctaHref: "/troubles/dyslexie",
   },
   "retard-parole-langage": {
-    title: "Piste : retard de parole / langage",
+    title: "Piste : des difficultés de parole et de langage",
     body: "Le développement oral semble en décalage. Une évaluation précoce aide à poser un cadre clair.",
-    ctaLabel: "Voir le retard de langage",
+    ctaLabel: "Voir les difficultés de parole et de langage",
     ctaHref: "/troubles/retard-parole-langage",
   },
   begaiement: {
-    title: "Piste : bégaiement",
+    title: "Piste : des difficultés de fluidité de la parole",
     body: "La fluidité de la parole semble au premier plan. Un accompagnement orthophonique peut réduire l’impact au quotidien.",
-    ctaLabel: "Voir le bégaiement",
+    ctaLabel: "Voir les difficultés de fluidité",
     ctaHref: "/troubles/begaiement",
   },
   dyscalculie: {
@@ -162,9 +162,9 @@ export const simulatorResults = {
     ctaHref: "/troubles/dyscalculie",
   },
   articulation: {
-    title: "Piste : articulation",
+    title: "Piste : des difficultés d’articulation",
     body: "L’intelligibilité ou certains sons semblent concernés. Une évaluation précise oriente la rééducation.",
-    ctaLabel: "Voir l’articulation",
+    ctaLabel: "Voir les difficultés d’articulation",
     ctaHref: "/troubles/retard-parole-langage",
   },
   dysphasie: {
@@ -174,7 +174,7 @@ export const simulatorResults = {
     ctaHref: "/troubles/retard-parole-langage",
   },
   voix: {
-    title: "Piste : voix",
+    title: "Piste : des difficultés vocales",
     body: "La qualité ou le confort vocal semble central. Un bilan vocal, parfois couplé à un avis ORL, peut aider.",
     ctaLabel: "Nous contacter",
     ctaHref: "/nous-contacter",

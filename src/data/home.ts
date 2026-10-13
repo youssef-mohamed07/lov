@@ -96,7 +96,7 @@ export const pricingPlans = [
       "Recommandations pour l’école et la maison",
     ],
     report:
-      "Rédigé selon les mêmes exigences qu’en cabinet, avec les tests de référence de la profession. Il est reconnu par les médecins et la MDPH, et peut servir de base à une demande de PAP, de PPS ou d’aménagements aux examens.",
+      "Rédigé selon les mêmes exigences qu’en cabinet, avec les tests de référence de la profession. Il peut servir de base à une demande de PAP, de PPS ou d’aménagements aux examens, et être associé à un dossier MDPH.",
     steps: [
       "Vous réservez votre créneau en ligne",
       "Vous remplissez le questionnaire d’anamnèse",

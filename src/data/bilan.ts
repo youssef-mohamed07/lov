@@ -17,7 +17,7 @@ export const bilan = {
     imageAlt: "Orthophoniste à son bureau pendant une séance en visioconférence",
     badgeLabel: "Bilans réalisés",
     badgeValue: "400",
-    imageCaption: "Évaluation conforme aux exigences administratives",
+    imageCaption: "Évaluation conforme aux exigences professionnelles",
     eyebrow: "Pourquoi nous faire confiance ?",
     title: "Le bilan orthophonique,",
     titleAccent: "une autre façon de procéder",
@@ -55,7 +55,7 @@ export const bilan = {
     leftFeatures: [
       "Propose des pistes concrètes.",
       "Afin de savoir si une inquiétude mérite un accompagnement, ou quelques conseils à la maison.",
-      "Un document conforme pour les médecins et les aménagements scolaires.",
+      "Un document utile pour les médecins et les aménagements scolaires.",
     ],
     rightFeatures: [
       "Essentiel pour toutes vos démarches (PAP, PPS, MDPH…).",
