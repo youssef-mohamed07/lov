@@ -5,8 +5,8 @@ export const contact = {
   details: [
     {
       label: "Courriel",
-      value: "lesorthosenvisio@gmail.com",
-      href: "mailto:lesorthosenvisio@gmail.com",
+      value: "bonjour@lesorthosenvisio.fr",
+      href: "mailto:bonjour@lesorthosenvisio.fr",
     },
     {
       label: "Horaires",
@@ -16,17 +16,17 @@ export const contact = {
   location: {
     eyebrow: "Nous trouver",
     title: "Un point d’ancrage",
-    titleAccent: "à Paris",
+    titleAccent: "à Lyon",
     description:
       "Les bilans et les accompagnements se déroulent en téléconsultation. Le premier échange permet de vérifier que ce format est adapté.",
     label: "Adresse",
-    address: "12 rue de la Clarté",
-    city: "75011 Paris",
-    // Approximate pin — update when the real address is confirmed.
-    lat: 48.8584,
-    lng: 2.379,
+    // Siège social
+    address: "30 avenue Maréchal Foch, Bureau 3",
+    city: "69006 Lyon",
+    lat: 45.77166,
+    lng: 4.84309,
     mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=12+rue+de+la+Clart%C3%A9+75011+Paris",
+      "https://www.google.com/maps/search/?api=1&query=30+avenue+Mar%C3%A9chal+Foch+69006+Lyon",
   },
   subjects: [
     { value: "bilan", label: "Bilan orthophonique" },

@@ -130,13 +130,20 @@ const organizationJsonLd = {
   logo: absoluteUrl("/brand/logo-512.png"),
   image: absoluteUrl("/opengraph-image.png"),
   description: SITE_DESCRIPTION,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "30 avenue Maréchal Foch, Bureau 3",
+    postalCode: "69006",
+    addressLocality: "Lyon",
+    addressCountry: "FR",
+  },
   areaServed: { "@type": "Country", name: "France" },
   knowsLanguage: "fr",
-  email: "lesorthosenvisio@gmail.com",
+  email: "bonjour@lesorthosenvisio.fr",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "service client",
-    email: "lesorthosenvisio@gmail.com",
+    email: "bonjour@lesorthosenvisio.fr",
     availableLanguage: "fr",
   },
 };
